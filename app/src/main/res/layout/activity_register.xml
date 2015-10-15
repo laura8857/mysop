@@ -1,0 +1,89 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".login"
+    android:id="@+id/Login"  android:focusableInTouchMode="true">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView4"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/lb1"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="10"
+        android:id="@+id/InputEmail"
+        android:textSize="18dp"
+        android:hint="@string/Register_InputEmail"
+        android:singleLine="false"
+        android:gravity="center"
+        android:layout_below="@+id/imageView4"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/InputPassword"
+        android:hint="@string/Register_InputPassword"
+        android:textSize="18dp"
+        android:focusable="true"
+        android:gravity="center"
+        android:layout_below="@+id/InputEmail"
+        android:layout_marginTop="29dp"
+        android:layout_alignEnd="@+id/InputEmail"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/ConfirmPassword"
+        android:textSize="18dp"
+        android:hint="@string/Register_ConfirmPassword"
+        android:gravity="center"
+        android:layout_below="@+id/InputPassword"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="29dp"
+        android:layout_alignEnd="@+id/InputPassword" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/Name"
+        android:hint="@string/Register_Name"
+        android:textSize="18dp"
+        android:gravity="center"
+        android:focusableInTouchMode="true"
+        android:layout_below="@+id/ConfirmPassword"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="29dp"
+        android:layout_alignEnd="@+id/ConfirmPassword" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="45dp"
+        android:text="確認"
+        android:id="@+id/submit"
+        android:background="#ffff3f2f"
+        android:textColor="#ffffff"
+        android:textSize="25dp"
+        android:layout_marginTop="38dp"
+        android:layout_below="@+id/Name"
+        android:layout_centerHorizontal="true"
+        android:onClick="register_check" />
+
+</RelativeLayout>

@@ -1,0 +1,93 @@
+<resources>
+    <string name="app_name">MySOP</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_emailverify">emailverify</string>
+    <string name="title_activity_error">Error</string>
+    <string name="title_activity_forget">Forget</string>
+    <string name="title_activity_main">MainActivity</string>
+
+
+
+    <string name="Login_email">電子信箱</string>
+    <string name="Login_passward">密碼</string>
+
+
+    <string name="Register_InputEmail">輸入信箱</string>
+    <string name="Register_InputPassword">輸入密碼</string>
+    <string name="Register_ConfirmPassword">確認密碼</string>
+    <string name="Register_Name">名稱</string>
+
+    <string name="title_activity_changepassword">Changepassword</string>
+    <string name="Changepassward_Originalpassword">原密碼</string>
+    <string name="Changepassward_NewPassword">新密碼</string>
+    <string name="Changepassward_Confirmnewpassward">再輸入一次新密碼</string>
+
+    <string name="title_activity_change_password_error">ChangePasswordError</string>
+    <string name="title_activity_email_vertify_error">EmailVertifyError</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="title_activity_register_error">RegisterError</string>
+    <string name="title_activity_mysop">Mysop</string>
+    <string name="title_activity_content">Content</string>
+
+    <string name="title_activity_searching">searching</string>
+
+
+
+    <string name="title_activity_dynamic_action">Dynamic Action</string>
+
+    <string name="title_section1">Manually actuated</string>
+    <string name="title_section2">Previous strep finished</string>
+    <string name="title_section3">QR code</string>
+    <string name="title_section4">NFC</string>
+    <string name="title_section5">iBeacon</string>
+    <string name="title_section6">GPS</string>
+    <string name="title_section7">Time</string>
+
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+
+    <string name="title_activity_drawer">DrawerActivity</string>
+
+    <string name="action_example">Dynamic action</string>
+    <string name="title_activity_start">Start</string>
+    <string name="title_activity_stepdescription">Stepdescription</string>
+    <string name="title_activity_steprecording">Steprecording</string>
+    <string name="title_activity_stepcutcontrol_artificial">StepcutcontrolArtificial</string>
+    <string name="title_activity_stepnextcontrol">Stepnextcontrol</string>
+    <string name="title_activity_step_case_ending">StepCaseEnding</string>
+    <string name="title_activity_step_action_control_qrcode">StepActionControlQRcode</string>
+    <string name="title_activity_step_action_control_ibeacon">StepActionControlIbeacon</string>
+    <string name="title_activity_step_cut_control_qrcode">StepCutControlQRcode</string>
+    <string name="title_activity_step_action_control">StepActionControl</string>
+    <string name="title_activity_step_cut_control">StepCutControl</string>
+    <string name="title_activity_step_action_control_gps">StepActionControlGPS</string>
+    <string name="title_activity_step_cut_control_ibeacon">StepCutControlIbeacon</string>
+    <string name="title_activity_step_cut_control_gps">StepCutControlGPS</string>
+    <string name="title_activity_step_action_control_nfc">StepActionControlNFC</string>
+    <string name="title_activity_step_action_control_artificial">StepActionControlArtificial
+    </string>
+    <string name="title_activity_step_action_control_time">StepActionControlTime</string>
+    <string name="title_activity_step_cut_control_nfc">StepCutControlNFC</string>
+
+    <string name="title_activity_step_cut_control_time">StepCutControlTime</string>
+
+    <string name="title_activity_forgetpwd">Forgetpwd</string>
+    <string name="title_activity_step_next_control_user">StepNextControlUser</string>
+    <string name="title_activity_step_next_control">StepNextControl</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_test_send_gcm">TestSendGCM</string>
+    <string name="title_activity_search">Search</string>
+    <string name="title_activity_search_test">SearchTest</string>
+    <string name="title_activity_p201">p201</string>
+    <string name="title_activity_mysop1">Mysop1</string>
+    <string name="title_activity_mysop2">mysop2</string>
+    <string name="title_activity_saqs">saqs</string>
+
+
+
+
+</resources>
