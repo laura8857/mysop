@@ -1,4 +1,4 @@
-package com.example.kelly.mysop;
+package Ormlite;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
