@@ -15,7 +15,7 @@ public class User {
     @DatabaseField(columnName = "desc")
     private String desc;
 
-    public User(){
+    public User(long millis){
     }
 
     public User(String name, String desc){

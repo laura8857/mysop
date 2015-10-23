@@ -42,7 +42,7 @@ public class member_accountDao
 			//�撣唾����
 			queryBuilder.where().eq(member_accountVo.FIELD_Account,member_accountVo.getAccount());
 			ret = queryBuilder.query().size() > 0 ? true : false;
-			
+
 			return ret;
 		}
 		catch (SQLException e)
