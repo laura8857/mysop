@@ -59,7 +59,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
     }
     /**
      * Returns the Database Access Object (DAO) for our SimpleData class. It will create it or just give the cached
