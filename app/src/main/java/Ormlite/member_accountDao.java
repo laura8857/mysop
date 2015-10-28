@@ -24,16 +24,17 @@ public class member_accountDao {
 
 	/* exist */
 	public static boolean exist(DatabaseHelper databaseHelper, member_accountVo member_accountVo) {
+		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+				.getMember_accountDao();
+		QueryBuilder<member_accountVo, Integer> queryBuilder = accountDao
+				.queryBuilder();
 		try {
-			Dao<member_accountVo, Integer> member_accountDao = DaoManager.createDao(connectionSource, member_accountVo.class);
-			QueryBuilder<member_accountVo, Integer> queryBuilder = member_accountDao.queryBuilder();
+			queryBuilder.where()
+					.eq(member_accountVo.FIELD_Account, member_accountVo.getAccount());
+			//	.and()
+			//	.eq(AccountVo.FIELD_Device, aAccountVo.getDevice());
+			return queryBuilder.query().size() > 0 ? true : false;
 
-			boolean ret = false;
-			//�撣唾����
-			queryBuilder.where().eq(member_accountVo.FIELD_Account, member_accountVo.getAccount());
-			ret = queryBuilder.query().size() > 0 ? true : false;
-
-			return ret;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -41,10 +42,11 @@ public class member_accountDao {
 	}
 
 	/* update */
-	public static int update(ConnectionSource connectionSource, member_accountVo member_accountVo) {
+	public static int update(DatabaseHelper databaseHelper, member_accountVo member_accountVo) {
+		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+				.getMember_accountDao();
 		try {
-			Dao<member_accountVo, Integer> member_accountDao = DaoManager.createDao(connectionSource, member_accountVo.class);
-			return member_accountDao.update(member_accountVo);
+			return accountDao.update(member_accountVo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -52,34 +54,56 @@ public class member_accountDao {
 	}
 
 	/* delete */
-	public static int delete(ConnectionSource connectionSource, member_accountVo member_accountVo) {
+	public static int delete(DatabaseHelper databaseHelper, member_accountVo member_accountVo) {
+		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+				.getMember_accountDao();
 		try {
-			Dao<member_accountVo, Integer> member_accountDao = DaoManager.createDao(connectionSource, member_accountVo.class);
-			return member_accountDao.delete(member_accountVo);
+			return accountDao.delete(member_accountVo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
 	}
 
-	/* select by id */
-	public static member_accountVo select(ConnectionSource connectionSource, int id) {
+	/* selectRaw */
+	public static member_accountVo getMember_accountDao(DatabaseHelper databaseHelper) {
+		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+				.getMember_accountDao();
+		QueryBuilder<member_accountVo, Integer> queryBuilder = accountDao
+				.queryBuilder();
 		try {
-			Dao<member_accountVo, Integer> member_accountDao = DaoManager.createDao(connectionSource, member_accountVo.class);
-			return member_accountDao.queryForId(id);
+
+			List<member_accountVo> data = queryBuilder.where().raw("1=1").query();
+			if (data.size() > 0) {
+				return data.get(0);
+			}
+			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	/* selectRaw */
-	public static List<member_accountVo> selectRaw(ConnectionSource connectionSource, String rawWhere) {
+	/* select by id */
+	public static member_accountVo select(DatabaseHelper databaseHelper, int id) {
+		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+				.getMember_accountDao();
 		try {
-			Dao<member_accountVo, String> member_accountDao = DaoManager.createDao(connectionSource, member_accountVo.class);
-			QueryBuilder<member_accountVo, String> queryBuilder = member_accountDao.queryBuilder();
+			return accountDao.queryForId(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/* selectRaw */
+	public static List<member_accountVo> selectRaw(DatabaseHelper databaseHelper,
+											String rawWhere) {
+		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+				.getMember_accountDao();
+		QueryBuilder<member_accountVo, Integer> queryBuilder = accountDao
+				.queryBuilder();
+		try {
 			queryBuilder.where().raw(rawWhere);
-			String sql = queryBuilder.prepareStatementString();
 			return queryBuilder.query();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -88,24 +112,4 @@ public class member_accountDao {
 	}
 
 
-	// 頛����摰惜蝝���
-	public static member_accountVo getMember_accountVo(DatabaseHelper databaseHelper) {
-		try {
-			Dao<member_accountVo, Integer> accountDao = databaseHelper.getDao(member_accountVo.class);
-			List<member_accountVo> data = accountDao.queryForAll();
-
-			if (data.size() > 0) {
-				return data.get(0);
-			} else {
-				// 瘝����
-				// AccountVo aAccountVo = new AccountVo();
-				// AccountDao.insert(databaseHelper, aAccountVo);
-				return null;
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
 }

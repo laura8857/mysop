@@ -71,7 +71,9 @@ public static DatabaseHelper databaseHelper;//
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
+            Log.i(DatabaseHelper.class.getName(), "onCreate");
             TableUtils.createTable(connectionSource, User.class);
+            TableUtils.createTable(connectionSource, member_accountVo.class);
             //TableUtils.createTable(connectionSource, Group.class);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -87,6 +89,16 @@ public static DatabaseHelper databaseHelper;//
      * Returns the Database Access Object (DAO) for our SimpleData class. It will create it or just give the cached
      * value.
      */
+
+    //【member_account Dao】
+    private RuntimeExceptionDao<member_accountVo, Integer> accountRuntimeDao = null;
+    public RuntimeExceptionDao<member_accountVo, Integer> getMember_accountDao() {
+        if (accountRuntimeDao == null) {
+            accountRuntimeDao = getRuntimeExceptionDao(member_accountVo.class);
+        }
+        return accountRuntimeDao;
+    }
+
     public Dao<User, Integer> getDao() throws SQLException {
         if (simpleDao == null) {
             simpleDao = getDao(User.class);
