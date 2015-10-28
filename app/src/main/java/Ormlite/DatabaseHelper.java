@@ -11,6 +11,7 @@ import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
@@ -18,6 +19,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "Demo";
     private static DatabaseHelper instance;
+
 
     // the DAO object we use to access the SimpleData table
     private Dao<User, Integer> simpleDao = null;
@@ -29,24 +31,39 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    public static synchronized DatabaseHelper getHelper(Context context) {
-        context = context.getApplicationContext();
-        if (instance == null) {
-            synchronized (DatabaseHelper.class) {
-                if (instance == null)
-                    instance = new DatabaseHelper(context);
-            }
+//    class MyDbErrorHandler implements DatabaseErrorHandler {
+//
+//        @Override
+//        public void onCorruption(SQLiteDatabase dbObj) {
+//            // TODO Auto-generated method stub
+//            // Back up the db or do some other stuff
+//        }
+//    }
+public static DatabaseHelper databaseHelper;//
+
+    public static DatabaseHelper getHelper(Context context) {
+        if (databaseHelper == null) {
+            databaseHelper = OpenHelperManager.getHelper(context,
+                    DatabaseHelper.class);
         }
-        return instance;
+        return databaseHelper;
     }
+    /**
+     * This is called when your application is upgraded and it has a higher
+     * version number. This allows you to adjust the various data to match the
+     * new version number.
+     */
+
 
     @Override
     public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
         try {
+            Log.i(DatabaseHelper.class.getName(), "onUpgrade");
             TableUtils.dropTable(connectionSource, User.class, true);
             //TableUtils.dropTable(connectionSource, Group.class, true);
             onCreate(database, connectionSource);
         } catch (SQLException e) {
+            Log.e(DatabaseHelper.class.getName(), "Can't drop databases", e);
             e.printStackTrace();
         }
     }
@@ -59,8 +76,13 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        long millis = System.currentTimeMillis();
+
+        Log.i(DatabaseHelper.class.getName(),
+                "created new entries in onCreate: " + millis);
 
     }
+
     /**
      * Returns the Database Access Object (DAO) for our SimpleData class. It will create it or just give the cached
      * value.
