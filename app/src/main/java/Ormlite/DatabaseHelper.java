@@ -91,12 +91,12 @@ public static DatabaseHelper databaseHelper;//
      */
 
     //【member_account Dao】
-    private RuntimeExceptionDao<member_accountVo, Integer> accountRuntimeDao = null;
+    private RuntimeExceptionDao<member_accountVo, Integer> menber_accountRuntimeDao = null;
     public RuntimeExceptionDao<member_accountVo, Integer> getMember_accountDao() {
-        if (accountRuntimeDao == null) {
-            accountRuntimeDao = getRuntimeExceptionDao(member_accountVo.class);
+        if ( menber_accountRuntimeDao == null) {
+            menber_accountRuntimeDao = getRuntimeExceptionDao(member_accountVo.class);
         }
-        return accountRuntimeDao;
+        return  menber_accountRuntimeDao;
     }
 
     public Dao<User, Integer> getDao() throws SQLException {
@@ -125,6 +125,8 @@ public static DatabaseHelper databaseHelper;//
         super.close();
         simpleDao = null;
         simpleRuntimeDao = null;
+
+        menber_accountRuntimeDao = null;
     }
 
 
