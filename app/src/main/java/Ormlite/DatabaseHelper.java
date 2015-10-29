@@ -99,6 +99,15 @@ public static DatabaseHelper databaseHelper;//
         return  menber_accountRuntimeDao;
     }
 
+    //【rule_set】
+    private RuntimeExceptionDao<rule_setVo, Integer> rule_setRuntimeDao = null;
+    public RuntimeExceptionDao<rule_setVo, Integer> getRule_setDao() {
+        if ( rule_setRuntimeDao== null) {
+            rule_setRuntimeDao= getRuntimeExceptionDao(rule_setVo.class);
+        }
+        return  rule_setRuntimeDao;
+    }
+
     public Dao<User, Integer> getDao() throws SQLException {
         if (simpleDao == null) {
             simpleDao = getDao(User.class);
@@ -127,6 +136,7 @@ public static DatabaseHelper databaseHelper;//
         simpleRuntimeDao = null;
 
         menber_accountRuntimeDao = null;
+        rule_setRuntimeDao = null ;
     }
 
 
