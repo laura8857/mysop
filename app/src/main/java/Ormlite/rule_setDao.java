@@ -65,7 +65,7 @@ public class rule_setDao
 	}
 
 	/* selectRaw */
-	public static rule_setVo getAccountVo(DatabaseHelper databaseHelper) {
+	public static rule_setVo getRule_setVo(DatabaseHelper databaseHelper) {
 		RuntimeExceptionDao<rule_setVo, Integer> rulesetDao = databaseHelper
 				.getRule_setDao();
 		QueryBuilder<rule_setVo, Integer> queryBuilder = rulesetDao

@@ -66,7 +66,7 @@ public class member_accountDao {
 	}
 
 	/* selectRaw */
-	public static member_accountVo getMember_accountDao(DatabaseHelper databaseHelper) {
+	public static member_accountVo getMember_accountVo(DatabaseHelper databaseHelper) {
 		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
 				.getMember_accountDao();
 		QueryBuilder<member_accountVo, Integer> queryBuilder = accountDao

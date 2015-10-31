@@ -74,6 +74,9 @@ public static DatabaseHelper databaseHelper;//
             Log.i(DatabaseHelper.class.getName(), "onCreate");
             TableUtils.createTable(connectionSource, User.class);
             TableUtils.createTable(connectionSource, member_accountVo.class);
+            TableUtils.createTable(connectionSource, rule_setVo.class);
+            TableUtils.createTable(connectionSource, case_masterVo.class);
+
             //TableUtils.createTable(connectionSource, Group.class);
         } catch (SQLException e) {
             e.printStackTrace();
@@ -110,7 +113,7 @@ public static DatabaseHelper databaseHelper;//
 
     //【case_masterDao】
     private RuntimeExceptionDao<case_masterVo, Integer> case_masterRuntimeDao = null;
-    public RuntimeExceptionDao<case_masterVo, Integer> getCase_masterRuntimeDao() {
+    public RuntimeExceptionDao<case_masterVo, Integer> getCase_masterDao() {
         if ( case_masterRuntimeDao == null) {
             case_masterRuntimeDao = getRuntimeExceptionDao(case_masterVo.class);
         }
