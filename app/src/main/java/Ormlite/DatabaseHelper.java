@@ -99,13 +99,22 @@ public static DatabaseHelper databaseHelper;//
         return  menber_accountRuntimeDao;
     }
 
-    //【rule_set】
+    //【rule_set Dao】
     private RuntimeExceptionDao<rule_setVo, Integer> rule_setRuntimeDao = null;
     public RuntimeExceptionDao<rule_setVo, Integer> getRule_setDao() {
         if ( rule_setRuntimeDao== null) {
             rule_setRuntimeDao= getRuntimeExceptionDao(rule_setVo.class);
         }
         return  rule_setRuntimeDao;
+    }
+
+    //【case_masterDao】
+    private RuntimeExceptionDao<case_masterVo, Integer> case_masterRuntimeDao = null;
+    public RuntimeExceptionDao<case_masterVo, Integer> getCase_masterRuntimeDao() {
+        if ( case_masterRuntimeDao == null) {
+            case_masterRuntimeDao = getRuntimeExceptionDao(case_masterVo.class);
+        }
+        return  case_masterRuntimeDao;
     }
 
     public Dao<User, Integer> getDao() throws SQLException {
@@ -137,6 +146,7 @@ public static DatabaseHelper databaseHelper;//
 
         menber_accountRuntimeDao = null;
         rule_setRuntimeDao = null ;
+        case_masterRuntimeDao = null;
     }
 
 
