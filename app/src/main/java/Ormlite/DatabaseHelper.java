@@ -64,6 +64,7 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, rule_setVo.class);
             TableUtils.createTable(connectionSource, case_masterVo.class);
             TableUtils.createTable(connectionSource, case_recordVo.class);
+            TableUtils.createTable(connectionSource, comment_recordVo.class);
             // TableUtils.dropTable(connectionSource, B2BMVo.class, true);
             // after we drop the old databases, we create the new ones
             // onCreate(db, connectionSource);
@@ -85,6 +86,7 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, rule_setVo.class);
             TableUtils.createTable(connectionSource, case_masterVo.class);
             TableUtils.createTable(connectionSource, case_recordVo.class);
+            TableUtils.createTable(connectionSource, comment_recordVo.class);
 
             //TableUtils.createTable(connectionSource, Group.class);
         } catch (SQLException e) {
@@ -138,6 +140,15 @@ public static DatabaseHelper databaseHelper;//
         return  case_recordRuntimeDao;
     }
 
+    //【comment_recordDao】
+    private RuntimeExceptionDao<comment_recordVo, Integer> comment_recordRuntimeDao = null;
+    public RuntimeExceptionDao<comment_recordVo, Integer> getComment_recordDao() {
+        if ( comment_recordRuntimeDao == null) {
+            comment_recordRuntimeDao = getRuntimeExceptionDao(comment_recordVo.class);
+        }
+        return comment_recordRuntimeDao;
+    }
+
     public Dao<User, Integer> getDao() throws SQLException {
         if (simpleDao == null) {
             simpleDao = getDao(User.class);
@@ -169,6 +180,7 @@ public static DatabaseHelper databaseHelper;//
         rule_setRuntimeDao = null ;
         case_masterRuntimeDao = null;
         case_recordRuntimeDao = null ;
+        comment_recordRuntimeDao = null;
     }
 
 

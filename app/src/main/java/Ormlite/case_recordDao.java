@@ -22,6 +22,7 @@ public class case_recordDao
 		return case_recordDao.create(case_recordVo);
 	}
 
+
 	/* exist */
 	public static boolean exist(DatabaseHelper databaseHelper, case_recordVo case_recordVo) {
 		RuntimeExceptionDao<case_recordVo, Integer> case_recordDao = databaseHelper
