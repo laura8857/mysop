@@ -29,7 +29,7 @@ public class rule_setDao
 				.queryBuilder();
 		try {
 			queryBuilder.where()
-					.eq(rule_setVo.FIELD_Account, rule_setVo.getAccount());
+					.eq(rule_setVo.FIELD_Rule_number, rule_setVo.getRule_number());
 			//	.and()
 			//	.eq(AccountVo.FIELD_Device, aAccountVo.getDevice());
 			return queryBuilder.query().size() > 0 ? true : false;

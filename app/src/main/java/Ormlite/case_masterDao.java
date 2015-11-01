@@ -31,7 +31,7 @@ public class case_masterDao
 				.queryBuilder();
 		try {
 			queryBuilder.where()
-					.eq(case_masterVo.FIELD_Account, case_masterVo.getAccount());
+					.eq(case_masterVo.FIELD_Case_number, case_masterVo.getCase_number());
 			//	.and()
 			//	.eq(AccountVo.FIELD_Device, aAccountVo.getDevice());
 			return queryBuilder.query().size() > 0 ? true : false;
