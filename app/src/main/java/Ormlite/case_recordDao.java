@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 //import com.ck.ap.DatabaseHelper;
@@ -11,135 +12,104 @@ import com.j256.ormlite.support.ConnectionSource;
 //嚙踐�count Dao嚙踝蕭
 public class case_recordDao
 {
+
 	/* insert */
-	public static int insert(ConnectionSource connectionSource, case_recordVo case_recordVo)
-	{
-		try
-		{
-			Dao<case_recordVo, Integer> case_recordDao = DaoManager.createDao(connectionSource, case_recordVo.class);
-			if (exist(connectionSource, case_recordVo))
-			{
-				return 0;
-			}
-			return case_recordDao.create(case_recordVo);
+	public static int insert(DatabaseHelper databaseHelper, case_recordVo case_recordVo) {
+		RuntimeExceptionDao<case_recordVo, Integer> case_recordDao = databaseHelper.getCase_recordDao();
+		if (exist(databaseHelper, case_recordVo)) {
+			return 0;
 		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		return 0;
+		return case_recordDao.create(case_recordVo);
 	}
 
 	/* exist */
-	public static boolean exist(ConnectionSource connectionSource, case_recordVo case_recordVo)
-	{
-		try
-		{
-			Dao<case_recordVo, Integer> case_recordDao = DaoManager.createDao(connectionSource, case_recordVo.class);
-			QueryBuilder<case_recordVo, Integer> queryBuilder = case_recordDao.queryBuilder();
+	public static boolean exist(DatabaseHelper databaseHelper, case_recordVo case_recordVo) {
+		RuntimeExceptionDao<case_recordVo, Integer> case_recordDao = databaseHelper
+				.getCase_recordDao();
+		QueryBuilder<case_recordVo, Integer> queryBuilder = case_recordDao
+				.queryBuilder();
+		try {
+			queryBuilder.where()
+					.eq(case_recordVo.FIELD_Case_number, case_recordVo.getCase_number());
+			//	.and()
+			//	.eq(AccountVo.FIELD_Device, aAccountVo.getDevice());
+			return queryBuilder.query().size() > 0 ? true : false;
 
-			boolean ret=false;
-			//嚙踐��嚙踐�蕭謢塗祗嚙踝蕭
-			queryBuilder.where().eq(case_recordVo.FIELD_Case_number,case_recordVo.getCase_number());
-			ret = queryBuilder.query().size() > 0 ? true : false;
-			
-			return ret;
-		}
-		catch (SQLException e)
-		{
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
 
 	/* update */
-	public static int update(ConnectionSource connectionSource, case_recordVo case_recordVo)
-	{
-		try
-		{
-			Dao<case_recordVo, Integer> case_recordDao = DaoManager.createDao(connectionSource, case_recordVo.class);
+	public static int update(DatabaseHelper databaseHelper,case_recordVo case_recordVo) {
+		RuntimeExceptionDao<case_recordVo, Integer> case_recordDao = databaseHelper
+				.getCase_recordDao();
+		try {
 			return case_recordDao.update(case_recordVo);
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
 	}
 
 	/* delete */
-	public static int delete(ConnectionSource connectionSource, case_recordVo case_recordVo)
-	{
-		try
-		{
-			Dao<case_recordVo, Integer> case_recordDao = DaoManager.createDao(connectionSource, case_recordVo.class);
+	public static int delete(DatabaseHelper databaseHelper, case_recordVo case_recordVo) {
+		RuntimeExceptionDao<case_recordVo, Integer> case_recordDao = databaseHelper
+				.getCase_recordDao();
+		try {
 			return case_recordDao.delete(case_recordVo);
-		}
-		catch (Exception e)
-		{
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return 0;
 	}
 
-	/* select by id */
-	public static case_recordVo select(ConnectionSource connectionSource, int id)
-	{
-		try
-		{
-			Dao<case_recordVo, Integer> case_recordDao = DaoManager.createDao(connectionSource, case_recordVo.class);
-			return case_recordDao.queryForId(id);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		return null;
-	}
-
 	/* selectRaw */
-	public static List<case_recordVo> selectRaw(ConnectionSource connectionSource, String rawWhere)
-	{
-		try
-		{
-			Dao<case_recordVo, String> case_recordDao = DaoManager.createDao(connectionSource, case_recordVo.class);
-			QueryBuilder<case_recordVo, String> queryBuilder = case_recordDao.queryBuilder();
-			queryBuilder.where().raw(rawWhere);
-			String sql = queryBuilder.prepareStatementString();
-			return queryBuilder.query();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		return null;
-	}
+	public static case_recordVo getCase_recordVo(DatabaseHelper databaseHelper) {
+		RuntimeExceptionDao<case_recordVo, Integer> case_recordDao = databaseHelper
+				.getCase_recordDao();
+		QueryBuilder<case_recordVo, Integer> queryBuilder = case_recordDao
+				.queryBuilder();
+		try {
 
-	// ���嚙踝蕭嚙踝蕭���謍唳��奕嚙踝嚙踝蕭
-	public static case_recordVo getcase_recordVo(ConnectionSource connectionSource)
-	{
-		try
-		{
-			Dao<case_recordVo, Integer> Case_numberDao = DaoManager.createDao(connectionSource, case_recordVo.class);
-			List<case_recordVo> data = Case_numberDao.queryForAll();
-
-			if (data.size() > 0)
-			{
+			List<case_recordVo> data = queryBuilder.where().raw("1=1").query();
+			if (data.size() > 0) {
 				return data.get(0);
 			}
-			else
-			{
-				// ���蕭�嚙踝嚙踝蕭
-				// Case_numberVo aCase_numberVo = new Case_numberVo();
-				// Case_numberDao.insert(databaseHelper, aCase_numberVo);
-				return null;
-			}
-		}
-		catch (Exception e)
-		{
-			// TODO Auto-generated catch block
+			return null;
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+
+	/* select by id */
+	public static case_recordVo select(DatabaseHelper databaseHelper, int id) {
+		RuntimeExceptionDao<case_recordVo, Integer> case_recordDao = databaseHelper
+				.getCase_recordDao();
+		try {
+			return case_recordDao.queryForId(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	/* selectRaw */
+	public static List<case_recordVo> selectRaw(DatabaseHelper databaseHelper,
+												   String rawWhere) {
+		RuntimeExceptionDao<case_recordVo, Integer> case_recordDao = databaseHelper
+				.getCase_recordDao();
+		QueryBuilder<case_recordVo, Integer> queryBuilder = case_recordDao
+				.queryBuilder();
+		try {
+			queryBuilder.where().raw(rawWhere);
+			return queryBuilder.query();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
 }

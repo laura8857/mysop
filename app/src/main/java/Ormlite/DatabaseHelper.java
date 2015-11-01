@@ -48,25 +48,33 @@ public static DatabaseHelper databaseHelper;//
         }
         return databaseHelper;
     }
+
     /**
      * This is called when your application is upgraded and it has a higher
      * version number. This allows you to adjust the various data to match the
      * new version number.
      */
-
-
     @Override
-    public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion, int newVersion) {
+    public void onUpgrade(SQLiteDatabase db, ConnectionSource connectionSource,
+                          int oldVersion, int newVersion) {
         try {
             Log.i(DatabaseHelper.class.getName(), "onUpgrade");
-            TableUtils.dropTable(connectionSource, User.class, true);
-            //TableUtils.dropTable(connectionSource, Group.class, true);
-            onCreate(database, connectionSource);
+
+            TableUtils.createTable(connectionSource, member_accountVo.class);
+            TableUtils.createTable(connectionSource, rule_setVo.class);
+            TableUtils.createTable(connectionSource, case_masterVo.class);
+            TableUtils.createTable(connectionSource, case_recordVo.class);
+            // TableUtils.dropTable(connectionSource, B2BMVo.class, true);
+            // after we drop the old databases, we create the new ones
+            // onCreate(db, connectionSource);
         } catch (SQLException e) {
             Log.e(DatabaseHelper.class.getName(), "Can't drop databases", e);
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
     }
+
+
+
 
     @Override
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
@@ -76,6 +84,7 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, member_accountVo.class);
             TableUtils.createTable(connectionSource, rule_setVo.class);
             TableUtils.createTable(connectionSource, case_masterVo.class);
+            TableUtils.createTable(connectionSource, case_recordVo.class);
 
             //TableUtils.createTable(connectionSource, Group.class);
         } catch (SQLException e) {
@@ -120,6 +129,15 @@ public static DatabaseHelper databaseHelper;//
         return  case_masterRuntimeDao;
     }
 
+    //【case_recordDao】
+    private RuntimeExceptionDao<case_recordVo, Integer> case_recordRuntimeDao = null;
+    public RuntimeExceptionDao<case_recordVo, Integer> getCase_recordDao() {
+        if ( case_recordRuntimeDao == null) {
+            case_recordRuntimeDao = getRuntimeExceptionDao(case_recordVo.class);
+        }
+        return  case_recordRuntimeDao;
+    }
+
     public Dao<User, Integer> getDao() throws SQLException {
         if (simpleDao == null) {
             simpleDao = getDao(User.class);
@@ -150,6 +168,7 @@ public static DatabaseHelper databaseHelper;//
         menber_accountRuntimeDao = null;
         rule_setRuntimeDao = null ;
         case_masterRuntimeDao = null;
+        case_recordRuntimeDao = null ;
     }
 
 
