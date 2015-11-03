@@ -12,12 +12,12 @@ import com.j256.ormlite.support.ConnectionSource;
 public class like_recordDao
 {
 	/* insert */
-	public static int insert(ConnectionSource connectionSource, like_recordVo like_recordVo)
+	public static int insert(DatabaseHelper databaseHelper, like_recordVo like_recordVo)
 	{
 		try
 		{
-			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(connectionSource, like_recordVo.class);
-			if (exist(connectionSource, like_recordVo))
+			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
+			if (exist(databaseHelper, like_recordVo))
 			{
 				return 0;
 			}
@@ -31,11 +31,11 @@ public class like_recordDao
 	}
 
 	/* exist */
-	public static boolean exist(ConnectionSource connectionSource, like_recordVo like_recordVo)
+	public static boolean exist(DatabaseHelper databaseHelper, like_recordVo like_recordVo)
 	{
 		try
 		{
-			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(connectionSource, like_recordVo.class);
+			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
 			QueryBuilder<like_recordVo, Integer> queryBuilder = like_recordDao.queryBuilder();
 
 			boolean ret=false;
@@ -53,11 +53,11 @@ public class like_recordDao
 	}
 
 	/* update */
-	public static int update(ConnectionSource connectionSource, like_recordVo like_recordVo)
+	public static int update(DatabaseHelper databaseHelper, like_recordVo like_recordVo)
 	{
 		try
 		{
-			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(connectionSource, like_recordVo.class);
+			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
 			return like_recordDao.update(like_recordVo);
 		}
 		catch (Exception e)
@@ -68,11 +68,11 @@ public class like_recordDao
 	}
 
 	/* delete */
-	public static int delete(ConnectionSource connectionSource, like_recordVo like_recordVo)
+	public static int delete(DatabaseHelper databaseHelper, like_recordVo like_recordVo)
 	{
 		try
 		{
-			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(connectionSource, like_recordVo.class);
+			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
 			return like_recordDao.delete(like_recordVo);
 		}
 		catch (Exception e)
@@ -83,11 +83,11 @@ public class like_recordDao
 	}
 
 	/* select by id */
-	public static like_recordVo select(ConnectionSource connectionSource, int id)
+	public static like_recordVo select(DatabaseHelper databaseHelper, int id)
 	{
 		try
 		{
-			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(connectionSource, like_recordVo.class);
+			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
 			return like_recordDao.queryForId(id);
 		}
 		catch (Exception e)
@@ -98,11 +98,11 @@ public class like_recordDao
 	}
 
 	/* selectRaw */
-	public static List<like_recordVo> selectRaw(ConnectionSource connectionSource, String rawWhere)
+	public static List<like_recordVo> selectRaw(DatabaseHelper databaseHelper, String rawWhere)
 	{
 		try
 		{
-			Dao<like_recordVo, String> like_recordDao = DaoManager.createDao(connectionSource, like_recordVo.class);
+			Dao<like_recordVo, String> like_recordDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
 			QueryBuilder<like_recordVo, String> queryBuilder = like_recordDao.queryBuilder();
 			queryBuilder.where().raw(rawWhere);
 			String sql = queryBuilder.prepareStatementString();
@@ -116,11 +116,11 @@ public class like_recordDao
 	}
 
 	// ���嚙踝蕭嚙踝蕭���謍唳��奕嚙踝嚙踝蕭
-	public static like_recordVo getlike_recordVo(ConnectionSource connectionSource)
+	public static like_recordVo getlike_recordVo(DatabaseHelper databaseHelper)
 	{
 		try
 		{
-			Dao<like_recordVo, Integer> Like_numberDao = DaoManager.createDao(connectionSource, like_recordVo.class);
+			Dao<like_recordVo, Integer> Like_numberDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
 			List<like_recordVo> data = Like_numberDao.queryForAll();
 
 			if (data.size() > 0)

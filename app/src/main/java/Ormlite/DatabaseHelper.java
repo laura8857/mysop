@@ -149,6 +149,16 @@ public static DatabaseHelper databaseHelper;//
         return comment_recordRuntimeDao;
     }
 
+    //【like_recordDao】
+    private RuntimeExceptionDao<like_recordVo, Integer> like_recordRuntimeDao = null;
+    public RuntimeExceptionDao<like_recordVo, Integer> getLike_recordDao() {
+        if ( like_recordRuntimeDao == null) {
+            like_recordRuntimeDao = getRuntimeExceptionDao(like_recordVo.class);
+        }
+        return like_recordRuntimeDao;
+    }
+
+
     public Dao<User, Integer> getDao() throws SQLException {
         if (simpleDao == null) {
             simpleDao = getDao(User.class);
