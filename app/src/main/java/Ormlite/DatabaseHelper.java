@@ -65,6 +65,8 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, case_masterVo.class);
             TableUtils.createTable(connectionSource, case_recordVo.class);
             TableUtils.createTable(connectionSource, comment_recordVo.class);
+            TableUtils.createTable(connectionSource, like_recordVo.class);
+            TableUtils.createTable(connectionSource, login_recordVo.class);
             // TableUtils.dropTable(connectionSource, B2BMVo.class, true);
             // after we drop the old databases, we create the new ones
             // onCreate(db, connectionSource);
@@ -87,6 +89,8 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, case_masterVo.class);
             TableUtils.createTable(connectionSource, case_recordVo.class);
             TableUtils.createTable(connectionSource, comment_recordVo.class);
+            TableUtils.createTable(connectionSource, like_recordVo.class);
+            TableUtils.createTable(connectionSource, login_recordVo.class);
 
             //TableUtils.createTable(connectionSource, Group.class);
         } catch (SQLException e) {
@@ -158,6 +162,15 @@ public static DatabaseHelper databaseHelper;//
         return like_recordRuntimeDao;
     }
 
+    //【login_recordDao】
+    private RuntimeExceptionDao<login_recordVo, Integer> login_recordRuntimeDao = null;
+    public RuntimeExceptionDao<login_recordVo, Integer> getLogin_recordDao() {
+        if ( login_recordRuntimeDao == null) {
+            login_recordRuntimeDao = getRuntimeExceptionDao(login_recordVo.class);
+        }
+        return login_recordRuntimeDao;
+    }
+
 
     public Dao<User, Integer> getDao() throws SQLException {
         if (simpleDao == null) {
@@ -191,6 +204,8 @@ public static DatabaseHelper databaseHelper;//
         case_masterRuntimeDao = null;
         case_recordRuntimeDao = null ;
         comment_recordRuntimeDao = null;
+        like_recordRuntimeDao = null;
+        login_recordRuntimeDao = null;
     }
 
 

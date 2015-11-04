@@ -16,7 +16,7 @@ public class like_recordDao
 	{
 		try
 		{
-			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
+			RuntimeExceptionDao<like_recordVo, Integer> like_recordDao = databaseHelper.getLike_recordDao();
 			if (exist(databaseHelper, like_recordVo))
 			{
 				return 0;
@@ -35,14 +35,14 @@ public class like_recordDao
 	{
 		try
 		{
-			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
+			RuntimeExceptionDao<like_recordVo, Integer> like_recordDao = databaseHelper.getLike_recordDao();
 			QueryBuilder<like_recordVo, Integer> queryBuilder = like_recordDao.queryBuilder();
 
 			boolean ret=false;
 			//嚙踐��嚙踐�蕭謢塗祗嚙踝蕭
 			queryBuilder.where().eq(like_recordVo.FIELD_Like_number,like_recordVo.getLike_number());
 			ret = queryBuilder.query().size() > 0 ? true : false;
-			
+
 			return ret;
 		}
 		catch (SQLException e)
@@ -57,7 +57,7 @@ public class like_recordDao
 	{
 		try
 		{
-			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
+			RuntimeExceptionDao<like_recordVo, Integer> like_recordDao = databaseHelper.getLike_recordDao();
 			return like_recordDao.update(like_recordVo);
 		}
 		catch (Exception e)
@@ -72,7 +72,7 @@ public class like_recordDao
 	{
 		try
 		{
-			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
+			RuntimeExceptionDao<like_recordVo, Integer> like_recordDao = databaseHelper.getLike_recordDao();
 			return like_recordDao.delete(like_recordVo);
 		}
 		catch (Exception e)
@@ -87,7 +87,7 @@ public class like_recordDao
 	{
 		try
 		{
-			Dao<like_recordVo, Integer> like_recordDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
+			RuntimeExceptionDao<like_recordVo, Integer> like_recordDao = databaseHelper.getLike_recordDao();
 			return like_recordDao.queryForId(id);
 		}
 		catch (Exception e)
@@ -102,7 +102,7 @@ public class like_recordDao
 	{
 		try
 		{
-			Dao<like_recordVo, String> like_recordDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
+			RuntimeExceptionDao<like_recordVo, String> like_recordDao = databaseHelper.getLike_recordDao();
 			QueryBuilder<like_recordVo, String> queryBuilder = like_recordDao.queryBuilder();
 			queryBuilder.where().raw(rawWhere);
 			String sql = queryBuilder.prepareStatementString();
@@ -120,7 +120,7 @@ public class like_recordDao
 	{
 		try
 		{
-			Dao<like_recordVo, Integer> Like_numberDao = DaoManager.createDao(databaseHelper, like_recordVo.class);
+			RuntimeExceptionDao<like_recordVo, Integer> Like_numberDao = databaseHelper.getLike_recordDao();
 			List<like_recordVo> data = Like_numberDao.queryForAll();
 
 			if (data.size() > 0)

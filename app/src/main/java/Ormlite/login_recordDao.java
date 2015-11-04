@@ -12,12 +12,12 @@ import com.j256.ormlite.support.ConnectionSource;
 public class login_recordDao
 {
 	/* insert */
-	public static int insert(ConnectionSource connectionSource, login_recordVo login_recordVo)
+	public static int insert(DatabaseHelper databaseHelper, login_recordVo login_recordVo)
 	{
 		try
 		{
-			Dao<login_recordVo, Integer> login_recordDao = DaoManager.createDao(connectionSource, login_recordVo.class);
-			if (exist(connectionSource, login_recordVo))
+			RuntimeExceptionDao<login_recordVo, Integer> login_recordDao = databaseHelper.getLogin_recordDao();
+			if (exist(databaseHelper, login_recordVo))
 			{
 				return 0;
 			}
@@ -31,11 +31,11 @@ public class login_recordDao
 	}
 
 	/* exist */
-	public static boolean exist(ConnectionSource connectionSource, login_recordVo login_recordVo)
+	public static boolean exist(DatabaseHelper databaseHelper, login_recordVo login_recordVo)
 	{
 		try
 		{
-			Dao<login_recordVo, Integer> login_recordDao = DaoManager.createDao(connectionSource, login_recordVo.class);
+			RuntimeExceptionDao<login_recordVo, Integer> login_recordDao = databaseHelper.getLogin_recordDao();
 			QueryBuilder<login_recordVo, Integer> queryBuilder = login_recordDao.queryBuilder();
 
 			boolean ret=false;
@@ -53,11 +53,11 @@ public class login_recordDao
 	}
 
 	/* update */
-	public static int update(ConnectionSource connectionSource, login_recordVo login_recordVo)
+	public static int update(DatabaseHelper databaseHelper, login_recordVo login_recordVo)
 	{
 		try
 		{
-			Dao<login_recordVo, Integer> login_recordDao = DaoManager.createDao(connectionSource, login_recordVo.class);
+			RuntimeExceptionDao<login_recordVo, Integer> login_recordDao = databaseHelper.getLogin_recordDao();
 			return login_recordDao.update(login_recordVo);
 		}
 		catch (Exception e)
@@ -68,11 +68,11 @@ public class login_recordDao
 	}
 
 	/* delete */
-	public static int delete(ConnectionSource connectionSource, login_recordVo login_recordVo)
+	public static int delete(DatabaseHelper databaseHelper, login_recordVo login_recordVo)
 	{
 		try
 		{
-			Dao<login_recordVo, Integer> login_recordDao = DaoManager.createDao(connectionSource, login_recordVo.class);
+			RuntimeExceptionDao<login_recordVo, Integer> login_recordDao = databaseHelper.getLogin_recordDao();
 			return login_recordDao.delete(login_recordVo);
 		}
 		catch (Exception e)
@@ -83,11 +83,11 @@ public class login_recordDao
 	}
 
 	/* select by id */
-	public static login_recordVo select(ConnectionSource connectionSource, int id)
+	public static login_recordVo select(DatabaseHelper databaseHelper, int id)
 	{
 		try
 		{
-			Dao<login_recordVo, Integer> login_recordDao = DaoManager.createDao(connectionSource, login_recordVo.class);
+			RuntimeExceptionDao<login_recordVo, Integer> login_recordDao = databaseHelper.getLogin_recordDao();
 			return login_recordDao.queryForId(id);
 		}
 		catch (Exception e)
@@ -98,11 +98,11 @@ public class login_recordDao
 	}
 
 	/* selectRaw */
-	public static List<login_recordVo> selectRaw(ConnectionSource connectionSource, String rawWhere)
+	public static List<login_recordVo> selectRaw(DatabaseHelper databaseHelper, String rawWhere)
 	{
 		try
 		{
-			Dao<login_recordVo, String> login_recordDao = DaoManager.createDao(connectionSource, login_recordVo.class);
+			RuntimeExceptionDao<login_recordVo, String> login_recordDao = databaseHelper.getLogin_recordDao();
 			QueryBuilder<login_recordVo, String> queryBuilder = login_recordDao.queryBuilder();
 			queryBuilder.where().raw(rawWhere);
 			String sql = queryBuilder.prepareStatementString();
@@ -116,11 +116,11 @@ public class login_recordDao
 	}
 
 	// ���嚙踝蕭嚙踝蕭���謍唳��奕嚙踝嚙踝蕭
-	public static login_recordVo getlogin_recordVo(ConnectionSource connectionSource)
+	public static login_recordVo getlogin_recordVo(DatabaseHelper databaseHelper)
 	{
 		try
 		{
-			Dao<login_recordVo, Integer> Login_numberDao = DaoManager.createDao(connectionSource, login_recordVo.class);
+			RuntimeExceptionDao<login_recordVo, Integer> Login_numberDao = databaseHelper.getLogin_recordDao();
 			List<login_recordVo> data = Login_numberDao.queryForAll();
 
 			if (data.size() > 0)
