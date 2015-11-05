@@ -67,6 +67,8 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, comment_recordVo.class);
             TableUtils.createTable(connectionSource, like_recordVo.class);
             TableUtils.createTable(connectionSource, login_recordVo.class);
+            TableUtils.createTable(connectionSource, sop_masterVo.class);
+
             // TableUtils.dropTable(connectionSource, B2BMVo.class, true);
             // after we drop the old databases, we create the new ones
             // onCreate(db, connectionSource);
@@ -91,6 +93,7 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, comment_recordVo.class);
             TableUtils.createTable(connectionSource, like_recordVo.class);
             TableUtils.createTable(connectionSource, login_recordVo.class);
+            TableUtils.createTable(connectionSource, sop_masterVo.class);
 
             //TableUtils.createTable(connectionSource, Group.class);
         } catch (SQLException e) {
@@ -170,6 +173,37 @@ public static DatabaseHelper databaseHelper;//
         }
         return login_recordRuntimeDao;
     }
+
+
+
+    //【sop_masterDao】
+    private RuntimeExceptionDao<sop_masterVo, Integer> sop_masterRuntimeDao = null;
+    public RuntimeExceptionDao<sop_masterVo, Integer> getSop_masterDao() {
+        if ( sop_masterRuntimeDao == null) {
+            sop_masterRuntimeDao = getRuntimeExceptionDao(sop_masterVo.class);
+        }
+        return  sop_masterRuntimeDao;
+    }
+
+    //【sop_detailDao】
+    private RuntimeExceptionDao<sop_detailVo, Integer> sop_detailRuntimeDao = null;
+    public RuntimeExceptionDao<sop_detailVo, Integer> getSop_detailDao() {
+        if ( sop_detailRuntimeDao == null) {
+            sop_detailRuntimeDao = getRuntimeExceptionDao(sop_detailVo.class);
+        }
+        return  sop_detailRuntimeDao;
+    }
+
+    //【step_recordDao】
+    private RuntimeExceptionDao<step_recordVo, Integer> step_recordRuntimeDao = null;
+    public RuntimeExceptionDao<step_recordVo, Integer> getStep_recordDao() {
+        if ( step_recordRuntimeDao == null) {
+            step_recordRuntimeDao = getRuntimeExceptionDao(step_recordVo.class);
+        }
+        return  step_recordRuntimeDao;
+    }
+
+
 
 
     public Dao<User, Integer> getDao() throws SQLException {
