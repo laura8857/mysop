@@ -68,6 +68,8 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, like_recordVo.class);
             TableUtils.createTable(connectionSource, login_recordVo.class);
             TableUtils.createTable(connectionSource, sop_masterVo.class);
+            TableUtils.createTable(connectionSource, sop_detailVo.class);
+            TableUtils.createTable(connectionSource, step_recordVo.class);
 
             // TableUtils.dropTable(connectionSource, B2BMVo.class, true);
             // after we drop the old databases, we create the new ones
@@ -94,6 +96,8 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, like_recordVo.class);
             TableUtils.createTable(connectionSource, login_recordVo.class);
             TableUtils.createTable(connectionSource, sop_masterVo.class);
+            TableUtils.createTable(connectionSource, sop_detailVo.class);
+            TableUtils.createTable(connectionSource, step_recordVo.class);
 
             //TableUtils.createTable(connectionSource, Group.class);
         } catch (SQLException e) {
@@ -240,6 +244,12 @@ public static DatabaseHelper databaseHelper;//
         comment_recordRuntimeDao = null;
         like_recordRuntimeDao = null;
         login_recordRuntimeDao = null;
+
+        sop_masterRuntimeDao = null;
+        sop_detailRuntimeDao = null;
+        step_recordRuntimeDao = null;
+
+
     }
 
 
