@@ -12,17 +12,15 @@ import com.j256.ormlite.support.ConnectionSource;
 //【sop_master Dao】
 public class sop_masterDao
 {
-	/* insert */
-	public static int insert(DatabaseHelper databaseHelper, sop_masterVo sop_masterVo)
-	{
-        RuntimeExceptionDao<sop_masterVo, Integer> sop_masterVo = databaseHelper.getSop_masterDao();
+    /* insert */
+    public static int insert(DatabaseHelper databaseHelper, sop_masterVo sop_masterVo) {
+        RuntimeExceptionDao<sop_masterVo, Integer> sop_masterDao = databaseHelper.getSop_masterDao();
         if (exist(databaseHelper, sop_masterVo)) {
             return 0;
         }
         return sop_masterDao.create(sop_masterVo);
-	}
+    }
 
-	/* exist */
 	/* exist */
     public static boolean exist(DatabaseHelper databaseHelper, sop_masterVo sop_masterVo) {
         RuntimeExceptionDao<sop_masterVo, Integer>sop_masterDao = databaseHelper
@@ -97,31 +95,5 @@ public class sop_masterDao
         return null;
     }
 
-	// 載入所有特定層級資料
-	public static sop_masterVo getsop_masterVo(ConnectionSource connectionSource)
-	{
-		try
-		{
-			Dao<sop_masterVo, Integer> sop_masterDao = DaoManager.createDao(connectionSource, sop_masterVo.class);
-			List<sop_masterVo> data = sop_masterDao.queryForAll();
 
-			if (data.size() > 0)
-			{
-				return data.get(0);
-			}
-			else
-			{
-				// 沒有資料
-				// sop_masterVo asop_masterVo = new sop_masterVo();
-				// sop_masterDao.insert(databaseHelper, asop_masterVo);
-				return null;
-			}
-		}
-		catch (Exception e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
 }

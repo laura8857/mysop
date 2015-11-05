@@ -13,7 +13,6 @@ import com.j256.ormlite.support.ConnectionSource;
 public class case_masterDao
 {
 
-
 	/* insert */
 	public static int insert(DatabaseHelper databaseHelper, case_masterVo case_masterVo) {
 		RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper.getCase_masterDao();
