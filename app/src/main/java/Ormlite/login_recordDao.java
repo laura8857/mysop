@@ -6,6 +6,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 //import com.ck.ap.DatabaseHelper;
 
 //嚙踐�count Dao嚙踝蕭
@@ -14,20 +15,15 @@ public class login_recordDao
 	/* insert */
 	public static int insert(DatabaseHelper databaseHelper, login_recordVo login_recordVo)
 	{
-		try
-		{
+
 			RuntimeExceptionDao<login_recordVo, Integer> login_recordDao = databaseHelper.getLogin_recordDao();
 			if (exist(databaseHelper, login_recordVo))
 			{
 				return 0;
 			}
 			return login_recordDao.create(login_recordVo);
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		return 0;
+
+
 	}
 
 	/* exist */
@@ -102,8 +98,8 @@ public class login_recordDao
 	{
 		try
 		{
-			RuntimeExceptionDao<login_recordVo, String> login_recordDao = databaseHelper.getLogin_recordDao();
-			QueryBuilder<login_recordVo, String> queryBuilder = login_recordDao.queryBuilder();
+			RuntimeExceptionDao<login_recordVo, Integer> login_recordDao = databaseHelper.getLogin_recordDao();
+			QueryBuilder<login_recordVo, Integer> queryBuilder = login_recordDao.queryBuilder();
 			queryBuilder.where().raw(rawWhere);
 			String sql = queryBuilder.prepareStatementString();
 			return queryBuilder.query();

@@ -5,6 +5,7 @@ import java.util.List;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.support.ConnectionSource;
 //import com.ck.ap.DatabaseHelper;
 
@@ -14,20 +15,14 @@ public class like_recordDao
 	/* insert */
 	public static int insert(DatabaseHelper databaseHelper, like_recordVo like_recordVo)
 	{
-		try
-		{
+
 			RuntimeExceptionDao<like_recordVo, Integer> like_recordDao = databaseHelper.getLike_recordDao();
 			if (exist(databaseHelper, like_recordVo))
 			{
 				return 0;
 			}
 			return like_recordDao.create(like_recordVo);
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
-		return 0;
+
 	}
 
 	/* exist */
@@ -102,8 +97,8 @@ public class like_recordDao
 	{
 		try
 		{
-			RuntimeExceptionDao<like_recordVo, String> like_recordDao = databaseHelper.getLike_recordDao();
-			QueryBuilder<like_recordVo, String> queryBuilder = like_recordDao.queryBuilder();
+			RuntimeExceptionDao<like_recordVo, Integer> like_recordDao = databaseHelper.getLike_recordDao();
+			QueryBuilder<like_recordVo, Integer> queryBuilder = like_recordDao.queryBuilder();
 			queryBuilder.where().raw(rawWhere);
 			String sql = queryBuilder.prepareStatementString();
 			return queryBuilder.query();
