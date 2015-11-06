@@ -70,7 +70,7 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, sop_masterVo.class);
             TableUtils.createTable(connectionSource, sop_detailVo.class);
             TableUtils.createTable(connectionSource, step_recordVo.class);
-
+            TableUtils.createTable(connectionSource, case_detailVo.class);
             // TableUtils.dropTable(connectionSource, B2BMVo.class, true);
             // after we drop the old databases, we create the new ones
             // onCreate(db, connectionSource);
@@ -98,6 +98,7 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, sop_masterVo.class);
             TableUtils.createTable(connectionSource, sop_detailVo.class);
             TableUtils.createTable(connectionSource, step_recordVo.class);
+            TableUtils.createTable(connectionSource, case_detailVo.class);
 
             //TableUtils.createTable(connectionSource, Group.class);
         } catch (SQLException e) {
@@ -206,6 +207,14 @@ public static DatabaseHelper databaseHelper;//
         }
         return  step_recordRuntimeDao;
     }
+    //【case_detailDao】
+    private RuntimeExceptionDao<case_detailVo, Integer> case_detailRuntimeDao = null;
+    public RuntimeExceptionDao<case_detailVo, Integer> getCase_detailDao() {
+        if ( case_detailRuntimeDao == null) {
+            case_detailRuntimeDao = getRuntimeExceptionDao(case_detailVo.class);
+        }
+        return case_detailRuntimeDao;
+    }
 
 
 
@@ -248,6 +257,7 @@ public static DatabaseHelper databaseHelper;//
         sop_masterRuntimeDao = null;
         sop_detailRuntimeDao = null;
         step_recordRuntimeDao = null;
+        case_detailRuntimeDao = null;
 
 
     }
