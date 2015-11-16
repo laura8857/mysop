@@ -3,7 +3,9 @@ package com.example.kelly.mysop;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,11 +21,18 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+import Ormlite.DatabaseHelper;
+import Ormlite.member_accountDao;
+import Ormlite.member_accountVo;
+
 
 public class Changepassword extends Activity {
 
+    private DatabaseHelper dbhelper;
+
+
     //R檔又不見了
-//帳號先寫死
+    //帳號先寫死
     private ProgressDialog pDialog;
     private EditText et1;
     private EditText et2;
@@ -83,6 +92,8 @@ public class Changepassword extends Activity {
 
 
 
+
+
     }
 
 
@@ -112,7 +123,23 @@ public class Changepassword extends Activity {
         String NewPassword = Changepassword.this.et2.getText().toString();
         String ConfirmNewPassword = Changepassword.this.et3.getText().toString();
         if(ConfirmNewPassword.equals(NewPassword)){
-            (Changepassword.this.new CreateAccount()).execute(new String[0]);
+            //(Changepassword.this.new CreateAccount()).execute(new String[0]);
+
+
+            //orm嘗試 insert
+            dbhelper = new DatabaseHelper(this);
+            member_accountVo vo = new member_accountVo();
+            vo.setAccount("aaa");
+            vo.setAuth("q");
+            vo.setCaptcha("q");
+            vo.setGcm("q");
+            vo.setNote("q");
+            vo.setPassword("q");
+            vo.setUsername("q");
+            member_accountDao.insert(dbhelper.getHelper(this), vo);
+
+            Log.d("TEST","TEST");
+
         }else{
             AlertDialog.Builder dialog = new AlertDialog.Builder(Changepassword.this);
             dialog.setTitle("咦！");
@@ -121,7 +148,10 @@ public class Changepassword extends Activity {
         }
     }
 
-    class CreateAccount extends AsyncTask<String, String, String> {
+
+
+
+    /*class CreateAccount extends AsyncTask<String, String, String> {
         CreateAccount() {}
 
         protected void onPreExecute() {
@@ -169,7 +199,7 @@ public class Changepassword extends Activity {
         protected void onPostExecute(String file_url) {
             Changepassword.this.pDialog.dismiss();
         }
-    }
+    }*/
 
 
 

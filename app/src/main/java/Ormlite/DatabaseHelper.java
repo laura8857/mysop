@@ -18,7 +18,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "Demo";
-    private static DatabaseHelper instance;
+    //private static DatabaseHelper instance;
 
 
     // the DAO object we use to access the SimpleData table
@@ -27,7 +27,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
 
 
-    private DatabaseHelper(Context context) {
+    public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -87,7 +87,7 @@ public static DatabaseHelper databaseHelper;//
     public void onCreate(SQLiteDatabase database, ConnectionSource connectionSource) {
         try {
             Log.i(DatabaseHelper.class.getName(), "onCreate");
-            TableUtils.createTable(connectionSource, User.class);
+            //TableUtils.createTable(connectionSource, User.class);
             TableUtils.createTable(connectionSource, member_accountVo.class);
             TableUtils.createTable(connectionSource, rule_setVo.class);
             TableUtils.createTable(connectionSource, case_masterVo.class);
