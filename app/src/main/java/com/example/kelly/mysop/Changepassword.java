@@ -14,11 +14,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Ormlite.DatabaseHelper;
@@ -27,8 +31,6 @@ import Ormlite.member_accountVo;
 
 
 public class Changepassword extends Activity {
-
-    private DatabaseHelper dbhelper;
 
 
     //R檔又不見了
@@ -119,24 +121,33 @@ public class Changepassword extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    private RuntimeExceptionDao<member_accountVo, Integer> menber_accountRuntimeDao;
+    private member_accountDao mmember_accountDao;
+
     public void changepassword_check(View view){
         String NewPassword = Changepassword.this.et2.getText().toString();
         String ConfirmNewPassword = Changepassword.this.et3.getText().toString();
         if(ConfirmNewPassword.equals(NewPassword)){
             //(Changepassword.this.new CreateAccount()).execute(new String[0]);
 
+            DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+            mmember_accountDao = new member_accountDao();
+            //menber_accountRuntimeDao = mDatabaseHelper.getMember_accountDao();
+            member_accountVo mmember_accountVo = new member_accountVo();
 
-            //orm嘗試 insert
-            dbhelper = new DatabaseHelper(this);
-            member_accountVo vo = new member_accountVo();
-            vo.setAccount("aaa");
-            vo.setAuth("q");
-            vo.setCaptcha("q");
-            vo.setGcm("q");
-            vo.setNote("q");
-            vo.setPassword("q");
-            vo.setUsername("q");
-            member_accountDao.insert(dbhelper.getHelper(this), vo);
+            mmember_accountVo.setAccount("1234@123.123");
+            mmember_accountVo.setUsername("12345");
+            mmember_accountVo.setPassword(NewPassword);
+
+            //menber_accountRuntimeDao.createOrUpdate(mmember_accountVo);
+            mmember_accountDao.insert(mDatabaseHelper,mmember_accountVo);
+
+            /*mmember_accountVo = mmember_accountDao.queryForId(1);
+            mmember_accountVo.setPassword(NewPassword);
+            mmember_accountDao.update(mmember_accountVo);*/
+
+
+            Toast.makeText(this, mmember_accountVo.toString(), Toast.LENGTH_SHORT).show();
 
             Log.d("TEST","TEST");
 
