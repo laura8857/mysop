@@ -135,7 +135,7 @@ public class Changepassword extends Activity {
             //menber_accountRuntimeDao = mDatabaseHelper.getMember_accountDao();
             member_accountVo mmember_accountVo = new member_accountVo();
 
-            mmember_accountVo.setAccount("1234@123.123");
+            mmember_accountVo.setAccount("test");
             mmember_accountVo.setUsername("12345");
             mmember_accountVo.setPassword(NewPassword);
 
@@ -145,11 +145,12 @@ public class Changepassword extends Activity {
             /*mmember_accountVo = mmember_accountDao.queryForId(1);
             mmember_accountVo.setPassword(NewPassword);
             mmember_accountDao.update(mmember_accountVo);*/
-
-
-            Toast.makeText(this, mmember_accountVo.toString(), Toast.LENGTH_SHORT).show();
-
+            //Toast.makeText(this, mmember_accountVo.getPassword(), Toast.LENGTH_SHORT).show();
             Log.d("TEST","TEST");
+
+            Intent it = new Intent(Changepassword.this,ChangePasswordError.class);
+            startActivity(it);
+
 
         }else{
             AlertDialog.Builder dialog = new AlertDialog.Builder(Changepassword.this);
