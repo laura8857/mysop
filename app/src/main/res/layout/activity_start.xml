@@ -101,7 +101,7 @@
         android:textColor="#ffffffff"
         android:background="#ffff3f2f"
         android:layout_marginBottom="70dp"
-        android:onClick="login_check"
+        android:onClick="startload"
         android:textSize="25dp"
         android:textStyle="bold"
         android:typeface="serif"

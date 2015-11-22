@@ -1,17 +1,17 @@
 package Ormlite;
 
-import java.sql.SQLException;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.j256.ormlite.android.apptools.OpenHelperManager;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
-import com.j256.ormlite.support.ConnectionSource;
-import com.j256.ormlite.table.TableUtils;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
-import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
+
+import java.sql.SQLException;
 
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
@@ -25,7 +25,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Dao<User, Integer> simpleDao = null;
     private RuntimeExceptionDao<User, Integer> simpleRuntimeDao = null;
 
-
+    private Dao<sop_masterVo, Integer> msop_masterDao = null;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -224,6 +224,18 @@ public static DatabaseHelper databaseHelper;//
             simpleDao = getDao(User.class);
         }
         return simpleDao;
+    }
+
+    public Dao<sop_masterVo, Integer> getSop_MasterDao() {
+        if (msop_masterDao == null) {
+            try {
+                msop_masterDao = getDao(sop_masterVo.class);
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return msop_masterDao;
     }
 
     /**
