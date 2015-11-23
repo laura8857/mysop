@@ -8,10 +8,18 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
+import java.util.List;
+
 import Ormlite.DatabaseHelper;
+import Ormlite.member_accountDao;
+import Ormlite.member_accountVo;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
 import Ormlite.sop_masterDao;
 import Ormlite.sop_masterVo;
 
@@ -21,6 +29,9 @@ public class Start extends Activity {
     private ProgressDialog pDialog;
     JSONParser jParser = new JSONParser();
 
+    private RuntimeExceptionDao<sop_masterVo, Integer> sop_masterRuntimeDao;
+    private sop_masterDao msop_masterDao;
+    private sop_detailDao msop_detailDao;
 
     private static String url_all_products = "http://140.115.80.237/front/mysop_start.jsp";
     private static final String TAG_SUCCESS = "success";
@@ -37,10 +48,31 @@ public class Start extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
-        DatabaseHelper mDatabaseHelper = DatabaseHelper
-                .getHelper(this);
-//
-//        msop_masterDao = mDatabaseHelper.getSop_MasterDao();
+
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        msop_masterDao = new sop_masterDao();
+        //menber_accountRuntimeDao = mDatabaseHelper.getMember_accountDao();
+        List<sop_masterVo> list = null;
+        list = msop_masterDao.selectRaw(mDatabaseHelper, "Sop_number='20151111'");
+
+        //共有幾步驟
+        msop_detailDao = new sop_detailDao();
+        List<sop_detailVo> listforcount = null;
+        listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number='20151111'");
+        int Count = listforcount.size();
+
+        TextView start_title = (TextView)findViewById(R.id.start_title);
+        start_title.setText(list.get(0).getSop_number());
+
+        TextView start_detail = (TextView)findViewById(R.id.start_detail);
+        start_detail.setText(list.get(0).getSop_detail());
+
+        TextView start_right = (TextView)findViewById(R.id.start_right);
+        start_right.setText(Count);
+
+        Log.d("抓", list.get(0).getSop_number());
+        //Toast.makeText(this, list.get(0).getSop_number(), Toast.LENGTH_SHORT).show();
+
         // Loading products in Background Thread
         // new LoadAllProducts().execute();
 
@@ -70,38 +102,22 @@ public class Start extends Activity {
 
     }
 
-    private RuntimeExceptionDao<sop_masterVo, Integer> sop_masterRuntimeDao;
-    private sop_masterDao msop_masterDao;
-
     public void startload(View view){
 
             //(Changepassword.this.new CreateAccount()).execute(new String[0]);
 
-            DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+/*            DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
             msop_masterDao = new sop_masterDao();
-            //menber_accountRuntimeDao = mDatabaseHelper.getMember_accountDao();
-//            member_accountVo mmember_accountVo = new member_accountVo();
             sop_masterVo msop_masterVo = new  sop_masterVo();
 
             msop_masterVo.setSop_name("SOP名字");
             msop_masterVo.setSop_detail("SOP的詳細介紹");
             msop_masterVo.setSop_number("201511111");
             msop_masterVo.setAccount("abcc");
-            msop_masterVo.setSop_version("1");
-
-            //menber_accountRuntimeDao.createOrUpdate(mmember_accountVo);
-            msop_masterDao.insert(mDatabaseHelper,msop_masterVo);
-
-            /*mmember_accountVo = mmember_accountDao.queryForId(1);
-            mmember_accountVo.setPassword(NewPassword);
-            mmember_accountDao.update(mmember_accountVo);*/
-            //Toast.makeText(this, mmember_accountVo.getPassword(), Toast.LENGTH_SHORT).show();
-            Log.d("TEST", "TEST");
+            msop_masterVo.setSop_version("1");*/
 
             Intent it = new Intent(Start.this,ChangePasswordError.class);
             startActivity(it);
-
-
 
     }
 }

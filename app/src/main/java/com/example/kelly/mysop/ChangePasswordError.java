@@ -29,6 +29,7 @@ public class ChangePasswordError extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password_error);
 
+
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         mmember_accountDao = new member_accountDao();
         //menber_accountRuntimeDao = mDatabaseHelper.getMember_accountDao();
