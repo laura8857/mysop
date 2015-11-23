@@ -17,10 +17,11 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -36,12 +37,19 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
+import Ormlite.DatabaseHelper;
+import Ormlite.member_accountDao;
+import Ormlite.sop_masterDao;
+import Ormlite.sop_masterVo;
+
 public class DynamicAction extends Activity {
+    private RuntimeExceptionDao<sop_masterVo, Integer> sop_masterRuntimeDao;
+    private sop_masterDao msop_masterDao;
     private ProgressDialog pDialog;
-    JSONParser jsonParser = new JSONParser();
+    //JSONParser jsonParser = new JSONParser();
     ArrayList<HashMap<String, String>> productsList;
     //private static String url_all_products = "http://localhost:8080/kelly/test_getall.jsp";
-    private static String url_all_products = "http://140.115.80.237/front/mysop_mysop.jsp";
+    //private static String url_all_products = "http://140.115.80.237/front/mysop_mysop.jsp";
     //private static String url_all_products = "http://140.115.80.237/front/mysop_dynamicAction.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
@@ -66,7 +74,7 @@ public class DynamicAction extends Activity {
     private TextView title;
     private TextView master;
 
-    JSONArray products = null;
+  //  JSONArray products = null;
 
     //帳號先寫死
     String TAG_ACCOUNT = "test@gmail.com";
@@ -95,7 +103,8 @@ public class DynamicAction extends Activity {
         listInput = (ListView)findViewById(R.id.list_dynamic);
         listInput1 = (ListView)findViewById(R.id.list_dynamic2);
         // adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,items);
-
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        msop_masterDao = new sop_masterDao();
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
