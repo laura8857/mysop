@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.case_masterDao;
+import Ormlite.case_masterVo;
 import Ormlite.member_accountDao;
 import Ormlite.member_accountVo;
 import Ormlite.sop_detailDao;
@@ -40,6 +42,7 @@ public class StepActionControl extends Activity {
     int StartRule;
 
     private sop_detailDao msop_detailDao;
+    private case_masterDao mcase_masterDao;
 
 
     @Override
@@ -50,13 +53,21 @@ public class StepActionControl extends Activity {
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
 
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+
         //從P305來的話
         if(intent.hasExtra("TAG_NEXT_STEP_NUMBER")){
             TAG_STEP_NUMBER = bundle.getString("TAG_NEXT_STEP_NUMBER");
             TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
             //new Update().execute();
 
+//予帆不會啊啊啊啊啊啊
 //"UPDATE case_master SET last_do_order='"+Stepnumber+"' WHERE case_number='"+Casenumber+"'"
+            mcase_masterDao = new case_masterDao();
+            case_masterVo mcase_masterVo = new case_masterVo();
+            mcase_masterVo.setLast_do_order(TAG_STEP_NUMBER);
+
+            mcase_masterDao.update(mDatabaseHelper,mcase_masterVo);
 
 
 
@@ -66,7 +77,6 @@ public class StepActionControl extends Activity {
             TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
             //new Checkall().execute();
 
-            DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
             msop_detailDao = new sop_detailDao();
             List<sop_detailVo> list = null;
             list = msop_detailDao.selectRaw(mDatabaseHelper, "step_number IN(SELECT last_do_order FROM case_master WHERE case_number='"+TAG_CASE_NUMBER+"')");
