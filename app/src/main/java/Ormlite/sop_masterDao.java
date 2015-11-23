@@ -95,5 +95,20 @@ public class sop_masterDao
         return null;
     }
 
+    /* selectRaw */
+    public static List<sop_masterVo> selectRaw(DatabaseHelper databaseHelper,
+                                                   String rawWhere) {
+        RuntimeExceptionDao<sop_masterVo, Integer> sop_masterDao = databaseHelper
+                .getSop_masterDao();
+        QueryBuilder<sop_masterVo, Integer> queryBuilder = sop_masterDao
+                .queryBuilder();
+        try {
+            queryBuilder.where().raw(rawWhere);
+            return queryBuilder.query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 }

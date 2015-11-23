@@ -36,8 +36,8 @@ public class ChangePasswordError extends Activity {
         List<member_accountVo> list = null;
         list = mmember_accountDao.selectRaw(mDatabaseHelper, "account='test'");
 
-        Log.d("抓", list.toString());
-        Toast.makeText(this, list.toString(), Toast.LENGTH_SHORT).show();
+        Log.d("抓", list.get(0).getAccount());
+        Toast.makeText(this, list.get(0).getAccount(), Toast.LENGTH_SHORT).show();
 
     }
 

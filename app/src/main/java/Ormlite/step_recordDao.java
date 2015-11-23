@@ -94,4 +94,21 @@ public class step_recordDao
         return null;
     }
 
+    /* selectRaw */
+    public static List<step_recordVo> selectRaw(DatabaseHelper databaseHelper,
+                                               String rawWhere) {
+        RuntimeExceptionDao<step_recordVo, Integer> step_recordDao = databaseHelper
+                .getStep_recordDao();
+        QueryBuilder<step_recordVo, Integer> queryBuilder = step_recordDao
+                .queryBuilder();
+        try {
+            queryBuilder.where().raw(rawWhere);
+            return queryBuilder.query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
