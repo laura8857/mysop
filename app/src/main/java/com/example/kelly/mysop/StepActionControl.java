@@ -17,6 +17,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.member_accountDao;
+import Ormlite.member_accountVo;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
 
 
 public class StepActionControl extends Activity {
@@ -30,6 +37,10 @@ public class StepActionControl extends Activity {
 
     private static String url_checkall = "http://140.115.80.237/front/mysop_AC2.jsp";
     String TAG_CASE_NUMBER = "";
+    int StartRule;
+
+    private sop_detailDao msop_detailDao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,18 +54,102 @@ public class StepActionControl extends Activity {
         if(intent.hasExtra("TAG_NEXT_STEP_NUMBER")){
             TAG_STEP_NUMBER = bundle.getString("TAG_NEXT_STEP_NUMBER");
             TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
-            new Update().execute();
+            //new Update().execute();
+
+
+
 
         }else{
             //沒從P305來的話
             //TAG_CASE_NUMBER = "3";//nfc
             TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
-            new Checkall().execute();
+            //new Checkall().execute();
+
+            DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+            msop_detailDao = new sop_detailDao();
+            List<sop_detailVo> list = null;
+            list = msop_detailDao.selectRaw(mDatabaseHelper, "step_number IN(SELECT last_do_order FROM case_master WHERE case_number='"+TAG_CASE_NUMBER+"')");
+            Log.d("抓", list.get(0).getSop_number());
+
+            TAG_STEP_NUMBER = list.get(0).getStep_number();
+            //why!!!!!!!!!不是int嗎後台!!!!!!!!!!!!!!
+            StartRule = Integer.valueOf(list.get(0).getStart_rule());
+            TAG_STEP_ORDER = Integer.valueOf(list.get(0).getStep_order());
+
+            //到startrule選擇
+            UseStartRule(StartRule);
+
         }
 
 
 
     }
+
+
+    public void UseStartRule(int startrule){
+
+        //設定傳送參數
+        Bundle bundle = new Bundle();
+        bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+        bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+        bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+
+        switch (startrule){
+            case 1:
+                // cagetory.setText("人工啟動");
+                Intent it1 = new Intent(StepActionControl.this,StepActionControlArtificial.class);
+                it1.putExtras(bundle);//將參數放入intent
+                startActivity(it1);
+
+                break;
+            case 2:
+                // cagetory.setText("前一步驟\n完工");
+                Intent it = new Intent(StepActionControl.this,Stepdescription.class);
+                it.putExtras(bundle);//將參數放入intent
+                startActivity(it);
+
+                break;
+            case 3:
+                //cagetory.setText("Beacon");
+                Intent it3 = new Intent(StepActionControl.this,StepActionControlIbeacon.class);
+                it3.putExtras(bundle);//將參數放入intent
+                startActivity(it3);
+                break;
+            case 4:
+                //cagetory.setText("QR code");
+                Intent it4 = new Intent(StepActionControl.this,StepActionControlQRcode.class);
+                it4.putExtras(bundle);//將參數放入intent
+                startActivity(it4);
+                finish();
+                break;
+            case 5:
+                // cagetory.setText("NFC");
+                Intent it5 = new Intent(StepActionControl.this,StepActionControlNFC.class);
+                it5.putExtras(bundle);//將參數放入intent
+                startActivity(it5);
+                finish();
+                break;
+            case 6:
+                // cagetory.setText("定位");
+                Intent it6 = new Intent(StepActionControl.this,StepActionControlGPS.class);
+                it6.putExtras(bundle);//將參數放入intent
+                startActivity(it6);
+                finish();
+                break;
+            case 7:
+                //  cagetory.setText("時間到期");
+                Intent it7 = new Intent(StepActionControl.this,StepActionControlTime.class);
+                it7.putExtras(bundle);//將參數放入intent
+                startActivity(it7);
+                finish();
+                break;
+            default:
+                Log.d("WRONG", "wrong");
+                break;
+        }
+
+    }
+
 
 
     @Override
@@ -76,7 +171,6 @@ public class StepActionControl extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-
 
     //不從p305來
     class Checkall extends AsyncTask<String, String, Integer> {
