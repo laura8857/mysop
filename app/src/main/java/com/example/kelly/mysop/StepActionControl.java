@@ -56,6 +56,7 @@ public class StepActionControl extends Activity {
             TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
             //new Update().execute();
 
+//"UPDATE case_master SET last_do_order='"+Stepnumber+"' WHERE case_number='"+Casenumber+"'"
 
 
 
@@ -80,8 +81,6 @@ public class StepActionControl extends Activity {
             UseStartRule(StartRule);
 
         }
-
-
 
     }
 
@@ -172,7 +171,7 @@ public class StepActionControl extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    //不從p305來
+/*    //不從p305來
     class Checkall extends AsyncTask<String, String, Integer> {
         protected void onPreExecute() {
             super.onPreExecute();
@@ -275,7 +274,7 @@ public class StepActionControl extends Activity {
             }
         }
 
-    }
+    }*/
 
     //從p305來，Update last_do_order
     class Update extends AsyncTask<String, String, Integer> {
