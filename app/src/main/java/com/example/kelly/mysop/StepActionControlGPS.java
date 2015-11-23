@@ -3,30 +3,27 @@ package com.example.kelly.mysop;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.location.Location;
-import android.location.LocationListener;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.List;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
 
 
 public class StepActionControlGPS extends Activity {
@@ -51,6 +48,9 @@ public class StepActionControlGPS extends Activity {
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
 
+    private RuntimeExceptionDao<sop_detailVo, Integer> sop_detailRuntimeDao;
+    private sop_detailDao msop_detailDao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,14 @@ public class StepActionControlGPS extends Activity {
         TAG_STEP_ORDER = bundle.getInt("TAG_STEP_ORDER");
         ss.setText(Integer.toString(TAG_STEP_ORDER));
 
+        //orm 用stepnumber去抓資料庫的東西
+        msop_detailDao = new sop_detailDao();
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        List<sop_detailVo> list = null;
+        list = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number ="+TAG_STEP_NUMBER);
+        Log.d("抓", list.get(0).getStart_value1()+" "+list.get(0).getStart_value2());
+        DLongitude = Double.parseDouble(list.get(0).getStart_value1());
+        DLatitude = Double.parseDouble(list.get(0).getStart_value2());
 
         LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
@@ -81,7 +89,7 @@ public class StepActionControlGPS extends Activity {
         //取得定位權限
         mLocationManager = (LocationManager) getSystemService(StepActionControlGPS.LOCATION_SERVICE);
        //連線取目的地
-        new CheckGPS().execute();
+       // new CheckGPS().execute();
 
 
 
@@ -272,56 +280,56 @@ public class StepActionControlGPS extends Activity {
 
         }
     }
-
-    class CheckGPS extends AsyncTask<String, String, Integer> {
-
-
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(StepActionControlGPS.this);
-            pDialog.setMessage("Loading.... Please wait...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
-
-        protected Integer doInBackground(String... args) {
-
-            //String Stepnumber="3";
-            String Stepnumber = TAG_STEP_NUMBER;
-            int valoreOnPostExecute = 0;
-
-            ArrayList params = new ArrayList();
-            params.add(new BasicNameValuePair("Stepnumber", Stepnumber));
-
-            JSONObject json = StepActionControlGPS.this.jsonParser.makeHttpRequest(StepActionControlGPS.url_create_product, "GET", params);
-
-
-            try {
-                int e = json.getInt(TAG_SUCCESS);
-                if(e == 1) {
-                    DLongitude = Double.parseDouble(json.getString(TAG_Longitude));
-                    DLatitude=Double.parseDouble(json.getString(TAG_Latitude));
-                    System.out.println("Here "+DLongitude+" AND "+DLatitude);
-
-
-                }else if(e == 6){
-
-
-                }
-            } catch (JSONException var9) {
-                var9.printStackTrace();
-            }
-
-            return valoreOnPostExecute;
-        }
-
-        protected void onPostExecute(Integer valoreOnPostExecute) {
-
-            pDialog.dismiss();
-
-        }
-    }
+//
+//    class CheckGPS extends AsyncTask<String, String, Integer> {
+//
+//
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//            pDialog = new ProgressDialog(StepActionControlGPS.this);
+//            pDialog.setMessage("Loading.... Please wait...");
+//            pDialog.setIndeterminate(false);
+//            pDialog.setCancelable(false);
+//            pDialog.show();
+//        }
+//
+//        protected Integer doInBackground(String... args) {
+//
+//            //String Stepnumber="3";
+//            String Stepnumber = TAG_STEP_NUMBER;
+//            int valoreOnPostExecute = 0;
+//
+//            ArrayList params = new ArrayList();
+//            params.add(new BasicNameValuePair("Stepnumber", Stepnumber));
+//
+//            JSONObject json = StepActionControlGPS.this.jsonParser.makeHttpRequest(StepActionControlGPS.url_create_product, "GET", params);
+//
+//
+//            try {
+//                int e = json.getInt(TAG_SUCCESS);
+//                if(e == 1) {
+//                    DLongitude = Double.parseDouble(json.getString(TAG_Longitude));
+//                    DLatitude=Double.parseDouble(json.getString(TAG_Latitude));
+//                    System.out.println("Here "+DLongitude+" AND "+DLatitude);
+//
+//
+//                }else if(e == 6){
+//
+//
+//                }
+//            } catch (JSONException var9) {
+//                var9.printStackTrace();
+//            }
+//
+//            return valoreOnPostExecute;
+//        }
+//
+//        protected void onPostExecute(Integer valoreOnPostExecute) {
+//
+//            pDialog.dismiss();
+//
+//        }
+//    }
 
 
 
