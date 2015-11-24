@@ -290,7 +290,7 @@ public class StepActionControl extends Activity {
     }*/
 
     //從p305來，Update last_do_order
-    class Update extends AsyncTask<String, String, Integer> {
+/*    class Update extends AsyncTask<String, String, Integer> {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(StepActionControl.this);
@@ -336,10 +336,10 @@ public class StepActionControl extends Activity {
             }
         }
 
-    }
+    }*/
 
     //判斷啟動規則 1人工啟動 2前一步驟完工 3beacon 4QRcode 5NFC 6定位 7時間
-    class CheckStartrule extends AsyncTask<String, String, Integer> {
+/*    class CheckStartrule extends AsyncTask<String, String, Integer> {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(StepActionControl.this);
@@ -445,6 +445,6 @@ public class StepActionControl extends Activity {
 
         }
 
-    }
+    }*/
 
 }
