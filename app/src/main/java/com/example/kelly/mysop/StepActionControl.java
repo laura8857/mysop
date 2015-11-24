@@ -54,6 +54,7 @@ public class StepActionControl extends Activity {
         Bundle bundle = intent.getExtras();	//取得Bundle
 
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        List<sop_detailVo> list = null;
 
         //從P305來的話
         if(intent.hasExtra("TAG_NEXT_STEP_NUMBER")){
@@ -61,14 +62,16 @@ public class StepActionControl extends Activity {
             TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
             //new Update().execute();
 
-//予帆不會啊啊啊啊啊啊
-//"UPDATE case_master SET last_do_order='"+Stepnumber+"' WHERE case_number='"+Casenumber+"'"
+
+            //"UPDATE case_master SET last_do_order='"+Stepnumber+"' WHERE case_number='"+Casenumber+"'"
             mcase_masterDao = new case_masterDao();
-            case_masterVo mcase_masterVo = new case_masterVo();
-            mcase_masterVo.setLast_do_order(TAG_STEP_NUMBER);
+            mcase_masterDao.update(mDatabaseHelper,"case_number",TAG_CASE_NUMBER,"last_do_order",TAG_STEP_NUMBER);
+            //mcase_masterDao.update(mDatabaseHelper,mcase_masterVo);
 
-            mcase_masterDao.update(mDatabaseHelper,mcase_masterVo);
-
+            list = msop_detailDao.selectRaw(mDatabaseHelper, "step_number IN(SELECT last_do_order FROM case_master WHERE case_number='"+TAG_CASE_NUMBER+"')");
+            StartRule = Integer.valueOf(list.get(0).getStart_rule());
+            TAG_STEP_ORDER = Integer.valueOf(list.get(0).getStep_order());
+            UseStartRule(StartRule);
 
 
         }else{
@@ -78,7 +81,7 @@ public class StepActionControl extends Activity {
             //new Checkall().execute();
 
             msop_detailDao = new sop_detailDao();
-            List<sop_detailVo> list = null;
+
             list = msop_detailDao.selectRaw(mDatabaseHelper, "step_number IN(SELECT last_do_order FROM case_master WHERE case_number='"+TAG_CASE_NUMBER+"')");
             Log.d("抓", list.get(0).getSop_number());
 
