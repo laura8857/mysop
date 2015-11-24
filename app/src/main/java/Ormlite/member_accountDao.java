@@ -6,6 +6,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.UpdateBuilder;
 import com.j256.ormlite.support.ConnectionSource;
 //import com.ck.ap.DatabaseHelper;
 
@@ -42,7 +43,7 @@ public class member_accountDao {
 	}
 
 	/* update */
-	public static int update(DatabaseHelper databaseHelper, member_accountVo member_accountVo) {
+/*	public static int update(DatabaseHelper databaseHelper, member_accountVo member_accountVo) {
 		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
 				.getMember_accountDao();
 		try {
@@ -51,8 +52,23 @@ public class member_accountDao {
 			e.printStackTrace();
 		}
 		return 0;
-	}
+	}*/
+    public static int update(DatabaseHelper databaseHelper, String columnvalue,String originalvalue, String column, String value) {
+        RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+                .getMember_accountDao();
+        UpdateBuilder<member_accountVo, Integer> updateBuilder = accountDao.updateBuilder();
+        try {
+            //判斷式 哪一欄 = 值
+            updateBuilder.where().eq(columnvalue,originalvalue);
+            // update the value of your field(s)
+            updateBuilder.updateColumnValue(column,value);
 
+            return updateBuilder.update();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 	/* delete */
 	public static int delete(DatabaseHelper databaseHelper, member_accountVo member_accountVo) {
 		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper

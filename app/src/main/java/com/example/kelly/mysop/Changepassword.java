@@ -142,6 +142,16 @@ public class Changepassword extends Activity {
             //menber_accountRuntimeDao.createOrUpdate(mmember_accountVo);
             mmember_accountDao.insert(mDatabaseHelper,mmember_accountVo);
 
+            //UPDATE
+            DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(this);
+            member_accountDao mmember_accountDao2 = new member_accountDao();
+            member_accountVo mmember_accountVo2 = new member_accountVo();
+
+            mmember_accountDao2.update(mDatabaseHelper2,"account","test","username","678");
+
+
+
+
             /*mmember_accountVo = mmember_accountDao.queryForId(1);
             mmember_accountVo.setPassword(NewPassword);
             mmember_accountDao.update(mmember_accountVo);*/
