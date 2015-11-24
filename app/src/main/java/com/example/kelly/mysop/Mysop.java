@@ -17,11 +17,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -30,13 +31,20 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
-import java.math.BigInteger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.case_masterDao;
+import Ormlite.case_masterVo;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
+import Ormlite.sop_masterDao;
+import Ormlite.sop_masterVo;
 
 public class Mysop extends Activity {
 
@@ -103,6 +111,14 @@ public class Mysop extends Activity {
     private String[] steptotal1;
 
 
+    //orm
+    private RuntimeExceptionDao<case_masterVo, Integer> case_masterRuntimeDao;
+    private case_masterDao mcase_masterDao;
+    private RuntimeExceptionDao<sop_masterVo, Integer> sop_masterRuntimeDao;
+    private sop_masterDao msop_masterDao;
+    private RuntimeExceptionDao<sop_detailVo, Integer> sop_detailRuntimeDao;
+    private sop_detailDao msop_detailDao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +145,27 @@ public class Mysop extends Activity {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
         Date curDate = new Date(System.currentTimeMillis()) ; // 獲取當前時間
         str = formatter.format(curDate);
+
+        //orm 用stepnumber去抓資料庫的東西
+        mcase_masterDao = new case_masterDao();
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        List<case_masterVo> caselist = null ;
+        caselist = mcase_masterDao.selectRaw(mDatabaseHelper,"Account ="+TAG_ACCOUNT);
+        Log.d("抓", caselist.get(0).getCase_number());
+        list = new String[caselist.size()];
+        for(int i=0;i<caselist.size();i++){
+            list[i]=caselist.get(i).getCase_number();
+        }
+
+        msop_masterDao = new sop_masterDao();
+        List<sop_masterVo>sopmasterlist = null;
+        sopmasterlist = msop_masterDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
+
+
+        msop_detailDao = new sop_detailDao();
+        List<sop_detailVo>sopdetaillist = null;
+        sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
+
     }
 
 
