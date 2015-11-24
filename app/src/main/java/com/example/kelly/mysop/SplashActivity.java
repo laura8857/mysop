@@ -6,29 +6,35 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.List;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.member_accountDao;
+import Ormlite.member_accountVo;
+
 
 public class SplashActivity extends Activity {
+
+    private member_accountDao mmember_accountDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        new Thread(new Runnable(){
 
-            @Override
-            public void run() {
-                // TODO Auto-generated method stub
-                try {
-                    Thread.sleep(3000);
-                    startActivity(new Intent().setClass(SplashActivity.this, Login.class));
-                } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            }
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        List<member_accountVo> list = null;
 
-        }).start();
+        mmember_accountDao = new member_accountDao();
+        list = mmember_accountDao.selectRaw(mDatabaseHelper, "account");
+
+        if (list == null) {
+            startActivity(new Intent().setClass(SplashActivity.this, Login.class));
+        } else if (list != null) {
+            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
+        }
     }
+
 
 
     @Override

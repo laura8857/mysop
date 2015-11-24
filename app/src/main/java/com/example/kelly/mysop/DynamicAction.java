@@ -21,8 +21,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.j256.ormlite.dao.RuntimeExceptionDao;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -38,14 +36,16 @@ import java.util.HashMap;
 import java.util.List;
 
 import Ormlite.DatabaseHelper;
-import Ormlite.member_accountDao;
 import Ormlite.sop_masterDao;
 import Ormlite.sop_masterVo;
 
 public class DynamicAction extends Activity {
-    private RuntimeExceptionDao<sop_masterVo, Integer> sop_masterRuntimeDao;
+
     private sop_masterDao msop_masterDao;
+
+
     private ProgressDialog pDialog;
+
     JSONParser jsonParser = new JSONParser();
     ArrayList<HashMap<String, String>> productsList;
     //private static String url_all_products = "http://localhost:8080/kelly/test_getall.jsp";
@@ -103,8 +103,9 @@ public class DynamicAction extends Activity {
         listInput = (ListView)findViewById(R.id.list_dynamic);
         listInput1 = (ListView)findViewById(R.id.list_dynamic2);
         // adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,items);
+
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
-        msop_masterDao = new sop_masterDao();
+        List<sop_masterVo> list =null;
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
