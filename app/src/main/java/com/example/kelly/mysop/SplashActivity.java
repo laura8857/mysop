@@ -28,9 +28,10 @@ public class SplashActivity extends Activity {
         mmember_accountDao = new member_accountDao();
         list = mmember_accountDao.selectRaw(mDatabaseHelper, "account");
 
-        if (list == null) {
+        if (list.isEmpty()) {
             startActivity(new Intent().setClass(SplashActivity.this, Login.class));
-        } else if (list != null) {
+        } else {
+            //JSP要塞ORM有點難ＱＡＱ
             startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
         }
     }
