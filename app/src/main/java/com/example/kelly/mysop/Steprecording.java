@@ -388,7 +388,21 @@ public class Steprecording extends Activity {
                     dialog.show();
                 }
                 return true;
-            } else
+            } else if((e1.getX() - e2.getX()) < -50){ //11/29新加右滑
+                Intent intent2 = new Intent();
+                intent2.setClass(Steprecording.this, Stepdescription.class);
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+                bundle2.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+                bundle2.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+                intent2.putExtras(bundle2);//將參數放入intent
+                startActivity(intent2);
+                //切換畫面，右近左出
+                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_right);
+                finish();
+                return true;
+
+            }
                 return false;
         }
 
