@@ -39,6 +39,12 @@ import java.util.List;
 
 import android.widget.Toast;
 
+import Ormlite.DatabaseHelper;
+import Ormlite.case_recordDao;
+import Ormlite.case_recordVo;
+import Ormlite.step_recordDao;
+import Ormlite.step_recordVo;
+
 //p303
 public class Steprecording extends Activity {
 
@@ -74,6 +80,12 @@ public class Steprecording extends Activity {
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
 
+
+    private step_recordDao mstep_recordDao;
+    private case_recordDao mcase_recordDao;
+    private case_recordVo mcase_recordVo;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,10 +105,37 @@ public class Steprecording extends Activity {
         // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
         // Loading products in Background Thread
-        new LoadInput().execute();
+        //new LoadInput().execute();
+
+        //SELECT record_order,record_text FROM step_record WHERE step_number='"+Stepnumber+"'"
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        mstep_recordDao = new step_recordDao();
+        List<step_recordVo> list = null;
+        list = mstep_recordDao.selectRaw(mDatabaseHelper, "step_number="+TAG_STEP_NUMBER);
+
+        Log.d("抓", list.get(0).getRecord_order());
+        Log.d("抓2", list.get(0).getRecord_text());
+
+        count = list.size();
+        LinearLayout ly = (LinearLayout)findViewById(R.id.linearlayoutinput);
+        for(int i=0; i<count;i++) {
+            TextView text1 = new TextView(Steprecording.this);
+            text1.setText(list.get(i).getRecord_text());
+
+            edit1[i] = new EditText(Steprecording.this.getApplicationContext());
+            edit1[i].setTextColor(Color.rgb(0, 0, 0));
+            edit1[i].setOnFocusChangeListener(new MyOnFocusChangeListener());
+            edit1[i].setSingleLine(true);
+            edit1[i].setBackgroundColor(Color.parseColor("#FEFBE6"));
+            //edit1[0].setText("eee");
+            ly.addView(text1);
+            ly.addView(edit1[i]);
+        }
+
+
         detector = new GestureDetector(new MySimpleOnGestureListener());
 
-                ScrollView sv = (ScrollView)findViewById(R.id.scrollView);
+        ScrollView sv = (ScrollView)findViewById(R.id.scrollView);
         sv.setOnTouchListener(new MyOnTouchListener());
         //LinearLayout llb = (LinearLayout)findViewById(R.id.linearLayoutbackground);
         //llb.setOnTouchListener(new MyOnTouchListener());
@@ -171,14 +210,9 @@ public class Steprecording extends Activity {
         return super.onOptionsItemSelected(item);
     }*/
 
-    /**
-     * Background Async Task to Load all product by making HTTP Request
-     * */
-    class LoadInput extends AsyncTask<String, String, String> {
 
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
+/*    class LoadInput extends AsyncTask<String, String, String> {
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -189,9 +223,6 @@ public class Steprecording extends Activity {
             pDialog.show();
         }
 
-        /**
-         * getting All products from url
-         * */
         protected String doInBackground(String... args) {
 
             String Stepnumber = TAG_STEP_NUMBER;
@@ -244,18 +275,10 @@ public class Steprecording extends Activity {
             return null;
         }
 
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
         protected void onPostExecute(String file_url) {
             // dismiss the dialog after getting all products
             pDialog.dismiss();
             // updating UI from Background Thread
-/*            runOnUiThread(new Runnable() {
-                public void run() {
-
-                }
-            }); */
 
             LinearLayout ly = (LinearLayout)findViewById(R.id.linearlayoutinput);
 
@@ -287,7 +310,7 @@ public class Steprecording extends Activity {
 
         }
 
-    }
+    }*/
 
 
     class MyOnFocusChangeListener implements View.OnFocusChangeListener{
@@ -327,10 +350,24 @@ public class Steprecording extends Activity {
 
                 if(didinput) {
                     //new Recording().execute();
-                    Recording[] RC = new Recording[20];
+                    DatabaseHelper[] mDatabaseHelper2 = new DatabaseHelper[20];
                     for (int postcount = 0; postcount < count; postcount++) {
-                        RC[postcount] = new Recording();
-                        RC[postcount].execute(postcount);
+                        //RC[postcount] = new Recording();
+                        //RC[postcount].execute(postcount);
+
+                        //"INSERT INTO case_record(case_number,step_order,record_order,record_value) VALUES('"+CaseNumber+"',"+StepOrder+","+RecordOrder+",'"+RecordText+"')";
+                        RecordText[postcount] = Steprecording.this.edit1[postcount].getText().toString();
+
+                        mDatabaseHelper2[postcount] = new DatabaseHelper(getApplicationContext());
+                        mcase_recordDao = new case_recordDao();
+                        mcase_recordVo = new case_recordVo();
+                        mcase_recordVo.setCase_number(TAG_CASE_NUMBER);
+                        mcase_recordVo.setStep_order(String.valueOf(TAG_STEP_ORDER));
+                        mcase_recordVo.setRecord_order(String.valueOf(postcount + 1));
+                        Log.d("RecordOrder", String.valueOf(postcount+1));
+                        mcase_recordVo.setRecord_value(RecordText[postcount]);
+                        mcase_recordDao.insert(mDatabaseHelper2[postcount],mcase_recordVo);
+
                     }
 
 
@@ -358,7 +395,7 @@ public class Steprecording extends Activity {
     }
 
     //回傳
-    class Recording extends AsyncTask<Integer, String, Integer> {
+/*    class Recording extends AsyncTask<Integer, String, Integer> {
 
         protected void onPreExecute() {
             super.onPreExecute();
@@ -411,7 +448,7 @@ public class Steprecording extends Activity {
                 Toast.makeText(getApplicationContext(),"上傳未成功!", Toast.LENGTH_SHORT).show();
             }
         }
-    }
+    }*/
 
 
 
