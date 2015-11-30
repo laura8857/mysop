@@ -68,7 +68,8 @@ public class StepActionControl extends Activity {
             mcase_masterDao.update(mDatabaseHelper,"case_number",TAG_CASE_NUMBER,"last_do_order",TAG_STEP_NUMBER);
             //mcase_masterDao.update(mDatabaseHelper,mcase_masterVo);
 
-            list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number IN(SELECT last_do_order FROM case_master WHERE case_number='"+TAG_CASE_NUMBER+"')");
+            //list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number IN(SELECT last_do_order FROM case_master WHERE case_number='"+TAG_CASE_NUMBER+"')");
+            list = msop_detailDao.selectRawByNest(mDatabaseHelper,"Case_number",TAG_CASE_NUMBER,"Last_do_order","Step_number");
             StartRule = Integer.valueOf(list.get(0).getStart_rule());
             TAG_STEP_ORDER = Integer.valueOf(list.get(0).getStep_order());
             UseStartRule(StartRule);
@@ -81,8 +82,8 @@ public class StepActionControl extends Activity {
             //new Checkall().execute();
 
             msop_detailDao = new sop_detailDao();
-
-            list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number IN(SELECT last_do_order FROM case_master WHERE case_number='"+TAG_CASE_NUMBER+"')");
+            //"Step_number IN(SELECT last_do_order FROM case_master WHERE case_number='"++"')"
+            list = msop_detailDao.selectRawByNest(mDatabaseHelper,"Case_number",TAG_CASE_NUMBER,"Last_do_order","Step_number");
             Log.d("抓", list.get(0).getSop_number());
 
             TAG_STEP_NUMBER = list.get(0).getStep_number();
