@@ -61,6 +61,13 @@ public class ChangePasswordError extends Activity {
 
         Log.d("抓44", list2.get(0).getUsername());
 
+/*原本的巢狀不能用
+        DatabaseHelper mDatabaseHelper6 = DatabaseHelper.getHelper(this);
+        member_accountDao mmember_accountDao6 = new member_accountDao();
+        List<member_accountVo> list6 = null;
+        list6 = mmember_accountDao6.selectRaw(mDatabaseHelper6, "account IN(SELECT Account FROM case_masterVo WHERE Case_number=111");
+        Log.d("抓6", list6.get(0).getAccount());
+*/
 
     }
 
