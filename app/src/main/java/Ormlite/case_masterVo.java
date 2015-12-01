@@ -12,7 +12,7 @@ public class case_masterVo extends MDVo implements Serializable
 	public static final String FIELD_Rule_number ="Rule_number";
 	public static final String FIELD_Sop_number ="Sop_number";
 	public static final String FIELD_Sop_version ="Sop_version";
-	public static final String FIELD_Last_do_order ="Last_do_order";
+	public static final String FIELD_Step_number ="Step_number";
 	public static final String FIELD_Case_start_time ="Case_start_time";
 	public static final String FIELD_Case_finish_time ="Case_finish_time";
 	public static final String FIELD_Case_type ="Case_type";
@@ -87,15 +87,16 @@ public class case_masterVo extends MDVo implements Serializable
 	{
 		this.Case_start_time = Case_start_time;
 	}
-	@DatabaseField(columnName = FIELD_Last_do_order, canBeNull = true)
-	private String Last_do_order;
-	public String getLast_do_order()
+	@DatabaseField(columnName = FIELD_Step_number, canBeNull = true)
+	private String Step_number;
+	public String getStep_number()
 	{
-		return Sop_version;
+		return Step_number;
 	}
-	public void setLast_do_order(String Last_do_order)
+	public void setStep_number(String Step_number)
+
 	{
-		this.Last_do_order = Last_do_order;
+		this.Step_number = Step_number;
 	}
 	@DatabaseField(columnName = FIELD_Case_finish_time, canBeNull = true)
 	private String Case_finish_time;

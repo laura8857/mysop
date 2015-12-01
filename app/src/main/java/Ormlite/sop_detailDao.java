@@ -94,7 +94,7 @@ public class sop_detailDao
 
 
     /* selectRawByNest */
-    public static List<sop_detailVo> selectRawByNest(DatabaseHelper databaseHelper,String column1,String value1,String column2,String column3) {
+    public static List<sop_detailVo> selectRawByNest(DatabaseHelper databaseHelper,String column1,String value1,String column2) {
         RuntimeExceptionDao<sop_detailVo, Integer> sop_detailDao = databaseHelper
                 .getSop_detailDao();
         RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
@@ -108,7 +108,7 @@ public class sop_detailDao
             //Log.d("TEST NEST",subqueryBuilder.query().get(0).getAccount());
             // in using the sub-query
             subqueryBuilder.selectColumns(column2);
-            queryBuilder.where().in(column3, subqueryBuilder);
+            queryBuilder.where().in(column2, subqueryBuilder);
             //Log.d("TEST NEST",queryBuilder.query().get(0).getAccount());
             return queryBuilder.query();
         } catch (SQLException e) {
