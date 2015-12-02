@@ -26,6 +26,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.case_masterDao;
+import Ormlite.case_masterVo;
 import Ormlite.member_accountDao;
 import Ormlite.member_accountVo;
 
@@ -165,6 +167,19 @@ public class Changepassword extends Activity {
             mmember_accountDao.update(mmember_accountVo);*/
             //Toast.makeText(this, mmember_accountVo.getPassword(), Toast.LENGTH_SHORT).show();
             Log.d("TEST","TEST");
+
+
+            //測試巢狀是否可用
+            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(this);
+            case_masterDao mcase_masterDao4 = new case_masterDao();
+            case_masterVo mcase_masterVo4 = new case_masterVo();
+            mcase_masterVo4.setAccount("test1");
+            mcase_masterVo4.setCase_number("111");
+            mcase_masterVo4.setRule_number("222");
+            mcase_masterDao4.insert(mDatabaseHelper4,mcase_masterVo4);
+
+
+
 
             Intent it = new Intent(Changepassword.this,ChangePasswordError.class);
             startActivity(it);

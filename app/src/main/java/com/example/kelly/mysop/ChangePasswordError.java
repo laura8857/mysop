@@ -15,6 +15,8 @@ import com.j256.ormlite.dao.RuntimeExceptionDao;
 import java.util.List;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.case_masterDao;
+import Ormlite.case_masterVo;
 import Ormlite.member_accountDao;
 import Ormlite.member_accountVo;
 
@@ -43,6 +45,29 @@ public class ChangePasswordError extends Activity {
         Log.d("抓3", list.get(1).getUsername());
         Log.d("有幾筆", String.valueOf(list.size()));
         Toast.makeText(this, list.get(1).getUsername(), Toast.LENGTH_SHORT).show();
+
+        //測巢狀
+        DatabaseHelper mDatabaseHelper3 = DatabaseHelper.getHelper(this);
+        case_masterDao mcase_masterDao3 = new case_masterDao();
+        List<case_masterVo> list3 = null;
+        list3 = mcase_masterDao3.selectRaw(mDatabaseHelper3, "Case_number=111");
+        Log.d("抓5", list3.get(0).getAccount());
+
+
+        DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(this);
+        member_accountDao mmember_accountDao2 = new member_accountDao();
+        List<member_accountVo> list2 = null;
+        list2 = mmember_accountDao2.selectRawByNest(mDatabaseHelper2, "Case_number","111","account");
+
+        Log.d("抓44", list2.get(0).getUsername());
+
+/*原本的巢狀不能用
+        DatabaseHelper mDatabaseHelper6 = DatabaseHelper.getHelper(this);
+        member_accountDao mmember_accountDao6 = new member_accountDao();
+        List<member_accountVo> list6 = null;
+        list6 = mmember_accountDao6.selectRaw(mDatabaseHelper6, "account IN(SELECT Account FROM case_masterVo WHERE Case_number=111");
+        Log.d("抓6", list6.get(0).getAccount());
+*/
 
     }
 

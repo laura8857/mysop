@@ -1,5 +1,7 @@
 package Ormlite;
 
+import android.util.Log;
+
 import java.sql.SQLException;
 import java.util.List;
 import com.j256.ormlite.dao.Dao;
@@ -126,6 +128,31 @@ public class member_accountDao {
 		}
 		return null;
 	}
+
+
+    /* selectRawByNest */
+    public static List<member_accountVo> selectRawByNest(DatabaseHelper databaseHelper,String column1,String value1,String column2) {
+        RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+                .getMember_accountDao();
+        RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
+                .getCase_masterDao();
+        QueryBuilder<case_masterVo, Integer> subqueryBuilder = case_masterDao
+                .queryBuilder();
+        QueryBuilder<member_accountVo, Integer> queryBuilder = accountDao
+                .queryBuilder();
+        try {
+            subqueryBuilder.where().eq(column1,value1);
+            //Log.d("TEST NEST",subqueryBuilder.query().get(0).getAccount());
+            // in using the sub-query
+            subqueryBuilder.selectColumns(column2);
+            queryBuilder.where().in(column2, subqueryBuilder);
+            //Log.d("TEST NEST",queryBuilder.query().get(0).getAccount());
+            return queryBuilder.query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
 }

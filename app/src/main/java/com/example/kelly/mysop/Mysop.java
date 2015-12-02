@@ -160,13 +160,13 @@ public class Mysop extends Activity {
 
         msop_masterDao = new sop_masterDao();
         List<sop_masterVo>sopmasterlist = null;
-        sopmasterlist = msop_masterDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
-
+       // sopmasterlist = msop_masterDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
+        sopmasterlist = msop_masterDao.selectRawByNest(mDatabaseHelper, "Account",TAG_ACCOUNT, "Sop_number") ;
 
         msop_detailDao = new sop_detailDao();
         List<sop_detailVo>sopdetaillist = null;
-        sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
-
+        //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
+        sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper,"Account",TAG_ACCOUNT,"Step_number");
 
 
         int k=0;
@@ -205,7 +205,8 @@ public class Mysop extends Activity {
             //
             steporder[i]=sopdetaillist.get(i).getStep_order();
             List<sop_detailVo> listforcount = null;
-            listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='" + TAG_ACCOUNT + "')");
+            //listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='" + TAG_ACCOUNT + "')");
+            listforcount =msop_detailDao.selectRawByNest(mDatabaseHelper,"Account",TAG_ACCOUNT,"Sop_number");
             steptotal[i]= String.valueOf(listforcount.size());
             //steptotal[i]=productsList1.get(i).get(TAG_TATOL);
             switch (sopdetaillist.get(i).getStart_rule()){
@@ -317,6 +318,10 @@ public class Mysop extends Activity {
             //
             steporder1[i]=sopdetaillist.get(i).getStep_order();
             //steptotal1[k]=productsList1.get(i).get(TAG_TATOL);
+            List<sop_detailVo> listforcount1 = null;
+            //listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='" + TAG_ACCOUNT + "')");
+            listforcount1 =msop_detailDao.selectRawByNest(mDatabaseHelper,"Account",TAG_ACCOUNT,"Sop_number");
+            steptotal1[i]= String.valueOf(listforcount1.size());
             switch (sopdetaillist.get(i).getStart_rule()){
                 case "1":
                     // cagetory.setText("人工啟動");
