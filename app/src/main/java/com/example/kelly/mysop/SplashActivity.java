@@ -84,15 +84,15 @@ public class SplashActivity extends Activity {
 
         //劉昱呈這邊需要再修一下
         //list = mmember_accountDao1.selectRaw(mDatabaseHelper1, "account=test@gmail.com");
-        account = mmember_accountDao1.selectColumns(mDatabaseHelper1, "FIELD_Account");
-        if (account.isEmpty()) {
-            startActivity(new Intent().setClass(SplashActivity.this, Login.class));
-        } else {
+        //account = mmember_accountDao1.selectColumns(mDatabaseHelper1, "FIELD_Account");
+        //if (account.isEmpty()) {
+       //     startActivity(new Intent().setClass(SplashActivity.this, Login.class));
+       // } else {
             //JSP要塞ORM有點難ＱＡＱ
-        TAG_ACCOUNT=account.get(0).getAccount();
+        //TAG_ACCOUNT=account.get(0).getAccount();
         new LoadAllProducts().execute();
-            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
-        }
+        //    startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
+       // }
 
 
 
@@ -312,14 +312,23 @@ public class SplashActivity extends Activity {
          * **/
         protected void onPostExecute(String file_url) {
 
-            Log.d("test1",productsList.get(0).get("sop_number"));
+            Log.d("test1",productsList.get(10).get("finish_value1"));
 
-            DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(SplashActivity.this);
-            sop_detailDao msop_detailDao2 = new sop_detailDao();
-            sop_detailVo msop_detailVo2 = new sop_detailVo();
+            DatabaseHelper[] mDatabaseHelper2 = new DatabaseHelper[20];
+            sop_detailDao[] msop_detailDao2 = new sop_detailDao[20];
+            sop_detailVo[] msop_detailVo2 = new sop_detailVo[20];
+            for (int i = 0; i <  4; i++){
+                mDatabaseHelper2[i] = DatabaseHelper.getHelper(SplashActivity.this);
+                msop_detailVo2[i].setSop_number("www");
+                msop_detailVo2[i].setStep_order("123"+i);
+                msop_detailDao2[i].insert(mDatabaseHelper2[i], msop_detailVo2[i]);
+                Log.d("products",String.valueOf(i));
+            }
+            //msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
+            Log.d("countproducts345",String.valueOf(products.length()));
 
             // dismiss the dialog after getting all products
-            for (int i = 0; i <  products.length(); i++){
+/*            for (int i = 0; i <  products.length(); i++){
                 Log.d("countproducts","123");
                 msop_detailVo2.setSop_number(productsList.get(i).get("sop_number"));
                 msop_detailVo2.setStep_order(productsList.get(i).get("step_order"));
@@ -372,7 +381,7 @@ public class SplashActivity extends Activity {
                 msop_masterDao5.insert(mDatabaseHelper5, msop_masterVo5);
 
             }
-
+*/
             startActivity(new Intent().setClass(SplashActivity.this, Login.class));
 
         }

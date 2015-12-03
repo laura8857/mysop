@@ -152,7 +152,7 @@ public class Mysop extends Activity {
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         List<case_masterVo> caselist = null ;
         caselist = mcase_masterDao.selectRaw(mDatabaseHelper,"Account ="+TAG_ACCOUNT);
-        Log.d("抓", caselist.get(0).getCase_number());
+//        Log.d("抓", caselist.get(0).getCase_number());
 //        list = new String[caselist.size()];
 //        for(int i=0;i<caselist.size();i++){
 //            list[i]=caselist.get(i).getCase_number();

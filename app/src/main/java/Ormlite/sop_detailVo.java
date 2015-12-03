@@ -4,7 +4,7 @@ import java.io.Serializable;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 //【Sop_number】
-@DatabaseTable(tableName = "Step_detail")
+@DatabaseTable(tableName = "sop_detail")
 public class sop_detailVo extends MDVo implements Serializable
 {
 	public static final String FIELD_Sop_number ="Sop_number";
