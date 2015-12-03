@@ -320,13 +320,14 @@ public class SplashActivity extends Activity {
                 msop_detailVo2[i].setStep_intro(productsList.get(i).get("step_intro"));
                 msop_detailVo2[i].setStart_rule(productsList.get(i).get("start_rule"));
                 msop_detailVo2[i].setStart_value1(productsList.get(i).get("start_value1"));
+                msop_detailVo2[i].setStart_value2(productsList.get(i).get("start_value2"));
                 msop_detailVo2[i].setFinish_rule(productsList.get(i).get("finish_rule"));
                 msop_detailVo2[i].setFinish_value1(productsList.get(i).get("finish_value1"));
                 msop_detailVo2[i].setFinish_value2(productsList.get(i).get("finish_value2"));
                 msop_detailVo2[i].setNext_step_number(productsList.get(i).get("next_step_number"));
                 msop_detailVo2[i].setNext_step_rule(productsList.get(i).get("next_step_rule"));
                 msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2[i]);
-
+                Log.d("countproducts",String.valueOf(i));
             }
 
 
@@ -335,7 +336,7 @@ public class SplashActivity extends Activity {
             case_masterVo[] mcase_masterVo4 = new case_masterVo[500];
 
             // dismiss the dialog after getting all products
-            for (int i = 0; i <  products.length(); i++){
+            for (int i = 0; i <  products2.length(); i++){
 
                 mcase_masterVo4[i].setSop_number(productsList2.get(i).get("sop_number"));
                 mcase_masterVo4[i].setStep_number(productsList2.get(i).get("step_number"));
@@ -350,7 +351,7 @@ public class SplashActivity extends Activity {
             sop_masterVo[] msop_masterVo5 = new sop_masterVo[500];
 
             // dismiss the dialog after getting all products
-            for (int i = 0; i <  products.length(); i++){
+            for (int i = 0; i <  products1.length(); i++){
 
                 msop_masterVo5[i].setSop_number(productsList1.get(i).get("sop_number"));
                 msop_masterVo5[i].setSop_name(productsList1.get(i).get("sop_name"));
