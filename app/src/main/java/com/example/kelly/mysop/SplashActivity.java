@@ -20,13 +20,10 @@ import java.util.List;
 
 import Ormlite.DatabaseHelper;
 import Ormlite.case_masterDao;
-import Ormlite.case_masterVo;
 import Ormlite.member_accountDao;
 import Ormlite.member_accountVo;
 import Ormlite.sop_detailDao;
 import Ormlite.sop_detailVo;
-import Ormlite.sop_masterDao;
-import Ormlite.sop_masterVo;
 
 
 public class SplashActivity extends Activity {
@@ -39,6 +36,7 @@ public class SplashActivity extends Activity {
     ArrayList<HashMap<String, String>> productsList1;
     private static String url_all_products = "http://140.115.80.237/front/mysop_step_detail.jsp";
     private static String url_all_products1 = "http://140.115.80.237/front/mysop_mysop1.jsp";
+    private static String url_all_products2 = "http://140.115.80.237/front/mysop_case_master.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_CASENUMBER = "casenumber";
@@ -51,6 +49,7 @@ public class SplashActivity extends Activity {
     private static final String TAG_SOPNUMBER = "sopnumber";
     JSONArray products = null;
     JSONArray products1 = null;
+    JSONArray products2 = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -143,7 +142,7 @@ public class SplashActivity extends Activity {
             // getting JSON string from URL
             JSONObject json = SplashActivity.this.jsonParser.makeHttpRequest(SplashActivity.url_all_products,"GET", params);
             JSONObject json1 =SplashActivity.this.jsonParser.makeHttpRequest(SplashActivity.url_all_products1,"GET", params);
-
+            JSONObject json2 =SplashActivity.this.jsonParser.makeHttpRequest(SplashActivity.url_all_products2,"GET", params);
             // Check your log cat for JSON reponse
             Log.d("All Products: ", json.toString());
 
@@ -191,27 +190,22 @@ public class SplashActivity extends Activity {
                         HashMap<String, String> map = new HashMap<String, String>();
 
                         // adding each child node to HashMap key => value
-                        map.put(TAG_SOPNAME, sopname);
-                        map.put(TAG_CASENUMBER, sopnumber);
-                        map.put(TAG_STARTRULE, startrule);
-                        map.put(TAG_STARTVALUE,startvalue);
-                        map.put(TAG_PICTURE,picture);
-                        map.put(TAG_ORDER,order);
+
 
                         map.put("sop_number",sopnumber);
-                        map.put("step_order");
-                        String stepnumber= c.getString("step_number");
-                        String stepname = c.getString("step_name");
-                        String steppurpose = c.getString("step_purpose");
-                        String stepintro = c.getString("step_intro");
-                        String startrule = c.getString("start_rule");
-                        String startvalue1 = c.getString("start_value1");
-                        String startvalue2 = c.getString("start_value2");
-                        String finishrule = c.getString("finish_rule");
-                        String finishvalue1 = c.getString("finish_value1");
-                        String finishvalue2 = c.getString("finish_value2");
-                        String nextsteprule = c.getString("next_step_rule");
-                        String next_step_number = c.getString("next_step_number");
+                        map.put("step_order",steporder);
+                        map.put("step_number",stepnumber);
+                        map.put("step_name",stepname);
+                        map.put("step_purpose",steppurpose);
+                        map.put("step_intro",steporder);
+                        map.put("start_rule",startrule);
+                        map.put("start_value1",startvalue1);
+                        map.put("start_value2",startvalue2);
+                        map.put("finish_rule",finishrule);
+                        map.put("finish_value1",finishvalue1);
+                        map.put("finish_value2",finishvalue2);
+                        map.put("next_step_rule",next_step_number);
+                        map.put("next_step_number", next_step_number);
 
 
                         // adding HashList to ArrayList
@@ -252,6 +246,56 @@ public class SplashActivity extends Activity {
 
 
                 }
+
+
+                // Checking for SUCCESS TAG
+                int success2 = json2.getInt(TAG_SUCCESS);
+
+                if (success2 == 1) {
+                    // products found
+                    // Getting Array of Products
+                    products2 = json2.getJSONArray(TAG_PRODUCTS);
+
+                    // looping through All Products
+                    for (int i = 0; i < products2.length(); i++) {
+                        JSONObject c = products2.getJSONObject(i);
+
+                        // Storing each json item in variable
+
+                        String sopnumber = c.getString("sop_number");
+                        String casenumber = c.getString("case_number");
+                        String account = c.getString("account");
+                        String stepnumber = c.getString("step_number");
+
+                        // creating new HashMap
+                        HashMap<String, String> map = new HashMap<String, String>();
+
+                        // adding each child node to HashMap key => value
+
+
+                        map.put("sop_number",sopnumber);
+                        map.put("step_order",steporder);
+                        map.put("step_number",stepnumber);
+                        map.put("step_name",stepname);
+                        map.put("step_purpose",steppurpose);
+                        map.put("step_intro",steporder);
+                        map.put("start_rule",startrule);
+                        map.put("start_value1",startvalue1);
+                        map.put("start_value2",startvalue2);
+                        map.put("finish_rule",finishrule);
+                        map.put("finish_value1",finishvalue1);
+                        map.put("finish_value2",finishvalue2);
+                        map.put("next_step_rule",next_step_number);
+                        map.put("next_step_number", next_step_number);
+
+
+                        // adding HashList to ArrayList
+                        productsList.add(map);
+                    }
+                } else {
+
+
+                }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -287,41 +331,23 @@ public class SplashActivity extends Activity {
 
             }
 
-
-            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(SplashActivity.this);
-            case_masterDao mcase_masterDao4 = new case_masterDao();
-            case_masterVo[] mcase_masterVo4 = new case_masterVo[500];
-
-            // dismiss the dialog after getting all products
-            for (int i = 0; i <  products.length(); i++){
-
-                mcase_masterVo4[i].setSop_number(productsList.get(i).get("sop_number"));
-                mcase_masterVo4[i].setStep_number(productsList.get(i).get("step_number"));
-                mcase_masterVo4[i].setAccount(productsList.get(i).get("account"));
-                mcase_masterVo4[i].setCase_number(productsList.get(i).get("case_number"));
-                mcase_masterDao4.insert(mDatabaseHelper4, mcase_masterVo4[i]);
-
-            }
-
-            DatabaseHelper mDatabaseHelper5 = DatabaseHelper.getHelper(SplashActivity.this);
-            sop_masterDao msop_masterDao5 = new sop_masterDao();
-            sop_masterVo[] msop_masterVo5 = new sop_masterVo[500];
+            DatabaseHelper mDatabaseHelper3 = DatabaseHelper.getHelper(SplashActivity.this);
+            case_masterDao mcase_masterDao3 = new case_masterDao();
+            sop_detailVo[] msop_detailVo3 = new sop_detailVo[500];
 
             // dismiss the dialog after getting all products
             for (int i = 0; i <  products.length(); i++){
 
-                msop_masterVo5[i].setSop_number(productsList.get(i).get("sop_number"));
-                msop_masterVo5[i].setSop_name(productsList.get(i).get("sop_name"));
-                msop_masterVo5[i].setSop_graph_src(productsList.get(i).get("sop_graph_src"));
-                msop_masterVo5[i].setSop_intro(productsList.get(i).get("sop_intro"));
-                msop_masterVo5[i].setSop_detail(productsList.get(i).get("sop_detail"));
-                msop_masterVo5[i].setAccount(productsList.get(i).get("account"));
-                msop_masterVo5[i].setStart_rule(productsList.get(i).get("start_rule"));
-                msop_masterDao5.insert(mDatabaseHelper5, msop_masterVo5[i]);
+                msop_detailVo3[i].setSop_number(productsList.get(i).get(""));
+                msop_detailVo3[i].setStep_number(productsList.get(i).get(""));
+                msop_detailVo3[i].setUsername(productsList.get(i).get(""));
+                msop_detailVo3[i].setPassword(productsList.get(i).get(""));
+                msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo3[i]);
 
             }
+
 
 
         }
-   }
+    }
 }
