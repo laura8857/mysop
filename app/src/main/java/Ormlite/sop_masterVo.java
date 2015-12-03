@@ -94,7 +94,7 @@ public class sop_masterVo extends MDVo implements Serializable
 	private String Sop_detail;
 	public String getSop_detail()
 	{
-		return Sop_intro;
+		return Sop_detail;
 	}
 	public void setSop_detail(String Sop_detail)
 	{

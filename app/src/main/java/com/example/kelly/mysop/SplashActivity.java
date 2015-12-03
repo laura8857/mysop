@@ -343,6 +343,7 @@ public class SplashActivity extends Activity {
             case_masterDao mcase_masterDao4 = new case_masterDao();
             case_masterVo mcase_masterVo4 = new case_masterVo();
 
+            Log.d("eee",String.valueOf(products2.length()));
             // dismiss the dialog after getting all products
             for (int i = 0; i <  products2.length(); i++){
 
