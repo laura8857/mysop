@@ -50,7 +50,7 @@ public class sop_detailVo extends MDVo implements Serializable
 	{
 		this.Sop_number = Sop_number;
 	}
-	@DatabaseField(columnName = FIELD_Sop_version, canBeNull = false)
+	@DatabaseField(columnName = FIELD_Sop_version, canBeNull = true)
 	private String Sop_version;
 	public String getSop_version()
 	{
@@ -60,7 +60,7 @@ public class sop_detailVo extends MDVo implements Serializable
 	{
 		this.Sop_version = Sop_version;
 	}
-	@DatabaseField(columnName = FIELD_Step_order, canBeNull = false)
+	@DatabaseField(columnName = FIELD_Step_order, canBeNull = true)
 	private String Step_order;
 	public String getStep_order() {
 		return Step_order;
@@ -102,7 +102,7 @@ public class sop_detailVo extends MDVo implements Serializable
 	private String Step_purpose;
 	public String getStep_purpose()
 	{
-		return Step_name;
+		return Step_purpose;
 	}
 	public void setStep_purpose(String Step_purpose)
 	{
@@ -128,7 +128,7 @@ public class sop_detailVo extends MDVo implements Serializable
 	{
 		this.Finish_time = Finish_time;
 	}
-	@DatabaseField(columnName = FIELD_Start_rule, canBeNull = false)
+	@DatabaseField(columnName = FIELD_Start_rule, canBeNull = true)
 	private String Start_rule;
 	public String getStart_rule()
 	{
@@ -188,7 +188,7 @@ public class sop_detailVo extends MDVo implements Serializable
 	{
 		this.Step_remind = Step_remind;
 	}
-	@DatabaseField(columnName = FIELD_Step_text_content, canBeNull = false)
+	@DatabaseField(columnName = FIELD_Step_text_content, canBeNull = true)
 	private String Step_text_content;
 	public String getStep_text_content()
 	{
@@ -198,7 +198,7 @@ public class sop_detailVo extends MDVo implements Serializable
 	{
 		this.Step_text_content = Step_text_content;
 	}
-	@DatabaseField(columnName = FIELD_Step_graph_path, canBeNull = false)
+	@DatabaseField(columnName = FIELD_Step_graph_path, canBeNull = true)
 	private String Step_graph_path;
 	public String getStep_graph_path()
 	{
@@ -208,7 +208,7 @@ public class sop_detailVo extends MDVo implements Serializable
 	{
 		this.Step_graph_path = Step_graph_path;
 	}
-	@DatabaseField(columnName = FIELD_Step_file_path, canBeNull = false)
+	@DatabaseField(columnName = FIELD_Step_file_path, canBeNull = true)
 	private String Step_file_path;
 	public String getStep_file_path() {
 		return Step_file_path;
