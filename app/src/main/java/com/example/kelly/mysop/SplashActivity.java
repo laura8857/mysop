@@ -123,7 +123,7 @@ public class SplashActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    //下載
+//下載
 
     /**
      * Background Async Task to Load all product by making HTTP Request
@@ -316,59 +316,59 @@ public class SplashActivity extends Activity {
 
             DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(SplashActivity.this);
             sop_detailDao msop_detailDao2 = new sop_detailDao();
-            sop_detailVo[] msop_detailVo2 = new sop_detailVo[500];
+            sop_detailVo msop_detailVo2 = new sop_detailVo();
 
             // dismiss the dialog after getting all products
             for (int i = 0; i <  products.length(); i++){
-
-                msop_detailVo2[i].setSop_number(productsList.get(i).get("sop_number"));
-                msop_detailVo2[i].setStep_order(productsList.get(i).get("step_order"));
-                msop_detailVo2[i].setStep_number(productsList.get(i).get("step_number"));
-                msop_detailVo2[i].setStep_purpose(productsList.get(i).get("step_purpose"));
-                msop_detailVo2[i].setStep_intro(productsList.get(i).get("step_intro"));
-                msop_detailVo2[i].setStart_rule(productsList.get(i).get("start_rule"));
-                msop_detailVo2[i].setStart_value1(productsList.get(i).get("start_value1"));
-                msop_detailVo2[i].setStart_value2(productsList.get(i).get("start_value2"));
-                msop_detailVo2[i].setFinish_rule(productsList.get(i).get("finish_rule"));
-                msop_detailVo2[i].setFinish_value1(productsList.get(i).get("finish_value1"));
-                msop_detailVo2[i].setFinish_value2(productsList.get(i).get("finish_value2"));
-                msop_detailVo2[i].setNext_step_number(productsList.get(i).get("next_step_number"));
-                msop_detailVo2[i].setNext_step_rule(productsList.get(i).get("next_step_rule"));
-                msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2[i]);
+                Log.d("countproducts","123");
+                msop_detailVo2.setSop_number(productsList.get(i).get("sop_number"));
+                msop_detailVo2.setStep_order(productsList.get(i).get("step_order"));
+                msop_detailVo2.setStep_number(productsList.get(i).get("step_number"));
+                msop_detailVo2.setStep_purpose(productsList.get(i).get("step_purpose"));
+                msop_detailVo2.setStep_intro(productsList.get(i).get("step_intro"));
+                msop_detailVo2.setStart_rule(productsList.get(i).get("start_rule"));
+                msop_detailVo2.setStart_value1(productsList.get(i).get("start_value1"));
+                msop_detailVo2.setStart_value2(productsList.get(i).get("start_value2"));
+                msop_detailVo2.setFinish_rule(productsList.get(i).get("finish_rule"));
+                msop_detailVo2.setFinish_value1(productsList.get(i).get("finish_value1"));
+                msop_detailVo2.setFinish_value2(productsList.get(i).get("finish_value2"));
+                msop_detailVo2.setNext_step_number(productsList.get(i).get("next_step_number"));
+                msop_detailVo2.setNext_step_rule(productsList.get(i).get("next_step_rule"));
+                msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
                 Log.d("countproducts",String.valueOf(i));
             }
 
 
             DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(SplashActivity.this);
             case_masterDao mcase_masterDao4 = new case_masterDao();
-            case_masterVo[] mcase_masterVo4 = new case_masterVo[500];
+            case_masterVo mcase_masterVo4 = new case_masterVo();
 
             // dismiss the dialog after getting all products
             for (int i = 0; i <  products2.length(); i++){
 
-                mcase_masterVo4[i].setSop_number(productsList2.get(i).get("sop_number"));
-                mcase_masterVo4[i].setStep_number(productsList2.get(i).get("step_number"));
-                mcase_masterVo4[i].setAccount(productsList2.get(i).get("account"));
-                mcase_masterVo4[i].setCase_number(productsList2.get(i).get("case_number"));
-                mcase_masterDao4.insert(mDatabaseHelper4, mcase_masterVo4[i]);
+                mcase_masterVo4.setSop_number(productsList2.get(i).get("sop_number"));
+                mcase_masterVo4.setStep_number(productsList2.get(i).get("step_number"));
+                mcase_masterVo4.setAccount(productsList2.get(i).get("account"));
+                mcase_masterVo4.setCase_number(productsList2.get(i).get("case_number"));
+                mcase_masterDao4.insert(mDatabaseHelper4, mcase_masterVo4);
 
             }
 
             DatabaseHelper mDatabaseHelper5 = DatabaseHelper.getHelper(SplashActivity.this);
             sop_masterDao msop_masterDao5 = new sop_masterDao();
-            sop_masterVo[] msop_masterVo5 = new sop_masterVo[500];
+            sop_masterVo msop_masterVo5 = new sop_masterVo();
 
             // dismiss the dialog after getting all products
             for (int i = 0; i <  products1.length(); i++){
 
-                msop_masterVo5[i].setSop_number(productsList1.get(i).get("sop_number"));
-                msop_masterVo5[i].setSop_name(productsList1.get(i).get("sop_name"));
-                msop_masterVo5[i].setSop_graph_src(productsList1.get(i).get("sop_graph_src"));
-                msop_masterVo5[i].setSop_intro(productsList1.get(i).get("sop_intro"));
-                msop_masterVo5[i].setSop_detail(productsList1.get(i).get("sop_detail"));
-                msop_masterVo5[i].setAccount(productsList1.get(i).get("account"));
-                msop_masterVo5[i].setStart_rule(productsList1.get(i).get("start_rule"));
-                msop_masterDao5.insert(mDatabaseHelper5, msop_masterVo5[i]);
+                msop_masterVo5.setSop_number(productsList1.get(i).get("sop_number"));
+                msop_masterVo5.setSop_name(productsList1.get(i).get("sop_name"));
+                msop_masterVo5.setSop_graph_src(productsList1.get(i).get("sop_graph_src"));
+                msop_masterVo5.setSop_intro(productsList1.get(i).get("sop_intro"));
+                msop_masterVo5.setSop_detail(productsList1.get(i).get("sop_detail"));
+                msop_masterVo5.setAccount(productsList1.get(i).get("account"));
+                msop_masterVo5.setStart_rule(productsList1.get(i).get("start_rule"));
+                msop_masterDao5.insert(mDatabaseHelper5, msop_masterVo5);
 
             }
 
