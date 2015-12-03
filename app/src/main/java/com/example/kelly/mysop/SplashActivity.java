@@ -167,18 +167,11 @@ public class SplashActivity extends Activity {
 
 
                         String sopnumber = c.getString("sop_number");
-                        String sopnumber1 =c.getString("sop_number");
                         String steporder = c.getString("step_order");
                         String stepnumber= c.getString("step_number");
                         String stepname = c.getString("step_name");
-                        String sopname = c.getString("sop_name");
                         String steppurpose = c.getString("step_purpose");
-                        String sopgraphsrc = c.getString("sop_graph_src");
-                        String sopintro1 = c.getString("sop_intro");
                         String stepintro = c.getString("step_intro");
-                        String sop_detail = c.getString("sop_detail");
-                        String account = c.getString("account");
-                        String startrule1 = c.getString("startrule");
                         String startrule = c.getString("start_rule");
                         String startvalue1 = c.getString("start_value1");
                         String startvalue2 = c.getString("start_value2");
@@ -231,19 +224,28 @@ public class SplashActivity extends Activity {
                         JSONObject c = products1.getJSONObject(i);
 
                         // Storing each json item in variable
-                        String sopnumber = c.getString("sop_number");
-                        String total = c.getString(TAG_TATOL);
-                        String number = c.getString(TAG_SOPNUMBER);
+                        String sopnumber =c.getString("sop_number");
+                        String sopname = c.getString("sop_name");
+                        String sopgraphsrc = c.getString("sop_graph_src");
+                        String sopintro = c.getString("sop_intro");
+                        String sopdetail = c.getString("sop_detail");
+                        String account = c.getString("account");
+                        String startrule = c.getString("startrule");
 
                         // creating new HashMap
-                        HashMap<String, String> map = new HashMap<String, String>();
+                        HashMap<String, String> map1 = new HashMap<String, String>();
 
                         // adding each child node to HashMap key => value
-                        map.put(TAG_TATOL, total);
-                        map.put(TAG_SOPNUMBER, number);
+                        map1.put("sop_number",sopnumber);
+                        map1.put("sop_name", sopname);
+                        map1.put("sop_graph_src",sopgraphsrc);
+                        map1.put("sop_intro",sopintro);
+                        map1.put("sop-detail",sopdetail);
+                        map1.put("account",account);
+                        map1.put("startrule",startrule);
 
                         // adding HashList to ArrayList
-                        productsList1.add(map);
+                        productsList1.add(map1);
                     }
                 } else {
 
