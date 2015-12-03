@@ -96,4 +96,13 @@
         android:layout_toEndOf="@id/des_textView7"
         android:textColor="#7e7e7e" />
 
+    <WebView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/webView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/des_textView7" />
+
 </RelativeLayout>

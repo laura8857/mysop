@@ -26,6 +26,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import Ormlite.DatabaseHelper;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
+
 
 //p302
 public class Stepdescription extends Activity {
@@ -69,18 +73,28 @@ public class Stepdescription extends Activity {
         //TAG_CASE_NUMBER = "J1234";
         //TAG_STEP_NUMBER = "10";
         //TAG_STEP_ORDER = 1;
-        new LoadDes().execute();
-        new CheckNextActivity().execute();
 
-        RelativeLayout des_rl = (RelativeLayout)findViewById(R.id.des_relative);
-        detector = new GestureDetector(new MySimpleOnGestureListener());
-        des_rl.setOnTouchListener(new MyOnTouchListener());
+        //原執行
+        //new LoadDes().execute();
+        //new CheckNextActivity().execute();
+        //RelativeLayout des_rl = (RelativeLayout)findViewById(R.id.des_relative);
+        //detector = new GestureDetector(new MySimpleOnGestureListener());
+        //des_rl.setOnTouchListener(new MyOnTouchListener());
 
-    /*    WebView wv = (WebView)findViewById(R.id.webView);
-        wv.loadUrl("https://www.google.com.tw");
+        WebView wv = (WebView)findViewById(R.id.webView);
+        //wv.loadUrl("https://www.google.com.tw");
+
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        sop_detailDao msop_detailDao = new sop_detailDao();
+        //sop_detailVo msop_detailVo = new sop_detailVo();
+        List<sop_detailVo> list = null;
+        list = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number="+TAG_STEP_NUMBER);
+        Log.d("抓", list.get(0).getSop_number());
+
+
         detector = new GestureDetector(new MySimpleOnGestureListener());
         WebView ww = (WebView)findViewById(R.id.webView);
-        ww.setOnTouchListener(new MyOnTouchListener());*/
+        ww.setOnTouchListener(new MyOnTouchListener());
     }
 
     String StepName="";
