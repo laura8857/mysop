@@ -159,7 +159,7 @@ public class SplashActivity extends Activity {
 
                         // Storing each json item in variable
                         String sopname = c.getString("Sop_number");
-                        String sopnumber = c.getString("");
+                        String sopnumber = c.getString(TAG_SOPNUMBER);
                         String startrule = c.getString(TAG_STARTRULE);
                         String startvalue = c.getString(TAG_STARTVALUE);
                         String picture = c.getString(TAG_PICTURE);
@@ -228,31 +228,39 @@ public class SplashActivity extends Activity {
 
             DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(SplashActivity.this);
             sop_detailDao msop_detailDao2 = new sop_detailDao();
-            sop_detailVo[] msop_detailVo = new sop_detailVo[500];
+            sop_detailVo[] msop_detailVo2 = new sop_detailVo[500];
 
             // dismiss the dialog after getting all products
             for (int i = 0; i <  products.length(); i++){
 
-                msop_detailVo[i].setSop_number(productsList.get(i).get(TAG_CASENUMBER));
-                msop_detailVo[i].setStep_number(productsList.get(i).get(TAG_CASENUMBER));
-                msop_detailVo[i].setUsername(productsList.get(i).get(TAG_CASENUMBER));
-                msop_detailVo[i].setPassword(productsList.get(i).get(TAG_CASENUMBER));
-                msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo[i]);
+                msop_detailVo2[i].setSop_number(productsList.get(i).get("sop_number"));
+                msop_detailVo2[i].setStep_order(productsList.get(i).get("step_order"));
+                msop_detailVo2[i].setStep_number(productsList.get(i).get("step_number"));
+                msop_detailVo2[i].setStep_purpose(productsList.get(i).get("step_purpose"));
+                msop_detailVo2[i].setStep_intro(productsList.get(i).get("step_intro"));
+                msop_detailVo2[i].setStart_rule(productsList.get(i).get("start_rule"));
+                msop_detailVo2[i].setStart_value1(productsList.get(i).get("start_value1"));
+                msop_detailVo2[i].setFinish_rule(productsList.get(i).get("finish_rule"));
+                msop_detailVo2[i].setFinish_value1(productsList.get(i).get("finish_value1"));
+                msop_detailVo2[i].setFinish_value2(productsList.get(i).get("finish_value2"));
+                msop_detailVo2[i].setNext_step_number(productsList.get(i).get("next_step_number"));
+                msop_detailVo2[i].setNext_step_rule(productsList.get(i).get("next_step_rule"));
+                msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2[i]);
 
             }
 
             DatabaseHelper mDatabaseHelper3 = DatabaseHelper.getHelper(SplashActivity.this);
             case_masterDao mcase_masterDao3 = new case_masterDao();
-            sop_detailVo[] msop_detailVo = new sop_detailVo[500];
+            sop_detailVo[] msop_detailVo3 = new sop_detailVo[500];
 
             // dismiss the dialog after getting all products
             for (int i = 0; i <  products.length(); i++){
 
-                msop_detailVo[i].setSop_number(productsList.get(i).get(TAG_CASENUMBER));
-                msop_detailVo[i].setStep_number(productsList.get(i).get(TAG_CASENUMBER));
-                msop_detailVo[i].setUsername(productsList.get(i).get(TAG_CASENUMBER));
-                msop_detailVo[i].setPassword(productsList.get(i).get(TAG_CASENUMBER));
-                msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo[i]);
+                msop_detailVo3[i].setSop_number(productsList.get(i).get(""));
+                msop_detailVo3[i].setStep_number(productsList.get(i).get(""));
+                msop_detailVo3[i].setUsername(productsList.get(i).get(""));
+                msop_detailVo3[i].setPassword(productsList.get(i).get(""));
+                msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo3[i]);
 
             }
 
