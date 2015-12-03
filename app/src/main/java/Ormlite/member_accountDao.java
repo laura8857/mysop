@@ -1,15 +1,11 @@
 package Ormlite;
 
-import android.util.Log;
-
-import java.sql.SQLException;
-import java.util.List;
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
-import com.j256.ormlite.support.ConnectionSource;
+
+import java.sql.SQLException;
+import java.util.List;
 //import com.ck.ap.DatabaseHelper;
 
 //�ccount Dao��
@@ -55,22 +51,23 @@ public class member_accountDao {
 		}
 		return 0;
 	}*/
-    public static int update(DatabaseHelper databaseHelper, String columnvalue,String originalvalue, String column, String value) {
-        RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
-                .getMember_accountDao();
-        UpdateBuilder<member_accountVo, Integer> updateBuilder = accountDao.updateBuilder();
-        try {
-            //判斷式 哪一欄 = 值
-            updateBuilder.where().eq(columnvalue,originalvalue);
-            // update the value of your field(s)
-            updateBuilder.updateColumnValue(column,value);
+	public static int update(DatabaseHelper databaseHelper, String columnvalue, String originalvalue, String column, String value) {
+		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+				.getMember_accountDao();
+		UpdateBuilder<member_accountVo, Integer> updateBuilder = accountDao.updateBuilder();
+		try {
+			//判斷式 哪一欄 = 值
+			updateBuilder.where().eq(columnvalue, originalvalue);
+			// update the value of your field(s)
+			updateBuilder.updateColumnValue(column, value);
 
-            return updateBuilder.update();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
+			return updateBuilder.update();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
 	/* delete */
 	public static int delete(DatabaseHelper databaseHelper, member_accountVo member_accountVo) {
 		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
@@ -113,9 +110,10 @@ public class member_accountDao {
 		}
 		return null;
 	}
+
 	/* selectRaw */
 	public static List<member_accountVo> selectRaw(DatabaseHelper databaseHelper,
-											String rawWhere) {
+												   String rawWhere) {
 		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
 				.getMember_accountDao();
 		QueryBuilder<member_accountVo, Integer> queryBuilder = accountDao
@@ -130,29 +128,41 @@ public class member_accountDao {
 	}
 
 
-    /* selectRawByNest */
-    public static List<member_accountVo> selectRawByNest(DatabaseHelper databaseHelper,String column1,String value1,String column2) {
-        RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
-                .getMember_accountDao();
-        RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
-                .getCase_masterDao();
-        QueryBuilder<case_masterVo, Integer> subqueryBuilder = case_masterDao
-                .queryBuilder();
-        QueryBuilder<member_accountVo, Integer> queryBuilder = accountDao
-                .queryBuilder();
-        try {
-            subqueryBuilder.where().eq(column1,value1);
-            //Log.d("TEST NEST",subqueryBuilder.query().get(0).getAccount());
-            // in using the sub-query
-            subqueryBuilder.selectColumns(column2);
-            queryBuilder.where().in(column2, subqueryBuilder);
-            //Log.d("TEST NEST",queryBuilder.query().get(0).getAccount());
-            return queryBuilder.query();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+	/* selectRawByNest */
+	public static List<member_accountVo> selectRawByNest(DatabaseHelper databaseHelper, String column1, String value1, String column2) {
+		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+				.getMember_accountDao();
+		RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
+				.getCase_masterDao();
+		QueryBuilder<case_masterVo, Integer> subqueryBuilder = case_masterDao
+				.queryBuilder();
+		QueryBuilder<member_accountVo, Integer> queryBuilder = accountDao
+				.queryBuilder();
+		try {
+			subqueryBuilder.where().eq(column1, value1);
+			//Log.d("TEST NEST",subqueryBuilder.query().get(0).getAccount());
+			// in using the sub-query
+			subqueryBuilder.selectColumns(column2);
+			queryBuilder.where().in(column2, subqueryBuilder);
+			//Log.d("TEST NEST",queryBuilder.query().get(0).getAccount());
+			return queryBuilder.query();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
-
+	public static List<member_accountVo> selectColumns(DatabaseHelper databaseHelper, String column) {
+		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+				.getMember_accountDao();
+		QueryBuilder<member_accountVo, Integer> queryBuilder = accountDao
+				.queryBuilder();
+		try {
+			queryBuilder.queryForFirst();
+			return queryBuilder.query();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

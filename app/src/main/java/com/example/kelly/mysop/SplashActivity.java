@@ -76,20 +76,21 @@ public class SplashActivity extends Activity {
 
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         List<member_accountVo> list = null;
+        List<member_accountVo> account = null;
 
         mmember_accountDao = new member_accountDao();
+
         //劉昱呈這邊需要再修一下
         //list = mmember_accountDao.selectRaw(mDatabaseHelper, "account=test@gmail.com");
-
-//        if (list.isEmpty()) {
+        account = mmember_accountDao.selectColumns(mDatabaseHelper, "FIELD_Account");
+//        if (account.isEmpty()) {
 //            startActivity(new Intent().setClass(SplashActivity.this, Login.class));
 //        } else {
 //            //JSP要塞ORM有點難ＱＡＱ
-//            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
-//        }
-
         //TAG_ACCOUNT=list.get(0).getAccount();
         new LoadAllProducts().execute();
+//            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
+//        }
 
     }
 
