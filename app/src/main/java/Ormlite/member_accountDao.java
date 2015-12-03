@@ -1,15 +1,11 @@
 package Ormlite;
 
-import android.util.Log;
-
-import java.sql.SQLException;
-import java.util.List;
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
-import com.j256.ormlite.support.ConnectionSource;
+
+import java.sql.SQLException;
+import java.util.List;
 //import com.ck.ap.DatabaseHelper;
 
 //�ccount Dao��
@@ -153,6 +149,17 @@ public class member_accountDao {
         }
         return null;
     }
-
-
+	public static List<member_accountVo> selectColumns(DatabaseHelper databaseHelper, String column){
+		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+				.getMember_accountDao();
+		QueryBuilder<member_accountVo, Integer> queryBuilder = accountDao
+				.queryBuilder();
+		try {
+			queryBuilder.queryForFirst();
+			return queryBuilder.query();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
