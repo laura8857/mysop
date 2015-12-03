@@ -20,10 +20,13 @@ import java.util.List;
 
 import Ormlite.DatabaseHelper;
 import Ormlite.case_masterDao;
+import Ormlite.case_masterVo;
 import Ormlite.member_accountDao;
 import Ormlite.member_accountVo;
 import Ormlite.sop_detailDao;
 import Ormlite.sop_detailVo;
+import Ormlite.sop_masterDao;
+import Ormlite.sop_masterVo;
 
 
 public class SplashActivity extends Activity {
@@ -321,18 +324,37 @@ public class SplashActivity extends Activity {
 
             }
 
-            DatabaseHelper mDatabaseHelper3 = DatabaseHelper.getHelper(SplashActivity.this);
-            case_masterDao mcase_masterDao3 = new case_masterDao();
-            sop_detailVo[] msop_detailVo3 = new sop_detailVo[500];
+
+            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(SplashActivity.this);
+            case_masterDao mcase_masterDao4 = new case_masterDao();
+            case_masterVo[] mcase_masterVo4 = new case_masterVo[500];
 
             // dismiss the dialog after getting all products
             for (int i = 0; i <  products.length(); i++){
 
-                msop_detailVo3[i].setSop_number(productsList.get(i).get(""));
-                msop_detailVo3[i].setStep_number(productsList.get(i).get(""));
-                msop_detailVo3[i].setUsername(productsList.get(i).get(""));
-                msop_detailVo3[i].setPassword(productsList.get(i).get(""));
-                msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo3[i]);
+                mcase_masterVo4[i].setSop_number(productsList.get(i).get("sop_number"));
+                mcase_masterVo4[i].setStep_number(productsList.get(i).get("step_number"));
+                mcase_masterVo4[i].setAccount(productsList.get(i).get("account"));
+                mcase_masterVo4[i].setCase_number(productsList.get(i).get("case_number"));
+                mcase_masterDao4.insert(mDatabaseHelper4, mcase_masterVo4[i]);
+
+            }
+
+            DatabaseHelper mDatabaseHelper5 = DatabaseHelper.getHelper(SplashActivity.this);
+            sop_masterDao msop_masterDao5 = new sop_masterDao();
+            sop_masterVo[] msop_masterVo5 = new sop_masterVo[500];
+
+            // dismiss the dialog after getting all products
+            for (int i = 0; i <  products.length(); i++){
+
+                msop_masterVo5[i].setSop_number(productsList.get(i).get("sop_number"));
+                msop_masterVo5[i].setSop_name(productsList.get(i).get("sop_name"));
+                msop_masterVo5[i].setSop_graph_src(productsList.get(i).get("sop_graph_src"));
+                msop_masterVo5[i].setSop_intro(productsList.get(i).get("sop_intro"));
+                msop_masterVo5[i].setSop_detail(productsList.get(i).get("sop_detail"));
+                msop_masterVo5[i].setAccount(productsList.get(i).get("account"));
+                msop_masterVo5[i].setStart_rule(productsList.get(i).get("start_rule"));
+                msop_masterDao5.insert(mDatabaseHelper5, msop_masterVo5[i]);
 
             }
 
