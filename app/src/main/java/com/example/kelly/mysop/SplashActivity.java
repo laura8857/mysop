@@ -2,6 +2,7 @@ package com.example.kelly.mysop;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,8 +38,9 @@ public class SplashActivity extends Activity {
     JSONParser jsonParser = new JSONParser();
     ArrayList<HashMap<String, String>> productsList;
     ArrayList<HashMap<String, String>> productsList1;
+    ArrayList<HashMap<String, String>> productsList2;
     private static String url_all_products = "http://140.115.80.237/front/mysop_step_detail.jsp";
-    private static String url_all_products1 = "http://140.115.80.237/front/mysop_mysop1.jsp";
+    private static String url_all_products1 = "http://140.115.80.237/front/mysop_sop_master.jsp";
     private static String url_all_products2 = "http://140.115.80.237/front/mysop_case_master.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
@@ -77,7 +79,7 @@ public class SplashActivity extends Activity {
 
         mmember_accountDao = new member_accountDao();
         //劉昱呈這邊需要再修一下
-        list = mmember_accountDao.selectRaw(mDatabaseHelper, "account");
+        //list = mmember_accountDao.selectRaw(mDatabaseHelper, "account=test@gmail.com");
 
 //        if (list.isEmpty()) {
 //            startActivity(new Intent().setClass(SplashActivity.this, Login.class));
@@ -86,7 +88,7 @@ public class SplashActivity extends Activity {
 //            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
 //        }
 
-        TAG_ACCOUNT=list.get(0).getAccount();
+        //TAG_ACCOUNT=list.get(0).getAccount();
         new LoadAllProducts().execute();
 
     }
@@ -148,7 +150,8 @@ public class SplashActivity extends Activity {
             JSONObject json2 =SplashActivity.this.jsonParser.makeHttpRequest(SplashActivity.url_all_products2,"GET", params);
             // Check your log cat for JSON reponse
             Log.d("All Products: ", json.toString());
-
+            Log.d("All Products: ", json1.toString());
+            Log.d("All Products: ", json2.toString());
             try {
                 // Checking for SUCCESS TAG
                 int success = json.getInt(TAG_SUCCESS);
@@ -273,19 +276,19 @@ public class SplashActivity extends Activity {
                         String stepnumber = c.getString("step_number");
 
                         // creating new HashMap
-                        HashMap<String, String> map = new HashMap<String, String>();
+                        HashMap<String, String> map2 = new HashMap<String, String>();
 
                         // adding each child node to HashMap key => value
 
 
-                        map.put("sop_number",sopnumber);
-                        map.put("case_number",casenumber);
-                        map.put("account",account);
-                        map.put("step_number",stepnumber);
+                        map2.put("sop_number",sopnumber);
+                        map2.put("case_number",casenumber);
+                        map2.put("account",account);
+                        map2.put("step_number",stepnumber);
 
 
                         // adding HashList to ArrayList
-                        productsList.add(map);
+                        productsList2.add(map2);
                     }
                 } else {
 
@@ -334,10 +337,10 @@ public class SplashActivity extends Activity {
             // dismiss the dialog after getting all products
             for (int i = 0; i <  products.length(); i++){
 
-                mcase_masterVo4[i].setSop_number(productsList.get(i).get("sop_number"));
-                mcase_masterVo4[i].setStep_number(productsList.get(i).get("step_number"));
-                mcase_masterVo4[i].setAccount(productsList.get(i).get("account"));
-                mcase_masterVo4[i].setCase_number(productsList.get(i).get("case_number"));
+                mcase_masterVo4[i].setSop_number(productsList2.get(i).get("sop_number"));
+                mcase_masterVo4[i].setStep_number(productsList2.get(i).get("step_number"));
+                mcase_masterVo4[i].setAccount(productsList2.get(i).get("account"));
+                mcase_masterVo4[i].setCase_number(productsList2.get(i).get("case_number"));
                 mcase_masterDao4.insert(mDatabaseHelper4, mcase_masterVo4[i]);
 
             }
@@ -349,18 +352,18 @@ public class SplashActivity extends Activity {
             // dismiss the dialog after getting all products
             for (int i = 0; i <  products.length(); i++){
 
-                msop_masterVo5[i].setSop_number(productsList.get(i).get("sop_number"));
-                msop_masterVo5[i].setSop_name(productsList.get(i).get("sop_name"));
-                msop_masterVo5[i].setSop_graph_src(productsList.get(i).get("sop_graph_src"));
-                msop_masterVo5[i].setSop_intro(productsList.get(i).get("sop_intro"));
-                msop_masterVo5[i].setSop_detail(productsList.get(i).get("sop_detail"));
-                msop_masterVo5[i].setAccount(productsList.get(i).get("account"));
-                msop_masterVo5[i].setStart_rule(productsList.get(i).get("start_rule"));
+                msop_masterVo5[i].setSop_number(productsList1.get(i).get("sop_number"));
+                msop_masterVo5[i].setSop_name(productsList1.get(i).get("sop_name"));
+                msop_masterVo5[i].setSop_graph_src(productsList1.get(i).get("sop_graph_src"));
+                msop_masterVo5[i].setSop_intro(productsList1.get(i).get("sop_intro"));
+                msop_masterVo5[i].setSop_detail(productsList1.get(i).get("sop_detail"));
+                msop_masterVo5[i].setAccount(productsList1.get(i).get("account"));
+                msop_masterVo5[i].setStart_rule(productsList1.get(i).get("start_rule"));
                 msop_masterDao5.insert(mDatabaseHelper5, msop_masterVo5[i]);
 
             }
 
-
+            startActivity(new Intent().setClass(SplashActivity.this, Login.class));
 
         }
     }
