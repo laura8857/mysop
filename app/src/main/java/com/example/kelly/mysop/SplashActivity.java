@@ -61,6 +61,10 @@ public class SplashActivity extends Activity {
         setContentView(R.layout.activity_splash);
 
 
+        productsList = new ArrayList<HashMap<String, String>>();
+        productsList1 = new ArrayList<HashMap<String, String>>();
+        productsList2 = new ArrayList<HashMap<String, String>>();
+
         //寫死 insert
         DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
         member_accountDao mmember_accountDao1;
@@ -89,6 +93,9 @@ public class SplashActivity extends Activity {
         new LoadAllProducts().execute();
             startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
         }
+
+
+
 
     }
 
@@ -304,6 +311,8 @@ public class SplashActivity extends Activity {
          * After completing background task Dismiss the progress dialog
          * **/
         protected void onPostExecute(String file_url) {
+
+            Log.d("test1",productsList.get(0).get("sop_number"));
 
             DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(SplashActivity.this);
             sop_detailDao msop_detailDao2 = new sop_detailDao();
