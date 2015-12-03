@@ -72,7 +72,7 @@ public class SplashActivity extends Activity {
 
         mmember_accountDao = new member_accountDao();
         //劉昱呈這邊需要再修一下
-        list = mmember_accountDao.selectRaw(mDatabaseHelper, "account=test@gmail.com");
+        list = mmember_accountDao.selectRaw(mDatabaseHelper, "account");
 
 //        if (list.isEmpty()) {
 //            startActivity(new Intent().setClass(SplashActivity.this, Login.class));
@@ -158,12 +158,24 @@ public class SplashActivity extends Activity {
                         JSONObject c = products.getJSONObject(i);
 
                         // Storing each json item in variable
-                        String sopname = c.getString("Sop_number");
-                        String sopnumber = c.getString(TAG_SOPNUMBER);
-                        String startrule = c.getString(TAG_STARTRULE);
-                        String startvalue = c.getString(TAG_STARTVALUE);
-                        String picture = c.getString(TAG_PICTURE);
-                        String order = c.getString(TAG_ORDER);
+
+
+
+                        String sopnumber = c.getString("sop_number");
+                        String steporder = c.getString("step_order");
+                        String stepnumber= c.getString("step_number");
+                        String stepname = c.getString("step_name");
+                        String steppurpose = c.getString("step_purpose");
+                        String stepintro = c.getString("step_intro");
+                        String startrule = c.getString("start_rule");
+                        String startvalue1 = c.getString("start_value1");
+                        String startvalue2 = c.getString("start_value2");
+                        String finishrule = c.getString("finish_rule");
+                        String finishvalue1 = c.getString("finish_value1");
+                        String finishvalue2 = c.getString("finish_value2");
+                        String nextsteprule = c.getString("next_step_rule");
+                        String next_step_number = c.getString("next_step_number");
+
 
                         // creating new HashMap
                         HashMap<String, String> map = new HashMap<String, String>();
@@ -175,6 +187,21 @@ public class SplashActivity extends Activity {
                         map.put(TAG_STARTVALUE,startvalue);
                         map.put(TAG_PICTURE,picture);
                         map.put(TAG_ORDER,order);
+
+                        map.put("sop_number",sopnumber);
+                        map.put("step_order");
+                        String stepnumber= c.getString("step_number");
+                        String stepname = c.getString("step_name");
+                        String steppurpose = c.getString("step_purpose");
+                        String stepintro = c.getString("step_intro");
+                        String startrule = c.getString("start_rule");
+                        String startvalue1 = c.getString("start_value1");
+                        String startvalue2 = c.getString("start_value2");
+                        String finishrule = c.getString("finish_rule");
+                        String finishvalue1 = c.getString("finish_value1");
+                        String finishvalue2 = c.getString("finish_value2");
+                        String nextsteprule = c.getString("next_step_rule");
+                        String next_step_number = c.getString("next_step_number");
 
 
                         // adding HashList to ArrayList
