@@ -162,11 +162,18 @@ public class SplashActivity extends Activity {
 
 
                         String sopnumber = c.getString("sop_number");
+                        String sopnumber1 =c.getString("sop_number");
                         String steporder = c.getString("step_order");
                         String stepnumber= c.getString("step_number");
                         String stepname = c.getString("step_name");
+                        String sopname = c.getString("sop_name");
                         String steppurpose = c.getString("step_purpose");
+                        String sopgraphsrc = c.getString("sop_graph_src");
+                        String sopintro1 = c.getString("sop_intro");
                         String stepintro = c.getString("step_intro");
+                        String sop_detail = c.getString("sop_detail");
+                        String account = c.getString("account");
+                        String startrule1 = c.getString("startrule");
                         String startrule = c.getString("start_rule");
                         String startvalue1 = c.getString("start_value1");
                         String startvalue2 = c.getString("start_value2");
@@ -224,6 +231,7 @@ public class SplashActivity extends Activity {
                         JSONObject c = products1.getJSONObject(i);
 
                         // Storing each json item in variable
+                        String sopnumber = c.getString("sop_number");
                         String total = c.getString(TAG_TATOL);
                         String number = c.getString(TAG_SOPNUMBER);
 
