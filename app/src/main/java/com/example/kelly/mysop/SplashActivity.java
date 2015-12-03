@@ -274,19 +274,9 @@ public class SplashActivity extends Activity {
 
 
                         map.put("sop_number",sopnumber);
-                        map.put("step_order",steporder);
+                        map.put("case_number",casenumber);
+                        map.put("account",account);
                         map.put("step_number",stepnumber);
-                        map.put("step_name",stepname);
-                        map.put("step_purpose",steppurpose);
-                        map.put("step_intro",steporder);
-                        map.put("start_rule",startrule);
-                        map.put("start_value1",startvalue1);
-                        map.put("start_value2",startvalue2);
-                        map.put("finish_rule",finishrule);
-                        map.put("finish_value1",finishvalue1);
-                        map.put("finish_value2",finishvalue2);
-                        map.put("next_step_rule",next_step_number);
-                        map.put("next_step_number", next_step_number);
 
 
                         // adding HashList to ArrayList
