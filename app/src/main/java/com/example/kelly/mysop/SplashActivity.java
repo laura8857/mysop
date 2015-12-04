@@ -55,6 +55,7 @@ public class SplashActivity extends Activity {
     JSONArray products = null;
     JSONArray products1 = null;
     JSONArray products2 = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -162,19 +163,26 @@ public class SplashActivity extends Activity {
                 // Checking for SUCCESS TAG
                 int success = json.getInt(TAG_SUCCESS);
 
+
                 if (success == 1) {
                     // products found
                     // Getting Array of Products
                     products = json.getJSONArray(TAG_PRODUCTS);
 
+                    Log.d("test",String.valueOf(products.length()));
+
                     // looping through All Products
                     for (int i = 0; i < products.length(); i++) {
+                    //for (int i = 0; i < 2; i++) {
+
                         JSONObject c = products.getJSONObject(i);
 
                         // Storing each json item in variable
 
-
-
+                        Log.d("create",c.toString());
+                        if(i==3){
+                            continue;
+                        }
                         String sopnumber = c.getString("sop_number");
                         String steporder = c.getString("step_order");
                         String stepnumber= c.getString("step_number");
@@ -185,10 +193,13 @@ public class SplashActivity extends Activity {
                         String startvalue1 = c.getString("start_value1");
                         String startvalue2 = c.getString("start_value2");
                         String finishrule = c.getString("finish_rule");
+                        Log.d("finish",c.getString("finish_value1"));
                         String finishvalue1 = c.getString("finish_value1");
+
                         String finishvalue2 = c.getString("finish_value2");
                         String nextsteprule = c.getString("next_step_rule");
                         String next_step_number = c.getString("next_step_number");
+
 
 
                         // creating new HashMap
@@ -212,14 +223,19 @@ public class SplashActivity extends Activity {
                         map.put("next_step_rule",nextsteprule);
                         map.put("next_step_number", next_step_number);
 
+                        Log.d("test12",String.valueOf(i));
 
                         // adding HashList to ArrayList
                         productsList.add(map);
+
                     }
-                } else {
-
-
+                    Log.d("test11",String.valueOf(productsList.size()));
+                    Log.d("productlist","success");
                 }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try{
                 // Checking for SUCCESS TAG
                 int success1 = json1.getInt(TAG_SUCCESS);
 
@@ -256,6 +272,7 @@ public class SplashActivity extends Activity {
                         // adding HashList to ArrayList
                         productsList1.add(map1);
                     }
+                    Log.d("productlist1","success");
                 } else {
 
 
@@ -296,6 +313,7 @@ public class SplashActivity extends Activity {
                         // adding HashList to ArrayList
                         productsList2.add(map2);
                     }
+                    Log.d("productlist2","success");
                 } else {
 
 
@@ -312,9 +330,16 @@ public class SplashActivity extends Activity {
          * **/
         protected void onPostExecute(String file_url) {
 
-            Log.d("test1",productsList.get(10).get("finish_value1"));
 
-            DatabaseHelper[] mDatabaseHelper2 = new DatabaseHelper[20];
+            pDialog.dismiss();
+            //Log.d("test1",productsList.get(10).get("finish_value1"));
+            //Log.d("test1",String.valueOf(productsList.size()));
+
+            DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(SplashActivity.this);
+            sop_detailDao msop_detailDao2 = new sop_detailDao();
+            sop_detailVo msop_detailVo2 = new sop_detailVo();
+
+/*            DatabaseHelper[] mDatabaseHelper2 = new DatabaseHelper[20];
             sop_detailDao[] msop_detailDao2 = new sop_detailDao[20];
             sop_detailVo[] msop_detailVo2 = new sop_detailVo[20];
             for (int i = 0; i <  4; i++){
@@ -323,13 +348,15 @@ public class SplashActivity extends Activity {
                 msop_detailVo2[i].setStep_order("123"+i);
                 msop_detailDao2[i].insert(mDatabaseHelper2[i], msop_detailVo2[i]);
                 Log.d("products",String.valueOf(i));
-            }
+            }*/
             //msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
             Log.d("countproducts345",String.valueOf(products.length()));
 
             // dismiss the dialog after getting all products
-/*            for (int i = 0; i <  products.length(); i++){
+            for (int i = 0; i <  productsList.size(); i++){
                 Log.d("countproducts","123");
+
+
                 msop_detailVo2.setSop_number(productsList.get(i).get("sop_number"));
                 msop_detailVo2.setStep_order(productsList.get(i).get("step_order"));
                 msop_detailVo2.setStep_number(productsList.get(i).get("step_number"));
@@ -343,18 +370,19 @@ public class SplashActivity extends Activity {
                 msop_detailVo2.setFinish_value2(productsList.get(i).get("finish_value2"));
                 msop_detailVo2.setNext_step_number(productsList.get(i).get("next_step_number"));
                 msop_detailVo2.setNext_step_rule(productsList.get(i).get("next_step_rule"));
+
                 msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
                 Log.d("countproducts",String.valueOf(i));
             }
 
 
-            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(SplashActivity.this);
+/*            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(SplashActivity.this);
             case_masterDao mcase_masterDao4 = new case_masterDao();
             case_masterVo mcase_masterVo4 = new case_masterVo();
 
             Log.d("eee",String.valueOf(products2.length()));
             // dismiss the dialog after getting all products
-            for (int i = 0; i <  products2.length(); i++){
+            for (int i = 0; i <  productsList2.size(); i++){
 
                 mcase_masterVo4.setSop_number(productsList2.get(i).get("sop_number"));
                 mcase_masterVo4.setStep_number(productsList2.get(i).get("step_number"));
@@ -383,7 +411,7 @@ public class SplashActivity extends Activity {
             }
 */
             startActivity(new Intent().setClass(SplashActivity.this, Login.class));
-
+            //startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
         }
     }
 }
