@@ -151,8 +151,8 @@ public class Mysop extends Activity {
         mcase_masterDao = new case_masterDao();
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         List<case_masterVo> caselist = null ;
-        caselist = mcase_masterDao.selectRaw(mDatabaseHelper,"Account="+TAG_ACCOUNT);
-//        Log.d("抓", caselist.get(0).getCase_number());
+        caselist = mcase_masterDao.selectRaw(mDatabaseHelper,"Account="+"'"+TAG_ACCOUNT+"'");
+        Log.d("抓", caselist.get(0).getCase_number());
 //        list = new String[caselist.size()];
 //        for(int i=0;i<caselist.size();i++){
 //            list[i]=caselist.get(i).getCase_number();
@@ -162,12 +162,14 @@ public class Mysop extends Activity {
         List<sop_masterVo>sopmasterlist = null;
        // sopmasterlist = msop_masterDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
         sopmasterlist = msop_masterDao.selectRawByNest(mDatabaseHelper, "Account",TAG_ACCOUNT, "Sop_number") ;
+        Log.d("抓1", sopmasterlist.get(0).getSop_name());
 
         msop_detailDao = new sop_detailDao();
         List<sop_detailVo>sopdetaillist = null;
         //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
         sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper,"Account",TAG_ACCOUNT,"Step_number");
 
+        Log.d("抓2",sopdetaillist.get(0).getStep_order());
 
         int k=0;
         if(caselist.size()%2==0){
