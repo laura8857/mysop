@@ -411,8 +411,8 @@ public class SplashActivity extends Activity {
 
             }
 
-            startActivity(new Intent().setClass(SplashActivity.this, Login.class));
-            //startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
+            //startActivity(new Intent().setClass(SplashActivity.this, Login.class));
+            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
         }
     }
 }

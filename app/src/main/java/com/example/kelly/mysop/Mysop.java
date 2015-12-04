@@ -198,10 +198,10 @@ public class Mysop extends Activity {
             list[i] = caselist.get(i).getCase_number();
             name[i] = sopmasterlist.get(i).getSop_name();
             //圖片
-            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
-            bmplist[i] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            Drawable drawable = new BitmapDrawable(bmplist[i]);
-            photo[i]=drawable;
+//            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
+//            bmplist[i] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+//            Drawable drawable = new BitmapDrawable(bmplist[i]);
+//            photo[i]=drawable;
             //
             steporder[i]=sopdetaillist.get(i).getStep_order();
             List<sop_detailVo> listforcount = null;
@@ -311,10 +311,10 @@ public class Mysop extends Activity {
             list1[i] = caselist.get(i).getCase_number();
             name1[i] = sopmasterlist.get(i).getSop_name();
             //圖片
-            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
-            bmplist1[i] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            Drawable drawable = new BitmapDrawable(bmplist1[i]);
-            photo1[i]=drawable;
+//            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
+//            bmplist1[i] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+//            Drawable drawable = new BitmapDrawable(bmplist1[i]);
+//            photo1[i]=drawable;
             //
             steporder1[i]=sopdetaillist.get(i).getStep_order();
             //steptotal1[k]=productsList1.get(i).get(TAG_TATOL);
@@ -903,7 +903,7 @@ public class Mysop extends Activity {
 
            // new DownloadImageTask(MysopLogo)
            //         .execute(photo[position]);
-            MysopLogo.setImageDrawable(photo[position]);
+            //MysopLogo.setImageDrawable(photo[position]);
             if(logos[key[position]]!=R.drawable.white){
                 Logo.setVisibility(0);
                 time.setVisibility(8);
@@ -962,7 +962,7 @@ public class Mysop extends Activity {
 
 //            new DownloadImageTask(MysopLogo1)
 //                    .execute(photo1[position]);
-            MysopLogo1.setImageDrawable(photo1[position]);
+         //   MysopLogo1.setImageDrawable(photo1[position]);
             if(logos[key1[position]]!=R.drawable.white){
                 Logo1.setVisibility(0);
                 time1.setVisibility(8);
