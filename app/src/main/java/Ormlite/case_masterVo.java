@@ -49,7 +49,7 @@ public class case_masterVo extends MDVo implements Serializable
 	{
 		this.Account = Account;
 	}
-	@DatabaseField(columnName = FIELD_Rule_number, canBeNull = false)
+	@DatabaseField(columnName = FIELD_Rule_number, canBeNull = true)
 	private String Rule_number;
 	public String getRule_number() {
 		return Rule_number;

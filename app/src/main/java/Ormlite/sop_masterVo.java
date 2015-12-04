@@ -42,7 +42,7 @@ public class sop_masterVo extends MDVo implements Serializable
 	{
 		this.Sop_number = Sop_number;
 	}
-	@DatabaseField(columnName = FIELD_Sop_version, canBeNull = false)
+	@DatabaseField(columnName = FIELD_Sop_version, canBeNull = true)
 	private String Sop_version;
 	public String getSop_version()
 	{
@@ -52,7 +52,7 @@ public class sop_masterVo extends MDVo implements Serializable
 	{
 		this.Sop_version = Sop_version;
 	}
-	@DatabaseField(columnName = FIELD_Sop_name, canBeNull = false)
+	@DatabaseField(columnName = FIELD_Sop_name, canBeNull = true)
 	private String Sop_name;
 	public String getSop_name() {
 		return Sop_name;
@@ -120,7 +120,7 @@ public class sop_masterVo extends MDVo implements Serializable
 	{
 		this.Stop_time = Stop_time;
 	}
-	@DatabaseField(columnName = FIELD_Account, canBeNull = false)
+	@DatabaseField(columnName = FIELD_Account, canBeNull = true)
 	private String Account;
 	public String getAccount()
 	{

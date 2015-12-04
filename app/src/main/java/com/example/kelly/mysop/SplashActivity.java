@@ -377,7 +377,7 @@ public class SplashActivity extends Activity {
             }
 
 
-/*            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(SplashActivity.this);
+            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(SplashActivity.this);
             case_masterDao mcase_masterDao4 = new case_masterDao();
             case_masterVo mcase_masterVo4 = new case_masterVo();
 
@@ -410,7 +410,7 @@ public class SplashActivity extends Activity {
                 msop_masterDao5.insert(mDatabaseHelper5, msop_masterVo5);
 
             }
-*/
+
             startActivity(new Intent().setClass(SplashActivity.this, Login.class));
             //startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
         }
