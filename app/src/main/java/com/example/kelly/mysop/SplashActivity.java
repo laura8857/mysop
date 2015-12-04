@@ -243,7 +243,7 @@ public class SplashActivity extends Activity {
                     // products found
                     // Getting Array of Products
                     products1 = json1.getJSONArray(TAG_PRODUCTS);
-
+                    Log.d("ptest1",String.valueOf(products1.length()));
                     // looping through All Products
                     for (int i = 0; i < products1.length(); i++) {
                         JSONObject c = products1.getJSONObject(i);
@@ -269,6 +269,7 @@ public class SplashActivity extends Activity {
                         map1.put("account",account);
                         map1.put("startrule",startrule);
 
+                        Log.d("ptestcount",String.valueOf(i));
                         // adding HashList to ArrayList
                         productsList1.add(map1);
                     }
@@ -286,7 +287,7 @@ public class SplashActivity extends Activity {
                     // products found
                     // Getting Array of Products
                     products2 = json2.getJSONArray(TAG_PRODUCTS);
-
+                    Log.d("ptest2",String.valueOf(products2.length()));
                     // looping through All Products
                     for (int i = 0; i < products2.length(); i++) {
                         JSONObject c = products2.getJSONObject(i);
@@ -309,7 +310,7 @@ public class SplashActivity extends Activity {
                         map2.put("account",account);
                         map2.put("step_number",stepnumber);
 
-
+                        Log.d("ptestcount2",String.valueOf(i));
                         // adding HashList to ArrayList
                         productsList2.add(map2);
                     }
