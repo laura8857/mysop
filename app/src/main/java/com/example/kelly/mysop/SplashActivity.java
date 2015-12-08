@@ -357,7 +357,6 @@ public class SplashActivity extends Activity {
             for (int i = 0; i <  productsList.size(); i++){
                 Log.d("countproducts","123");
 
-
                 msop_detailVo2.setSop_number(productsList.get(i).get("sop_number"));
                 msop_detailVo2.setStep_order(productsList.get(i).get("step_order"));
                 msop_detailVo2.setStep_number(productsList.get(i).get("step_number"));

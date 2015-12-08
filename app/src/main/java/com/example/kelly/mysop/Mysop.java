@@ -6,11 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -310,20 +308,20 @@ public class Mysop extends Activity {
         //另一邊
         for (int i = caselist.size()-1; i >=x; i--) {
 
-            list1[i] = caselist.get(i).getCase_number();
-            name1[i] = sopmasterlist.get(i).getSop_name();
+            list1[k] = caselist.get(i).getCase_number();
+            name1[k] = sopmasterlist.get(i).getSop_name();
             //圖片
 //            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
-//            bmplist1[i] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-//            Drawable drawable = new BitmapDrawable(bmplist1[i]);
-//            photo1[i]=drawable;
+//            bmplist1[k] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+//            Drawable drawable = new BitmapDrawable(bmplist1[k]);
+//            photo1[k]=drawable;
             //
-            steporder1[i]=sopdetaillist.get(i).getStep_order();
+            steporder1[k]=sopdetaillist.get(i).getStep_order();
             //steptotal1[k]=productsList1.get(i).get(TAG_TATOL);
             List<sop_detailVo> listforcount1 = null;
             //listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='" + TAG_ACCOUNT + "')");
             listforcount1 =msop_detailDao.selectRawByNest(mDatabaseHelper,"Account",TAG_ACCOUNT,"Sop_number");
-            steptotal1[i]= String.valueOf(listforcount1.size());
+            steptotal1[k]= String.valueOf(listforcount1.size());
             switch (sopdetaillist.get(i).getStart_rule()){
                 case "1":
                     // cagetory.setText("人工啟動");

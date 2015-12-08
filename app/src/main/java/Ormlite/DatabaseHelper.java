@@ -60,6 +60,17 @@ public static DatabaseHelper databaseHelper;//
         try {
             Log.i(DatabaseHelper.class.getName(), "onUpgrade");
 
+            TableUtils.dropTable(connectionSource, member_accountVo.class, true);
+            TableUtils.dropTable(connectionSource, rule_setVo.class, true);
+            TableUtils.dropTable(connectionSource,case_masterVo.class,true);
+            TableUtils.dropTable(connectionSource,case_recordVo.class,true);
+            TableUtils.dropTable(connectionSource,comment_recordVo.class,true);
+            TableUtils.dropTable(connectionSource,like_recordVo.class,true);
+            TableUtils.dropTable(connectionSource,login_recordVo.class,true);
+            TableUtils.dropTable(connectionSource,sop_masterVo.class,true);
+            TableUtils.dropTable(connectionSource,step_recordVo.class,true);
+            TableUtils.dropTable(connectionSource,sop_detailDao.class,true);
+            TableUtils.dropTable(connectionSource,case_masterVo.class,true);
             TableUtils.createTable(connectionSource, member_accountVo.class);
             TableUtils.createTable(connectionSource, rule_setVo.class);
             TableUtils.createTable(connectionSource, case_masterVo.class);
