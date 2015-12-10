@@ -40,6 +40,7 @@ public class Start extends Activity {
     private static final String TAG_SOPDETAIL = "sop_detail";
     private static String SOPDETAIL = "";
 
+    String TAG_CASE_NUMBER = "";
 //    private Dao<sop_masterVo, Integer> msop_masterDao;
 
 
@@ -48,17 +49,24 @@ public class Start extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
 
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();	//取得Bundle
+        TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
+
+
 
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         msop_masterDao = new sop_masterDao();
         //menber_accountRuntimeDao = mDatabaseHelper.getMember_accountDao();
         List<sop_masterVo> list = null;
-        list = msop_masterDao.selectRaw(mDatabaseHelper, "Sop_number='20151111'");
+        list = msop_masterDao.selectRawByNest(mDatabaseHelper,"Case_number",TAG_CASE_NUMBER,"Sop_number");
+        //list = msop_masterDao.selectRaw(mDatabaseHelper, "Sop_number='20151111'");
 
         //共有幾步驟
         msop_detailDao = new sop_detailDao();
         List<sop_detailVo> listforcount = null;
-        listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number='20151111'");
+        listforcount = msop_detailDao.selectRawByNest(mDatabaseHelper,"Case_number",TAG_CASE_NUMBER,"Sop_number");
+        //listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number='20151111'");
         int Count = listforcount.size();
 
         TextView start_title = (TextView)findViewById(R.id.start_title);
@@ -116,7 +124,10 @@ public class Start extends Activity {
             msop_masterVo.setAccount("abcc");
             msop_masterVo.setSop_version("1");*/
 
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
             Intent it = new Intent(Start.this,ChangePasswordError.class);
+            it.putExtras(bundle);
             startActivity(it);
 
     }
