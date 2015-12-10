@@ -107,6 +107,8 @@ public class StepActionControl extends Activity {
         bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
         bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
 
+        Log.d("StepActionControl","finish");
+
         switch (startrule){
             case 1:
                 // cagetory.setText("人工啟動");
