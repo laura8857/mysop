@@ -150,6 +150,7 @@ public class SplashActivity extends Activity {
         protected String doInBackground(String... args) {
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
+
             params.add(new BasicNameValuePair("Account", TAG_ACCOUNT) );
             // getting JSON string from URL
             JSONObject json = SplashActivity.this.jsonParser.makeHttpRequest(SplashActivity.url_all_products,"GET", params);
@@ -180,9 +181,9 @@ public class SplashActivity extends Activity {
                         // Storing each json item in variable
 
                         Log.d("create",c.toString());
-                        if(i==3){
+                        /*if(i==3){
                             continue;
-                        }
+                        }*/
                         String sopnumber = c.getString("sop_number");
                         String steporder = c.getString("step_order");
                         String stepnumber= c.getString("step_number");
