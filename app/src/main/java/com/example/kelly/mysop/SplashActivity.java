@@ -32,7 +32,7 @@ import Ormlite.sop_masterVo;
 
 public class SplashActivity extends Activity {
 
-    private member_accountDao mmember_accountDao;
+
     String TAG_ACCOUNT;
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
@@ -78,29 +78,28 @@ public class SplashActivity extends Activity {
 
         mmember_accountDao1.insert(mDatabaseHelper1, mmember_accountVo);
 
+        getAccount();
 
         //DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
-        List<member_accountVo> list;
-        List<member_accountVo> account;
-
-        //劉昱呈這邊需要再修一下
+        //List<member_accountVo> list;
         //list = mmember_accountDao1.selectRaw(mDatabaseHelper1, "account=test@gmail.com");
-        //account = mmember_accountDao1.selectColumns(mDatabaseHelper1, "FIELD_Account");
-        //if (account.isEmpty()) {
-       //     startActivity(new Intent().setClass(SplashActivity.this, Login.class));
-       // } else {
-            //JSP要塞ORM有點難ＱＡＱ
-        //TAG_ACCOUNT=account.get(0).getAccount();
-        new LoadAllProducts().execute();
-        //    startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
-       // }
-
-
-
 
     }
 
+    public void getAccount() {
 
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        member_accountDao mmember_accountDao = new member_accountDao();
+        List<member_accountVo> account;
+        account = mmember_accountDao.selectColumns(mDatabaseHelper, "FIELD_Account");
+        if (account.isEmpty()) {
+            startActivity(new Intent().setClass(SplashActivity.this, Login.class));
+        } else {
+            TAG_ACCOUNT = account.get(0).getAccount();
+            new LoadAllProducts().execute();
+        }
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -411,8 +410,8 @@ public class SplashActivity extends Activity {
 
             }
 
-            //startActivity(new Intent().setClass(SplashActivity.this, Login.class));
-            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
+            startActivity(new Intent().setClass(SplashActivity.this, Login.class));
+            //startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
         }
     }
 }
