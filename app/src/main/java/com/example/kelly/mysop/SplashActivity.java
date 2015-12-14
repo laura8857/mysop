@@ -351,15 +351,17 @@ public class SplashActivity extends Activity {
                 Log.d("products",String.valueOf(i));
             }*/
             //msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
-            Log.d("countproducts345",String.valueOf(products.length()));
+            Log.d("length",String.valueOf(products.length()));
+            Log.d("size",String.valueOf(productsList.size()));
 
             // dismiss the dialog after getting all products
             for (int i = 0; i <  productsList.size(); i++){
-                Log.d("countproducts","123");
+
 
                 msop_detailVo2.setSop_number(productsList.get(i).get("sop_number"));
                 msop_detailVo2.setStep_order(productsList.get(i).get("step_order"));
                 msop_detailVo2.setStep_number(productsList.get(i).get("step_number"));
+                Log.d("countproducts"+String.valueOf(i),productsList.get(i).get("step_number"));
                 msop_detailVo2.setStep_purpose(productsList.get(i).get("step_purpose"));
                 msop_detailVo2.setStep_intro(productsList.get(i).get("step_intro"));
                 msop_detailVo2.setStart_rule(productsList.get(i).get("start_rule"));
@@ -372,7 +374,6 @@ public class SplashActivity extends Activity {
                 msop_detailVo2.setNext_step_rule(productsList.get(i).get("next_step_rule"));
 
                 msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
-                Log.d("countproducts",String.valueOf(i));
             }
 
 
@@ -410,8 +411,35 @@ public class SplashActivity extends Activity {
 
             }
 
+            //測試
+            DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);
+            sop_detailDao msop_detailDao9 = new sop_detailDao();
+            List<sop_detailVo>sopdetaillist9 = null;
+            //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
+            sopdetaillist9 = msop_detailDao9.selectRawByNest(mDatabaseHelper,"Account",TAG_ACCOUNT,"Step_number");
+            Log.d("onpost_test",String.valueOf(sopdetaillist9.size()));
+            Log.d("1",sopdetaillist9.get(0).getStep_number());
+            Log.d("2",sopdetaillist9.get(1).getStep_number());
+            Log.d("3",sopdetaillist9.get(2).getStep_number());
+            Log.d("4",sopdetaillist9.get(3).getStep_number());
+            Log.d("5",sopdetaillist9.get(4).getStep_number());
+            //Log.d("6",sopdetaillist9.get(5).getStep_number());
+            //測試
+
+            //測試
+            DatabaseHelper mDatabaseHelper10 = DatabaseHelper.getHelper(SplashActivity.this);
+            sop_detailDao msop_detailDao10 = new sop_detailDao();
+            List<sop_detailVo>sopdetaillist10 = null;
+            sopdetaillist10 = msop_detailDao10.selectRaw(mDatabaseHelper10,"Step_number=6");
+            Log.d("onpost_test2",sopdetaillist10.get(0).getStep_number());
+            Log.d("onpost_test2",sopdetaillist10.get(0).getStep_intro());
+            //測試
+
+
             //startActivity(new Intent().setClass(SplashActivity.this, Login.class));
-            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
         }
     }
 }

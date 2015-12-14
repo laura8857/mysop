@@ -7,10 +7,10 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "sop_detail")
 public class sop_detailVo extends MDVo implements Serializable
 {
-	public static final String FIELD_Sop_number ="Sop_number";
+    public static final String FIELD_Step_number ="Step_number";
+    public static final String FIELD_Sop_number ="Sop_number";
 	public static final String FIELD_Sop_version ="Sop_version";
 	public static final String FIELD_Step_order ="Step_order";
-	public static final String FIELD_Step_number ="Step_number";
 	public static final String FIELD_Step_name ="Step_name";
 	public static final String FIELD_Step_purpose ="Step_purpose";
 	public static final String FIELD_Step_intro ="Step_intro";
@@ -40,7 +40,17 @@ public class sop_detailVo extends MDVo implements Serializable
 	{
 		this.id = id;
 	}*/
-	@DatabaseField(columnName = FIELD_Sop_number, canBeNull = false)
+    @DatabaseField(columnName = FIELD_Step_number, canBeNull = false)
+    private String Step_number;//Email
+    public String getStep_number()
+    {
+        return Step_number;
+    }
+    public void setStep_number(String Step_number)
+    {
+        this.Step_number = Step_number;
+    }
+	@DatabaseField(columnName = FIELD_Sop_number, canBeNull = true)
 	private String Sop_number;
 	public String getSop_number()
 	{
@@ -68,16 +78,7 @@ public class sop_detailVo extends MDVo implements Serializable
 	public void setStep_order(String Step_order) {
 		this.Step_order = Step_order;
 	}
-	@DatabaseField(columnName = FIELD_Step_number, canBeNull = true)
-	private String Step_number;//Email
-	public String getStep_number()
-	{
-		return Step_number;
-	}
-	public void setStep_number(String Step_number)
-	{
-		this.Step_number = Step_number;
-	}
+
 	@DatabaseField(columnName = FIELD_Step_name, canBeNull = true)
 	private String Step_name;
 	public String getStep_name()

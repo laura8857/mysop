@@ -161,6 +161,15 @@ public class Changepassword extends Activity {
             mmember_accountDao3.insert(mDatabaseHelper3,mmember_accountVo3);
 
 
+            //測account可不可以一樣
+            DatabaseHelper mDatabaseHelper5 = DatabaseHelper.getHelper(this);
+            member_accountDao mmember_accountDao5 = new member_accountDao();
+            member_accountVo mmember_accountVo5 = new member_accountVo();
+            mmember_accountVo5.setUsername("678");
+            mmember_accountVo5.setAccount("test2");
+            mmember_accountVo5.setPassword("testing2");
+            mmember_accountDao5.insert(mDatabaseHelper5,mmember_accountVo5);
+
 
             /*mmember_accountVo = mmember_accountDao.queryForId(1);
             mmember_accountVo.setPassword(NewPassword);

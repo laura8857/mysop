@@ -84,7 +84,8 @@ public class Mysop extends Activity {
     JSONArray products1 = null;
 
    //帳號先寫死
-    String TAG_ACCOUNT = "test@gmail.com";
+    String TAG_ACCOUNT = "";
+    //String TAG_ACCOUNT = "test@gmail.com";
 
 
     //存casenumber  sopname
@@ -127,6 +128,7 @@ public class Mysop extends Activity {
         listInput1 = (ListView)findViewById(R.id.list_sop2);
        // adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,items);
 
+        /*
         //測試用的insert 之後要刪掉
         //第一個sop
         //insert sop_detail
@@ -215,10 +217,12 @@ public class Mysop extends Activity {
         msop_masterVo55.setStart_rule("1");
         msop_masterDao55.insert(mDatabaseHelper55, msop_masterVo55);
         //測試insert end
+        */
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-       // TAG_ACCOUNT=bundle.getString("TAG_ACCOUNT");
+        TAG_ACCOUNT=bundle.getString("TAG_ACCOUNT");
+        Log.d("Mysop's TAG_ACCOUNT",TAG_ACCOUNT);
 
                 // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();

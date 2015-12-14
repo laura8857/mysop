@@ -43,6 +43,8 @@ public class ChangePasswordError extends Activity {
         Log.d("抓1", list.get(1).getAccount());
         Log.d("抓2", list.get(0).getUsername());
         Log.d("抓3", list.get(1).getUsername());
+        Log.d("抓4", list.get(2).getAccount());
+        Log.d("抓5", list.get(2).getUsername());
         Log.d("有幾筆", String.valueOf(list.size()));
         Toast.makeText(this, list.get(1).getUsername(), Toast.LENGTH_SHORT).show();
 

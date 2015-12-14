@@ -29,7 +29,7 @@ public class sop_detailDao
                 .queryBuilder();
         try {
             queryBuilder.where()
-                    .eq(sop_detailVo.FIELD_Sop_number, sop_detailVo.getSop_number());
+                    .eq(sop_detailVo.FIELD_Step_number, sop_detailVo.getStep_number());
             //	.and()
             //	.eq(AccountVo.FIELD_Device, aAccountVo.getDevice());
             return queryBuilder.query().size() > 0 ? true : false;
