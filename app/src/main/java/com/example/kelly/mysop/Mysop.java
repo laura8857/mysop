@@ -128,6 +128,7 @@ public class Mysop extends Activity {
         listInput1 = (ListView)findViewById(R.id.list_sop2);
        // adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,items);
 
+
         /*
         //測試用的insert 之後要刪掉
         //第一個sop
@@ -218,6 +219,7 @@ public class Mysop extends Activity {
         msop_masterDao55.insert(mDatabaseHelper55, msop_masterVo55);
         //測試insert end
         */
+
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();

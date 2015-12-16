@@ -1,12 +1,10 @@
 package Ormlite;
 
-import java.sql.SQLException;
-import java.util.List;
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.support.ConnectionSource;
+
+import java.sql.SQLException;
+import java.util.List;
 //import com.ck.ap.DatabaseHelper;
 
 //【Account Dao】
@@ -110,5 +108,27 @@ public class step_recordDao
         return null;
     }
 
-
+    /* selectRawByNest */
+    public static List<step_recordVo> selectRawByNest(DatabaseHelper databaseHelper,String column1,String value1,String column2) {
+        RuntimeExceptionDao<step_recordVo, Integer> step_recordDao = databaseHelper
+                .getStep_recordDao();
+        RuntimeExceptionDao<sop_detailVo, Integer> sop_detailDao = databaseHelper
+                .getSop_detailDao();
+        QueryBuilder<sop_detailVo, Integer> subqueryBuilder = sop_detailDao
+                .queryBuilder();
+        QueryBuilder<step_recordVo, Integer> queryBuilder = step_recordDao
+                .queryBuilder();
+        try {
+            subqueryBuilder.where().eq(column1,value1);
+            //Log.d("TEST NEST",subqueryBuilder.query().get(0).getAccount());
+            // in using the sub-query
+            subqueryBuilder.selectColumns(column2);
+            queryBuilder.where().in(column2, subqueryBuilder);
+            //Log.d("TEST NEST",queryBuilder.query().get(0).getAccount());
+            return queryBuilder.query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

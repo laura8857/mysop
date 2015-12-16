@@ -7,20 +7,16 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.text.Layout;
-import android.util.Log;
-import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import org.apache.http.NameValuePair;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
+
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +25,16 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.case_masterDao;
+import Ormlite.case_masterVo;
+import Ormlite.case_recordDao;
+import Ormlite.case_recordVo;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
+import Ormlite.step_recordDao;
+import Ormlite.step_recordVo;
 
 
 public class StepCaseEnding extends Activity {
@@ -70,6 +76,15 @@ public class StepCaseEnding extends Activity {
     String recordorder[];
     int ok=0;
 
+    //orm
+    private RuntimeExceptionDao<case_masterVo, Integer> case_masterRuntimeDao;
+    private case_masterDao mcase_masterDao;
+    private RuntimeExceptionDao<sop_detailVo, Integer> sop_detailRuntimeDao;
+    private sop_detailDao msop_detailDao;
+    private RuntimeExceptionDao<step_recordVo, Integer> step_recordRuntimeDao;
+    private step_recordDao mstep_recordDao;
+    private RuntimeExceptionDao<case_recordVo, Integer> case_recordRuntimeDao;
+    private case_recordDao mcase_recordDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,8 +100,52 @@ public class StepCaseEnding extends Activity {
         productsList = new ArrayList<HashMap<String, String>>();
         valueList = new ArrayList<HashMap<String, String>>();
 
+        //orm 用case_number去抓資料庫的紀錄單位和敘述
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        msop_detailDao = new sop_detailDao();
+        List<sop_detailVo>sopdetaillist = null;
+        sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper, "Case_number", TAG_CASE_NUMBER, "Sop_number");
 
-        new LoadInput().execute();
+        //取出需要的sop_number 再找出step_number
+        mstep_recordDao =new step_recordDao();
+        List<step_recordVo>steprecordlist = null;
+        steprecordlist = mstep_recordDao.selectRawByNest(mDatabaseHelper,"Sop_number",sopdetaillist.get(0).getSop_number(),"Step_number");
+
+        //取紀錄值
+        mcase_recordDao = new case_recordDao();
+        List<case_recordVo>caserecordlist = null;
+        caserecordlist = mcase_recordDao.selectRaw(mDatabaseHelper,"Case_number="+"'"+TAG_CASE_NUMBER+"'");
+
+        recordorder=new String[caserecordlist.size()];
+        steporder=new  String[caserecordlist.size()];
+        for(int i =0;i<caserecordlist.size();i++){
+            recordorder[i]=caserecordlist.get(i).getRecord_order();
+            steporder[i]=caserecordlist.get(i).getStep_order();
+        }
+
+        LinearLayout ly = (LinearLayout)findViewById(R.id.endlayout);
+
+        //未打完
+        Count=steprecordlist.size();
+
+        for(int i=0; i<steprecordlist.size();i++) {
+
+            TextView text1 = new TextView(StepCaseEnding.this);
+            text1.setTextSize(17);
+            text1.setText(steprecordlist.get(i).getRecord_text()+"("+steprecordlist.get(i).getRecord_unit()+")");
+
+
+            edit[i] = new EditText(StepCaseEnding.this.getApplicationContext());
+
+            edit[i].setBackgroundColor(Color.parseColor("#FEFBE6"));
+            edit[i].setTextColor(Color.rgb(0, 0, 0));
+            edit[i].setSingleLine(true);
+            //edit.linecolor
+            edit[i].setText(caserecordlist.get(i).getRecord_value());
+            ly.addView(text1);
+            ly.addView(edit[i]);
+        }
+       // new LoadInput().execute();
 
     }
 
@@ -229,141 +288,141 @@ public class StepCaseEnding extends Activity {
     }
 
 
-    //讀取紀錄 和紀錄說明
-    class LoadInput extends AsyncTask<String, String, String> {
-
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(StepCaseEnding.this);
-            pDialog.setMessage("Loading. Please wait...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
-
-        /**
-         * getting All products from url
-         * */
-        protected String doInBackground(String... args) {
-            // Building Parameters
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-            params.add(new BasicNameValuePair("Casenumber", TAG_CASE_NUMBER) );
-
-            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
-
-
-
-            // Check your log cat for JSON reponse
-            Log.d("All Products: ", json.toString());
-
-            try {
-                // Checking for SUCCESS TAG
-                //step = json.getString("step");
-                int success = json.getInt(TAG_SUCCESS);
-
-                if (success == 1) {
-
-                    products = json.getJSONArray(TAG_PRODUCTS);
-
-                    for (int i = 0; i < products.length(); i++) {
-                        JSONObject c = products.getJSONObject(i);
-
-
-                        // Storing each json item in variable
-                        String text = c.getString(TAG_TEXT);
-                        String unit = c.getString(TAG_UNIT);
-
-                        // creating new HashMap
-                        HashMap<String, String> map = new HashMap<String, String>();
-
-                        // adding each child node to HashMap key => value
-                        map.put(TAG_TEXT, text);
-                        map.put(TAG_UNIT, unit);
-
-                        // adding HashList to ArrayList
-                        productsList.add(map);
-
-                    }
-                    //抓記錄值
-                    products1=json.getJSONArray("values");
-                    for(int i=0 ;i<products1.length();i++){
-                        JSONObject c =products1.getJSONObject(i);
-                        String value=c.getString(TAG_VALUE);
-                        String step = c.getString("step");
-                        String order = c.getString("order");
-                        HashMap<String,String> vmap = new HashMap<String, String>();
-                        vmap.put(TAG_VALUE,value);
-                        vmap.put("step",step);
-                        vmap.put("order",order);
-
-                        valueList.add(vmap);
-                    }
-                } else {
-
-
-
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
-        protected void onPostExecute(String file_url) {
-            // dismiss the dialog after getting all products
-            pDialog.dismiss();
-            // updating UI from Background Thread
-/*            runOnUiThread(new Runnable() {
-                public void run() {
-
-                }
-            }); */
-
-            recordorder=new String[products1.length()];
-            steporder=new  String[products1.length()];
-
-            for(int i =0;i<products1.length();i++){
-                recordorder[i]=valueList.get(i).get("order");
-                steporder[i]=valueList.get(i).get("step");
-                System.out.println("order:"+recordorder[i]+"  step:"+steporder[i]);
-            }
-
-
-            LinearLayout ly = (LinearLayout)findViewById(R.id.endlayout);
-
-            Count=products.length();
-
-            for(int i=0; i<products.length();i++) {
-
-                TextView text1 = new TextView(StepCaseEnding.this);
-                text1.setTextSize(17);
-                text1.setText(productsList.get(i).get(TAG_TEXT)+"("+productsList.get(i).get(TAG_UNIT)+")");
-
-
-                edit[i] = new EditText(StepCaseEnding.this.getApplicationContext());
-
-                edit[i].setBackgroundColor(Color.parseColor("#FEFBE6"));
-                edit[i].setTextColor(Color.rgb(0, 0, 0));
-                edit[i].setSingleLine(true);
-                //edit.linecolor
-                edit[i].setText(valueList.get(i).get(TAG_VALUE));
-                ly.addView(text1);
-                ly.addView(edit[i]);
-            }
-
-
-
-        }
-
-    }
+//    //讀取紀錄 和紀錄說明
+//    class LoadInput extends AsyncTask<String, String, String> {
+//
+//        /**
+//         * Before starting background thread Show Progress Dialog
+//         * */
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//            pDialog = new ProgressDialog(StepCaseEnding.this);
+//            pDialog.setMessage("Loading. Please wait...");
+//            pDialog.setIndeterminate(false);
+//            pDialog.setCancelable(false);
+//            pDialog.show();
+//        }
+//
+//        /**
+//         * getting All products from url
+//         * */
+//        protected String doInBackground(String... args) {
+//            // Building Parameters
+//            List<NameValuePair> params = new ArrayList<NameValuePair>();
+//
+//            params.add(new BasicNameValuePair("Casenumber", TAG_CASE_NUMBER) );
+//
+//            JSONObject json = jParser.makeHttpRequest(url_all_products, "GET", params);
+//
+//
+//
+//            // Check your log cat for JSON reponse
+//            Log.d("All Products: ", json.toString());
+//
+//            try {
+//                // Checking for SUCCESS TAG
+//                //step = json.getString("step");
+//                int success = json.getInt(TAG_SUCCESS);
+//
+//                if (success == 1) {
+//
+//                    products = json.getJSONArray(TAG_PRODUCTS);
+//
+//                    for (int i = 0; i < products.length(); i++) {
+//                        JSONObject c = products.getJSONObject(i);
+//
+//
+//                        // Storing each json item in variable
+//                        String text = c.getString(TAG_TEXT);
+//                        String unit = c.getString(TAG_UNIT);
+//
+//                        // creating new HashMap
+//                        HashMap<String, String> map = new HashMap<String, String>();
+//
+//                        // adding each child node to HashMap key => value
+//                        map.put(TAG_TEXT, text);
+//                        map.put(TAG_UNIT, unit);
+//
+//                        // adding HashList to ArrayList
+//                        productsList.add(map);
+//
+//                    }
+//                    //抓記錄值
+//                    products1=json.getJSONArray("values");
+//                    for(int i=0 ;i<products1.length();i++){
+//                        JSONObject c =products1.getJSONObject(i);
+//                        String value=c.getString(TAG_VALUE);
+//                        String step = c.getString("step");
+//                        String order = c.getString("order");
+//                        HashMap<String,String> vmap = new HashMap<String, String>();
+//                        vmap.put(TAG_VALUE,value);
+//                        vmap.put("step",step);
+//                        vmap.put("order",order);
+//
+//                        valueList.add(vmap);
+//                    }
+//                } else {
+//
+//
+//
+//                }
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//
+//            return null;
+//        }
+//
+//        /**
+//         * After completing background task Dismiss the progress dialog
+//         * **/
+//        protected void onPostExecute(String file_url) {
+//            // dismiss the dialog after getting all products
+//            pDialog.dismiss();
+//            // updating UI from Background Thread
+///*            runOnUiThread(new Runnable() {
+//                public void run() {
+//
+//                }
+//            }); */
+//
+//            recordorder=new String[products1.length()];
+//            steporder=new  String[products1.length()];
+//
+//            for(int i =0;i<products1.length();i++){
+//                recordorder[i]=valueList.get(i).get("order");
+//                steporder[i]=valueList.get(i).get("step");
+//                System.out.println("order:"+recordorder[i]+"  step:"+steporder[i]);
+//            }
+//
+//
+//            LinearLayout ly = (LinearLayout)findViewById(R.id.endlayout);
+//
+//            Count=products.length();
+//
+//            for(int i=0; i<products.length();i++) {
+//
+//                TextView text1 = new TextView(StepCaseEnding.this);
+//                text1.setTextSize(17);
+//                text1.setText(productsList.get(i).get(TAG_TEXT)+"("+productsList.get(i).get(TAG_UNIT)+")");
+//
+//
+//                edit[i] = new EditText(StepCaseEnding.this.getApplicationContext());
+//
+//                edit[i].setBackgroundColor(Color.parseColor("#FEFBE6"));
+//                edit[i].setTextColor(Color.rgb(0, 0, 0));
+//                edit[i].setSingleLine(true);
+//                //edit.linecolor
+//                edit[i].setText(valueList.get(i).get(TAG_VALUE));
+//                ly.addView(text1);
+//                ly.addView(edit[i]);
+//            }
+//
+//
+//
+//        }
+//
+//    }
     }
 
