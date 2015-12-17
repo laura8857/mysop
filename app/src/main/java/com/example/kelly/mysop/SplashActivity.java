@@ -34,6 +34,8 @@ import Ormlite.sop_detailDao;
 import Ormlite.sop_detailVo;
 import Ormlite.sop_masterDao;
 import Ormlite.sop_masterVo;
+import Ormlite.step_recordDao;
+import Ormlite.step_recordVo;
 
 
 public class SplashActivity extends Activity {
@@ -45,9 +47,11 @@ public class SplashActivity extends Activity {
     ArrayList<HashMap<String, String>> productsList;
     ArrayList<HashMap<String, String>> productsList1;
     ArrayList<HashMap<String, String>> productsList2;
+    ArrayList<HashMap<String, String>> productsList3;
     private static String url_all_products = "http://140.115.80.237/front/mysop_step_detail.jsp";
     private static String url_all_products1 = "http://140.115.80.237/front/mysop_sop_master.jsp";
     private static String url_all_products2 = "http://140.115.80.237/front/mysop_case_master.jsp";
+    private static String url_all_products3 = "http://140.115.80.237/front/mysop_step_record.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_CASENUMBER = "casenumber";
@@ -61,6 +65,7 @@ public class SplashActivity extends Activity {
     JSONArray products = null;
     JSONArray products1 = null;
     JSONArray products2 = null;
+    JSONArray products3 = null;
 
     Context mContext;
     DownloadManager manager ;
@@ -75,6 +80,7 @@ public class SplashActivity extends Activity {
         productsList = new ArrayList<HashMap<String, String>>();
         productsList1 = new ArrayList<HashMap<String, String>>();
         productsList2 = new ArrayList<HashMap<String, String>>();
+        productsList3 = new ArrayList<HashMap<String, String>>();
 
         //寫死 insert
         DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
@@ -208,10 +214,12 @@ public class SplashActivity extends Activity {
             JSONObject json = SplashActivity.this.jsonParser.makeHttpRequest(SplashActivity.url_all_products,"GET", params);
             JSONObject json1 =SplashActivity.this.jsonParser.makeHttpRequest(SplashActivity.url_all_products1,"GET", params);
             JSONObject json2 =SplashActivity.this.jsonParser.makeHttpRequest(SplashActivity.url_all_products2,"GET", params);
+            JSONObject json3 =SplashActivity.this.jsonParser.makeHttpRequest(SplashActivity.url_all_products3,"GET", params);
             // Check your log cat for JSON reponse
             Log.d("All Products: ", json.toString());
             Log.d("All Products: ", json1.toString());
             Log.d("All Products: ", json2.toString());
+            Log.d("All Products: ", json3.toString());
             try {
                 // Checking for SUCCESS TAG
                 int success = json.getInt(TAG_SUCCESS);
@@ -376,6 +384,61 @@ public class SplashActivity extends Activity {
                 e.printStackTrace();
             }
 
+            try {
+                int success3 = json3.getInt(TAG_SUCCESS);
+                if (success3 == 1) {
+                    // products found
+                    // Getting Array of Products
+                    products3 = json3.getJSONArray(TAG_PRODUCTS);
+
+                    Log.d("test",String.valueOf(products3.length()));
+
+                    // looping through All Products
+                    for (int i = 0; i < products3.length(); i++) {
+                        //for (int i = 0; i < 2; i++) {
+
+                        JSONObject c = products3.getJSONObject(i);
+
+                        // Storing each json item in variable
+
+                        Log.d("create",c.toString());
+
+                        String id = c.getString("id");
+                        String stepnumber = c.getString("step_number");
+                        String recordorder = c.getString("record_order");
+                        String recordtext= c.getString("record_text");
+                        String recordtype = c.getString("record_type");
+                        String recordunit = c.getString("record_unit");
+                        String recordmax = c.getString("record_max");
+                        String recordmin = c.getString("record_min");
+                        String recordstandard = c.getString("record_standard");
+
+                        // creating new HashMap
+                        HashMap<String, String> map3 = new HashMap<String, String>();
+                        // adding each child node to HashMap key => value
+
+                        map3.put("id",id);
+                        map3.put("step_number",stepnumber);
+                        map3.put("record_order",recordorder);
+                        map3.put("record_text",recordtext);
+                        map3.put("record_type",recordtype);
+                        map3.put("record_unit",recordunit);
+                        map3.put("record_max",recordmax);
+                        map3.put("record_min",recordmin);
+                        map3.put("record_standard",recordstandard);
+
+                        Log.d("record",String.valueOf(i));
+
+                        // adding HashList to ArrayList
+                        productsList3.add(map3);
+
+                    }
+                    Log.d("record",String.valueOf(productsList3.size()));
+                    Log.d("productlist3","success");
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
             return null;
         }
 
@@ -463,6 +526,44 @@ public class SplashActivity extends Activity {
                 msop_masterDao5.insert(mDatabaseHelper5, msop_masterVo5);
 
             }
+            DatabaseHelper mDatabaseHelper6 = DatabaseHelper.getHelper(SplashActivity.this);
+            step_recordDao mstep_recordDao6 = new step_recordDao();
+            step_recordVo mstep_recordVo6 = new step_recordVo();
+            Log.d("length3",String.valueOf(products3.length()));
+            Log.d("size3",String.valueOf(productsList3.size()));
+            // dismiss the dialog after getting all products
+            for (int i = 0; i <  products3.length(); i++){
+
+                mstep_recordVo6.setId(Integer.valueOf(productsList3.get(i).get("id")));
+                mstep_recordVo6.setStep_number(productsList3.get(i).get("step_number"));
+                mstep_recordVo6.setRecord_order(productsList3.get(i).get("record_order"));
+                mstep_recordVo6.setRecord_text(productsList3.get(i).get("record_text"));
+                Log.d("countproducts3"+i,productsList3.get(i).get("record_text"));
+                mstep_recordVo6.setRecord_type(productsList3.get(i).get("record_type"));
+                mstep_recordVo6.setRecord_unit(productsList3.get(i).get("record_unix"));
+                mstep_recordVo6.setRecord_max(productsList3.get(i).get("record_max"));
+                mstep_recordVo6.setRecord_min(productsList3.get(i).get("record_min"));
+                mstep_recordVo6.setRecord_standard(productsList3.get(i).get("record_standard"));
+                mstep_recordDao6.insert(mDatabaseHelper6, mstep_recordVo6);
+
+            }
+
+            //測試
+            DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);
+            step_recordDao mstep_recordDao11 = new step_recordDao();
+            List<step_recordVo>step_recordlist11 = null;
+            //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
+            step_recordlist11 = mstep_recordDao11.selectRawByNest(mDatabaseHelper,"Sop_number","20150803","Step_number");
+            Log.d("onpost_test",String.valueOf(step_recordlist11.size()));
+            Log.d("00",step_recordlist11.get(0).getStep_number());
+            Log.d("1",step_recordlist11.get(0).getRecord_text());
+            Log.d("2",step_recordlist11.get(1).getRecord_text());
+            Log.d("3",step_recordlist11.get(2).getRecord_text());
+            Log.d("4",step_recordlist11.get(3).getRecord_text());
+            Log.d("5",step_recordlist11.get(4).getRecord_text());
+            Log.d("6",step_recordlist11.get(5).getRecord_text());
+            Log.d("7",step_recordlist11.get(6).getRecord_text());
+            //測試
 /*
             //測試
             DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);

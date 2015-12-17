@@ -27,7 +27,7 @@ public class step_recordDao
                 .queryBuilder();
         try {
             queryBuilder.where()
-                    .eq(step_recordVo.FIELD_Id, step_recordVo.getId());
+                    .eq(step_recordVo.FIELD_Id, String.valueOf(step_recordVo.getId()));
             //	.and()
             //	.eq(AccountVo.FIELD_Device, aAccountVo.getDevice());
             return queryBuilder.query().size() > 0 ? true : false;

@@ -63,7 +63,7 @@ public class Stepdescription extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stepdescription);
-/*
+
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
@@ -97,7 +97,7 @@ public class Stepdescription extends Activity {
         }else{
             TAG_Next = 2;
         }
-*/
+
         detector = new GestureDetector(new MySimpleOnGestureListener());
         WebView ww = (WebView)findViewById(R.id.webView);
         WebSettings settings = ww.getSettings();
