@@ -81,14 +81,14 @@ public class StepActionControl extends Activity {
             //TAG_CASE_NUMBER = "3";//nfc
             TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
             //new Checkall().execute();
-
+            Log.d("抓",TAG_CASE_NUMBER);
             msop_detailDao = new sop_detailDao();
             //"Step_number IN(SELECT last_do_order FROM case_master WHERE case_number='"++"')"
             list = msop_detailDao.selectRawByNest(mDatabaseHelper,"Case_number",TAG_CASE_NUMBER,"Step_number");
-            Log.d("抓", list.get(0).getSop_number());
+            Log.d("抓1", list.get(0).getSop_number());
 
             TAG_STEP_NUMBER = list.get(0).getStep_number();
-            //why!!!!!!!!!不是int嗎後台!!!!!!!!!!!!!!
+            Log.d("StepActionControl",TAG_STEP_NUMBER);
             StartRule = Integer.valueOf(list.get(0).getStart_rule());
             TAG_STEP_ORDER = Integer.valueOf(list.get(0).getStep_order());
 

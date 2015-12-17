@@ -70,6 +70,8 @@ public class Stepdescription extends Activity {
         TAG_STEP_NUMBER = bundle.getString("TAG_STEP_NUMBER");
         TAG_STEP_ORDER = bundle.getInt("TAG_STEP_ORDER");
 
+        Log.d("StepDescription",TAG_STEP_NUMBER);
+
         TextView des_tw2 = (TextView)findViewById(R.id.des_textView2);
         des_tw2.setText(Integer.toString(TAG_STEP_ORDER));
 
@@ -97,7 +99,7 @@ public class Stepdescription extends Activity {
         }else{
             TAG_Next = 2;
         }
-
+        Log.d("TAG_Next",String.valueOf(TAG_Next));
         detector = new GestureDetector(new MySimpleOnGestureListener());
         WebView ww = (WebView)findViewById(R.id.webView);
         WebSettings settings = ww.getSettings();

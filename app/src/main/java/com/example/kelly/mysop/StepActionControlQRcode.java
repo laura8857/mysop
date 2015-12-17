@@ -55,6 +55,8 @@ public class StepActionControlQRcode extends Activity {
         TAG_STEP_ORDER = bundle.getInt("TAG_STEP_ORDER");
         ss.setText(Integer.toString(TAG_STEP_ORDER));
 
+        Log.d("QRcode",TAG_STEP_NUMBER);
+
         //orm 用stepnumber去抓資料庫的東西
         msop_detailDao = new sop_detailDao();
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
