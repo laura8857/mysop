@@ -1,12 +1,11 @@
 package Ormlite;
 
-import java.sql.SQLException;
-import java.util.List;
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.stmt.UpdateBuilder;
+
+import java.sql.SQLException;
+import java.util.List;
 //import com.ck.ap.DatabaseHelper;
 
 //嚙踐�count Dao嚙踝蕭
@@ -41,18 +40,34 @@ public class case_recordDao
 		}
 		return false;
 	}
+//
+//	/* update */
+//	public static int update(DatabaseHelper databaseHelper,case_recordVo case_recordVo) {
+//		RuntimeExceptionDao<case_recordVo, Integer> case_recordDao = databaseHelper
+//				.getCase_recordDao();
+//		try {
+//			return case_recordDao.update(case_recordVo);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return 0;
+//	}
+    public static int update(DatabaseHelper databaseHelper, String columnvalue, String originalvalue,String columnvalue1, String originalvalue1, String column, String value) {
+        RuntimeExceptionDao<case_recordVo, Integer> case_recordVoDao = databaseHelper
+                .getCase_recordDao();
+        UpdateBuilder<case_recordVo, Integer> updateBuilder = case_recordVoDao.updateBuilder();
+        try {
+            //判斷式 哪一欄 = 值
+            updateBuilder.where().eq(columnvalue, originalvalue).eq(columnvalue1,originalvalue1);
+            // update the value of your field(s)
+            updateBuilder.updateColumnValue(column, value);
 
-	/* update */
-	public static int update(DatabaseHelper databaseHelper,case_recordVo case_recordVo) {
-		RuntimeExceptionDao<case_recordVo, Integer> case_recordDao = databaseHelper
-				.getCase_recordDao();
-		try {
-			return case_recordDao.update(case_recordVo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return 0;
-	}
+            return updateBuilder.update();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
 	/* delete */
 	public static int delete(DatabaseHelper databaseHelper, case_recordVo case_recordVo) {
@@ -111,6 +126,5 @@ public class case_recordDao
 		}
 		return null;
 	}
-
 
 }

@@ -109,7 +109,7 @@ public class StepCaseEnding extends Activity {
         //取出需要的sop_number 再找出step_number
         mstep_recordDao =new step_recordDao();
         List<step_recordVo>steprecordlist = null;
-        steprecordlist = mstep_recordDao.selectRawByNest(mDatabaseHelper,"Sop_number",sopdetaillist.get(0).getSop_number(),"Step_number");
+       // steprecordlist = mstep_recordDao.selectRawByNest(mDatabaseHelper,"Sop_number",sopdetaillist.get(0).getSop_number(),"Step_number");
 
         //取紀錄值
         mcase_recordDao = new case_recordDao();
@@ -125,7 +125,6 @@ public class StepCaseEnding extends Activity {
 
         LinearLayout ly = (LinearLayout)findViewById(R.id.endlayout);
 
-        //未打完
         Count=steprecordlist.size();
 
         for(int i=0; i<steprecordlist.size();i++) {
@@ -172,11 +171,27 @@ public class StepCaseEnding extends Activity {
         return super.onOptionsItemSelected(item);
     }
     public void endChange (View v){
-        SOPContent1[] SO= new SOPContent1[10];
-      for(Step=0;Step<Count;Step++){
-          SO[Step]=new SOPContent1();
-          SO[Step].execute(Step);
-      }
+        //orm update
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(StepCaseEnding.this);
+        case_recordDao mcase_recordDao = new case_recordDao();
+        case_recordVo mcase_recordVo = new case_recordVo();
+
+
+        for(int i =0;i< Count;i++){
+
+            //UPDATE
+
+            //mmember_accountDao2.update(mDatabaseHelper2,"account","test","username","678");
+            mcase_recordDao.update(mDatabaseHelper,"Step_order",steporder[i],"Record_order",recordorder[i],"Record_value",RecordText[i]);
+
+        }
+
+
+//        SOPContent1[] SO= new SOPContent1[10];
+//      for(Step=0;Step<Count;Step++){
+//          SO[Step]=new SOPContent1();
+//          SO[Step].execute(Step);
+//      }
 
             AlertDialog.Builder dialog = new AlertDialog.Builder(StepCaseEnding.this);
             dialog.setTitle("");
@@ -190,65 +205,65 @@ public class StepCaseEnding extends Activity {
 
     }
 
-    //更改紀錄
-    class SOPContent1 extends AsyncTask<Integer, String, String> {
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(StepCaseEnding.this);
-            pDialog.setMessage("Changing..Please wait...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-          //  pDialog.show();
-
-        }
-
-
-        protected String doInBackground(Integer... args) {
-
-            //先寫死stepnumber
-            //String Casenumber ="" ;
-
-            int a=args[0];
-            String RecordOrder=Integer.toString(a+1);
-            RecordText[a] = StepCaseEnding.this.edit[a].getText().toString();
-
-            ArrayList params = new ArrayList();
-            System.out.println("jj"+RecordText[a]);
-
-            params.add(new BasicNameValuePair("Newtext", RecordText[a]));
-            params.add(new BasicNameValuePair("Casenumber", TAG_CASE_NUMBER) );
-            params.add(new BasicNameValuePair("Recordorder", recordorder[a]) );
-            params.add(new BasicNameValuePair("Steporder", steporder[a]) );
-
-            // 上傳更改的紀錄
-            JSONObject json1 = StepCaseEnding.this.jsonParser.makeHttpRequest(StepCaseEnding.url_all_products1, "POST", params);
-
-            try {
-                //更改紀錄
-                int e = json1.getInt(TAG_SUCCESS);
-                if(e == 1) {
-                ok=1;
-                }else{
-                ok=0;
-                }
-
-            } catch (JSONException var9) {
-                var9.printStackTrace();
-            }
-
-            return null;
-        }
-
-
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
-        protected void onPostExecute(String file_url) {
-            // dismiss the dialog after getting all products
-          //  pDialog.dismiss();
-
-        }
-    }
+//    //更改紀錄
+//    class SOPContent1 extends AsyncTask<Integer, String, String> {
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//            pDialog = new ProgressDialog(StepCaseEnding.this);
+//            pDialog.setMessage("Changing..Please wait...");
+//            pDialog.setIndeterminate(false);
+//            pDialog.setCancelable(false);
+//          //  pDialog.show();
+//
+//        }
+//
+//
+//        protected String doInBackground(Integer... args) {
+//
+//            //先寫死stepnumber
+//            //String Casenumber ="" ;
+//
+//            int a=args[0];
+//            String RecordOrder=Integer.toString(a+1);
+//            RecordText[a] = StepCaseEnding.this.edit[a].getText().toString();
+//
+//            ArrayList params = new ArrayList();
+//            System.out.println("jj"+RecordText[a]);
+//
+//            params.add(new BasicNameValuePair("Newtext", RecordText[a]));
+//            params.add(new BasicNameValuePair("Casenumber", TAG_CASE_NUMBER) );
+//            params.add(new BasicNameValuePair("Recordorder", recordorder[a]) );
+//            params.add(new BasicNameValuePair("Steporder", steporder[a]) );
+//
+//            // 上傳更改的紀錄
+//            JSONObject json1 = StepCaseEnding.this.jsonParser.makeHttpRequest(StepCaseEnding.url_all_products1, "POST", params);
+//
+//            try {
+//                //更改紀錄
+//                int e = json1.getInt(TAG_SUCCESS);
+//                if(e == 1) {
+//                ok=1;
+//                }else{
+//                ok=0;
+//                }
+//
+//            } catch (JSONException var9) {
+//                var9.printStackTrace();
+//            }
+//
+//            return null;
+//        }
+//
+//
+//        /**
+//         * After completing background task Dismiss the progress dialog
+//         * **/
+//        protected void onPostExecute(String file_url) {
+//            // dismiss the dialog after getting all products
+//          //  pDialog.dismiss();
+//
+//        }
+//    }
     //結案 刪除sop
     class SOPContent2 extends AsyncTask<String, String, String> {
         protected void onPreExecute() {
