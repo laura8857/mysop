@@ -9,7 +9,6 @@
     <string name="title_activity_main">MainActivity</string>
 
 
-
     <string name="Login_email">電子信箱</string>
     <string name="Login_passward">密碼</string>
 
@@ -30,7 +29,6 @@
     <string name="title_activity_register_error">RegisterError</string>
     <string name="title_activity_mysop">Mysop</string>
     <string name="title_activity_content">Content</string>
-
     <string name="title_activity_searching">searching</string>
 
 
@@ -86,6 +84,7 @@
     <string name="title_activity_mysop1">Mysop1</string>
     <string name="title_activity_mysop2">mysop2</string>
     <string name="title_activity_saqs">saqs</string>
+    <string name="title_activity_logout">Logout</string>
 
 
 

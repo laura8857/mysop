@@ -569,11 +569,23 @@ public class Mysop extends Activity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        switch (id) {
+            case R.id.title_activity_changepassword:
+                startActivity(new Intent().setClass(Mysop.this, Changepassword.class));
+                break;
+            case R.id.title_activity_searching:
+                startActivity(new Intent().setClass(Mysop.this, Search.class));
+                break;
+            case R.id.title_activity_dynamic_action:
+                startActivity(new Intent().setClass(Mysop.this, DynamicAction.class));
+                break;
+            case R.id.title_activity_logout:
+                startActivity(new Intent().setClass(Mysop.this, Logout.class));
 
-        return super.onOptionsItemSelected(item);
+                return super.onOptionsItemSelected(item);
+        }
+        //少下面的return
+        return false;
     }
 
     //圖片網址

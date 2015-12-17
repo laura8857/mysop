@@ -139,7 +139,6 @@
             android:name=".Changepassword"
             android:label="@string/title_activity_changepassword"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
-
         </activity>
         <activity
             android:name=".ChangePasswordError"
@@ -157,6 +156,7 @@
             android:theme="@android:style/Theme.Light.NoTitleBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -168,9 +168,7 @@
         <activity
             android:name=".Mysop"
             android:label="@string/title_activity_mysop"
-            android:theme="@style/MyTheme">
-
-
+            android:theme="@style/MyTheme" >
         </activity>
         <activity
             android:name=".Content"
@@ -308,8 +306,11 @@
         <activity
             android:name=".DynamicAction"
             android:label="@string/title_activity_dynamic_action"
-            android:theme="@style/MyTheme">
-
+            android:theme="@style/MyTheme" >
+        </activity>
+        <activity
+            android:name=".Logout"
+            android:label="@string/title_activity_logout" >
         </activity>
     </application>
 
