@@ -29,6 +29,8 @@ import java.util.List;
 import Ormlite.DatabaseHelper;
 import Ormlite.sop_detailDao;
 import Ormlite.sop_detailVo;
+import Ormlite.step_recordDao;
+import Ormlite.step_recordVo;
 
 
 //p302
@@ -81,23 +83,27 @@ public class Stepdescription extends Activity {
         //detector = new GestureDetector(new MySimpleOnGestureListener());
         //des_rl.setOnTouchListener(new MyOnTouchListener());
 
-        WebView wv = (WebView)findViewById(R.id.webView);
+        //WebView wv = (WebView)findViewById(R.id.webView);
         //wv.loadUrl("https://www.google.com.tw");
 
+        //這一步驟有沒有要記錄(steprecording)
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
-        sop_detailDao msop_detailDao = new sop_detailDao();
-        //sop_detailVo msop_detailVo = new sop_detailVo();
-        List<sop_detailVo> list = null;
-        list = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number="+TAG_STEP_NUMBER);
-        Log.d("抓", list.get(0).getSop_number());
-
+        step_recordDao mstep_recordDao = new step_recordDao();
+        List<step_recordVo> list = null;
+        list = mstep_recordDao.selectRaw(mDatabaseHelper, "Step_number="+TAG_STEP_NUMBER);
+        if(!list.equals(null)){
+            TAG_Next = 1;
+        }else{
+            TAG_Next = 2;
+        }
 
         detector = new GestureDetector(new MySimpleOnGestureListener());
         WebView ww = (WebView)findViewById(R.id.webView);
+        ww.loadUrl("");
         ww.setOnTouchListener(new MyOnTouchListener());
     }
 
-    String StepName="";
+/*    String StepName="";
     String StepPurpose="";
     String StepIntro="";
 
@@ -154,9 +160,9 @@ public class Stepdescription extends Activity {
 
         }
 
-    }
+    }*/
 
-    class CheckNextActivity extends AsyncTask<String, String, Integer> {
+/*    class CheckNextActivity extends AsyncTask<String, String, Integer> {
 
         protected void onPreExecute() {
             super.onPreExecute();
@@ -200,7 +206,7 @@ public class Stepdescription extends Activity {
             }
         }
 
-    }
+    }*/
 
 
     @Override

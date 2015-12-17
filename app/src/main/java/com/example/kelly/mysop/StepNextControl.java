@@ -57,6 +57,8 @@ public class StepNextControl extends Activity {
         Log.d("抓", list.get(0).getNext_step_rule()+list.get(0).getNext_step_number());
         NextStepRule = Integer.valueOf(list.get(0).getNext_step_rule());
         TAG_NEXT_STEP_NUMBER = list.get(0).getNext_step_number();
+
+        UseNextStepRule(NextStepRule);
     }
 
 

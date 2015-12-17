@@ -7,7 +7,8 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "step_record")
 public class step_recordVo extends MDVo implements Serializable
 {
-	public static final String FIELD_Step_number ="Step_number";
+    public static final String FIELD_Id ="id";
+    public static final String FIELD_Step_number ="Step_number";
 	public static final String FIELD_Record_order ="Record_order";
 	public static final String FIELD_Record_text ="Record_text";
 	public static final String FIELD_Record_type ="Record_type";
@@ -15,7 +16,7 @@ public class step_recordVo extends MDVo implements Serializable
 	public static final String FIELD_Record_max ="Record_max";
 	public static final String FIELD_Record_min ="Record_min";
 	public static final String FIELD_Record_standard ="Record_standard";
-	/*@DatabaseField(generatedId = true)
+	@DatabaseField(columnName = FIELD_Id, canBeNull = false)
 	private int id;
 	public int getId()
 	{
@@ -24,7 +25,7 @@ public class step_recordVo extends MDVo implements Serializable
 	public void setId(int id)
 	{
 		this.id = id;
-	}*/
+	}
 	@DatabaseField(columnName = FIELD_Step_number, canBeNull = false)
 	private String Step_number;
 	public String getStep_number()
