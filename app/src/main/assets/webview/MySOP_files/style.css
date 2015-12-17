@@ -1,0 +1,205 @@
+/* <link rel="stylesheet" href="style.css">  �C�@���@�}�l��bhead��
+	�S���Ÿ����N�O���Y���W�r, �p body{} �N�O<body>
+	id�N�O#
+	class�N�O.
+*/
+	body
+	{
+		
+		font-family:microsoft Jhenghei;
+		border: 0px;
+		padding: 0px;
+		margin: 0px;
+		font: 20px Microsoft JhengHei, Sans-serif;
+		background-color: LightGray ;
+		color: #333333;
+	}
+	p
+	{
+		color: #5E5A54;
+	}
+	img
+	{
+		float:none;
+	}
+	textarea{
+		width:90%;
+	}
+	li{
+		color:salmon;
+	}
+	
+	h1.head
+	{
+		color: #5E5A54;
+	}
+	.login_head{
+		color:salmon;
+	}
+	#navbar
+	{
+		background-color:salmon;
+		font-size:20px;
+	}
+	#navbar-brand
+	{
+		font-size:20px;
+		color:white;
+	}
+	#glyphicon
+	{
+		margin-right:20px
+	}
+	.acc_pass
+	{
+		width:200px;
+	}
+	.sop-intro_left
+	{
+		display: block;
+	    padding: 4px;
+	    margin-bottom: 20px;
+	    line-height: 1.42857143;
+	    border-radius: 4px;
+	}
+	.sop-intro_left img
+	{
+	    display: block;
+	    max-width: 100%;
+	    height: auto;
+	}
+	.sop-intro_right
+	{
+		display: block;
+	    padding: 50px 4px ;
+	    margin-bottom: 20px;
+	    line-height: 1.42857143;
+	    border-radius: 4px;
+	}
+	.sop-toolbar
+	{
+		margin-top:40px;
+	}
+	.sop-tool
+	{
+		width:80px;
+		height:80px
+	}
+	
+	.button-active
+	{
+		background-color:salmon;
+		color:white;
+	}
+	
+	.carousel-caption
+	{
+		text-align: right;
+	}
+	
+	.border
+	{
+		border-style:groove;
+		height: 70px;
+	}
+	
+	.row
+	{
+		margin-top:10px;
+	}
+	
+	#pannel tr td{
+		padding:5px;
+	}
+	span{
+		font-family:microsoft Jhenghei;
+	}
+	
+	
+	#header{
+		margin-top:80px;
+	}
+	.sop_tool_outline{
+		border: 0px;
+		border-radius:10px;		
+		
+		background-color: White ;
+		color: Salmon;
+		margin-right:-15px;
+		margin-left:-15px;
+		
+
+	}
+	
+	.sop_step_outline{
+		background-color: White ;
+		border-radius:10px;		
+		padding:50px;
+		min-height:300px; 
+		line-height:3;
+	}
+	
+	.step_div {
+	cursor: pointer;
+	margin: 15px 0;
+	}
+	
+	.step_div span:hover {
+		background-color: #f3856b;
+		color: white;
+		border-radius: 3px;
+	}
+	
+	.step_div span {
+		padding: 5px;
+		display: inline-block;
+		width: 80%;
+	}
+	#content-top{
+		padding:5px 20px; margin:80px 40px 0px 40px; height:150px;
+	}
+	
+  
+	#sop-info{
+		border: 0px;
+		padding: 0px;
+		margin-right: 0px;
+		float: left;
+		
+		width: 320px;
+	}
+	#sop-pannel{
+		float: right; 
+	}
+	#sop-pannel ul{
+		list-style: none;
+	}
+	#sop-pannel ul li{
+		float: left;
+	}
+	#sop-pannel ul li .glyphicon{
+		color: black; font-size:60px;
+	}
+	#sop-pannel ul li .descript{
+		color: salmon; font-size:20px; margin-left: 20px;
+	}
+	#footer-content{
+		border: 0px;
+		padding: 25px;
+		margin: 40px 0px 20px 20px;
+		font-size: 16px;
+		
+		color: DarkGray;
+		
+		height:18px;
+	}
+	.hide_item{
+		display: none;
+	}
+	.display_item{
+		display: block;
+	}
+	.soplist-li{
+		padding: 0 15px;
+	}
+	

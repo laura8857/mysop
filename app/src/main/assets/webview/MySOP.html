@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)file:///C:/Users/kelly/Desktop/MySOP%20-%20%E9%A6%96%E9%A0%81.html -->
+<html ng-app="mysop" class="ng-scope"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+<title>MySOP - 首頁</title>
+
+<!-- CSS 讀入 Bootstrap+自定義style -->
+<link href="./MySOP_files/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="./MySOP_files/style.css" media="screen">
+<style type="text/css">
+
+
+.hide_step{
+	display: none;
+}
+.display_step{
+	display: block;
+}
+
+</style>
+<script src="./MySOP_files/angular.min.js"></script>
+<script src="./MySOP_files/angularmain.js"></script>
+<script type="text/javascript" src="./MySOP_files/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="./MySOP_files/main.js"></script>
+	
+</head>
+<body ng-controller="sopcontentCtrl" class="ng-scope">
+
+<!--導覽列-->	
+		<div id="header" )"="">
+		<nav class="navbar navbar-inverse navbar-fixed-top" id="navbar">
+
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="http://140.115.80.237/mysop/index.jsp" id="navbar-brand">My
+						SOP</a>
+				</div>
+
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="http://140.115.80.237/mysop/soplist.jsp">
+						f@gmail.com</a></li>
+						<li><a class=" glyphicon glyphicon-plus" data-toggle="modal" data-target=".bs-example-modal-lg"></a></li>
+						<li><a id="home" href="http://140.115.80.237/mysop/soplist.jsp"><span class="glyphicon glyphicon-user"></span> </a></li>
+						<li><a href="http://140.115.80.237/mysop/index2.jsp">登出</a></li>
+					</ul>
+					<form class="navbar-form navbar-right ng-pristine ng-valid">
+						<input type="text" class="form-control" placeholder="Search...">
+					</form>
+				</div>
+			</div>
+			</nav></div>
+		
+	
+
+	<!--導覽列end-->
+
+	<!--新增SOP-->
+	<div id="wrapper">
+		<div id="content">
+			<div class="container">
+				<div class="row sop_tool_outline">
+					<div class="col-md-4">
+						<div class="sop-intro_left">
+							<h3>
+								
+								修機車
+							</h3>
+							
+							<img src="./MySOP_files/none_image.jpg">
+						</div>
+						
+					</div>
+					
+					<div class="col-md-8">
+						<div class="sop-intro_right">
+							<div class="row ">
+								<div class="col-md-6">
+									<ul>
+										<li>作者：f@gmail.com</li>
+										<li>版本：1.0</li>
+										<li>主旨：null</li>
+										<li>說明：null</li>
+									</ul>
+								</div>
+								<div class="col-md-6">
+									<ul>
+										<li>生效日期：null</li>
+										<li>停用日期：null</li>
+										<li>啟動規則：null</li>
+									</ul>
+								</div>
+							</div>
+							
+							<div class="btn-group  btn-group-lg sop-toolbar" role="group">
+								<a class="btn btn-default glyphicon sop-tool glyphicon-arrow-left"></a>
+								<a class="btn btn-default glyphicon sop-tool glyphicon-phone"></a>
+								<a class="btn btn-default glyphicon sop-tool glyphicon-print" href="http://140.115.80.237/mysop/Print?sop_number=0a14rhf3&amp;sop_version=1.0" target="_blank"></a>
+								<a class="btn btn-default glyphicon sop-tool glyphicon-map-marker"></a>
+		
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-md-3 sop_step_outline">
+						<!--放步驟的div-->
+						<div class="step ">
+						
+							<div class="step_div" ng-click="selectorder(&#39;1&#39;)">
+								<span class="step_name">修車燈</span>
+							</div>
+						
+							<div class="step_div" ng-click="selectorder(&#39;2&#39;)">
+								<span class="step_name">修引擎</span>
+							</div>
+						
+							<div class="step_div" ng-click="selectorder(&#39;3&#39;)">
+								<span class="step_name">修電瓶</span>
+							</div>
+						
+						</div>
+						
+					</div>
+					<div class="col-md-1"></div>
+					
+					<div class="col-md-8 sop_step_outline">
+					
+						<div class="hide_step display_step" ng-class="{display_step: isDisplay(&#39;1&#39;)}">
+							<h3>步驟<span class="order_selected">1</span></h3>
+							<div>
+							<ul>
+								<!--2.任務主旨-->
+							<li>任務主旨</li> 
+								
+								<span>修好車燈</span>
+							
+		
+								<!--3.任務說明-->
+							<li>任務說明</li>	
+								
+								<span>修機車的第一步驟</span>
+							
+							
+								<!--4.任務內容-->
+							<li>任務內容</li>
+								<span>測試燈的亮度</span>
+							
+							<!--<tr>5.任務工作時間
+					<td>■ 任務工作時間</td>
+				</tr>
+				<tr>
+					<td>起始時間&nbsp;<input type="time" name="start_time" id="bookdate" placeholder="2014-09-18" style="font-size:20px;width:110px"></td>
+					<td>結束時間&nbsp;<input type="time" name="finish_time" id="bookdate" placeholder="2014-09-18" style="font-size:20px;width:110px"></td>
+				</tr>-->
+							
+								<!--6.啟動規則-->
+								<li>啟動規則</li>
+									
+									<span>
+										iBeacon  
+									</span>
+								
+							
+								<!--7.啟動訊息-->
+								<li> 啟動訊息</li>
+									
+									<span>開始修車燈</span>
+								
+							
+								<!--8.啟動提示方式-->
+								<li>啟動提示方式</li>
+									 
+									<span>
+										手錶(穿戴)  
+									</span>
+								
+							
+								<!--9.任務內容提示方式-->
+								<li>任務內容提示方式</li>
+									<span>
+										行動裝置螢幕  
+									</span>
+								
+		
+		
+						</ul>
+								<!--1.記錄事項-->
+						<h3>記錄事項</h3>
+						<ul>
+							<div class="row">
+								  <div class="col-md-6">
+								  
+										<!--2.類型/標準值-->
+										<li>類型</li>
+											
+										<span>
+										無  
+								</span>
+										<li>標準值</li>
+											<span></span>
+										
+								
+										<!--3.記錄單位-->
+										<li>記錄單位</li>
+											<span></span>
+										
+									</div>
+									<div class="col-md-6">
+										<li>管制上限</li>
+											<span></span>
+										
+									
+										<!--4.記錄內容-->
+										<li>記錄內容</li>
+											<span></span>
+										
+										<li>管制下限</li>
+											<span></span>
+										
+									</div>
+								</div>
+								<!--5.完工規則-->
+								<li>完工規則</li>
+								<span>
+										人工確認  
+									</span>
+								
+							
+								<!--6.下一動作判斷規則-->
+								<li>下一動作判斷規則</li>
+
+								<span>
+								無  
+								</span>
+							
+								<!--7.下一動作編號-->
+								<li>下一動作編號</li>
+									<span></span>
+
+								
+							</ul>
+						</div>
+						</div>
+						
+						<div class=" hide_step" ng-class="{display_step: isDisplay(&#39;2&#39;)}">
+							<h3>步驟<span class="order_selected">2</span></h3>
+							<div>
+							<ul>
+								<!--2.任務主旨-->
+							<li>任務主旨</li> 
+								
+								<span>把引擎修好Ｒ</span>
+							
+		
+								<!--3.任務說明-->
+							<li>任務說明</li>	
+								
+								<span>引擎step1</span>
+							
+							
+								<!--4.任務內容-->
+							<li>任務內容</li>
+								<span>測試引擎會不會跑</span>
+							
+							<!--<tr>5.任務工作時間
+					<td>■ 任務工作時間</td>
+				</tr>
+				<tr>
+					<td>起始時間&nbsp;<input type="time" name="start_time" id="bookdate" placeholder="2014-09-18" style="font-size:20px;width:110px"></td>
+					<td>結束時間&nbsp;<input type="time" name="finish_time" id="bookdate" placeholder="2014-09-18" style="font-size:20px;width:110px"></td>
+				</tr>-->
+							
+								<!--6.啟動規則-->
+								<li>啟動規則</li>
+									
+									<span>
+										依設定時間啟動(指定日期、指定間隔時間)  
+									</span>
+								
+							
+								<!--7.啟動訊息-->
+								<li> 啟動訊息</li>
+									
+									<span>null</span>
+								
+							
+								<!--8.啟動提示方式-->
+								<li>啟動提示方式</li>
+									 
+									<span>
+										無  
+									</span>
+								
+							
+								<!--9.任務內容提示方式-->
+								<li>任務內容提示方式</li>
+									<span>
+										無  
+									</span>
+								
+		
+		
+						</ul>
+								<!--1.記錄事項-->
+						<h3>記錄事項</h3>
+						<ul>
+							<div class="row">
+								  <div class="col-md-6">
+								  
+										<!--2.類型/標準值-->
+										<li>類型</li>
+											
+										<span>
+										無  
+								</span>
+										<li>標準值</li>
+											<span></span>
+										
+								
+										<!--3.記錄單位-->
+										<li>記錄單位</li>
+											<span></span>
+										
+									</div>
+									<div class="col-md-6">
+										<li>管制上限</li>
+											<span></span>
+										
+									
+										<!--4.記錄內容-->
+										<li>記錄內容</li>
+											<span></span>
+										
+										<li>管制下限</li>
+											<span></span>
+										
+									</div>
+								</div>
+								<!--5.完工規則-->
+								<li>完工規則</li>
+								<span>
+										無  
+									</span>
+								
+							
+								<!--6.下一動作判斷規則-->
+								<li>下一動作判斷規則</li>
+
+								<span>
+								無  
+								</span>
+							
+								<!--7.下一動作編號-->
+								<li>下一動作編號</li>
+									<span></span>
+
+								
+							</ul>
+						</div>
+						</div>
+						
+						<div class=" hide_step" ng-class="{display_step: isDisplay(&#39;3&#39;)}">
+							<h3>步驟<span class="order_selected">3</span></h3>
+							<div>
+							<ul>
+								<!--2.任務主旨-->
+							<li>任務主旨</li> 
+								
+								<span>把電瓶搞定</span>
+							
+		
+								<!--3.任務說明-->
+							<li>任務說明</li>	
+								
+								<span>電瓶step1</span>
+							
+							
+								<!--4.任務內容-->
+							<li>任務內容</li>
+								<span>null</span>
+							
+							<!--<tr>5.任務工作時間
+					<td>■ 任務工作時間</td>
+				</tr>
+				<tr>
+					<td>起始時間&nbsp;<input type="time" name="start_time" id="bookdate" placeholder="2014-09-18" style="font-size:20px;width:110px"></td>
+					<td>結束時間&nbsp;<input type="time" name="finish_time" id="bookdate" placeholder="2014-09-18" style="font-size:20px;width:110px"></td>
+				</tr>-->
+							
+								<!--6.啟動規則-->
+								<li>啟動規則</li>
+									
+									<span>
+										無  
+									</span>
+								
+							
+								<!--7.啟動訊息-->
+								<li> 啟動訊息</li>
+									
+									<span>null</span>
+								
+							
+								<!--8.啟動提示方式-->
+								<li>啟動提示方式</li>
+									 
+									<span>
+										無  
+									</span>
+								
+							
+								<!--9.任務內容提示方式-->
+								<li>任務內容提示方式</li>
+									<span>
+										無  
+									</span>
+								
+		
+		
+						</ul>
+								<!--1.記錄事項-->
+						<h3>記錄事項</h3>
+						<ul>
+							<div class="row">
+								  <div class="col-md-6">
+								  
+										<!--2.類型/標準值-->
+										<li>類型</li>
+											
+										<span>
+										無  
+								</span>
+										<li>標準值</li>
+											<span></span>
+										
+								
+										<!--3.記錄單位-->
+										<li>記錄單位</li>
+											<span></span>
+										
+									</div>
+									<div class="col-md-6">
+										<li>管制上限</li>
+											<span></span>
+										
+									
+										<!--4.記錄內容-->
+										<li>記錄內容</li>
+											<span></span>
+										
+										<li>管制下限</li>
+											<span></span>
+										
+									</div>
+								</div>
+								<!--5.完工規則-->
+								<li>完工規則</li>
+								<span>
+										無  
+									</span>
+								
+							
+								<!--6.下一動作判斷規則-->
+								<li>下一動作判斷規則</li>
+
+								<span>
+								無  
+								</span>
+							
+								<!--7.下一動作編號-->
+								<li>下一動作編號</li>
+									<span></span>
+
+								
+							</ul>
+						</div>
+						</div>
+						
+					</div>
+				
+				</div><!--end row-->
+			</div><!--end container-->
+		</div>
+	</div>
+	<!--新增SOPend-->
+	<div id="footer">
+		<div id="footer-content">©2015 MySOP 網站服務條款 隱私權政策 開發人員 MySOP
+			完全手冊</div>
+	</div>
+
+
+
+	<!-- Bootstdap core JavaScript
+    ================================================== -->
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src="./MySOP_files/jquery.min.js"></script>
+	<script src="./MySOP_files/bootstdap.min.js"></script>
+	<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+	<script src="./MySOP_files/holder.js"></script>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+	<script src="./MySOP_files/ie10-viewport-bug-workaround.js"></script>
+
+
+
+</body></html>
