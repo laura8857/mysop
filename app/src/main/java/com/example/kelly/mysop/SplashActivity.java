@@ -1,13 +1,19 @@
 package com.example.kelly.mysop;
 
 import android.app.Activity;
+import android.app.DownloadManager;
 import android.app.ProgressDialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -56,6 +62,10 @@ public class SplashActivity extends Activity {
     JSONArray products1 = null;
     JSONArray products2 = null;
 
+    Context mContext;
+    DownloadManager manager ;
+    DownloadCompleteReceiver receiver;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -79,11 +89,54 @@ public class SplashActivity extends Activity {
         mmember_accountDao1.insert(mDatabaseHelper1, mmember_accountVo);
 
         getAccount();
-
         //DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         //List<member_accountVo> list;
         //list = mmember_accountDao1.selectRaw(mDatabaseHelper1, "account=test@gmail.com");
 
+        //下載
+        mContext = this;
+        manager =(DownloadManager)getSystemService(DOWNLOAD_SERVICE);
+        receiver = new DownloadCompleteReceiver();
+        download();
+
+    }
+
+    public void download() {
+        DownloadManager.Request down=new DownloadManager.Request (Uri.parse("http://140.115.80.237/front/download/testhtml.html"));
+        //允許網路類型
+        down.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+        //禁止發通知
+        down.setShowRunningNotification(false);
+        //不顯示下載頁面
+        down.setVisibleInDownloadsUi(false);
+        //下載後存放位置
+        //down.setDestinationInExternalFilesDir(mContext, null, "testhtml.html");
+        //在sdcard裡面的MYSOPTEST資料夾
+        down.setDestinationInExternalPublicDir("MYSOPTEST", "testhtml.html");
+        //將請求加入
+        manager.enqueue(down);
+    }
+    class DownloadCompleteReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(DownloadManager.ACTION_DOWNLOAD_COMPLETE)){
+                long downId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
+                Log.v("SplashActivity"," download complete! id : "+downId);
+                Toast.makeText(context, intent.getAction()+"id : "+downId, Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        registerReceiver(receiver, new IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE));
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if(receiver != null)unregisterReceiver(receiver);
+        super.onDestroy();
     }
 
     public void getAccount() {
@@ -410,7 +463,7 @@ public class SplashActivity extends Activity {
                 msop_masterDao5.insert(mDatabaseHelper5, msop_masterVo5);
 
             }
-
+/*
             //測試
             DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);
             sop_detailDao msop_detailDao9 = new sop_detailDao();
@@ -434,7 +487,7 @@ public class SplashActivity extends Activity {
             Log.d("onpost_test2",sopdetaillist10.get(0).getStep_number());
             Log.d("onpost_test2",sopdetaillist10.get(0).getStep_intro());
             //測試
-
+*/
 
             //startActivity(new Intent().setClass(SplashActivity.this, Login.class));
             Bundle bundle = new Bundle();
