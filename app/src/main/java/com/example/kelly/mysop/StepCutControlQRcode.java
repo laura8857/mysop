@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,6 +19,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
 
 
 public class StepCutControlQRcode extends Activity {
@@ -32,6 +38,9 @@ public class StepCutControlQRcode extends Activity {
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
 
+    String QRcode = "";
+    private sop_detailDao msop_detailDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +54,15 @@ public class StepCutControlQRcode extends Activity {
         TAG_STEP_NUMBER = bundle.getString("TAG_STEP_NUMBER");
         TAG_STEP_ORDER = bundle.getInt("TAG_STEP_ORDER");
         ss.setText(Integer.toString(TAG_STEP_ORDER));
+
+        //orm 用stepnumber去抓資料庫的東西
+        msop_detailDao = new sop_detailDao();
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        List<sop_detailVo> list = null;
+        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number =" + TAG_STEP_NUMBER);
+        Log.d("抓", list.get(0).getFinish_value1());
+        QRcode = list.get(0).getFinish_value1();
+
     }
 
 
@@ -101,7 +119,23 @@ public class StepCutControlQRcode extends Activity {
                 // ZXing回傳的內容
                 String contents = intent.getStringExtra("SCAN_RESULT");
                 textView1.setText(contents.toString());
-                new EndCheckQR().execute();
+                //new EndCheckQR().execute();
+                //判斷qrcode一樣否
+                String QRnumber=StepCutControlQRcode.this.textView1.getText().toString();
+                if( QRnumber.equals(QRcode)){
+                    Intent intent1 = new Intent(StepCutControlQRcode.this,StepNextControl.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+                    bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+                    bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+                    intent1.putExtras(bundle);//將參數放入intent
+                    startActivity(intent1);
+                }else {
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(StepCutControlQRcode.this);
+                    dialog.setTitle("");
+                    dialog.setMessage("目標錯誤，請尋找正確QR code");
+                    dialog.show();
+                }
             }
             else
             if(resultCode==RESULT_CANCELED)
@@ -111,7 +145,7 @@ public class StepCutControlQRcode extends Activity {
         }
     }
 
-    class EndCheckQR extends AsyncTask<String, String, Integer> {
+/*    class EndCheckQR extends AsyncTask<String, String, Integer> {
 
 
         protected void onPreExecute() {
@@ -173,5 +207,5 @@ public class StepCutControlQRcode extends Activity {
 
             }
         }
-    }
+    }*/
 }

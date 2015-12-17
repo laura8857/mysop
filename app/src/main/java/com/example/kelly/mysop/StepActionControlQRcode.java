@@ -124,7 +124,7 @@ public class StepActionControlQRcode extends Activity {
 
                 //判斷qrcode一樣否
                 String QRnumber=StepActionControlQRcode.this.textView1.getText().toString();
-               if( QRnumber.equals(QRcode)){
+                if( QRnumber.equals(QRcode)){
                    Intent intent1 = new Intent(StepActionControlQRcode.this,Stepdescription.class);
                    Bundle bundle = new Bundle();
                    bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
@@ -132,12 +132,12 @@ public class StepActionControlQRcode extends Activity {
                    bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
                    intent1.putExtras(bundle);//將參數放入intent
                    startActivity(intent1);
-            }else {
+                }else {
                    AlertDialog.Builder dialog = new AlertDialog.Builder(StepActionControlQRcode.this);
                    dialog.setTitle("");
                    dialog.setMessage("目標錯誤，請尋找正確QR code");
                    dialog.show();
-               }
+                }
 
             }
             else

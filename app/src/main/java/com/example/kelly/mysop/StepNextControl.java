@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -13,6 +14,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
 
 
 public class StepNextControl extends Activity {
@@ -28,6 +34,10 @@ public class StepNextControl extends Activity {
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
 
+    int NextStepRule;
+    private sop_detailDao msop_detailDao;
+    private DatabaseHelper mDatabaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +49,14 @@ public class StepNextControl extends Activity {
         TAG_STEP_NUMBER = bundle.getString("TAG_STEP_NUMBER");
         TAG_STEP_ORDER = bundle.getInt("TAG_STEP_ORDER");
 
-        new CheckNextControlRule().execute();
-
+        //new CheckNextControlRule().execute();
+        mDatabaseHelper = DatabaseHelper.getHelper(this);
+        msop_detailDao = new sop_detailDao();
+        List<sop_detailVo> list = null;
+        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number ="+TAG_STEP_NUMBER);
+        Log.d("抓", list.get(0).getNext_step_rule()+list.get(0).getNext_step_number());
+        NextStepRule = Integer.valueOf(list.get(0).getNext_step_rule());
+        TAG_NEXT_STEP_NUMBER = list.get(0).getNext_step_number();
     }
 
 
@@ -65,7 +81,54 @@ public class StepNextControl extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    //判斷完工規則 1依順序決定 2依使用者決定 3依資料決定
+    public void UseNextStepRule(int NextStepRule){
 
+        Bundle bundle = new Bundle();
+        bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+
+        //依順序決定but又是最後一步
+        if(NextStepRule == 0){
+            Intent it = new Intent(StepNextControl.this, StepCaseEnding.class);
+            it.putExtras(bundle);
+            startActivity(it);
+            finish();
+
+        }else {
+
+            bundle.putString("TAG_NEXT_STEP_NUMBER", TAG_NEXT_STEP_NUMBER);
+
+            switch (NextStepRule) {
+                case 1:
+                    // 依順序決定
+                    Intent it1 = new Intent(StepNextControl.this, StepActionControl.class);
+                    it1.putExtras(bundle);//將參數放入intent
+                    startActivity(it1);
+                    finish();
+                    break;
+                case 2:
+                    // 依使用者決定
+                    Intent it2 = new Intent(StepNextControl.this, StepNextControlUser.class);
+                    it2.putExtras(bundle);//將參數放入intent
+                    startActivity(it2);
+                    finish();
+                    break;
+                case 3:
+                    // 依資料決定
+                    Intent it3 = new Intent(StepNextControl.this, StepNextControl.class);
+                    it3.putExtras(bundle);//將參數放入intent
+                    startActivity(it3);
+                    finish();
+                    break;
+                default:
+                    System.out.println("WRONG");
+                    break;
+
+            }
+        }
+    }
+
+/*
     //判斷完工規則 1依順序決定 2依使用者決定 3依資料決定
     class CheckNextControlRule extends AsyncTask<String, String, Integer> {
         protected void onPreExecute() {
@@ -164,5 +227,5 @@ public class StepNextControl extends Activity {
 
         }
 
-    }
+    }*/
 }

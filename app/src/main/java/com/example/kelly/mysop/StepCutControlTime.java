@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
 
 
 public class StepCutControlTime extends Activity {
@@ -39,6 +45,8 @@ public class StepCutControlTime extends Activity {
     String TAG_CASE_NUMBER = "";
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
+
+    private sop_detailDao msop_detailDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +69,88 @@ public class StepCutControlTime extends Activity {
         timebtn=(Button)findViewById(R.id.timecheck);
         timedifference=(TextView)findViewById(R.id.timedifference);
 
-        new CheckTimeEnd().execute();
+        //orm 用stepnumber去抓資料庫的東西
+        msop_detailDao = new sop_detailDao();
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        List<sop_detailVo> list = null;
+        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number =" + TAG_STEP_NUMBER);
+        Log.d("抓", list.get(0).getFinish_value1());
+        Starttime=list.get(0).getFinish_value1();
+
+        if(str.equals(Starttime)){
+            Intent intent1 = new Intent(StepCutControlTime.this,StepNextControl.class);
+            Bundle bundle1 = new Bundle();
+            bundle1.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+            bundle1.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+            bundle1.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+            intent1.putExtras(bundle1);//將參數放入intent
+            startActivity(intent1);
+            timebtn.setText("啟動");
+
+        }else {
+            SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
+            Date now = null;
+
+            try {
+                now = df.parse(Starttime);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Date date = null;
+            try {
+                date = df.parse(str);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            long l;
+
+            //比較時間大小
+            if(now.getTime()>date.getTime()) {
+                //未過期
+                l = now.getTime() - date.getTime();
+                check=0;
+            }else{
+                //過期
+                l = date.getTime() - now.getTime();
+                check=1;
+            }
+            long l2 = l/(30*24*60*60);
+
+            //計算時間差
+            long month=l2/1000;
+            long day = l / (24 * 60 * 60 * 1000)- month * 30;
+            long hour = (l / (60 * 60 * 1000) - month * 30 * 24 - day * 24);
+            long min = ((l / (60 * 1000)) - month * 30 * 24 * 60- day * 24 * 60 - hour * 60);
+            long s = (l / 1000 - month * 30 * 24 * 60 * 60- day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
+            System.out.println(month+"月" + day + "天" + hour + "小时" + min + "分" + s + "秒");
+
+            if(check==0) {
+                timebtn.setText("時辰未到");
+                if (month == 0) {
+                    timedifference.setText("還差" + day + "天" + hour + "小时" + min + "分");
+                } else if (month == 0 && day == 0) {
+                    timedifference.setText("還差" + hour + "小时" + min + "分");
+                } else if (month == 0 && day == 0 && hour == 0) {
+                    timedifference.setText("還差" + min + "分");
+                    timedifference.setTextColor(Color.RED);
+                } else {
+                    timedifference.setText("還差" + month + "月" + day + "天" + hour + "小时" + min + "分");
+                }
+            }else{
+                //過期
+                Intent intent2 = new Intent(StepCutControlTime.this,StepNextControl.class);
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+                bundle2.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+                bundle2.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+                intent2.putExtras(bundle2);//將參數放入intent
+                startActivity(intent2);
+                timebtn.setText("啟動");
+            }
+        }
+
+
+        //new CheckTimeEnd().execute();
     }
 
 
@@ -104,7 +193,7 @@ public class StepCutControlTime extends Activity {
             dialog.show();
         }
     }
-    class CheckTimeEnd extends AsyncTask<String, String, Integer> {
+/*    class CheckTimeEnd extends AsyncTask<String, String, Integer> {
 
 
         protected void onPreExecute() {
@@ -230,5 +319,5 @@ public class StepCutControlTime extends Activity {
             }
 
         }
-    }
+    }*/
 }

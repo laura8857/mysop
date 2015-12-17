@@ -25,6 +25,11 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.List;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
 
 
 public class StepCutControlGPS extends Activity {
@@ -50,6 +55,8 @@ public class StepCutControlGPS extends Activity {
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
 
+    private sop_detailDao msop_detailDao;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,6 +69,17 @@ public class StepCutControlGPS extends Activity {
         TAG_STEP_NUMBER = bundle.getString("TAG_STEP_NUMBER");
         TAG_STEP_ORDER = bundle.getInt("TAG_STEP_ORDER");
         ss.setText(Integer.toString(TAG_STEP_ORDER));
+
+        //orm 用stepnumber去抓資料庫的東西
+        msop_detailDao = new sop_detailDao();
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        List<sop_detailVo> list = null;
+        list = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number ="+TAG_STEP_NUMBER);
+        Log.d("抓", list.get(0).getFinish_value1()+" "+list.get(0).getFinish_value2());
+        DLongitude = Double.parseDouble(list.get(0).getFinish_value1());
+        DLatitude = Double.parseDouble(list.get(0).getFinish_value2());
+
+
 
         //LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
 
@@ -79,7 +97,7 @@ public class StepCutControlGPS extends Activity {
         //取得定位權限
         mLocationManager = (LocationManager) getSystemService(StepActionControlGPS.LOCATION_SERVICE);
         //連線取目的地
-        new CheckGPS().execute();
+        //new CheckGPS().execute();
 
         //取得在Layout建立的Button元件
 
@@ -271,7 +289,7 @@ public class StepCutControlGPS extends Activity {
     }
 
 
-    class CheckGPS extends AsyncTask<String, String, Integer> {
+/*    class CheckGPS extends AsyncTask<String, String, Integer> {
 
 
         protected void onPreExecute() {
@@ -317,5 +335,5 @@ public class StepCutControlGPS extends Activity {
             pDialog.dismiss();
 
         }
-    }
+    }*/
 }

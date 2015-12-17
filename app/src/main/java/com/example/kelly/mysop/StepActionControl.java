@@ -69,6 +69,7 @@ public class StepActionControl extends Activity {
             //mcase_masterDao.update(mDatabaseHelper,mcase_masterVo);
 
             //list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number IN(SELECT last_do_order FROM case_master WHERE case_number='"+TAG_CASE_NUMBER+"')");
+            msop_detailDao = new sop_detailDao();
             list = msop_detailDao.selectRawByNest(mDatabaseHelper,"Case_number",TAG_CASE_NUMBER,"Step_number");
             StartRule = Integer.valueOf(list.get(0).getStart_rule());
             TAG_STEP_ORDER = Integer.valueOf(list.get(0).getStep_order());

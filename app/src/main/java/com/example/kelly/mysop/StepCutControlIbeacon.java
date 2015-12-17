@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,6 +27,10 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
 
 
 public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
@@ -49,11 +54,16 @@ public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
 
+    private sop_detailDao msop_detailDao;
+    private DatabaseHelper mDatabaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_cut_control_ibeacon);
         Log.d("oncreateee", Integer.toString(connectfinish));
+
+        mDatabaseHelper = DatabaseHelper.getHelper(this);
 
         TextView ss = (TextView)findViewById(R.id.CC_ibeacon_textView2);
         Intent intent = this.getIntent();
@@ -181,20 +191,30 @@ public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
             startActivity(enabler);
             Toast.makeText(this, "藍芽藍芽?沒打開喔!", Toast.LENGTH_LONG).show();
         }else {
-            new Check_beacon().execute();
+            //new Check_beacon().execute();
+
+            msop_detailDao = new sop_detailDao();
+            List<sop_detailVo> list = null;
+            list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number ="+TAG_STEP_NUMBER);
+            Log.d("抓", list.get(0).getFinish_value1());
+            UUID = list.get(0).getFinish_value1();
+            connectfinish=1;
+            beaconManager = BeaconManager.getInstanceForApplication(StepCutControlIbeacon.this);
+            beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
+            beaconManager.bind(StepCutControlIbeacon.this);
+
+            Button ibeacon_button = (Button) findViewById(R.id.CC_ibeacon_button);
+            ibeacon_button.setEnabled(false);
+
             Log.d("isithere", Integer.toString(connectfinish));
 
         }
     }
 
-    /**
-     * Background Async Task to Load all product by making HTTP Request
-     * */
-    class Check_beacon extends AsyncTask<String, String, Integer> {
 
-        /**
-         * Before starting background thread Show Progress Dialog
-         */
+/*    class Check_beacon extends AsyncTask<String, String, Integer> {
+
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -205,9 +225,7 @@ public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
             pDialog.show();
         }
 
-        /**
-         * getting All products from url
-         */
+
         protected Integer doInBackground(String... args) {
 
             int returnvalue = 0;
@@ -241,10 +259,7 @@ public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
             return returnvalue;
         }
 
-        /**
-         * After completing background task Dismiss the progress dialog
-         * *
-         */
+
         protected void onPostExecute(Integer returnvalue) {
             // dismiss the dialog after getting all products
             pDialog.dismiss();
@@ -258,7 +273,7 @@ public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
             }
 
         }
-    }
+    }*/
 
 
 

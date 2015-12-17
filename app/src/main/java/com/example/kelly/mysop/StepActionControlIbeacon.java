@@ -176,6 +176,7 @@ public class StepActionControlIbeacon extends Activity implements BeaconConsumer
             list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number ="+TAG_STEP_NUMBER);
             Log.d("抓", list.get(0).getStart_value1());
             UUID = list.get(0).getStart_value1();
+            connectfinish=1;
             beaconManager = BeaconManager.getInstanceForApplication(StepActionControlIbeacon.this);
             beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
             beaconManager.bind(StepActionControlIbeacon.this);

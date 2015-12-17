@@ -29,7 +29,11 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
+import Ormlite.DatabaseHelper;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
 
 
 public class StepCutControlNFC extends Activity {
@@ -51,10 +55,15 @@ public class StepCutControlNFC extends Activity {
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
 
+    private sop_detailDao msop_detailDao;
+    private DatabaseHelper mDatabaseHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_cut_control_nfc);
+
+        mDatabaseHelper = DatabaseHelper.getHelper(this);
 
         TextView ss = (TextView)findViewById(R.id.CC_NFC_textView2);
         Intent intent = this.getIntent();
@@ -148,7 +157,29 @@ public class StepCutControlNFC extends Activity {
             }
         }
         //mTextView.setText(s);
-        new Check_NFC().execute(NFC_UUID[0]);
+        //new Check_NFC().execute(NFC_UUID[0]);
+        msop_detailDao = new sop_detailDao();
+        List<sop_detailVo> list = null;
+        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number ="+TAG_STEP_NUMBER);
+        Log.d("抓", list.get(0).getFinish_value1());
+        if(list.get(0).getFinish_value1().equals(NFC_UUID[0])){
+
+            Intent Intent = new Intent();
+            Intent.setClass(StepCutControlNFC.this, StepNextControl.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+            bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+            bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+            Intent.putExtras(bundle);//將參數放入intent
+            startActivity(Intent);
+            //切換畫面，右近左出
+            overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+        }else{
+            AlertDialog.Builder dialog = new AlertDialog.Builder(StepCutControlNFC.this);
+            dialog.setTitle("");
+            dialog.setMessage("比對結果錯誤，請使用正確的NFC Tag比對!");
+            dialog.show();
+        }
     }
 
 
@@ -165,7 +196,7 @@ public class StepCutControlNFC extends Activity {
             mNfcAdapter.disableForegroundDispatch(this);
     }
 
-    class Check_NFC extends AsyncTask<String, String, Integer> {
+/*    class Check_NFC extends AsyncTask<String, String, Integer> {
 
 
         protected void onPreExecute() {
@@ -227,5 +258,5 @@ public class StepCutControlNFC extends Activity {
             }
 
         }
-    }
+    }*/
 }
