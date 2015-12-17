@@ -179,8 +179,7 @@ public class StepCaseEnding extends Activity {
 
         for(int i =0;i< Count;i++){
 
-            //UPDATE
-
+            //UPDATE orm
             //mmember_accountDao2.update(mDatabaseHelper2,"account","test","username","678");
             mcase_recordDao.update(mDatabaseHelper,"Step_order",steporder[i],"Record_order",recordorder[i],"Record_value",RecordText[i]);
 
@@ -202,6 +201,14 @@ public class StepCaseEnding extends Activity {
 
     public void close (View v){
         new SOPContent2().execute();
+        //Delete orm
+        DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(StepCaseEnding.this);
+        case_recordDao mcase_recordDao2 = new case_recordDao();
+        mcase_recordDao2.delete(mDatabaseHelper2,"Case_number", TAG_CASE_NUMBER);
+        case_masterDao mcase_master2 = new case_masterDao();
+        mcase_master2.delete(mDatabaseHelper2,"Case_number",TAG_CASE_NUMBER);
+
+
 
     }
 

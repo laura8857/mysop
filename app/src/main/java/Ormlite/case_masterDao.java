@@ -1,13 +1,12 @@
 package Ormlite;
 
-import java.sql.SQLException;
-import java.util.List;
-import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
-import com.j256.ormlite.support.ConnectionSource;
+
+import java.sql.SQLException;
+import java.util.List;
 //import com.ck.ap.DatabaseHelper;
 
 //�ap_master Dao��
@@ -70,18 +69,31 @@ public class case_masterDao
         return 0;
     }
 
-	/* delete */
-	public static int delete(DatabaseHelper databaseHelper, case_masterVo case_masterVo) {
-		RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
-				.getCase_masterDao();
-		try {
-			return case_masterDao.delete(case_masterVo);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return 0;
-	}
+//	/* delete */
+//	public static int delete(DatabaseHelper databaseHelper, case_masterVo case_masterVo) {
+//		RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
+//				.getCase_masterDao();
+//		try {
+//			return case_masterDao.delete(case_masterVo);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		return 0;
+//	}
+public static int delete(DatabaseHelper databaseHelper, String columnvalue, String originalvalue) {
+	RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
+			.getCase_masterDao();
+	DeleteBuilder<case_masterVo,Integer> deleteBuilder = case_masterDao.deleteBuilder();
+	try {
+		//判斷式 哪一欄 = 值
+		deleteBuilder.where().eq(columnvalue, originalvalue);
 
+		return deleteBuilder.delete();
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+	return 0;
+}
 	/* selectRaw */
 	public static case_masterVo getCase_masterVo(DatabaseHelper databaseHelper) {
 		RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
