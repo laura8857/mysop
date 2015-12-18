@@ -173,8 +173,8 @@ public class Register extends Activity {
                 int e = json.getInt(TAG_SUCCESS);
                 if(e == 1) {
                     Register.this.TAG_ACCOUNT = Register.this.et1.getText().toString();
-                    //Intent i = new Intent(Register.this.getApplicationContext(), Emailverify.class);
-                   Intent i = new Intent(Register.this.getApplicationContext(), Search.class);
+                    Intent i = new Intent(Register.this.getApplicationContext(), Emailverify.class);
+                   //Intent i = new Intent(Register.this.getApplicationContext(), Search.class);
 
                     //設定傳送參數
                     Bundle bundle = new Bundle();
