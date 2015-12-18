@@ -574,7 +574,12 @@ public class Mysop extends Activity {
                 startActivity(new Intent().setClass(Mysop.this, Changepassword.class));
                 break;
             case R.id.title_activity_searching:
-                startActivity(new Intent().setClass(Mysop.this, Search.class));
+                //startActivity(new Intent().setClass(Mysop.this, Search.class));
+                Intent i = new Intent(this, Search.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("TAG_Key", "");
+                i.putExtras(bundle);	//將參數放入intent
+                startActivity(i);
                 break;
             case R.id.title_activity_dynamic_action:
                 startActivity(new Intent().setClass(Mysop.this, DynamicAction.class));
