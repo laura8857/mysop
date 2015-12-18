@@ -20,8 +20,11 @@ public class Logout extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logout);
-        Intent it = new Intent(this,Home.class);
-        startActivity(it);
+        Intent i = new Intent(this, Home.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("TAG_Key", "");
+        i.putExtras(bundle);	//將參數放入intent
+        startActivity(i);
 
 
     }
