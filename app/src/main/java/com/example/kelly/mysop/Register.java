@@ -178,8 +178,8 @@ public class Register extends Activity {
 
                     //設定傳送參數
                     Bundle bundle = new Bundle();
-                    //bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
-                    bundle.putString("TAG_Key", "");
+                    bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+                    //bundle.putString("TAG_Key", "");
                     i.putExtras(bundle);	//將參數放入intent
 
                     Register.this.startActivity(i);

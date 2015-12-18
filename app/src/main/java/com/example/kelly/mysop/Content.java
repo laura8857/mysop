@@ -194,6 +194,9 @@ public class Content extends Activity {
     public void addtolist (View v){
         new SOPContent2().execute();
         Intent it = new Intent(this,Mysop.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+        it.putExtras(bundle);
         startActivity(it);
     }
 
