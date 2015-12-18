@@ -76,7 +76,7 @@ public class Start extends Activity {
         start_detail.setText(list.get(0).getSop_detail());
 
         TextView start_right = (TextView)findViewById(R.id.start_right);
-        start_right.setText(Count);
+        start_right.setText(String.valueOf(Count));
 
         Log.d("抓", list.get(0).getSop_number());
         //Toast.makeText(this, list.get(0).getSop_number(), Toast.LENGTH_SHORT).show();
