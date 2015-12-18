@@ -64,6 +64,7 @@ public class Stepdescription extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stepdescription);
 
+
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
@@ -100,12 +101,15 @@ public class Stepdescription extends Activity {
             TAG_Next = 2;
         }
         Log.d("TAG_Next",String.valueOf(TAG_Next));
+
+
         detector = new GestureDetector(new MySimpleOnGestureListener());
         WebView ww = (WebView)findViewById(R.id.webView);
         WebSettings settings = ww.getSettings();
         settings.setDefaultTextEncodingName("utf-8");
         ww.setInitialScale(85);
         ww.loadUrl("file:///android_asset/webview/MySOP.html");
+       // ww.loadUrl("file:///sdcard/MYSOPTEST/testhtml.html");
         //ww.loadData("中文", "text/html; charset=utf-8", "UTF-8");
         ww.setOnTouchListener(new MyOnTouchListener());
     }
