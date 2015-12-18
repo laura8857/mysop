@@ -53,7 +53,7 @@ public class Start extends Activity {
         Bundle bundle = intent.getExtras();	//取得Bundle
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
 
-
+        Log.d("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
 
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         msop_masterDao = new sop_masterDao();
@@ -70,7 +70,7 @@ public class Start extends Activity {
         int Count = listforcount.size();
 
         TextView start_title = (TextView)findViewById(R.id.start_title);
-        start_title.setText(list.get(0).getSop_number());
+        start_title.setText(list.get(0).getSop_name());
 
         TextView start_detail = (TextView)findViewById(R.id.start_detail);
         start_detail.setText(list.get(0).getSop_detail());

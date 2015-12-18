@@ -561,7 +561,7 @@ public class Mysop extends Activity {
             Toast.makeText(getApplicationContext(), "你選擇的是" + list1[position], Toast.LENGTH_SHORT).show();
 
             Bundle bundle = new Bundle();
-            bundle.putString("TAG_CASE_NUMBER", list[position]);
+            bundle.putString("TAG_CASE_NUMBER", list1[position]);
 
             if(steporder1[position].equals("1")){
 

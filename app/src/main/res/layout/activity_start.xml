@@ -45,7 +45,7 @@
 
         <TextView
             android:layout_width="278dp"
-            android:layout_height="200dp"
+            android:layout_height="247dp"
             android:text="捷運東門站終於開通！附近好玩、好吃的商家都在哪裡呢？跟隨永康街一日遊，給自己一個深度遊永康街的周末吧！"
             android:id="@+id/start_detail"
             android:layout_marginTop="123dp"
@@ -80,7 +80,7 @@
             android:id="@+id/textView10"
             android:textColor="#ff000000"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="29dp" />
+            android:layout_marginTop="5dp" />
 
         <TextView
             android:layout_width="wrap_content"

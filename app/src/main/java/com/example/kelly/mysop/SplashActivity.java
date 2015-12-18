@@ -326,7 +326,7 @@ public class SplashActivity extends Activity {
                         map1.put("sop_name", sopname);
                         map1.put("sop_graph_src",sopgraphsrc);
                         map1.put("sop_intro",sopintro);
-                        map1.put("sop-detail",sopdetail);
+                        map1.put("sop_detail",sopdetail);
                         map1.put("account",account);
                         map1.put("startrule",startrule);
 
