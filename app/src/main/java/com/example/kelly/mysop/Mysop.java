@@ -538,9 +538,17 @@ public class Mysop extends Activity {
 
             Bundle bundle = new Bundle();
             bundle.putString("TAG_CASE_NUMBER", list[position]);
-            Intent it = new Intent(Mysop.this,StepActionControl.class);
-            it.putExtras(bundle);//將參數放入intent
-            startActivity(it);
+
+            if(steporder[position].equals("1")){
+
+                Intent it = new Intent(Mysop.this,Start.class);
+                it.putExtras(bundle);//將參數放入intent
+                startActivity(it);
+            }else{
+                Intent it = new Intent(Mysop.this,StepActionControl.class);
+                it.putExtras(bundle);//將參數放入intent
+                startActivity(it);
+            }
 
         }
 
@@ -553,10 +561,18 @@ public class Mysop extends Activity {
             Toast.makeText(getApplicationContext(), "你選擇的是" + list1[position], Toast.LENGTH_SHORT).show();
 
             Bundle bundle = new Bundle();
-            bundle.putString("TAG_CASE_NUMBER", list1[position]);
-            Intent it = new Intent(Mysop.this,StepActionControl.class);
-            it.putExtras(bundle);//將參數放入intent
-            startActivity(it);
+            bundle.putString("TAG_CASE_NUMBER", list[position]);
+
+            if(steporder1[position].equals("1")){
+
+                Intent it = new Intent(Mysop.this,Start.class);
+                it.putExtras(bundle);//將參數放入intent
+                startActivity(it);
+            }else{
+                Intent it = new Intent(Mysop.this,StepActionControl.class);
+                it.putExtras(bundle);//將參數放入intent
+                startActivity(it);
+            }
 
         }
 

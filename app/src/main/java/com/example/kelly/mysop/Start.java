@@ -126,7 +126,7 @@ public class Start extends Activity {
 
             Bundle bundle = new Bundle();
             bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
-            Intent it = new Intent(Start.this,ChangePasswordError.class);
+            Intent it = new Intent(Start.this,StepActionControl.class);
             it.putExtras(bundle);
             startActivity(it);
 
