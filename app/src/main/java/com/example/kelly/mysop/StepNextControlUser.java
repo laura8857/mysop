@@ -98,7 +98,7 @@ public class StepNextControlUser extends Activity {
             if(list1.get(i).getStep_number().equals(TAG_STEP_NUMBER)){
                 continue;
             }
-            ListOptionName[r] = list1.get(i).getStep_name();
+            ListOptionName[r] = "Step"+list1.get(i).getStep_order()+" "+list1.get(i).getStep_name();
             ListOptionNumber[r] = list1.get(i).getStep_number();
             r++;
         }
