@@ -83,13 +83,13 @@ public class StepNextControl extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    //判斷完工規則 1依順序決定 2依使用者決定 3依資料決定
+    //判斷下一步驟規則 0最後一步 1依順序決定 2依使用者決定 3依資料決定
     public void UseNextStepRule(int NextStepRule){
 
         Bundle bundle = new Bundle();
         bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
 
-        //依順序決定but又是最後一步
+        //最後一步
         if(NextStepRule == 0){
             Intent it = new Intent(StepNextControl.this, StepCaseEnding.class);
             it.putExtras(bundle);
@@ -98,11 +98,10 @@ public class StepNextControl extends Activity {
 
         }else {
 
-            bundle.putString("TAG_NEXT_STEP_NUMBER", TAG_NEXT_STEP_NUMBER);
-
             switch (NextStepRule) {
                 case 1:
                     // 依順序決定
+                    bundle.putString("TAG_NEXT_STEP_NUMBER", TAG_NEXT_STEP_NUMBER);
                     Intent it1 = new Intent(StepNextControl.this, StepActionControl.class);
                     it1.putExtras(bundle);//將參數放入intent
                     startActivity(it1);
@@ -110,6 +109,7 @@ public class StepNextControl extends Activity {
                     break;
                 case 2:
                     // 依使用者決定
+                    bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
                     Intent it2 = new Intent(StepNextControl.this, StepNextControlUser.class);
                     it2.putExtras(bundle);//將參數放入intent
                     startActivity(it2);

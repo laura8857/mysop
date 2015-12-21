@@ -2,6 +2,7 @@ package com.example.kelly.mysop;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +26,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import Ormlite.DatabaseHelper;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
+
 
 //p305
 public class StepNextControlUser extends Activity {
@@ -32,7 +37,8 @@ public class StepNextControlUser extends Activity {
 
     private ListView listView;
     //private String[] list = {"鉛筆","原子筆","鋼筆","毛筆","彩色筆"};
-    private String[] list;
+    private String[] ListOptionName;
+    private String[] ListOptionNumber;
     private ArrayAdapter<String> listAdapter;
 
 
@@ -46,12 +52,21 @@ public class StepNextControlUser extends Activity {
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_RECODE = "recode";
 
+    String TAG_CASE_NUMBER = "";
+    String TAG_STEP_NUMBER = "";
 
+    private DatabaseHelper mDatabaseHelper;
+    private sop_detailDao msop_detailDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_next_control_user);
+
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();	//取得Bundle
+        TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
+        TAG_STEP_NUMBER = bundle.getString("TAG_STEP_NUMBER");
 
         //list = new String[2];
 
@@ -61,20 +76,54 @@ public class StepNextControlUser extends Activity {
         listView.setOnItemClickListener(listener);*/
 
         // Hashmap for ListView
-        productsList = new ArrayList<HashMap<String, String>>();
+       // productsList = new ArrayList<HashMap<String, String>>();
         // Loading products in Background Thread
-        new LoadInput().execute();
+        //new LoadInput().execute();
+        mDatabaseHelper = DatabaseHelper.getHelper(this);
+        msop_detailDao = new sop_detailDao();
+        List<sop_detailVo> list = null;
+        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number ="+TAG_STEP_NUMBER);
+        Log.d("抓", list.get(0).getSop_number());
+
+        DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
+        sop_detailDao msop_detailDao1 = new sop_detailDao();
+        List<sop_detailVo> list1 = null;
+        list1 = msop_detailDao1.selectRaw(mDatabaseHelper1, "Sop_number ="+list.get(0).getSop_number());
+        Log.d("抓", list1.get(0).getStep_number());
+
+        ListOptionName = new String[list1.size()];
+        ListOptionNumber = new String[list1.size()];
+        int r=0;
+        for(int i=0; i<list1.size();i++) {
+            if(list1.get(i).getStep_number().equals(TAG_STEP_NUMBER)){
+                continue;
+            }
+            ListOptionName[r] = list1.get(i).getStep_name();
+            ListOptionNumber[r] = list1.get(i).getStep_number();
+            r++;
+        }
+        listAdapter = new ArrayAdapter(StepNextControlUser.this,android.R.layout.simple_list_item_1,ListOptionName);
+        listView.setAdapter(listAdapter);
+        listView.setOnItemClickListener(listener);
+
+
     }
 
     private ListView.OnItemClickListener listener = new ListView.OnItemClickListener(){
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-            Toast.makeText(getApplicationContext(),"你選擇的是"+list[position], Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"你選擇的是"+ListOptionName[position], Toast.LENGTH_SHORT).show();
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+            bundle.putString("TAG_NEXT_STEP_NUMBER", ListOptionNumber[position]);
+            Intent it1 = new Intent(StepNextControlUser.this, StepActionControl.class);
+            it1.putExtras(bundle);//將參數放入intent
+            startActivity(it1);
+            finish();
         }
 
     };
-
 
 
 
@@ -100,14 +149,10 @@ public class StepNextControlUser extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    /**
-     * Background Async Task to Load all product by making HTTP Request
-     * */
+/*
     class LoadInput extends AsyncTask<String, String, String> {
 
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
+
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
@@ -118,9 +163,7 @@ public class StepNextControlUser extends Activity {
             pDialog.show();
         }
 
-        /**
-         * getting All products from url
-         * */
+
         protected String doInBackground(String... args) {
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
@@ -169,44 +212,31 @@ public class StepNextControlUser extends Activity {
             return null;
         }
 
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
+
         protected void onPostExecute(String file_url) {
             // dismiss the dialog after getting all products
             pDialog.dismiss();
             // updating UI from Background Thread
-/*            runOnUiThread(new Runnable() {
-                public void run() {
 
-                }
-            }); */
-
-            list = new String[products.length()];
+            ListOption = new String[products.length()];
 
             for(int i=0; i<products.length();i++) {
 
                 int r = i+1;
-                list[i] = productsList.get(i).get(TAG_RECODE+r);
+                ListOption[i] = productsList.get(i).get(TAG_RECODE+r);
 
             }
 
-            listAdapter = new ArrayAdapter(StepNextControlUser.this,android.R.layout.simple_list_item_1,list);
+            listAdapter = new ArrayAdapter(StepNextControlUser.this,android.R.layout.simple_list_item_1,ListOption);
             listView.setAdapter(listAdapter);
             listView.setOnItemClickListener(listener);
-
-
-/*            AlertDialog.Builder dialog = new AlertDialog.Builder(Steprecording.this);
-            dialog.setTitle("");
-            dialog.setMessage(productsList.get(1).get(TAG_RECODE + "3"));
-            dialog.show();*/
 
 
         }
 
     }
 
-
+*/
 
 
 }
