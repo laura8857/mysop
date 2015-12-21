@@ -477,7 +477,8 @@ public class SplashActivity extends Activity {
                 msop_detailVo2.setSop_number(productsList.get(i).get("sop_number"));
                 msop_detailVo2.setStep_order(productsList.get(i).get("step_order"));
                 msop_detailVo2.setStep_number(productsList.get(i).get("step_number"));
-                Log.d("countproducts"+String.valueOf(i),productsList.get(i).get("step_number"));
+                    Log.d("countproducts"+String.valueOf(i),productsList.get(i).get("step_number"));
+                msop_detailVo2.setStep_name(productsList.get(i).get("step_name"));
                 msop_detailVo2.setStep_purpose(productsList.get(i).get("step_purpose"));
                 msop_detailVo2.setStep_intro(productsList.get(i).get("step_intro"));
                 msop_detailVo2.setStart_rule(productsList.get(i).get("start_rule"));
@@ -563,7 +564,13 @@ public class SplashActivity extends Activity {
             Log.d("5",step_recordlist11.get(4).getRecord_text());
             Log.d("6",step_recordlist11.get(5).getRecord_text());
             Log.d("7",step_recordlist11.get(6).getRecord_text());
+            DatabaseHelper mDatabaseHelper15 = DatabaseHelper.getHelper(SplashActivity.this);
+            sop_detailDao msop_detailDao15 = new sop_detailDao();
+            List<sop_detailVo> list15 = null;
+            list15 = msop_detailDao15.selectRaw(mDatabaseHelper15, "Step_number ='1'");
+            Log.d("User1", list15.get(0).getSop_number());
             //測試
+
 /*
             //測試
             DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);

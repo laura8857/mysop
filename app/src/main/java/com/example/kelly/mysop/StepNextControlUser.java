@@ -36,7 +36,7 @@ public class StepNextControlUser extends Activity {
 
 
     private ListView listView;
-    //private String[] list = {"鉛筆","原子筆","鋼筆","毛筆","彩色筆"};
+    private String[] testlist = {"鉛筆","原子筆","鋼筆","毛筆","彩色筆"};
     private String[] ListOptionName;
     private String[] ListOptionNumber;
     private ArrayAdapter<String> listAdapter;
@@ -71,9 +71,9 @@ public class StepNextControlUser extends Activity {
         //list = new String[2];
 
         listView = (ListView)findViewById(R.id.next_listView);
-/*        listAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,list);
-        listView.setAdapter(listAdapter);
-        listView.setOnItemClickListener(listener);*/
+        //listAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,testlist);
+        //listView.setAdapter(listAdapter);
+        //listView.setOnItemClickListener(listener);
 
         // Hashmap for ListView
        // productsList = new ArrayList<HashMap<String, String>>();
@@ -82,27 +82,30 @@ public class StepNextControlUser extends Activity {
         mDatabaseHelper = DatabaseHelper.getHelper(this);
         msop_detailDao = new sop_detailDao();
         List<sop_detailVo> list = null;
-        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number ="+TAG_STEP_NUMBER);
-        Log.d("抓", list.get(0).getSop_number());
+        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number ='1'");
+        Log.d("User1", list.get(0).getSop_number());
 
         DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
         sop_detailDao msop_detailDao1 = new sop_detailDao();
         List<sop_detailVo> list1 = null;
         list1 = msop_detailDao1.selectRaw(mDatabaseHelper1, "Sop_number ="+list.get(0).getSop_number());
-        Log.d("抓", list1.get(0).getStep_number());
+        Log.d("User2", list1.get(0).getStep_number());
 
-        ListOptionName = new String[list1.size()];
-        ListOptionNumber = new String[list1.size()];
-        int r=0;
+
+
+        ListOptionName = new String[list1.size()-1];
+        ListOptionNumber = new String[list1.size()-1];
+        Log.d("User3", String.valueOf(list1.size()));
+
         for(int i=0; i<list1.size();i++) {
             if(list1.get(i).getStep_number().equals(TAG_STEP_NUMBER)){
                 continue;
             }
-            ListOptionName[r] = "Step"+list1.get(i).getStep_order()+" "+list1.get(i).getStep_name();
-            ListOptionNumber[r] = list1.get(i).getStep_number();
-            r++;
+            ListOptionName[Integer.valueOf(list1.get(i).getStep_order())-2] = "Step"+list1.get(i).getStep_order()+" "+list1.get(i).getStep_name();
+            ListOptionNumber[Integer.valueOf(list1.get(i).getStep_order())-2] = list1.get(i).getStep_number();
+
         }
-        listAdapter = new ArrayAdapter(StepNextControlUser.this,android.R.layout.simple_list_item_1,ListOptionName);
+        listAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,ListOptionName);
         listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(listener);
 
@@ -115,12 +118,13 @@ public class StepNextControlUser extends Activity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id){
             Toast.makeText(getApplicationContext(),"你選擇的是"+ListOptionName[position], Toast.LENGTH_SHORT).show();
             Bundle bundle = new Bundle();
-            bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+
+/*            bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
             bundle.putString("TAG_NEXT_STEP_NUMBER", ListOptionNumber[position]);
             Intent it1 = new Intent(StepNextControlUser.this, StepActionControl.class);
             it1.putExtras(bundle);//將參數放入intent
             startActivity(it1);
-            finish();
+            finish();*/
         }
 
     };

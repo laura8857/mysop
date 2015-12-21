@@ -109,6 +109,7 @@ public class StepNextControl extends Activity {
                     break;
                 case 2:
                     // 依使用者決定
+                    Log.d("StepNextCrol",String.valueOf(NextStepRule));
                     bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
                     Intent it2 = new Intent(StepNextControl.this, StepNextControlUser.class);
                     it2.putExtras(bundle);//將參數放入intent
