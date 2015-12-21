@@ -15,7 +15,6 @@
   </component>
   <component name="AndroidLogFilters">
     <option name="TOOL_WINDOW_CUSTOM_FILTER" value="user4" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.kelly.mysop" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="129e2eae-0cbb-4b9a-851d-860514c64572" name="Default" comment="" />
@@ -83,11 +82,11 @@
       <file leaf-file-name="StepNextControlUser.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepNextControlUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.24598931" vertical-offset="1702" max-vertical-offset="5152">
-              <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.5534759" vertical-offset="1150" max-vertical-offset="5152">
+              <caret line="87" column="73" selection-start-line="87" selection-start-column="73" selection-end-line="87" selection-end-column="73" />
               <folding>
-                <element signature="e#4018#4676#0" expanded="true" />
-                <element signature="e#4668#4669#0" expanded="true" />
+                <element signature="e#4031#4689#0" expanded="true" />
+                <element signature="e#4681#4682#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -2374,8 +2373,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5704">
           <caret line="102" column="16" selection-start-line="102" selection-start-column="16" selection-end-line="102" selection-end-column="16" />
           <folding>
-            <element signature="e#4018#4676#0" expanded="true" />
-            <element signature="e#4668#4669#0" expanded="true" />
+            <element signature="e#4031#4689#0" expanded="true" />
+            <element signature="e#4681#4682#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2675,11 +2674,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepNextControlUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.24598931" vertical-offset="1702" max-vertical-offset="5152">
-          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.5534759" vertical-offset="1150" max-vertical-offset="5152">
+          <caret line="87" column="73" selection-start-line="87" selection-start-column="73" selection-end-line="87" selection-end-column="73" />
           <folding>
-            <element signature="e#4018#4676#0" expanded="true" />
-            <element signature="e#4668#4669#0" expanded="true" />
+            <element signature="e#4031#4689#0" expanded="true" />
+            <element signature="e#4681#4682#0" expanded="true" />
           </folding>
         </state>
       </provider>
