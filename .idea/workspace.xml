@@ -14,7 +14,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="user4" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.kelly.mysop" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="129e2eae-0cbb-4b9a-851d-860514c64572" name="Default" comment="" />
@@ -49,7 +49,7 @@
       <file leaf-file-name="StepNextControl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepNextControl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1813" max-vertical-offset="5106">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1104" max-vertical-offset="5520">
               <caret line="48" column="48" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
               <folding />
             </state>
@@ -59,7 +59,7 @@
       <file leaf-file-name="Mysop.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Mysop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="12696" max-vertical-offset="24242">
+            <state vertical-scroll-proportion="0.0" vertical-offset="12995" max-vertical-offset="25599">
               <caret line="565" column="49" selection-start-line="565" selection-start-column="49" selection-end-line="565" selection-end-column="49" />
               <folding />
             </state>
@@ -69,7 +69,7 @@
       <file leaf-file-name="activity_step_next_control_user.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_next_control_user.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.035714" vertical-offset="828" max-vertical-offset="1288">
+            <state vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="1288">
               <caret line="47" column="44" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
               <folding />
             </state>
@@ -79,15 +79,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StepNextControlUser.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="StepNextControlUser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepNextControlUser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5534759" vertical-offset="1150" max-vertical-offset="5152">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1150" max-vertical-offset="5037">
               <caret line="87" column="73" selection-start-line="87" selection-start-column="73" selection-end-line="87" selection-end-column="73" />
-              <folding>
-                <element signature="e#4031#4689#0" expanded="true" />
-                <element signature="e#4681#4682#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -95,57 +92,77 @@
       <file leaf-file-name="ArrayAdapter.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-22/android/widget/ArrayAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="7299" max-vertical-offset="11132">
+            <state vertical-scroll-proportion="0.0" vertical-offset="9039" max-vertical-offset="12029">
               <caret line="393" column="0" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.862069" vertical-offset="3417" max-vertical-offset="7498">
-              <caret line="161" column="28" selection-start-line="161" selection-start-column="28" selection-end-line="161" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.26836157" vertical-offset="3447" max-vertical-offset="7521">
+              <caret line="154" column="17" selection-start-line="154" selection-start-column="17" selection-end-line="154" selection-end-column="17" />
               <folding>
                 <element signature="e#2748#2766#0" expanded="true" />
                 <element signature="e#4610#4628#0" expanded="true" />
-                <element signature="e#4801#4837#0" expanded="true" />
-                <element signature="e#5004#5034#0" expanded="true" />
-                <element signature="e#5202#5233#0" expanded="true" />
-                <element signature="e#5404#5438#0" expanded="true" />
-                <element signature="e#5605#5634#0" expanded="true" />
-                <element signature="e#5810#5849#0" expanded="true" />
-                <element signature="e#6030#6076#0" expanded="true" />
-                <element signature="e#6255#6299#0" expanded="true" />
-                <element signature="e#6475#6506#0" expanded="true" />
-                <element signature="e#6885#6924#0" expanded="true" />
-                <element signature="e#7091#7121#0" expanded="true" />
-                <element signature="e#7267#7299#0" expanded="true" />
-                <element signature="e#7466#7496#0" expanded="true" />
-                <element signature="e#7675#7715#0" expanded="true" />
-                <element signature="e#7891#7929#0" expanded="true" />
-                <element signature="e#8115#8165#0" expanded="true" />
-                <element signature="e#8341#8382#0" expanded="true" />
-                <element signature="e#8567#8618#0" expanded="true" />
-                <element signature="e#8804#8856#0" expanded="true" />
-                <element signature="e#9038#9086#0" expanded="true" />
-                <element signature="e#9265#9309#0" expanded="true" />
-                <element signature="e#9478#9519#0" expanded="true" />
-                <element signature="e#9899#9948#0" expanded="true" />
-                <element signature="e#10127#10172#0" expanded="true" />
-                <element signature="e#10354#10402#0" expanded="true" />
-                <element signature="e#10858#10913#0" expanded="true" />
-                <element signature="e#11096#11145#0" expanded="true" />
-                <element signature="e#11324#11369#0" expanded="true" />
-                <element signature="e#11816#11862#0" expanded="true" />
-                <element signature="e#12043#12090#0" expanded="true" />
-                <element signature="e#12268#12310#0" expanded="true" />
-                <element signature="e#12582#12620#0" expanded="true" />
-                <element signature="e#12788#12819#0" expanded="true" />
-                <element signature="e#12928#12967#0" expanded="true" />
-                <element signature="e#13112#13143#0" expanded="true" />
+                <element signature="e#4802#4838#0" expanded="true" />
+                <element signature="e#5005#5035#0" expanded="true" />
+                <element signature="e#5203#5234#0" expanded="true" />
+                <element signature="e#5405#5439#0" expanded="true" />
+                <element signature="e#5606#5635#0" expanded="true" />
+                <element signature="e#5811#5850#0" expanded="true" />
+                <element signature="e#6031#6077#0" expanded="true" />
+                <element signature="e#6256#6300#0" expanded="true" />
+                <element signature="e#6476#6507#0" expanded="true" />
+                <element signature="e#6886#6925#0" expanded="true" />
+                <element signature="e#7092#7122#0" expanded="true" />
+                <element signature="e#7268#7300#0" expanded="true" />
+                <element signature="e#7467#7497#0" expanded="true" />
+                <element signature="e#7676#7716#0" expanded="true" />
+                <element signature="e#7892#7930#0" expanded="true" />
+                <element signature="e#8116#8166#0" expanded="true" />
+                <element signature="e#8342#8383#0" expanded="true" />
+                <element signature="e#8568#8619#0" expanded="true" />
+                <element signature="e#8805#8857#0" expanded="true" />
+                <element signature="e#9039#9087#0" expanded="true" />
+                <element signature="e#9266#9310#0" expanded="true" />
+                <element signature="e#9479#9520#0" expanded="true" />
+                <element signature="e#9900#9949#0" expanded="true" />
+                <element signature="e#10128#10173#0" expanded="true" />
+                <element signature="e#10355#10403#0" expanded="true" />
+                <element signature="e#10859#10914#0" expanded="true" />
+                <element signature="e#11097#11146#0" expanded="true" />
+                <element signature="e#11325#11370#0" expanded="true" />
+                <element signature="e#11817#11863#0" expanded="true" />
+                <element signature="e#12044#12091#0" expanded="true" />
+                <element signature="e#12269#12311#0" expanded="true" />
+                <element signature="e#12583#12621#0" expanded="true" />
+                <element signature="e#12789#12820#0" expanded="true" />
+                <element signature="e#12929#12968#0" expanded="true" />
+                <element signature="e#13113#13144#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Register.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Register.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="2356" max-vertical-offset="4278">
+              <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="JSONParser.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/JSONParser.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="1748">
+              <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -153,7 +170,7 @@
       <file leaf-file-name="SplashActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SplashActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="12075" max-vertical-offset="13271">
+            <state vertical-scroll-proportion="0.0" vertical-offset="13133" max-vertical-offset="14076">
               <caret line="571" column="16" selection-start-line="571" selection-start-column="16" selection-end-line="571" selection-end-column="16" />
               <folding />
             </state>
@@ -1733,9 +1750,10 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Mysop.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_start.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepNextControl.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SplashActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepNextControlUser.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/JSONParser.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       </list>
     </option>
   </component>
@@ -1921,8 +1939,8 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -1934,7 +1952,7 @@
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_21_x86" />
     <property name="FullScreen" value="false" />
   </component>
-  <component name="RunManager" selected="Android Application.SplashActivity">
+  <component name="RunManager" selected="Android Application.Register">
     <configuration default="false" name="SplashActivity" type="AndroidRunConfigurationType" factoryName="Android Application" temporary="true">
       <module name="app" />
       <option name="ACTIVITY_CLASS" value="com.example.kelly.mysop.SplashActivity" />
@@ -1960,6 +1978,28 @@
     <configuration default="false" name="StepNextControlUser" type="AndroidRunConfigurationType" factoryName="Android Application" temporary="true">
       <module name="app" />
       <option name="ACTIVITY_CLASS" value="com.example.kelly.mysop.StepNextControlUser" />
+      <option name="MODE" value="specific_activity" />
+      <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="USE_COMMAND_LINE" value="true" />
+      <option name="COMMAND_LINE" value="" />
+      <option name="WIPE_USER_DATA" value="false" />
+      <option name="DISABLE_BOOT_ANIMATION" value="false" />
+      <option name="NETWORK_SPEED" value="full" />
+      <option name="NETWORK_LATENCY" value="none" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
+      <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
+      <RunnerSettings RunnerId="AndroidDebugRunner" />
+      <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Register" type="AndroidRunConfigurationType" factoryName="Android Application" temporary="true">
+      <module name="app" />
+      <option name="ACTIVITY_CLASS" value="com.example.kelly.mysop.Register" />
       <option name="MODE" value="specific_activity" />
       <option name="DEPLOY" value="true" />
       <option name="ARTIFACT_NAME" value="" />
@@ -2112,15 +2152,17 @@
       <option name="FILTER_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
-    <list size="3">
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Android Application.app" />
       <item index="1" class="java.lang.String" itemvalue="Android Application.SplashActivity" />
       <item index="2" class="java.lang.String" itemvalue="Android Application.StepNextControlUser" />
+      <item index="3" class="java.lang.String" itemvalue="Android Application.Register" />
     </list>
     <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Android Application.SplashActivity" />
-        <item index="1" class="java.lang.String" itemvalue="Android Application.StepNextControlUser" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Android Application.Register" />
+        <item index="1" class="java.lang.String" itemvalue="Android Application.SplashActivity" />
+        <item index="2" class="java.lang.String" itemvalue="Android Application.StepNextControlUser" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="Applet" default="true" selected="false">
@@ -2161,11 +2203,10 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29131174" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27597955" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2181,6 +2222,7 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
@@ -2352,11 +2394,107 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepNextControl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5520">
+          <caret line="48" column="48" selection-start-line="48" selection-start-column="48" selection-end-line="48" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Mysop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="12995" max-vertical-offset="25599">
+          <caret line="565" column="49" selection-start-line="565" selection-start-column="49" selection-end-line="565" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_next_control_user.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="1288">
+          <caret line="47" column="44" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepNextControlUser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1150" max-vertical-offset="5152">
+          <caret line="87" column="73" selection-start-line="87" selection-start-column="73" selection-end-line="87" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/sdk/sources/android-22/android/widget/ArrayAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="9039" max-vertical-offset="12029">
+          <caret line="393" column="0" selection-start-line="393" selection-start-column="0" selection-end-line="393" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3703" max-vertical-offset="7498">
+          <caret line="161" column="28" selection-start-line="161" selection-start-column="28" selection-end-line="161" selection-end-column="28" />
+          <folding>
+            <element signature="e#2748#2766#0" expanded="true" />
+            <element signature="e#4610#4628#0" expanded="true" />
+            <element signature="e#4802#4838#0" expanded="true" />
+            <element signature="e#5005#5035#0" expanded="true" />
+            <element signature="e#5203#5234#0" expanded="true" />
+            <element signature="e#5405#5439#0" expanded="true" />
+            <element signature="e#5606#5635#0" expanded="true" />
+            <element signature="e#5811#5850#0" expanded="true" />
+            <element signature="e#6031#6077#0" expanded="true" />
+            <element signature="e#6256#6300#0" expanded="true" />
+            <element signature="e#6476#6507#0" expanded="true" />
+            <element signature="e#6886#6925#0" expanded="true" />
+            <element signature="e#7092#7122#0" expanded="true" />
+            <element signature="e#7268#7300#0" expanded="true" />
+            <element signature="e#7467#7497#0" expanded="true" />
+            <element signature="e#7676#7716#0" expanded="true" />
+            <element signature="e#7892#7930#0" expanded="true" />
+            <element signature="e#8116#8166#0" expanded="true" />
+            <element signature="e#8342#8383#0" expanded="true" />
+            <element signature="e#8568#8619#0" expanded="true" />
+            <element signature="e#8805#8857#0" expanded="true" />
+            <element signature="e#9039#9087#0" expanded="true" />
+            <element signature="e#9266#9310#0" expanded="true" />
+            <element signature="e#9479#9520#0" expanded="true" />
+            <element signature="e#9900#9949#0" expanded="true" />
+            <element signature="e#10128#10173#0" expanded="true" />
+            <element signature="e#10355#10403#0" expanded="true" />
+            <element signature="e#10859#10914#0" expanded="true" />
+            <element signature="e#11097#11146#0" expanded="true" />
+            <element signature="e#11325#11370#0" expanded="true" />
+            <element signature="e#11817#11863#0" expanded="true" />
+            <element signature="e#12044#12091#0" expanded="true" />
+            <element signature="e#12269#12311#0" expanded="true" />
+            <element signature="e#12583#12621#0" expanded="true" />
+            <element signature="e#12789#12820#0" expanded="true" />
+            <element signature="e#12929#12968#0" expanded="true" />
+            <element signature="e#13113#13144#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SplashActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="13133" max-vertical-offset="14076">
+          <caret line="571" column="16" selection-start-line="571" selection-start-column="16" selection-end-line="571" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepActionControl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="989" max-vertical-offset="10580">
           <caret line="43" column="41" selection-start-line="43" selection-start-column="4" selection-end-line="43" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2372,10 +2510,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5704">
           <caret line="102" column="16" selection-start-line="102" selection-start-column="16" selection-end-line="102" selection-end-column="16" />
-          <folding>
-            <element signature="e#4031#4689#0" expanded="true" />
-            <element signature="e#4681#4682#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -2515,7 +2650,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="2.1903324" vertical-offset="701" max-vertical-offset="5382">
           <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2535,57 +2669,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.862069" vertical-offset="3417" max-vertical-offset="7498">
-          <caret line="161" column="28" selection-start-line="161" selection-start-column="28" selection-end-line="161" selection-end-column="28" />
-          <folding>
-            <element signature="e#2748#2766#0" expanded="true" />
-            <element signature="e#4610#4628#0" expanded="true" />
-            <element signature="e#4801#4837#0" expanded="true" />
-            <element signature="e#5004#5034#0" expanded="true" />
-            <element signature="e#5202#5233#0" expanded="true" />
-            <element signature="e#5404#5438#0" expanded="true" />
-            <element signature="e#5605#5634#0" expanded="true" />
-            <element signature="e#5810#5849#0" expanded="true" />
-            <element signature="e#6030#6076#0" expanded="true" />
-            <element signature="e#6255#6299#0" expanded="true" />
-            <element signature="e#6475#6506#0" expanded="true" />
-            <element signature="e#6885#6924#0" expanded="true" />
-            <element signature="e#7091#7121#0" expanded="true" />
-            <element signature="e#7267#7299#0" expanded="true" />
-            <element signature="e#7466#7496#0" expanded="true" />
-            <element signature="e#7675#7715#0" expanded="true" />
-            <element signature="e#7891#7929#0" expanded="true" />
-            <element signature="e#8115#8165#0" expanded="true" />
-            <element signature="e#8341#8382#0" expanded="true" />
-            <element signature="e#8567#8618#0" expanded="true" />
-            <element signature="e#8804#8856#0" expanded="true" />
-            <element signature="e#9038#9086#0" expanded="true" />
-            <element signature="e#9265#9309#0" expanded="true" />
-            <element signature="e#9478#9519#0" expanded="true" />
-            <element signature="e#9899#9948#0" expanded="true" />
-            <element signature="e#10127#10172#0" expanded="true" />
-            <element signature="e#10354#10402#0" expanded="true" />
-            <element signature="e#10858#10913#0" expanded="true" />
-            <element signature="e#11096#11145#0" expanded="true" />
-            <element signature="e#11324#11369#0" expanded="true" />
-            <element signature="e#11816#11862#0" expanded="true" />
-            <element signature="e#12043#12090#0" expanded="true" />
-            <element signature="e#12268#12310#0" expanded="true" />
-            <element signature="e#12582#12620#0" expanded="true" />
-            <element signature="e#12788#12819#0" expanded="true" />
-            <element signature="e#12928#12967#0" expanded="true" />
-            <element signature="e#13112#13143#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepActionControl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.7839335" vertical-offset="1242" max-vertical-offset="10005">
           <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2601,7 +2688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="3450" max-vertical-offset="5382">
           <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2609,7 +2695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.4404433" vertical-offset="1518" max-vertical-offset="2093">
           <caret line="30" column="43" selection-start-line="30" selection-start-column="43" selection-end-line="30" selection-end-column="43" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2617,13 +2702,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="966" max-vertical-offset="7153">
           <caret line="33" column="35" selection-start-line="33" selection-start-column="35" selection-end-line="33" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_next_control_user.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.035714" vertical-offset="828" max-vertical-offset="1288">
+        <state vertical-scroll-proportion="0.0" vertical-offset="828" max-vertical-offset="1288">
           <caret line="47" column="44" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
           <folding />
         </state>
@@ -2644,7 +2728,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="14689" max-vertical-offset="20056">
           <caret line="693" column="0" selection-start-line="693" selection-start-column="0" selection-end-line="693" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2674,11 +2757,78 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepNextControlUser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5534759" vertical-offset="1150" max-vertical-offset="5152">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1150" max-vertical-offset="5037">
           <caret line="87" column="73" selection-start-line="87" selection-start-column="73" selection-end-line="87" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/TestSendGCM.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19546743" vertical-offset="0" max-vertical-offset="1564">
+          <caret line="22" column="0" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Register.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2356" max-vertical-offset="4278">
+          <caret line="125" column="0" selection-start-line="125" selection-start-column="0" selection-end-line="125" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/JSONParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="345" max-vertical-offset="1748">
+          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26836157" vertical-offset="3447" max-vertical-offset="7521">
+          <caret line="154" column="17" selection-start-line="154" selection-start-column="17" selection-end-line="154" selection-end-column="17" />
           <folding>
-            <element signature="e#4031#4689#0" expanded="true" />
-            <element signature="e#4681#4682#0" expanded="true" />
+            <element signature="e#2748#2766#0" expanded="true" />
+            <element signature="e#4610#4628#0" expanded="true" />
+            <element signature="e#4802#4838#0" expanded="true" />
+            <element signature="e#5005#5035#0" expanded="true" />
+            <element signature="e#5203#5234#0" expanded="true" />
+            <element signature="e#5405#5439#0" expanded="true" />
+            <element signature="e#5606#5635#0" expanded="true" />
+            <element signature="e#5811#5850#0" expanded="true" />
+            <element signature="e#6031#6077#0" expanded="true" />
+            <element signature="e#6256#6300#0" expanded="true" />
+            <element signature="e#6476#6507#0" expanded="true" />
+            <element signature="e#6886#6925#0" expanded="true" />
+            <element signature="e#7092#7122#0" expanded="true" />
+            <element signature="e#7268#7300#0" expanded="true" />
+            <element signature="e#7467#7497#0" expanded="true" />
+            <element signature="e#7676#7716#0" expanded="true" />
+            <element signature="e#7892#7930#0" expanded="true" />
+            <element signature="e#8116#8166#0" expanded="true" />
+            <element signature="e#8342#8383#0" expanded="true" />
+            <element signature="e#8568#8619#0" expanded="true" />
+            <element signature="e#8805#8857#0" expanded="true" />
+            <element signature="e#9039#9087#0" expanded="true" />
+            <element signature="e#9266#9310#0" expanded="true" />
+            <element signature="e#9479#9520#0" expanded="true" />
+            <element signature="e#9900#9949#0" expanded="true" />
+            <element signature="e#10128#10173#0" expanded="true" />
+            <element signature="e#10355#10403#0" expanded="true" />
+            <element signature="e#10859#10914#0" expanded="true" />
+            <element signature="e#11097#11146#0" expanded="true" />
+            <element signature="e#11325#11370#0" expanded="true" />
+            <element signature="e#11817#11863#0" expanded="true" />
+            <element signature="e#12044#12091#0" expanded="true" />
+            <element signature="e#12269#12311#0" expanded="true" />
+            <element signature="e#12583#12621#0" expanded="true" />
+            <element signature="e#12789#12820#0" expanded="true" />
+            <element signature="e#12929#12968#0" expanded="true" />
+            <element signature="e#13113#13144#0" expanded="true" />
           </folding>
         </state>
       </provider>
