@@ -32,13 +32,12 @@ public class StepNextControlData extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_next_control_data);
 
-        TextView ss = (TextView)findViewById(R.id.next_textView_2);
+
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
         TAG_STEP_NUMBER = bundle.getString("TAG_STEP_NUMBER");
         TAG_STEP_ORDER = bundle.getInt("TAG_STEP_ORDER");
-        ss.setText(Integer.toString(TAG_STEP_ORDER));
 
         mDatabaseHelper = DatabaseHelper.getHelper(this);
         msop_detailDao = new sop_detailDao();

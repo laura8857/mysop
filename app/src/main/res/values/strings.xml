@@ -86,6 +86,8 @@
     <string name="title_activity_saqs">saqs</string>
     <string name="title_activity_logout">Logout</string>
     <string name="title_activity_step_next_control_data">StepNextControlData</string>
+    <string name="title_activity_step_cut_control_finishandpass">StepCutControlFinishandpass
+    </string>
 
 
 

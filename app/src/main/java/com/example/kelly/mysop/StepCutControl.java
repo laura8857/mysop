@@ -96,7 +96,10 @@ public class StepCutControl extends Activity {
                 break;
             case 2:
                 // cagetory.setText("記錄完成且通過");
-
+                Intent it2 = new Intent(StepCutControl.this,StepCutControlFinishandpass.class);
+                it2.putExtras(bundle);//將參數放入intent
+                startActivity(it2);
+                finish();
                 break;
             case 3:
                 //cagetory.setText("人工確認");
