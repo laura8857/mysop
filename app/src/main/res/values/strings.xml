@@ -85,6 +85,7 @@
     <string name="title_activity_mysop2">mysop2</string>
     <string name="title_activity_saqs">saqs</string>
     <string name="title_activity_logout">Logout</string>
+    <string name="title_activity_step_next_control_data">StepNextControlData</string>
 
 
 

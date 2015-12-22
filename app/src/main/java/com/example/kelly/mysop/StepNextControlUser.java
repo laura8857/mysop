@@ -54,6 +54,7 @@ public class StepNextControlUser extends Activity {
 
     String TAG_CASE_NUMBER = "";
     String TAG_STEP_NUMBER = "";
+    int TAG_STEP_ORDER = 0;
 
     private DatabaseHelper mDatabaseHelper;
     private sop_detailDao msop_detailDao;
@@ -63,10 +64,13 @@ public class StepNextControlUser extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_next_control_user);
 
+        TextView ss = (TextView)findViewById(R.id.next_textView_2);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
         TAG_STEP_NUMBER = bundle.getString("TAG_STEP_NUMBER");
+        TAG_STEP_ORDER = bundle.getInt("TAG_STEP_ORDER");
+        ss.setText(Integer.toString(TAG_STEP_ORDER));
 
         //list = new String[2];
 
@@ -119,12 +123,12 @@ public class StepNextControlUser extends Activity {
             Toast.makeText(getApplicationContext(),"你選擇的是"+ListOptionName[position], Toast.LENGTH_SHORT).show();
             Bundle bundle = new Bundle();
 
-/*            bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+            bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
             bundle.putString("TAG_NEXT_STEP_NUMBER", ListOptionNumber[position]);
             Intent it1 = new Intent(StepNextControlUser.this, StepActionControl.class);
             it1.putExtras(bundle);//將參數放入intent
             startActivity(it1);
-            finish();*/
+            finish();
         }
 
     };

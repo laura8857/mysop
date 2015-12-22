@@ -110,7 +110,6 @@
             android:name=".Register"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
-
         </activity>
         <activity
             android:name=".Emailverify"
@@ -187,7 +186,6 @@
             android:name=".Stepdescription"
             android:label="@string/title_activity_stepdescription"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
-
         </activity>
         <activity
             android:name=".Steprecording"
@@ -287,7 +285,6 @@
             android:name=".StepNextControlUser"
             android:label="@string/title_activity_step_next_control_user"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
-
         </activity>
         <activity
             android:name=".StepNextControl"
@@ -315,6 +312,11 @@
         <activity
             android:name=".Logout"
             android:label="@string/title_activity_logout" >
+        </activity>
+        <activity
+            android:name=".StepNextControlData"
+            android:label="@string/title_activity_step_next_control_data"
+            android:theme="@android:style/Theme.NoDisplay" >
         </activity>
     </application>
 

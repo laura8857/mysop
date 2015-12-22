@@ -111,6 +111,7 @@ public class StepNextControl extends Activity {
                     // 依使用者決定
                     Log.d("StepNextCrol",String.valueOf(NextStepRule));
                     bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+                    bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
                     Intent it2 = new Intent(StepNextControl.this, StepNextControlUser.class);
                     it2.putExtras(bundle);//將參數放入intent
                     startActivity(it2);
@@ -118,8 +119,10 @@ public class StepNextControl extends Activity {
                     break;
                 case 3:
                     // 依資料決定
-                    Intent it3 = new Intent(StepNextControl.this, StepNextControl.class);
-                    it3.putExtras(bundle);//將參數放入intent
+                    bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+                    bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+                    Intent it3 = new Intent(StepNextControl.this, StepNextControlData.class);
+                    it3.putExtras(bundle);
                     startActivity(it3);
                     finish();
                     break;
