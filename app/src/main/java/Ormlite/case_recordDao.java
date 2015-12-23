@@ -31,7 +31,7 @@ public class case_recordDao
 				.queryBuilder();
 		try {
 			queryBuilder.where()
-					.eq(case_recordVo.FIELD_Case_number, case_recordVo.getCase_number());
+					.eq(case_recordVo.FIELD_Id, case_recordVo.getId());
 			//	.and()
 			//	.eq(AccountVo.FIELD_Device, aAccountVo.getDevice());
 			return queryBuilder.query().size() > 0 ? true : false;

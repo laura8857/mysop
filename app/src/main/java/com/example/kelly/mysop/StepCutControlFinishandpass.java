@@ -2,6 +2,7 @@ package com.example.kelly.mysop;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -38,7 +39,19 @@ public class StepCutControlFinishandpass extends Activity {
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         case_recordDao mcase_recordDao = new case_recordDao();
         List<case_recordVo> list = null;
-        list = mcase_recordDao.selectRaw(mDatabaseHelper, "Case_number ="+TAG_CASE_NUMBER+" and Step_order ="+TAG_STEP_ORDER);
+        list = mcase_recordDao.selectRaw(mDatabaseHelper, "Case_number ="+TAG_CASE_NUMBER+" AND Step_order ="+TAG_STEP_ORDER);
+        //list = mcase_recordDao.selectRaw(mDatabaseHelper, "Case_number ="+TAG_CASE_NUMBER);
+
+        Log.d("cutcontrolfinish",String.valueOf(list.size()));
+
+
+        final Bundle bundle1 = new Bundle();
+        bundle1.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
+        bundle1.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+        bundle1.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+        AlertDialog.Builder dialog = new AlertDialog.Builder(StepCutControlFinishandpass.this);
+        dialog.setTitle("");
+        dialog.setMessage("此步驟輸入的資料不符合完工之條件");
 
         for(int i=0; i< list.size();i++) {
 
@@ -46,42 +59,33 @@ public class StepCutControlFinishandpass extends Activity {
             DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
             step_recordDao mstep_recordDao1 = new step_recordDao();
             List<step_recordVo> list1 = null;
-            list1 = mstep_recordDao1.selectRaw(mDatabaseHelper1, "Step_number ="+TAG_STEP_NUMBER+" and Record_order ="+list.get(i).getRecord_order());
+            list1 = mstep_recordDao1.selectRaw(mDatabaseHelper1, "Step_number ="+TAG_STEP_NUMBER+" AND Record_order ="+list.get(i).getRecord_order());
+
+            Log.d("cutcontrolfinish2",String.valueOf(list1.size()));
+
             //Record_type: 1數字 2
-            if (list1.get(i).getRecord_type().equals("1")) {
+            if (list1.get(0).getRecord_type().equals("1")) {
 
-                Bundle bundle1 = new Bundle();
-                bundle1.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
-                bundle1.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
-                bundle1.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+                if (Integer.valueOf(list1.get(0).getRecord_min()) < Integer.valueOf(list.get(i).getRecord_value()) && Integer.valueOf(list.get(i).getRecord_value()) < Integer.valueOf(list1.get(0).getRecord_max())) {
 
-                if (Integer.valueOf(list1.get(i).getRecord_min()) < Integer.valueOf(list.get(i).getRecord_value()) && Integer.valueOf(list.get(i).getRecord_value()) < Integer.valueOf(list1.get(i).getRecord_max())) {
-
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(StepCutControlFinishandpass.this);
-                    dialog.setTitle("");
                     dialog.setMessage("此步驟輸入的資料符合完工之條件");
-                    dialog.show();
 
-                    Intent it = new Intent(StepCutControlFinishandpass.this, StepNextControl.class);
-                    it.putExtras(bundle1);
-                    startActivity(it);
-                    finish();
-                } else {
-
-                    AlertDialog.Builder dialog1 = new AlertDialog.Builder(StepCutControlFinishandpass.this);
-                    dialog1.setTitle("");
-                    dialog1.setMessage("此步驟輸入的資料不符合完工之條件");
-                    dialog1.show();
-
-                    Intent it1 = new Intent(StepCutControlFinishandpass.this, Steprecording.class);
-                    it1.putExtras(bundle1);
-                    startActivity(it1);
-                    finish();
                 }
             }
-
             //非數字要怎麼通過@@?
         }
+        dialog.show();
+
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener(){
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                Intent it = new Intent(StepCutControlFinishandpass.this, StepNextControl.class);
+                it.putExtras(bundle1);
+                startActivity(it);
+                finish();
+            }
+        });
+
 
     }
 

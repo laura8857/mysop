@@ -7,11 +7,12 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "case_record")
 public class case_recordVo extends MDVo implements Serializable
 {
-	public static final String FIELD_Case_number ="Case_number";
+    public static final String FIELD_Id ="id";
+    public static final String FIELD_Case_number ="Case_number";
 	public static final String FIELD_Step_order ="Step_order";
 	public static final String FIELD_Record_order ="Record_order";
 	public static final String FIELD_Record_value ="Record_value";
-	/*@DatabaseField(generatedId = true)
+	@DatabaseField(generatedId = true,columnName = FIELD_Id)
 	private int id;
 	public int getId()
 	{
@@ -20,7 +21,7 @@ public class case_recordVo extends MDVo implements Serializable
 	public void setId(int id)
 	{
 		this.id = id;
-	}*/
+	}
 	@DatabaseField(columnName = FIELD_Case_number, canBeNull = false)
 	private String Case_number;
 	public String getCase_number()

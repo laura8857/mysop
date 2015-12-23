@@ -548,7 +548,7 @@ public class SplashActivity extends Activity {
                 mstep_recordDao6.insert(mDatabaseHelper6, mstep_recordVo6);
 
             }
-
+/*
             //測試
             DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);
             step_recordDao mstep_recordDao11 = new step_recordDao();
@@ -571,7 +571,7 @@ public class SplashActivity extends Activity {
             Log.d("User1", list15.get(0).getSop_number());
             //測試
 
-/*
+
             //測試
             DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);
             sop_detailDao msop_detailDao9 = new sop_detailDao();
