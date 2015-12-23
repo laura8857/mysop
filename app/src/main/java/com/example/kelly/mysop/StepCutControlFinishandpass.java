@@ -1,5 +1,7 @@
 package com.example.kelly.mysop;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -37,11 +39,32 @@ public class StepCutControlFinishandpass extends ActionBarActivity {
 
         if(list1.get(0).getRecord_type().equals("3")){
 
-        }
-        if(Integer.valueOf(list.get(0).getRecord_value()) < Integer.valueOf(list1.get(0).getRecord_max())){
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+            bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+            bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
 
+            if(Integer.valueOf(list1.get(0).getRecord_min()) < Integer.valueOf(list.get(0).getRecord_value()) && Integer.valueOf(list.get(0).getRecord_value()) < Integer.valueOf(list1.get(0).getRecord_max())){
+
+                Intent it = new Intent(StepCutControlFinishandpass.this,StepNextControl.class);
+                it.putExtras(bundle);
+                startActivity(it);
+                finish();
+            }else{
+
+                AlertDialog.Builder dialog = new AlertDialog.Builder(StepCutControlFinishandpass.this);
+                dialog.setTitle("");
+                dialog.setMessage("此步驟輸入的資料不符合完工之條件");
+                dialog.show();
+
+                Intent it1 = new Intent(StepCutControlFinishandpass.this,Steprecording.class);
+                it1.putExtras(bundle);
+                startActivity(it1);
+                finish();
+            }
         }
 
+        //非數字要怎麼通過@@?
 
 
     }
