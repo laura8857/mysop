@@ -133,4 +133,24 @@ public class sop_masterDao
         return null;
     }
 
+    /* selectRawByJoin */
+    public static List<sop_masterVo> selectRawJoin(DatabaseHelper databaseHelper,String column1,String value1) {
+        RuntimeExceptionDao<sop_masterVo, Integer> sop_masterDao = databaseHelper
+                .getSop_masterDao();
+        RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
+                .getCase_masterDao();
+        QueryBuilder<case_masterVo, Integer> subqueryBuilder = case_masterDao
+                .queryBuilder();
+        QueryBuilder<sop_masterVo, Integer> queryBuilder = sop_masterDao
+                .queryBuilder();
+        try {
+            subqueryBuilder.where().eq(column1,value1);
+           // subqueryBuilder.join(queryBuilder).query();
+            return queryBuilder.join(subqueryBuilder).query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

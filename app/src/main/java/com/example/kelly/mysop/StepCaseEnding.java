@@ -3,10 +3,14 @@ package com.example.kelly.mysop;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -48,7 +52,7 @@ public class StepCaseEnding extends Activity {
     public int Step=1;
 
     //先寫死帳號和 SOPnumber
-   // String TAG_ACCOUNT = "test@gmail.com";
+    String TAG_ACCOUNT = "";
     ArrayList<HashMap<String, String>> productsList;
     ArrayList<HashMap<String, String>> valueList;
     JSONArray products = null;
@@ -94,57 +98,61 @@ public class StepCaseEnding extends Activity {
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
-        //TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");	//輸出Bundle內容
-        // TAG_ACCOUNT = bundle.getString("TAG_ACCOUNT");	//輸出Bundle內容
+        TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");	//輸出Bundle內容
+        TAG_ACCOUNT = bundle.getString("TAG_ACCOUNT");	//輸出Bundle內容
         // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
         valueList = new ArrayList<HashMap<String, String>>();
 
-        //orm 用case_number去抓資料庫的紀錄單位和敘述
-        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
-        msop_detailDao = new sop_detailDao();
-        List<sop_detailVo>sopdetaillist = null;
-        sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper, "Case_number", TAG_CASE_NUMBER, "Sop_number");
-
-        //取出需要的sop_number 再找出step_number
-        mstep_recordDao =new step_recordDao();
-        List<step_recordVo>steprecordlist = null;
-       // steprecordlist = mstep_recordDao.selectRawByNest(mDatabaseHelper,"Sop_number",sopdetaillist.get(0).getSop_number(),"Step_number");
-
-        //取紀錄值
-        mcase_recordDao = new case_recordDao();
-        List<case_recordVo>caserecordlist = null;
-        caserecordlist = mcase_recordDao.selectRaw(mDatabaseHelper,"Case_number="+"'"+TAG_CASE_NUMBER+"'");
-
-        recordorder=new String[caserecordlist.size()];
-        steporder=new  String[caserecordlist.size()];
-        for(int i =0;i<caserecordlist.size();i++){
-            recordorder[i]=caserecordlist.get(i).getRecord_order();
-            steporder[i]=caserecordlist.get(i).getStep_order();
-        }
-
-        LinearLayout ly = (LinearLayout)findViewById(R.id.endlayout);
-
-        Count=steprecordlist.size();
-
-        for(int i=0; i<steprecordlist.size();i++) {
-
-            TextView text1 = new TextView(StepCaseEnding.this);
-            text1.setTextSize(17);
-            text1.setText(steprecordlist.get(i).getRecord_text()+"("+steprecordlist.get(i).getRecord_unit()+")");
 
 
-            edit[i] = new EditText(StepCaseEnding.this.getApplicationContext());
+            //orm 用case_number去抓資料庫的紀錄單位和敘述
+            DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+            msop_detailDao = new sop_detailDao();
+            List<sop_detailVo> sopdetaillist = null;
+            sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper, "Case_number", TAG_CASE_NUMBER, "Sop_number");
 
-            edit[i].setBackgroundColor(Color.parseColor("#FEFBE6"));
-            edit[i].setTextColor(Color.rgb(0, 0, 0));
-            edit[i].setSingleLine(true);
-            //edit.linecolor
-            edit[i].setText(caserecordlist.get(i).getRecord_value());
-            ly.addView(text1);
-            ly.addView(edit[i]);
-        }
-       // new LoadInput().execute();
+            //取出需要的sop_number 再找出step_number
+            mstep_recordDao = new step_recordDao();
+            List<step_recordVo> steprecordlist = null;
+            // steprecordlist = mstep_recordDao.selectRawByNest(mDatabaseHelper,"Sop_number",sopdetaillist.get(0).getSop_number(),"Step_number");
+
+            //取紀錄值
+            mcase_recordDao = new case_recordDao();
+            List<case_recordVo> caserecordlist = null;
+            caserecordlist = mcase_recordDao.selectRaw(mDatabaseHelper, "Case_number=" + "'" + TAG_CASE_NUMBER + "'");
+
+            recordorder = new String[caserecordlist.size()];
+            steporder = new String[caserecordlist.size()];
+            for (int i = 0; i < caserecordlist.size(); i++) {
+                recordorder[i] = caserecordlist.get(i).getRecord_order();
+                steporder[i] = caserecordlist.get(i).getStep_order();
+            }
+
+            LinearLayout ly = (LinearLayout) findViewById(R.id.endlayout);
+
+            Count = steprecordlist.size();
+
+            for (int i = 0; i < steprecordlist.size(); i++) {
+
+                TextView text1 = new TextView(StepCaseEnding.this);
+                text1.setTextSize(17);
+                text1.setText(steprecordlist.get(i).getRecord_text() + "(" + steprecordlist.get(i).getRecord_unit() + ")");
+
+
+                edit[i] = new EditText(StepCaseEnding.this.getApplicationContext());
+
+                edit[i].setBackgroundColor(Color.parseColor("#FEFBE6"));
+                edit[i].setTextColor(Color.rgb(0, 0, 0));
+                edit[i].setSingleLine(true);
+                //edit.linecolor
+                edit[i].setText(caserecordlist.get(i).getRecord_value());
+                ly.addView(text1);
+                ly.addView(edit[i]);
+            }
+
+            // new LoadInput().execute();
+
 
     }
 
@@ -199,14 +207,31 @@ public class StepCaseEnding extends Activity {
 
     }
 
+    //結案
     public void close (View v){
-        new SOPContent2().execute();
-        //Delete orm
-        DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(StepCaseEnding.this);
-        case_recordDao mcase_recordDao2 = new case_recordDao();
-        mcase_recordDao2.delete(mDatabaseHelper2,"Case_number", TAG_CASE_NUMBER);
-        case_masterDao mcase_master2 = new case_masterDao();
-        mcase_master2.delete(mDatabaseHelper2,"Case_number",TAG_CASE_NUMBER);
+
+        //檢查是否有網路
+        ConnectivityManager CM = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = CM.getActiveNetworkInfo();
+        //null代表沒網路
+        if(info==null) {
+            Log.d("network","null");
+            //Delete orm
+            DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(StepCaseEnding.this);
+            case_recordDao mcase_recordDao2 = new case_recordDao();
+            mcase_recordDao2.delete(mDatabaseHelper2, "Case_number", TAG_CASE_NUMBER);
+            case_masterDao mcase_master2 = new case_masterDao();
+            mcase_master2.delete(mDatabaseHelper2, "Case_number", TAG_CASE_NUMBER);
+
+            Intent i = new Intent(this, Mysop.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+            i.putExtras(bundle);	//將參數放入intent
+            startActivity(i);
+        }else {
+            Log.d("network","Qui");
+            new SOPContent2().execute();
+        }
 
 
 
@@ -294,8 +319,11 @@ public class StepCaseEnding extends Activity {
 
                 int e3 = json2.getInt(TAG_SUCCESS);
                 if(e3 == 1) {
-                    Intent it = new Intent(StepCaseEnding.this,Mysop.class);
-                    startActivity(it);
+                    Intent i = new Intent(StepCaseEnding.this, Mysop.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+                    i.putExtras(bundle);	//將參數放入intent
+                    startActivity(i);
                 }else {
 
                 }
