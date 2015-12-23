@@ -14,15 +14,13 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="cutcontrol" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.kelly.mysop" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8a57b7bf-3f6e-4586-9f13-d468ae8bc09a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SplashActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SplashActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepCutControlFinishandpass.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepCutControlFinishandpass.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/Ormlite/case_recordDao.java" afterPath="$PROJECT_DIR$/app/src/main/java/Ormlite/case_recordDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/Ormlite/case_recordVo.java" afterPath="$PROJECT_DIR$/app/src/main/java/Ormlite/case_recordVo.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_step_cut_control_finishandpass.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_step_cut_control_finishandpass.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MySOP3.iws" />
@@ -56,64 +54,28 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <file leaf-file-name="StepCutControlFinishandpass.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepCutControlFinishandpass.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="7192" max-vertical-offset="7751">
-              <caret line="325" column="61" selection-start-line="325" selection-start-column="61" selection-end-line="325" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.8470255" vertical-offset="644" max-vertical-offset="3243">
+              <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
               <folding>
-                <element signature="e#2845#2863#0" expanded="true" />
-                <element signature="e#4707#4725#0" expanded="true" />
-                <element signature="e#4898#4934#0" expanded="true" />
-                <element signature="e#5101#5131#0" expanded="true" />
-                <element signature="e#5299#5330#0" expanded="true" />
-                <element signature="e#5501#5535#0" expanded="true" />
-                <element signature="e#5702#5731#0" expanded="true" />
-                <element signature="e#5907#5946#0" expanded="true" />
-                <element signature="e#6127#6173#0" expanded="true" />
-                <element signature="e#6352#6396#0" expanded="true" />
-                <element signature="e#6572#6603#0" expanded="true" />
-                <element signature="e#6983#7022#0" expanded="true" />
-                <element signature="e#7189#7219#0" expanded="true" />
-                <element signature="e#7365#7397#0" expanded="true" />
-                <element signature="e#7564#7594#0" expanded="true" />
-                <element signature="e#7773#7813#0" expanded="true" />
-                <element signature="e#7988#8026#0" expanded="true" />
-                <element signature="e#8212#8262#0" expanded="true" />
-                <element signature="e#8438#8479#0" expanded="true" />
-                <element signature="e#8664#8715#0" expanded="true" />
-                <element signature="e#8901#8953#0" expanded="true" />
-                <element signature="e#9135#9183#0" expanded="true" />
-                <element signature="e#9362#9406#0" expanded="true" />
-                <element signature="e#9575#9616#0" expanded="true" />
-                <element signature="e#9996#10045#0" expanded="true" />
-                <element signature="e#10224#10269#0" expanded="true" />
-                <element signature="e#10451#10499#0" expanded="true" />
-                <element signature="e#10955#11010#0" expanded="true" />
-                <element signature="e#11193#11242#0" expanded="true" />
-                <element signature="e#11421#11466#0" expanded="true" />
-                <element signature="e#11913#11959#0" expanded="true" />
-                <element signature="e#12140#12187#0" expanded="true" />
-                <element signature="e#12364#12406#0" expanded="true" />
-                <element signature="e#12678#12716#0" expanded="true" />
-                <element signature="e#12884#12915#0" expanded="true" />
-                <element signature="e#13024#13063#0" expanded="true" />
-                <element signature="e#13208#13239#0" expanded="true" />
-                <element signature="e#13354#13401#0" expanded="true" />
+                <element signature="e#3939#3940#0" expanded="true" />
+                <element signature="e#3998#3999#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StepCutControlFinishandpass.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepCutControlFinishandpass.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.7660944" vertical-offset="252" max-vertical-offset="2392">
-              <caret line="83" column="34" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
-              <folding>
-                <element signature="e#3000#3343#0" expanded="true" />
-                <element signature="e#3332#3333#0" expanded="true" />
-              </folding>
+      <file leaf-file-name="activity_step_cut_control_finishandpass.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_cut_control_finishandpass.xml">
+          <provider selected="true" editor-type-id="android-designer">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="23" max-vertical-offset="529">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -121,7 +83,7 @@
       <file leaf-file-name="SplashActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SplashActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.6896553" vertical-offset="11456" max-vertical-offset="13271">
+            <state vertical-scroll-proportion="7.206897" vertical-offset="11801" max-vertical-offset="13271">
               <caret line="539" column="86" selection-start-line="539" selection-start-column="74" selection-end-line="539" selection-end-column="86" />
               <folding />
             </state>
@@ -131,8 +93,8 @@
       <file leaf-file-name="Steprecording.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Steprecording.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="7091" max-vertical-offset="9959">
-              <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1852" max-vertical-offset="9959">
+              <caret line="140" column="55" selection-start-line="140" selection-start-column="11" selection-end-line="140" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -1795,10 +1757,11 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/Ormlite/case_recordVo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Ormlite/case_recordDao.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SplashActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_step_cut_control_finishandpass.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepCutControlFinishandpass.java" />
       </list>
     </option>
@@ -1895,6 +1858,28 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MySOP3" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -2157,6 +2142,11 @@
     </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SliceManager">
+    <option name="analysisUIOptions">
+      <AnalysisUIOptions />
+    </option>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -2181,10 +2171,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.13458262" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3270869" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2222,18 +2213,18 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepCutControlFinishandpass.java</url>
-          <line>55</line>
+          <line>68</line>
           <properties />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepCutControlFinishandpass.java</url>
-          <line>41</line>
+          <line>53</line>
           <properties />
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepCutControlFinishandpass.java</url>
-          <line>57</line>
+          <line>70</line>
           <properties />
           <option name="timeStamp" value="2" />
         </line-breakpoint>
@@ -2293,6 +2284,7 @@
             <element signature="e#13024#13063#0" expanded="true" />
             <element signature="e#13208#13239#0" expanded="true" />
             <element signature="e#13354#13401#0" expanded="true" />
+            <element signature="e#13590#13645#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2327,10 +2319,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/step_recordVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="207" max-vertical-offset="1334">
+          <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/case_recordVo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1012">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="e#656#657#0" expanded="true" />
+            <element signature="e#672#673#0" expanded="true" />
+            <element signature="e#702#703#0" expanded="true" />
+            <element signature="e#721#722#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/case_recordDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3312">
+          <caret line="36" column="66" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="7192" max-vertical-offset="7751">
-          <caret line="325" column="61" selection-start-line="325" selection-start-column="61" selection-end-line="325" selection-end-column="61" />
+          <caret line="326" column="65" selection-start-line="326" selection-start-column="65" selection-end-line="326" selection-end-column="65" />
           <folding>
             <element signature="e#2845#2863#0" expanded="true" />
             <element signature="e#4707#4725#0" expanded="true" />
@@ -2370,62 +2391,45 @@
             <element signature="e#13024#13063#0" expanded="true" />
             <element signature="e#13208#13239#0" expanded="true" />
             <element signature="e#13354#13401#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/step_recordVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="207" max-vertical-offset="1334">
-          <caret line="18" column="60" selection-start-line="18" selection-start-column="60" selection-end-line="18" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/case_recordVo.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="150" max-vertical-offset="1012">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="e#656#657#0" expanded="true" />
-            <element signature="e#672#673#0" expanded="true" />
-            <element signature="e#702#703#0" expanded="true" />
-            <element signature="e#721#722#0" expanded="true" />
+            <element signature="e#13590#13645#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Steprecording.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7091" max-vertical-offset="9959">
-          <caret line="48" column="13" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/case_recordDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="3312">
-          <caret line="36" column="66" selection-start-line="36" selection-start-column="66" selection-end-line="36" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1852" max-vertical-offset="9959">
+          <caret line="140" column="55" selection-start-line="140" selection-start-column="11" selection-end-line="140" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SplashActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.6896553" vertical-offset="11456" max-vertical-offset="13271">
+        <state vertical-scroll-proportion="7.206897" vertical-offset="11801" max-vertical-offset="13271">
           <caret line="539" column="86" selection-start-line="539" selection-start-column="74" selection-end-line="539" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_cut_control_finishandpass.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="23" max-vertical-offset="529">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepCutControlFinishandpass.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.7660944" vertical-offset="252" max-vertical-offset="2392">
-          <caret line="83" column="34" selection-start-line="83" selection-start-column="34" selection-end-line="83" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.8470255" vertical-offset="644" max-vertical-offset="3243">
+          <caret line="62" column="0" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
           <folding>
-            <element signature="e#3000#3343#0" expanded="true" />
-            <element signature="e#3332#3333#0" expanded="true" />
+            <element signature="e#3939#3940#0" expanded="true" />
+            <element signature="e#3998#3999#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -7,8 +7,13 @@ import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -25,10 +30,17 @@ public class StepCutControlFinishandpass extends Activity {
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
 
+    private GestureDetector detector;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setTitle("檢核結果");
         setContentView(R.layout.activity_step_cut_control_finishandpass);
+        setFinishOnTouchOutside(false);
+
+        TextView ss = (TextView)findViewById(R.id.finishandpass_textView1);
+        ss.setText("此步驟輸入的資料不符合完工之條件");
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
@@ -44,14 +56,15 @@ public class StepCutControlFinishandpass extends Activity {
 
         Log.d("cutcontrolfinish",String.valueOf(list.size()));
 
+        detector = new GestureDetector(new MySimpleOnGestureListener());
+        RelativeLayout rl = (RelativeLayout)findViewById(R.id.finishandpass_relativelayout);
+        rl.setOnTouchListener(new MyOnTouchListener());
 
-        final Bundle bundle1 = new Bundle();
-        bundle1.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
-        bundle1.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
-        bundle1.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
-        AlertDialog.Builder dialog = new AlertDialog.Builder(StepCutControlFinishandpass.this);
+
+
+/*        AlertDialog.Builder dialog = new AlertDialog.Builder(StepCutControlFinishandpass.this);
         dialog.setTitle("");
-        dialog.setMessage("此步驟輸入的資料不符合完工之條件");
+        dialog.setMessage("此步驟輸入的資料不符合完工之條件");*/
 
         for(int i=0; i< list.size();i++) {
 
@@ -68,15 +81,16 @@ public class StepCutControlFinishandpass extends Activity {
 
                 if (Integer.valueOf(list1.get(0).getRecord_min()) < Integer.valueOf(list.get(i).getRecord_value()) && Integer.valueOf(list.get(i).getRecord_value()) < Integer.valueOf(list1.get(0).getRecord_max())) {
 
-                    dialog.setMessage("此步驟輸入的資料符合完工之條件");
+                    ss.setText("此步驟輸入的資料符合完工之條件");
+                    //dialog.setMessage("此步驟輸入的資料符合完工之條件");
 
                 }
             }
             //非數字要怎麼通過@@?
         }
-        dialog.show();
+        //dialog.show();
 
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener(){
+/*        dialog.setOnDismissListener(new DialogInterface.OnDismissListener(){
             @Override
             public void onDismiss(DialogInterface dialog) {
                 Intent it = new Intent(StepCutControlFinishandpass.this, StepNextControl.class);
@@ -84,11 +98,39 @@ public class StepCutControlFinishandpass extends Activity {
                 startActivity(it);
                 finish();
             }
-        });
+        });*/
 
 
     }
 
+    class MyOnTouchListener implements View.OnTouchListener {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return detector.onTouchEvent(event);
+        }
+    }
+    class MySimpleOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            // TODO Auto-generated method stub
+            if ((e1.getX() - e2.getX()) > 50) {//左滑
+
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
+                bundle1.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+                bundle1.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+                Intent it = new Intent(StepCutControlFinishandpass.this, StepNextControl.class);
+                it.putExtras(bundle1);
+                startActivity(it);
+                finish();
+
+                return true;
+            }
+
+            return false;
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
