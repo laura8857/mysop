@@ -28,6 +28,12 @@ public class StepCutControlFinishandpass extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_cut_control_finishandpass);
 
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();	//取得Bundle
+        TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
+        TAG_STEP_NUMBER = bundle.getString("TAG_STEP_NUMBER");
+        TAG_STEP_ORDER = bundle.getInt("TAG_STEP_ORDER");
+
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         case_recordDao mcase_recordDao = new case_recordDao();
         List<case_recordVo> list = null;
@@ -42,26 +48,31 @@ public class StepCutControlFinishandpass extends Activity {
             //Record_type: 1數字 2
             if (list1.get(i).getRecord_type().equals("1")) {
 
-                Bundle bundle = new Bundle();
-                bundle.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
-                bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
-                bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
+                bundle1.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+                bundle1.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
 
                 if (Integer.valueOf(list1.get(i).getRecord_min()) < Integer.valueOf(list.get(i).getRecord_value()) && Integer.valueOf(list.get(i).getRecord_value()) < Integer.valueOf(list1.get(i).getRecord_max())) {
 
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(StepCutControlFinishandpass.this);
+                    dialog.setTitle("");
+                    dialog.setMessage("此步驟輸入的資料符合完工之條件");
+                    dialog.show();
+
                     Intent it = new Intent(StepCutControlFinishandpass.this, StepNextControl.class);
-                    it.putExtras(bundle);
+                    it.putExtras(bundle1);
                     startActivity(it);
                     finish();
                 } else {
 
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(StepCutControlFinishandpass.this);
-                    dialog.setTitle("");
-                    dialog.setMessage("此步驟輸入的資料不符合完工之條件");
-                    dialog.show();
+                    AlertDialog.Builder dialog1 = new AlertDialog.Builder(StepCutControlFinishandpass.this);
+                    dialog1.setTitle("");
+                    dialog1.setMessage("此步驟輸入的資料不符合完工之條件");
+                    dialog1.show();
 
                     Intent it1 = new Intent(StepCutControlFinishandpass.this, Steprecording.class);
-                    it1.putExtras(bundle);
+                    it1.putExtras(bundle1);
                     startActivity(it1);
                     finish();
                 }

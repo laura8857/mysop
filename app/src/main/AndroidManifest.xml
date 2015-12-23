@@ -321,7 +321,7 @@
         <activity
             android:name=".StepCutControlFinishandpass"
             android:label="@string/title_activity_step_cut_control_finishandpass"
-            android:theme="@android:style/Theme.NoDisplay" >
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
     </application>
 
