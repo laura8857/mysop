@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -41,6 +42,7 @@ public class StepCutControlFinishandpass extends Activity {
 
         for(int i=0; i< list.size();i++) {
 
+            Log.d("Finishandpass", "forloop");
             DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
             step_recordDao mstep_recordDao1 = new step_recordDao();
             List<step_recordVo> list1 = null;

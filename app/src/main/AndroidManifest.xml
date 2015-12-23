@@ -319,12 +319,12 @@
         <activity
             android:name=".StepNextControlData"
             android:label="@string/title_activity_step_next_control_data"
-            android:theme="@android:style/Theme.NoDisplay" >
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
             android:name=".StepCutControlFinishandpass"
             android:label="@string/title_activity_step_cut_control_finishandpass"
-            android:theme="@android:style/Theme.Holo.Light.Dialog" >
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
     </application>
 
