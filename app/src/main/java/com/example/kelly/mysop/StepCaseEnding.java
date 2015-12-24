@@ -62,7 +62,7 @@ public class StepCaseEnding extends Activity {
     JSONParser jsonParser = new JSONParser();
     //第一個是傳入紀錄說明和記錄值  第二個是更改紀錄值  第三個是 結案（刪掉代辦）
     private static String url_all_products = "http://140.115.80.237/front/mysop_stepCaseclose.jsp";
-    private static String url_all_products1 = "http://140.115.80.237/front/mysop_stepCaseclose1.jsp";
+    private static String url_record = "http://140.115.80.237/front/mysop_steprecording3.jsp";
     private static String url_all_products2 = "http://140.115.80.237/front/mysop_stepCaseclose2.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
@@ -115,7 +115,7 @@ public class StepCaseEnding extends Activity {
             //取出需要的sop_number 再找出step_number
             mstep_recordDao = new step_recordDao();
             List<step_recordVo> steprecordlist = null;
-            // steprecordlist = mstep_recordDao.selectRawByNest(mDatabaseHelper,"Sop_number",sopdetaillist.get(0).getSop_number(),"Step_number");
+             steprecordlist = mstep_recordDao.selectRawByNest(mDatabaseHelper,"Sop_number",sopdetaillist.get(0).getSop_number(),"Step_number");
 
             //取紀錄值
             mcase_recordDao = new case_recordDao();
@@ -189,7 +189,11 @@ public class StepCaseEnding extends Activity {
 
             //UPDATE orm
             //mmember_accountDao2.update(mDatabaseHelper2,"account","test","username","678");
-            mcase_recordDao.update(mDatabaseHelper,"Step_order",steporder[i],"Record_order",recordorder[i],"Record_value",RecordText[i]);
+            mcase_recordDao.update_record(mDatabaseHelper, "Case_number", TAG_CASE_NUMBER, "Step_order", steporder[i], "Record_order", recordorder[i], "Record_value", StepCaseEnding.this.edit[i].getText().toString());
+          //  List<case_recordVo> case_recordlist = null ;
+         //   case_recordlist = mcase_recordDao.selectRaw(mDatabaseHelper,"Case_number="+"'"+TAG_CASE_NUMBER+"'");
+        //   Log.d("update", case_recordlist.get(0).getRecord_value());
+
 
         }
 
@@ -207,7 +211,7 @@ public class StepCaseEnding extends Activity {
 
     }
 
-    //結案
+    //結案 和上傳
     public void close (View v){
 
         //檢查是否有網路
@@ -222,6 +226,9 @@ public class StepCaseEnding extends Activity {
             mcase_recordDao2.delete(mDatabaseHelper2, "Case_number", TAG_CASE_NUMBER);
             case_masterDao mcase_master2 = new case_masterDao();
             mcase_master2.delete(mDatabaseHelper2, "Case_number", TAG_CASE_NUMBER);
+           // List<case_masterVo> caselist = null ;
+           // caselist = mcase_masterDao.selectRaw(mDatabaseHelper2,"Account="+"'"+"test@gmail.com"+"'");
+           // Log.d("Here clear",caselist.get(0).getCase_number());
 
             Intent i = new Intent(this, Mysop.class);
             Bundle bundle = new Bundle();
@@ -230,6 +237,13 @@ public class StepCaseEnding extends Activity {
             startActivity(i);
         }else {
             Log.d("network","Qui");
+            //上傳
+            SOPContent1[] SO= new SOPContent1[Count];
+            for(Step=0;Step<Count;Step++){
+                SO[Step]=new SOPContent1();
+                SO[Step].execute(Step);
+            }
+            //結案
             new SOPContent2().execute();
         }
 
@@ -237,65 +251,65 @@ public class StepCaseEnding extends Activity {
 
     }
 
-//    //更改紀錄
-//    class SOPContent1 extends AsyncTask<Integer, String, String> {
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            pDialog = new ProgressDialog(StepCaseEnding.this);
-//            pDialog.setMessage("Changing..Please wait...");
-//            pDialog.setIndeterminate(false);
-//            pDialog.setCancelable(false);
-//          //  pDialog.show();
-//
-//        }
-//
-//
-//        protected String doInBackground(Integer... args) {
-//
-//            //先寫死stepnumber
-//            //String Casenumber ="" ;
-//
-//            int a=args[0];
-//            String RecordOrder=Integer.toString(a+1);
-//            RecordText[a] = StepCaseEnding.this.edit[a].getText().toString();
-//
-//            ArrayList params = new ArrayList();
-//            System.out.println("jj"+RecordText[a]);
-//
-//            params.add(new BasicNameValuePair("Newtext", RecordText[a]));
-//            params.add(new BasicNameValuePair("Casenumber", TAG_CASE_NUMBER) );
-//            params.add(new BasicNameValuePair("Recordorder", recordorder[a]) );
-//            params.add(new BasicNameValuePair("Steporder", steporder[a]) );
-//
-//            // 上傳更改的紀錄
-//            JSONObject json1 = StepCaseEnding.this.jsonParser.makeHttpRequest(StepCaseEnding.url_all_products1, "POST", params);
-//
-//            try {
-//                //更改紀錄
-//                int e = json1.getInt(TAG_SUCCESS);
-//                if(e == 1) {
-//                ok=1;
-//                }else{
-//                ok=0;
-//                }
-//
-//            } catch (JSONException var9) {
-//                var9.printStackTrace();
-//            }
-//
-//            return null;
-//        }
-//
-//
-//        /**
-//         * After completing background task Dismiss the progress dialog
-//         * **/
-//        protected void onPostExecute(String file_url) {
-//            // dismiss the dialog after getting all products
-//          //  pDialog.dismiss();
-//
-//        }
-//    }
+    //更改紀錄
+    class SOPContent1 extends AsyncTask<Integer, String, String> {
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(StepCaseEnding.this);
+            pDialog.setMessage("Changing..Please wait...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+          //  pDialog.show();
+
+        }
+
+
+        protected String doInBackground(Integer... args) {
+
+            //先寫死stepnumber
+            //String Casenumber ="" ;
+
+            int a=args[0];
+            String RecordOrder=Integer.toString(a+1);
+            RecordText[a] = StepCaseEnding.this.edit[a].getText().toString();
+
+            ArrayList params = new ArrayList();
+            System.out.println("jj"+RecordText[a]);
+
+            params.add(new BasicNameValuePair("RecordText", RecordText[a]));
+            params.add(new BasicNameValuePair("CaseNumber", TAG_CASE_NUMBER) );
+            params.add(new BasicNameValuePair("RecordOrder", recordorder[a]) );
+            params.add(new BasicNameValuePair("StepOrder", steporder[a]) );
+
+            // 上傳紀錄的紀錄
+            JSONObject json1 = StepCaseEnding.this.jsonParser.makeHttpRequest(StepCaseEnding.url_record, "POST", params);
+
+            try {
+
+                int e = json1.getInt(TAG_SUCCESS);
+                if(e == 1) {
+                ok=1;
+                }else{
+                ok=0;
+                }
+
+            } catch (JSONException var9) {
+                var9.printStackTrace();
+            }
+
+            return null;
+        }
+
+
+        /**
+         * After completing background task Dismiss the progress dialog
+         * **/
+        protected void onPostExecute(String file_url) {
+            // dismiss the dialog after getting all products
+          //  pDialog.dismiss();
+
+        }
+    }
     //結案 刪除sop
     class SOPContent2 extends AsyncTask<String, String, String> {
         protected void onPreExecute() {

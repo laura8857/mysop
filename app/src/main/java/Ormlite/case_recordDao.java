@@ -59,7 +59,7 @@ public class case_recordDao
         UpdateBuilder<case_recordVo, Integer> updateBuilder = case_recordDao.updateBuilder();
         try {
             //判斷式 哪一欄 = 值
-            updateBuilder.where().eq(columnvalue, originalvalue).eq(columnvalue1,originalvalue1);
+            updateBuilder.where().eq(columnvalue, originalvalue).and().eq(columnvalue1,originalvalue1);
             // update the value of your field(s)
             updateBuilder.updateColumnValue(column, value);
 

@@ -224,7 +224,7 @@ public class Mysop extends Activity {
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         TAG_ACCOUNT=bundle.getString("TAG_ACCOUNT");
-        Log.d("Mysop's TAG_ACCOUNT",TAG_ACCOUNT);
+       // Log.d("Mysop's TAG_ACCOUNT",TAG_ACCOUNT);
 
                 // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
