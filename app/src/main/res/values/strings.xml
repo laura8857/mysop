@@ -8,7 +8,7 @@
     <string name="title_activity_forget">Forget</string>
     <string name="title_activity_main">MainActivity</string>
 
-
+<string name="menu">menu</string>
     <string name="Login_email">電子信箱</string>
     <string name="Login_passward">密碼</string>
 
@@ -42,7 +42,7 @@
     <string name="title_section5">iBeacon</string>
     <string name="title_section6">GPS</string>
     <string name="title_section7">Time</string>
-
+<string name="space"> </string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
