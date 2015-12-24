@@ -222,13 +222,8 @@ public class StepCaseEnding extends Activity {
             Log.d("network","null");
             //Delete orm
             DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(StepCaseEnding.this);
-            case_recordDao mcase_recordDao2 = new case_recordDao();
-            mcase_recordDao2.delete(mDatabaseHelper2, "Case_number", TAG_CASE_NUMBER);
             case_masterDao mcase_master2 = new case_masterDao();
             mcase_master2.delete(mDatabaseHelper2, "Case_number", TAG_CASE_NUMBER);
-           // List<case_masterVo> caselist = null ;
-           // caselist = mcase_masterDao.selectRaw(mDatabaseHelper2,"Account="+"'"+"test@gmail.com"+"'");
-           // Log.d("Here clear",caselist.get(0).getCase_number());
 
             Intent i = new Intent(this, Mysop.class);
             Bundle bundle = new Bundle();
@@ -245,6 +240,16 @@ public class StepCaseEnding extends Activity {
             }
             //結案
             new SOPContent2().execute();
+
+            //Delete orm
+            DatabaseHelper mDatabaseHelper3 = DatabaseHelper.getHelper(StepCaseEnding.this);
+            case_recordDao mcase_recordDao3 = new case_recordDao();
+            mcase_recordDao3.delete(mDatabaseHelper3, "Case_number", TAG_CASE_NUMBER);
+            case_masterDao mcase_master3 = new case_masterDao();
+            mcase_master3.delete(mDatabaseHelper3, "Case_number", TAG_CASE_NUMBER);
+            // List<case_masterVo> caselist = null ;
+            // caselist = mcase_masterDao.selectRaw(mDatabaseHelper2,"Account="+"'"+"test@gmail.com"+"'");
+            // Log.d("Here clear",caselist.get(0).getCase_number());
         }
 
 
