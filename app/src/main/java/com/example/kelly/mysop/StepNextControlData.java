@@ -88,7 +88,7 @@ public class StepNextControlData extends Activity {
         bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
         it1.putExtras(bundle);
         startActivity(it1);
-        finish();
+        //finish();
 
     }
 

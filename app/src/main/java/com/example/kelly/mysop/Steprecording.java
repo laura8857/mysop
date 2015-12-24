@@ -79,7 +79,7 @@ public class Steprecording extends Activity {
     String TAG_CASE_NUMBER = "";
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
-
+    boolean TAG_BACK_TO_RECORDING = false;
 
     private step_recordDao mstep_recordDao;
     private case_recordDao mcase_recordDao;
@@ -94,6 +94,12 @@ public class Steprecording extends Activity {
         TextView ss = (TextView)findViewById(R.id.textView6);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
+
+        if(intent.hasExtra("TAG_BACK_TO_RECORDING")){
+            TAG_BACK_TO_RECORDING = true;
+            Log.d("抓3","backtorecording");
+        }
+
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
         TAG_STEP_NUMBER = bundle.getString("TAG_STEP_NUMBER");
         TAG_STEP_ORDER = bundle.getInt("TAG_STEP_ORDER");
@@ -351,38 +357,50 @@ public class Steprecording extends Activity {
                 }
 
                 if(didinput) {
-                    //new Recording().execute();
-                    DatabaseHelper[] mDatabaseHelper2 = new DatabaseHelper[20];
-                    for (int postcount = 0; postcount < count; postcount++) {
-                        //RC[postcount] = new Recording();
-                        //RC[postcount].execute(postcount);
 
-                        //"INSERT INTO case_record(case_number,step_order,record_order,record_value) VALUES('"+CaseNumber+"',"+StepOrder+","+RecordOrder+",'"+RecordText+"')";
-                        RecordText[postcount] = Steprecording.this.edit1[postcount].getText().toString();
+                    if(!TAG_BACK_TO_RECORDING) {
+                        //new Recording().execute();
+                        DatabaseHelper[] mDatabaseHelper2 = new DatabaseHelper[20];
+                        for (int postcount = 0; postcount < count; postcount++) {
+                            //RC[postcount] = new Recording();
+                            //RC[postcount].execute(postcount);
 
-                        mDatabaseHelper2[postcount] = new DatabaseHelper(getApplicationContext());
-                        mcase_recordDao = new case_recordDao();
-                        mcase_recordVo = new case_recordVo();
-                        mcase_recordVo.setCase_number(TAG_CASE_NUMBER);
-                        mcase_recordVo.setStep_order(String.valueOf(TAG_STEP_ORDER));
-                        mcase_recordVo.setRecord_order(String.valueOf(postcount + 1));
-                        Log.d("RecordOrder", String.valueOf(postcount+1));
-                        mcase_recordVo.setRecord_value(RecordText[postcount]);
-                        mcase_recordDao.insert(mDatabaseHelper2[postcount],mcase_recordVo);
+                            //"INSERT INTO case_record(case_number,step_order,record_order,record_value) VALUES('"+CaseNumber+"',"+StepOrder+","+RecordOrder+",'"+RecordText+"')";
+                            RecordText[postcount] = Steprecording.this.edit1[postcount].getText().toString();
 
+                            mDatabaseHelper2[postcount] = new DatabaseHelper(getApplicationContext());
+                            mcase_recordDao = new case_recordDao();
+                            mcase_recordVo = new case_recordVo();
+                            mcase_recordVo.setCase_number(TAG_CASE_NUMBER);
+                            mcase_recordVo.setStep_order(String.valueOf(TAG_STEP_ORDER));
+                            mcase_recordVo.setRecord_order(String.valueOf(postcount + 1));
+                            Log.d("RecordOrder", String.valueOf(postcount + 1));
+                            mcase_recordVo.setRecord_value(RecordText[postcount]);
+                            mcase_recordDao.insert(mDatabaseHelper2[postcount], mcase_recordVo);
+                        }
+                    //TAG_BACK_TO_RECORDING=true
+                    }else{
+                        Log.d("抓4","進入update");
+                        DatabaseHelper[] mDatabaseHelper2 = new DatabaseHelper[20];
+                            for (int postcount = 0; postcount < count; postcount++) {
+                                RecordText[postcount] = Steprecording.this.edit1[postcount].getText().toString();
+                                mDatabaseHelper2[postcount] = new DatabaseHelper(getApplicationContext());
+                                mcase_recordDao = new case_recordDao();
+                                mcase_recordDao.update_record(mDatabaseHelper2[postcount], "Case_number", TAG_CASE_NUMBER, "Step_order", TAG_STEP_NUMBER, "Record_order", String.valueOf(postcount + 1),"Record_value",RecordText[postcount]);
+                            }
                     }
-
 
                     Intent intent = new Intent();
                     intent.setClass(Steprecording.this, StepCutControl.class);
                     Bundle bundle = new Bundle();
-                    bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+                    bundle.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
                     bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
                     bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
                     intent.putExtras(bundle);//將參數放入intent
                     startActivity(intent);
                     //切換畫面，右近左出
                     overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+
                 }else{
                     AlertDialog.Builder dialog = new AlertDialog.Builder(Steprecording.this);
                     dialog.setTitle("");
@@ -390,6 +408,9 @@ public class Steprecording extends Activity {
                     dialog.show();
                 }
                 return true;
+
+
+
             } else if((e1.getX() - e2.getX()) < -50){ //11/29新加右滑
                 Intent intent2 = new Intent();
                 intent2.setClass(Steprecording.this, Stepdescription.class);

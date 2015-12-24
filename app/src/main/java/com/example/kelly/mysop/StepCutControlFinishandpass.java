@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ public class StepCutControlFinishandpass extends Activity {
     String TAG_CASE_NUMBER = "";
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
+    boolean Pass = false;
 
     private GestureDetector detector;
 
@@ -38,6 +40,8 @@ public class StepCutControlFinishandpass extends Activity {
         setTitle("檢核結果");
         setContentView(R.layout.activity_step_cut_control_finishandpass);
         setFinishOnTouchOutside(false);
+
+
 
         TextView ss = (TextView)findViewById(R.id.finishandpass_textView1);
         ss.setText("此步驟輸入的資料不符合完工之條件");
@@ -58,7 +62,7 @@ public class StepCutControlFinishandpass extends Activity {
 
         detector = new GestureDetector(new MySimpleOnGestureListener());
         RelativeLayout rl = (RelativeLayout)findViewById(R.id.finishandpass_relativelayout);
-        rl.setOnTouchListener(new MyOnTouchListener());
+        //rl.setOnTouchListener(new MyOnTouchListener());
 
 
 
@@ -82,8 +86,12 @@ public class StepCutControlFinishandpass extends Activity {
                 if (Integer.valueOf(list1.get(0).getRecord_min()) < Integer.valueOf(list.get(i).getRecord_value()) && Integer.valueOf(list.get(i).getRecord_value()) < Integer.valueOf(list1.get(0).getRecord_max())) {
 
                     ss.setText("此步驟輸入的資料符合完工之條件");
+                    Pass = true;
                     //dialog.setMessage("此步驟輸入的資料符合完工之條件");
 
+                }else{
+                    ss.setText("此步驟輸入的資料不符合完工之條件");
+                    Pass = false;
                 }
             }
             //非數字要怎麼通過@@?
@@ -100,6 +108,9 @@ public class StepCutControlFinishandpass extends Activity {
             }
         });*/
 
+
+        //View v = findViewById(android.R.id.content);
+       // v.setOnTouchListener(new MyOnTouchListener());
 
     }
 
@@ -120,10 +131,23 @@ public class StepCutControlFinishandpass extends Activity {
                 bundle1.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
                 bundle1.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
                 bundle1.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
-                Intent it = new Intent(StepCutControlFinishandpass.this, StepNextControl.class);
-                it.putExtras(bundle1);
-                startActivity(it);
-                finish();
+
+                if(Pass){
+                    Intent it = new Intent(StepCutControlFinishandpass.this, StepNextControl.class);
+                    it.putExtras(bundle1);
+                    startActivity(it);
+                    //overridePendingTransition(R.anim.in_from_right, R.anim.out_to_right);
+                    finish();
+                }else{
+                    bundle1.putBoolean("TAG_BACK_TO_RECORDING",true);
+                    Intent it1 = new Intent(StepCutControlFinishandpass.this, Steprecording.class);
+                    it1.putExtras(bundle1);
+                    startActivity(it1);
+                    //overridePendingTransition(R.anim.in_from_right, R.anim.out_to_right);
+                    finish();
+                }
+
+
 
                 return true;
             }
@@ -131,6 +155,18 @@ public class StepCutControlFinishandpass extends Activity {
             return false;
         }
     }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev){
+        Rect dialogBounds = new Rect();
+        getWindow().getDecorView().getHitRect(dialogBounds);
+/*        if(dialogBounds.contains((int)ev.getX(),(int)ev.getY())){
+            return detector.onTouchEvent(ev);
+        }
+        return super.dispatchTouchEvent(ev);*/
+        return detector.onTouchEvent(ev);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

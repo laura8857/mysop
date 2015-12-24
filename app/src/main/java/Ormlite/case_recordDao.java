@@ -70,6 +70,23 @@ public class case_recordDao
         return 0;
     }
 
+    public static int update_record(DatabaseHelper databaseHelper, String columnvalue, String originalvalue,String columnvalue1, String originalvalue1,String columnvalue2, String originalvalue2, String column, String value) {
+        RuntimeExceptionDao<case_recordVo, Integer> case_recordDao = databaseHelper
+                .getCase_recordDao();
+        UpdateBuilder<case_recordVo, Integer> updateBuilder = case_recordDao.updateBuilder();
+        try {
+            //判斷式 哪一欄 = 值
+            updateBuilder.where().eq(columnvalue, originalvalue).and().eq(columnvalue1,originalvalue1).and().eq(columnvalue2,originalvalue2);
+            // update the value of your field(s)
+            updateBuilder.updateColumnValue(column, value);
+
+            return updateBuilder.update();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 //	/* delete */
 //	public static int delete(DatabaseHelper databaseHelper, case_recordVo case_recordVo) {
 //		RuntimeExceptionDao<case_recordVo, Integer> case_recordDao = databaseHelper
