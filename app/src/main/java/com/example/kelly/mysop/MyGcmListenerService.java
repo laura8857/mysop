@@ -14,7 +14,8 @@ import android.util.Log;
 import com.google.android.gms.gcm.GcmListenerService;
 
 import Ormlite.DatabaseHelper;
-import Ormlite.member_accountDao;
+import Ormlite.system_messageDao;
+import Ormlite.system_messageVo;
 
 public class MyGcmListenerService extends GcmListenerService {
 
@@ -36,9 +37,10 @@ public class MyGcmListenerService extends GcmListenerService {
 
         //存系統訊息進手機
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
-        //member_accountDao mmember_accountDao = new member_accountDao();
-        //mmember_accountDao.update(mDatabaseHelper,"account","test","captcha",message);
-
+        system_messageDao msystem_messageDao = new system_messageDao();
+        system_messageVo msystem_messageVo = new system_messageVo();
+        msystem_messageVo.setSystem_message(message);
+        msystem_messageDao.insert(mDatabaseHelper,msystem_messageVo);
 
         if (from.startsWith("/topics/")) {
             // message received from some topic.

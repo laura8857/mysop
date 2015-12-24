@@ -38,11 +38,17 @@ public class system_messageDao {
         return false;
     }
     /* update */
-    public static int update(DatabaseHelper databaseHelper, system_messageVo system_messageVo) {
+    public static int update(DatabaseHelper databaseHelper, String columnvalue, String originalvalue, String column, String value) {
         RuntimeExceptionDao<system_messageVo, Integer> system_messageDao = databaseHelper
                 .getSystem_messageDao();
+        UpdateBuilder<system_messageVo, Integer> updateBuilder = system_messageDao.updateBuilder();
         try {
-            return system_messageDao.update(system_messageVo);
+            //判斷式 哪一欄 = 值
+            updateBuilder.where().eq(columnvalue, originalvalue);
+            // update the value of your field(s)
+            updateBuilder.updateColumnValue(column, value);
+
+            return updateBuilder.update();
         } catch (Exception e) {
             e.printStackTrace();
         }
