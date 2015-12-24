@@ -125,8 +125,13 @@
     <orderEntry type="library" exported="" name="play-services-wearable-7.5.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-safetynet-7.5.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-games-7.5.0" level="project" />
+<<<<<<< HEAD
     <orderEntry type="library" exported="" name="play-services-plus-7.5.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-maps-7.5.0" level="project" />
+=======
+    <orderEntry type="library" exported="" name="play-services-maps-7.5.0" level="project" />
+    <orderEntry type="library" exported="" name="play-services-plus-7.5.0" level="project" />
+>>>>>>> a92156a0c17186add19be326aea6ff755ae893ee
     <orderEntry type="library" exported="" name="play-services-fitness-7.5.0" level="project" />
     <orderEntry type="library" exported="" name="android-beacon-library-2.1-beta-4" level="project" />
     <orderEntry type="library" exported="" name="play-services-analytics-7.5.0" level="project" />

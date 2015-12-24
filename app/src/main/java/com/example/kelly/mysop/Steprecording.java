@@ -6,17 +6,11 @@ import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
-import android.view.GestureDetector.OnGestureListener;
 import android.view.GestureDetector;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -25,19 +19,13 @@ import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
-import android.widget.Toast;
 
 import Ormlite.DatabaseHelper;
 import Ormlite.case_recordDao;
@@ -121,8 +109,8 @@ public class Steprecording extends Activity {
         List<step_recordVo> list = null;
         list = mstep_recordDao.selectRaw(mDatabaseHelper, "Step_number="+TAG_STEP_NUMBER);
 
-        Log.d("抓", list.get(0).getRecord_order());
-        Log.d("抓2", list.get(0).getRecord_text());
+      //  Log.d("抓", list.get(0).getRecord_order());
+      //  Log.d("抓2", list.get(0).getRecord_text());
 
         count = list.size();
         LinearLayout ly = (LinearLayout)findViewById(R.id.linearlayoutinput);
