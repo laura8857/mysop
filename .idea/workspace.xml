@@ -14,10 +14,17 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.kelly.mysop" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="TableUtils" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8a57b7bf-3f6e-4586-9f13-d468ae8bc09a" name="Default" comment="" />
+    <list default="true" id="8a57b7bf-3f6e-4586-9f13-d468ae8bc09a" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SystemMessage.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_system_message.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_system_message.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="MySOP3.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -42,8 +49,8 @@
       <file leaf-file-name="system_messageVo.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/system_messageVo.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="874">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            <state vertical-scroll-proportion="-3.275862" vertical-offset="89" max-vertical-offset="874">
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#764#765#0" expanded="true" />
@@ -58,8 +65,8 @@
       <file leaf-file-name="system_messageDao.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/system_messageDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="2852">
-              <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+            <state vertical-scroll-proportion="-4.7586207" vertical-offset="0" max-vertical-offset="2852">
+              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -67,14 +74,46 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyGcmListenerService.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/MyGcmListenerService.java">
+      <file leaf-file-name="DatabaseHelper.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/DatabaseHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7711443" vertical-offset="495" max-vertical-offset="2346">
-              <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="4642" max-vertical-offset="6739">
+              <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SystemMessage.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SystemMessage.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.6756757" vertical-offset="193" max-vertical-offset="1058">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyGcmListenerService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/MyGcmListenerService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-3.9310346" vertical-offset="1588" max-vertical-offset="2346">
+              <caret line="74" column="26" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="26" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RegistrationIntentService.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/RegistrationIntentService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="644" max-vertical-offset="2898">
+              <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -1720,11 +1759,13 @@
         <option value="$PROJECT_DIR$/app/src/main/java/Ormlite/case_recordDao.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_step_next_control_data.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepNextControlData.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/Ormlite/DatabaseHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Ormlite/system_messageVo.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Ormlite/system_messageDao.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/MyGcmListenerService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_system_message.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SystemMessage.java" />
       </list>
     </option>
   </component>
@@ -1908,6 +1949,38 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MySOP3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MySOP3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".idea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MySOP3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MySOP3" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".idea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="scopes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
     </panes>
@@ -1923,6 +1996,14 @@
     <property name="recentsLimit" value="5" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="F5AZFG15L996" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_21_x86" />
+  </component>
+  <component name="RecentsManager">
+    <key name="android.template.packageName">
+      <recent name="com.example.kelly.mysop" />
+    </key>
+    <key name="android.template.parentActivityClass">
+      <recent name="" />
+    </key>
   </component>
   <component name="RunManager" selected="Android Application.TestSendGCM">
     <configuration default="false" name="SplashActivity" type="AndroidRunConfigurationType" factoryName="Android Application" temporary="true">
@@ -2161,7 +2242,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32879046" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24361159" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.48722318" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962178" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -2311,45 +2392,46 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="1263" max-vertical-offset="7751">
           <caret line="63" column="50" selection-start-line="63" selection-start-column="50" selection-end-line="63" selection-end-column="50" />
           <folding>
-            <element signature="e#2845#2863#0" expanded="true" />
-            <element signature="e#4707#4725#0" expanded="true" />
-            <element signature="e#4898#4934#0" expanded="true" />
-            <element signature="e#5101#5131#0" expanded="true" />
-            <element signature="e#5299#5330#0" expanded="true" />
-            <element signature="e#5501#5535#0" expanded="true" />
-            <element signature="e#5702#5731#0" expanded="true" />
-            <element signature="e#5907#5946#0" expanded="true" />
-            <element signature="e#6127#6173#0" expanded="true" />
-            <element signature="e#6352#6396#0" expanded="true" />
-            <element signature="e#6572#6603#0" expanded="true" />
-            <element signature="e#6780#6819#0" expanded="true" />
-            <element signature="e#6986#7016#0" expanded="true" />
-            <element signature="e#7162#7194#0" expanded="true" />
-            <element signature="e#7361#7391#0" expanded="true" />
-            <element signature="e#7570#7610#0" expanded="true" />
-            <element signature="e#7785#7823#0" expanded="true" />
-            <element signature="e#8009#8059#0" expanded="true" />
-            <element signature="e#8235#8276#0" expanded="true" />
-            <element signature="e#8461#8512#0" expanded="true" />
-            <element signature="e#8698#8750#0" expanded="true" />
-            <element signature="e#8932#8980#0" expanded="true" />
-            <element signature="e#9159#9203#0" expanded="true" />
-            <element signature="e#9372#9413#0" expanded="true" />
-            <element signature="e#9793#9842#0" expanded="true" />
-            <element signature="e#10021#10066#0" expanded="true" />
-            <element signature="e#10248#10296#0" expanded="true" />
-            <element signature="e#10752#10807#0" expanded="true" />
-            <element signature="e#10990#11039#0" expanded="true" />
-            <element signature="e#11218#11263#0" expanded="true" />
-            <element signature="e#11710#11756#0" expanded="true" />
-            <element signature="e#11937#11984#0" expanded="true" />
-            <element signature="e#12161#12203#0" expanded="true" />
-            <element signature="e#12475#12513#0" expanded="true" />
-            <element signature="e#12885#12916#0" expanded="true" />
-            <element signature="e#13025#13064#0" expanded="true" />
-            <element signature="e#13209#13240#0" expanded="true" />
-            <element signature="e#13355#13402#0" expanded="true" />
-            <element signature="e#13592#13647#0" expanded="true" />
+            <element signature="e#2847#2865#0" expanded="true" />
+            <element signature="e#4709#4727#0" expanded="true" />
+            <element signature="e#4900#4936#0" expanded="true" />
+            <element signature="e#5103#5133#0" expanded="true" />
+            <element signature="e#5301#5332#0" expanded="true" />
+            <element signature="e#5503#5537#0" expanded="true" />
+            <element signature="e#5704#5733#0" expanded="true" />
+            <element signature="e#5909#5948#0" expanded="true" />
+            <element signature="e#6129#6175#0" expanded="true" />
+            <element signature="e#6354#6398#0" expanded="true" />
+            <element signature="e#6574#6605#0" expanded="true" />
+            <element signature="e#6984#7023#0" expanded="true" />
+            <element signature="e#7190#7220#0" expanded="true" />
+            <element signature="e#7366#7398#0" expanded="true" />
+            <element signature="e#7565#7595#0" expanded="true" />
+            <element signature="e#7774#7814#0" expanded="true" />
+            <element signature="e#7989#8027#0" expanded="true" />
+            <element signature="e#8213#8263#0" expanded="true" />
+            <element signature="e#8439#8480#0" expanded="true" />
+            <element signature="e#8665#8716#0" expanded="true" />
+            <element signature="e#8902#8954#0" expanded="true" />
+            <element signature="e#9136#9184#0" expanded="true" />
+            <element signature="e#9363#9407#0" expanded="true" />
+            <element signature="e#9576#9617#0" expanded="true" />
+            <element signature="e#9997#10046#0" expanded="true" />
+            <element signature="e#10225#10270#0" expanded="true" />
+            <element signature="e#10452#10500#0" expanded="true" />
+            <element signature="e#10956#11011#0" expanded="true" />
+            <element signature="e#11194#11243#0" expanded="true" />
+            <element signature="e#11422#11467#0" expanded="true" />
+            <element signature="e#11914#11960#0" expanded="true" />
+            <element signature="e#12141#12188#0" expanded="true" />
+            <element signature="e#12365#12407#0" expanded="true" />
+            <element signature="e#12679#12717#0" expanded="true" />
+            <element signature="e#12886#12917#0" expanded="true" />
+            <element signature="e#13026#13065#0" expanded="true" />
+            <element signature="e#13210#13241#0" expanded="true" />
+            <element signature="e#13356#13403#0" expanded="true" />
+            <element signature="e#13593#13648#0" expanded="true" />
+            <element signature="e#13824#13863#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -2493,14 +2575,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/RegistrationIntentService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2898">
-          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_test_send_gcm.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -2517,54 +2591,6 @@
         <state vertical-scroll-proportion="-0.87262875" vertical-offset="483" max-vertical-offset="1564">
           <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="6695" max-vertical-offset="7774">
-          <caret line="297" column="39" selection-start-line="297" selection-start-column="39" selection-end-line="297" selection-end-column="39" />
-          <folding>
-            <element signature="e#2845#2863#0" expanded="true" />
-            <element signature="e#4707#4725#0" expanded="true" />
-            <element signature="e#4898#4934#0" expanded="true" />
-            <element signature="e#5101#5131#0" expanded="true" />
-            <element signature="e#5299#5330#0" expanded="true" />
-            <element signature="e#5501#5535#0" expanded="true" />
-            <element signature="e#5702#5731#0" expanded="true" />
-            <element signature="e#5907#5946#0" expanded="true" />
-            <element signature="e#6127#6173#0" expanded="true" />
-            <element signature="e#6352#6396#0" expanded="true" />
-            <element signature="e#6572#6603#0" expanded="true" />
-            <element signature="e#6780#6819#0" expanded="true" />
-            <element signature="e#6986#7016#0" expanded="true" />
-            <element signature="e#7162#7194#0" expanded="true" />
-            <element signature="e#7361#7391#0" expanded="true" />
-            <element signature="e#7570#7610#0" expanded="true" />
-            <element signature="e#7785#7823#0" expanded="true" />
-            <element signature="e#8009#8059#0" expanded="true" />
-            <element signature="e#8235#8276#0" expanded="true" />
-            <element signature="e#8461#8512#0" expanded="true" />
-            <element signature="e#8698#8750#0" expanded="true" />
-            <element signature="e#8932#8980#0" expanded="true" />
-            <element signature="e#9159#9203#0" expanded="true" />
-            <element signature="e#9372#9413#0" expanded="true" />
-            <element signature="e#9793#9842#0" expanded="true" />
-            <element signature="e#10021#10066#0" expanded="true" />
-            <element signature="e#10248#10296#0" expanded="true" />
-            <element signature="e#10752#10807#0" expanded="true" />
-            <element signature="e#10990#11039#0" expanded="true" />
-            <element signature="e#11218#11263#0" expanded="true" />
-            <element signature="e#11710#11756#0" expanded="true" />
-            <element signature="e#11937#11984#0" expanded="true" />
-            <element signature="e#12161#12203#0" expanded="true" />
-            <element signature="e#12475#12513#0" expanded="true" />
-            <element signature="e#12885#12916#0" expanded="true" />
-            <element signature="e#13025#13064#0" expanded="true" />
-            <element signature="e#13209#13240#0" expanded="true" />
-            <element signature="e#13355#13402#0" expanded="true" />
-            <element signature="e#13592#13647#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -2598,14 +2624,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.0122249" vertical-offset="0" max-vertical-offset="1334">
           <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/DatabaseHelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1707" max-vertical-offset="6739">
-          <caret line="291" column="37" selection-start-line="291" selection-start-column="37" selection-end-line="291" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -2654,10 +2672,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/system_messageDao.java">
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="690" max-vertical-offset="2852">
-          <caret line="43" column="36" selection-start-line="43" selection-start-column="36" selection-end-line="43" selection-end-column="36" />
+        <state vertical-scroll-proportion="-152.84825" vertical-offset="61675" max-vertical-offset="62077">
+          <caret line="10" column="29" selection-start-line="10" selection-start-column="29" selection-end-line="10" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/RegistrationIntentService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="644" max-vertical-offset="2898">
+          <caret line="30" column="5" selection-start-line="30" selection-start-column="5" selection-end-line="30" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/MyGcmListenerService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9310346" vertical-offset="1588" max-vertical-offset="2346">
+          <caret line="74" column="26" selection-start-line="74" selection-start-column="23" selection-end-line="74" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -2666,8 +2700,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/system_messageVo.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="91" max-vertical-offset="874">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state vertical-scroll-proportion="-3.275862" vertical-offset="89" max-vertical-offset="874">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#764#765#0" expanded="true" />
@@ -2678,10 +2712,88 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/MyGcmListenerService.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/system_messageDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7711443" vertical-offset="495" max-vertical-offset="2346">
-          <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
+        <state vertical-scroll-proportion="-4.7586207" vertical-offset="0" max-vertical-offset="2852">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/DatabaseHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="4642" max-vertical-offset="6739">
+          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13597734" vertical-offset="3540" max-vertical-offset="7866">
+          <caret line="156" column="42" selection-start-line="156" selection-start-column="42" selection-end-line="156" selection-end-column="42" />
+          <folding>
+            <element signature="e#2847#2865#0" expanded="true" />
+            <element signature="e#4709#4727#0" expanded="true" />
+            <element signature="e#4900#4936#0" expanded="true" />
+            <element signature="e#5103#5133#0" expanded="true" />
+            <element signature="e#5301#5332#0" expanded="true" />
+            <element signature="e#5503#5537#0" expanded="true" />
+            <element signature="e#5704#5733#0" expanded="true" />
+            <element signature="e#5909#5948#0" expanded="true" />
+            <element signature="e#6129#6175#0" expanded="true" />
+            <element signature="e#6354#6398#0" expanded="true" />
+            <element signature="e#6574#6605#0" expanded="true" />
+            <element signature="e#6984#7023#0" expanded="true" />
+            <element signature="e#7190#7220#0" expanded="true" />
+            <element signature="e#7366#7398#0" expanded="true" />
+            <element signature="e#7565#7595#0" expanded="true" />
+            <element signature="e#7774#7814#0" expanded="true" />
+            <element signature="e#7989#8027#0" expanded="true" />
+            <element signature="e#8213#8263#0" expanded="true" />
+            <element signature="e#8439#8480#0" expanded="true" />
+            <element signature="e#8665#8716#0" expanded="true" />
+            <element signature="e#8902#8954#0" expanded="true" />
+            <element signature="e#9136#9184#0" expanded="true" />
+            <element signature="e#9363#9407#0" expanded="true" />
+            <element signature="e#9576#9617#0" expanded="true" />
+            <element signature="e#9997#10046#0" expanded="true" />
+            <element signature="e#10225#10270#0" expanded="true" />
+            <element signature="e#10452#10500#0" expanded="true" />
+            <element signature="e#10956#11011#0" expanded="true" />
+            <element signature="e#11194#11243#0" expanded="true" />
+            <element signature="e#11422#11467#0" expanded="true" />
+            <element signature="e#11914#11960#0" expanded="true" />
+            <element signature="e#12141#12188#0" expanded="true" />
+            <element signature="e#12365#12407#0" expanded="true" />
+            <element signature="e#12679#12717#0" expanded="true" />
+            <element signature="e#12886#12917#0" expanded="true" />
+            <element signature="e#13026#13065#0" expanded="true" />
+            <element signature="e#13210#13241#0" expanded="true" />
+            <element signature="e#13356#13403#0" expanded="true" />
+            <element signature="e#13593#13648#0" expanded="true" />
+            <element signature="e#13824#13863#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_system_message.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="414">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SystemMessage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6756757" vertical-offset="193" max-vertical-offset="1058">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
