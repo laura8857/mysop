@@ -319,7 +319,7 @@
         <activity
             android:name=".StepNextControlData"
             android:label="@string/title_activity_step_next_control_data"
-            android:theme="@android:style/Theme.Light.NoTitleBar" >
+            android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
             android:name=".StepCutControlFinishandpass"

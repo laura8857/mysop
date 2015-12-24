@@ -3,11 +3,15 @@ package com.example.kelly.mysop;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.TextView;
 
 import java.util.List;
@@ -24,15 +28,23 @@ public class StepNextControlData extends Activity {
     String TAG_CASE_NUMBER = "";
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
+    String TAG_NEXT_STEP_NUMBER = "";
+    private GestureDetector detector;
+    boolean Pass = false;
+    TextView ss;
 
     private DatabaseHelper mDatabaseHelper;
     private sop_detailDao msop_detailDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTitle("下一步驟檢核結果");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_step_next_control_data);
+        setFinishOnTouchOutside(false);
 
+        ss = (TextView)findViewById(R.id.cutcontroldara_textView1);
+        ss.setText("此步驟輸入的資料不符合資料選擇下一步驟之條件");
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
@@ -49,15 +61,23 @@ public class StepNextControlData extends Activity {
         String[] NextStep = Next.split("。");
         String[] NextStepOption = NextStep[0].split("，");
         String[] NextStepNumber = NextStep[1].split("，");
+
+/*        Log.d("Data2",NextStepOption[0]);
+        Log.d("Data3",NextStepOption[1]);
+        Log.d("Data4",NextStepNumber[0]);
+        Log.d("Data5",NextStepNumber[1]);*/
+
         UseNextStepOption(NextStepOption,NextStepNumber);
+
+        detector = new GestureDetector(new MySimpleOnGestureListener());
 
     }
 
 
     public void UseNextStepOption(String[] NextStepOption,String[] NextStepNumber) {
 
-        Bundle bundle = new Bundle();
-        bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+        //Bundle bundle = new Bundle();
+        //bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
 
         DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
         case_recordDao mcase_recordDao1 = new case_recordDao();
@@ -68,29 +88,90 @@ public class StepNextControlData extends Activity {
         for(int i=0;i<NextStepOption.length;i++){
             for(int j=0;j<list1.size();j++){
                 if(list1.get(j).getRecord_value().equals(NextStepOption[i])){
-                    Intent it = new Intent(StepNextControlData.this, StepActionControl.class);
+
+                    ss.setText("此步驟輸入的資料符合資料選擇下一步驟之條件");
+                    Pass = true;
+                    TAG_NEXT_STEP_NUMBER = NextStepNumber[i];
+                    Log.d("Data6",NextStepNumber[i]);
+                    /*Intent it = new Intent(StepNextControlData.this, StepActionControl.class);
                     bundle.putString("TAG_NEXT_STEP_NUMBER", NextStepNumber[j]);
                     it.putExtras(bundle);
                     startActivity(it);
                     finish();
-                    break;
+                    break;*/
                 }
             }
         }
 
-        AlertDialog.Builder dialog = new AlertDialog.Builder(StepNextControlData.this);
+        /*AlertDialog.Builder dialog = new AlertDialog.Builder(StepNextControlData.this);
         dialog.setTitle("");
         dialog.setMessage("此步驟輸入的資料不符合資料選擇下一步驟之條件");
-        dialog.show();
+        dialog.show();*/
 
-        Intent it1 = new Intent(StepNextControlData.this, Steprecording.class);
+        /*Intent it1 = new Intent(StepNextControlData.this, Steprecording.class);
         bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
         bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
         it1.putExtras(bundle);
         startActivity(it1);
-        //finish();
+        //finish();*/
 
     }
+
+
+    class MyOnTouchListener implements View.OnTouchListener {
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+            return detector.onTouchEvent(event);
+        }
+    }
+    class MySimpleOnGestureListener extends GestureDetector.SimpleOnGestureListener {
+
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            // TODO Auto-generated method stub
+            if ((e1.getX() - e2.getX()) > 50) {//左滑
+
+                Bundle bundle1 = new Bundle();
+                bundle1.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
+
+                if(Pass){
+                    bundle1.putString("TAG_NEXT_STEP_NUMBER", TAG_NEXT_STEP_NUMBER);
+                    Intent it = new Intent(StepNextControlData.this, StepActionControl.class);
+                    it.putExtras(bundle1);
+                    startActivity(it);
+                    //overridePendingTransition(R.anim.in_from_right, R.anim.out_to_right);
+                    finish();
+                }else{
+                    bundle1.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+                    bundle1.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+                    bundle1.putBoolean("TAG_BACK_TO_RECORDING",true);
+                    Intent it1 = new Intent(StepNextControlData.this, Steprecording.class);
+                    it1.putExtras(bundle1);
+                    startActivity(it1);
+                    //overridePendingTransition(R.anim.in_from_right, R.anim.out_to_right);
+                    finish();
+                }
+
+
+
+                return true;
+            }
+
+            return false;
+        }
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev){
+        Rect dialogBounds = new Rect();
+        getWindow().getDecorView().getHitRect(dialogBounds);
+/*        if(dialogBounds.contains((int)ev.getX(),(int)ev.getY())){
+            return detector.onTouchEvent(ev);
+        }
+        return super.dispatchTouchEvent(ev);*/
+        return detector.onTouchEvent(ev);
+    }
+
 
 
 
