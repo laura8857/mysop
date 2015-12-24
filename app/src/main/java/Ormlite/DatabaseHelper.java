@@ -82,6 +82,7 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, sop_detailVo.class);
             TableUtils.createTable(connectionSource, step_recordVo.class);
             TableUtils.createTable(connectionSource, case_detailVo.class);
+            TableUtils.createTable(connectionSource, system_messageVo.class);
             // TableUtils.dropTable(connectionSource, B2BMVo.class, true);
             // after we drop the old databases, we create the new ones
             // onCreate(db, connectionSource);
@@ -110,6 +111,7 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, sop_detailVo.class);
             TableUtils.createTable(connectionSource, step_recordVo.class);
             TableUtils.createTable(connectionSource, case_detailVo.class);
+            TableUtils.createTable(connectionSource, system_messageVo.class);
 
             //TableUtils.createTable(connectionSource, Group.class);
         } catch (SQLException e) {
@@ -226,7 +228,14 @@ public static DatabaseHelper databaseHelper;//
         }
         return case_detailRuntimeDao;
     }
-
+    //【system_messageDao】
+    private RuntimeExceptionDao<system_messageVo, Integer> system_messageRuntimeDao = null;
+    public RuntimeExceptionDao<system_messageVo, Integer> getSystem_messageDao() {
+        if ( system_messageRuntimeDao == null) {
+            system_messageRuntimeDao = getRuntimeExceptionDao(system_messageVo.class);
+        }
+        return system_messageRuntimeDao;
+    }
 
 
 
@@ -281,7 +290,7 @@ public static DatabaseHelper databaseHelper;//
         sop_detailRuntimeDao = null;
         step_recordRuntimeDao = null;
         case_detailRuntimeDao = null;
-
+        system_messageRuntimeDao = null;
 
     }
 

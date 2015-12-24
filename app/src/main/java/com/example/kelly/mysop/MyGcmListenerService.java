@@ -13,6 +13,9 @@ import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 import com.google.android.gms.gcm.GcmListenerService;
 
+import Ormlite.DatabaseHelper;
+import Ormlite.member_accountDao;
+
 public class MyGcmListenerService extends GcmListenerService {
 
     private static final String TAG = "MyGcmListenerService";
@@ -30,6 +33,12 @@ public class MyGcmListenerService extends GcmListenerService {
         String message = data.getString("message");
         Log.d(TAG, "From: " + from);
         Log.d(TAG, "Message: " + message);
+
+        //存系統訊息進手機
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        //member_accountDao mmember_accountDao = new member_accountDao();
+        //mmember_accountDao.update(mDatabaseHelper,"account","test","captcha",message);
+
 
         if (from.startsWith("/topics/")) {
             // message received from some topic.
