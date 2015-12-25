@@ -167,7 +167,7 @@ public class Mysop extends Activity {
         mcase_masterDao = new case_masterDao();
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         List<case_masterVo> caselist = null ;
-        caselist = mcase_masterDao.selectRaw(mDatabaseHelper,"Account="+"'"+TAG_ACCOUNT+"'");
+     //   caselist = mcase_masterDao.selectRaw(mDatabaseHelper,"Account="+"'"+TAG_ACCOUNT+"'");
       //  Log.d("抓", caselist.get(0).getCase_number());
 //        list = new String[caselist.size()];
 //        for(int i=0;i<caselist.size();i++){
@@ -191,12 +191,12 @@ public class Mysop extends Activity {
       //  Log.d("抓2",sopdetaillist.get(0).getStep_order());
 
         //判斷mysop是否是空的
-        if(caselist.size()!=0) {
+        if(sopmasterlist.size()!=0) {
             int k = 0;
-            if (caselist.size() % 2 == 0) {
-                x = caselist.size() / 2;
+            if (sopmasterlist.size() % 2 == 0) {
+                x = sopmasterlist.size() / 2;
             } else {
-                x = (caselist.size() + 1) / 2;
+                x = (sopmasterlist.size() + 1) / 2;
             }
 
 
@@ -208,17 +208,21 @@ public class Mysop extends Activity {
             bmplist = new Bitmap[x];
             steporder = new String[x];
             steptotal = new String[x];
-            list1 = new String[caselist.size() / 2];
-            name1 = new String[caselist.size() / 2];
-            key1 = new int[caselist.size() / 2];
-            timesee1 = new String[caselist.size() / 2];
-            photo1 = new Drawable[caselist.size() / 2];
-            bmplist1 = new Bitmap[caselist.size() / 2];
-            steporder1 = new String[caselist.size() / 2];
-            steptotal1 = new String[caselist.size() / 2];
+            list1 = new String[sopmasterlist.size() / 2];
+            name1 = new String[sopmasterlist.size() / 2];
+            key1 = new int[sopmasterlist.size() / 2];
+            timesee1 = new String[sopmasterlist.size() / 2];
+            photo1 = new Drawable[sopmasterlist.size() / 2];
+            bmplist1 = new Bitmap[sopmasterlist.size()/ 2];
+            steporder1 = new String[sopmasterlist.size() / 2];
+            steptotal1 = new String[sopmasterlist.size() / 2];
 
             for (int i = 0; i < x; i++) {
-                list[i] = caselist.get(i).getCase_number();
+                List<case_masterVo>casemasterlist=null;
+                casemasterlist = mcase_masterDao.selectRaw2(mDatabaseHelper,"Account ="+"'"+TAG_ACCOUNT+"'","Sop_number ="+"'"+sopmasterlist.get(i).getSop_number()+"'","Case_mark ="+"'"+"0"+"'");
+                list[i]=casemasterlist.get(0).getCase_number();
+                Log.d("案號",casemasterlist.get(0).getCase_number());
+                //list[i] = caselist.get(i).getCase_number();
                 name[i] = sopmasterlist.get(i).getSop_name();
                 //圖片
 //            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
@@ -329,9 +333,11 @@ public class Mysop extends Activity {
             }
 
             //另一邊
-            for (int i = caselist.size() - 1; i >= x; i--) {
-
-                list1[k] = caselist.get(i).getCase_number();
+            for (int i = sopmasterlist.size() - 1; i >= x; i--) {
+                List<case_masterVo>casemasterlist=null;
+                casemasterlist = mcase_masterDao.selectRaw2(mDatabaseHelper, "Account =" + "'" + TAG_ACCOUNT + "'", "Sop_number =" + "'" + sopmasterlist.get(i).getSop_number()+"'","Case_mark ="+"'"+"0"+"'");
+                list1[k]=casemasterlist.get(0).getCase_number();
+               // list1[k] = caselist.get(i).getCase_number();
                 name1[k] = sopmasterlist.get(i).getSop_name();
                 //圖片
 //            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);

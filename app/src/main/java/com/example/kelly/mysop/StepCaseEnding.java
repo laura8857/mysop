@@ -39,6 +39,7 @@ import Ormlite.member_accountDao;
 import Ormlite.member_accountVo;
 import Ormlite.sop_detailDao;
 import Ormlite.sop_detailVo;
+import Ormlite.sop_masterDao;
 import Ormlite.step_recordDao;
 import Ormlite.step_recordVo;
 
@@ -146,7 +147,7 @@ public class StepCaseEnding extends Activity {
 
                 TextView text1 = new TextView(StepCaseEnding.this);
                 text1.setTextSize(17);
-                text1.setText(steprecordlist.get(i).getRecord_text() + "(" + steprecordlist.get(i).getRecord_unit() + ")");
+                text1.setText(steporder[i]+"."+recordorder[i]+steprecordlist.get(i).getRecord_text() + "(" + steprecordlist.get(i).getRecord_unit() + ")");
 
 
                 edit[i] = new EditText(StepCaseEnding.this.getApplicationContext());
@@ -232,9 +233,14 @@ public class StepCaseEnding extends Activity {
             //Delete orm
             DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(StepCaseEnding.this);
             case_masterDao mcase_master2 = new case_masterDao();
-            mcase_master2.delete(mDatabaseHelper2, "Case_number", TAG_CASE_NUMBER);
 
-          //  mcase_master2.update(mDatabaseHelper2,"Case_number",TAG_CASE_NUMBER,"Case_mark","1");
+            mcase_master2.update(mDatabaseHelper2,"Case_number",TAG_CASE_NUMBER,"Case_mark","1");
+             List<case_masterVo> caselist = null ;
+             caselist = mcase_masterDao.selectRaw(mDatabaseHelper2,"Case_number="+"'"+TAG_CASE_NUMBER+"'");
+             Log.d("casemark",caselist.get(0).getCase_mark());
+            //delete sop_master中的sop
+            sop_masterDao msop_master = new sop_masterDao();
+            sop_masterDao.delete(mDatabaseHelper2,"Sop_number",caselist.get(0).getSop_number());
 
             Intent i = new Intent(this, Mysop.class);
             Bundle bundle = new Bundle();
