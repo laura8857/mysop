@@ -542,7 +542,7 @@ public class SplashActivity extends Activity {
                 mstep_recordVo6.setRecord_text(productsList3.get(i).get("record_text"));
                 Log.d("countproducts3"+i,productsList3.get(i).get("record_text"));
                 mstep_recordVo6.setRecord_type(productsList3.get(i).get("record_type"));
-                mstep_recordVo6.setRecord_unit(productsList3.get(i).get("record_unix"));
+                mstep_recordVo6.setRecord_unit(productsList3.get(i).get("record_unit"));
                 mstep_recordVo6.setRecord_max(productsList3.get(i).get("record_max"));
                 mstep_recordVo6.setRecord_min(productsList3.get(i).get("record_min"));
                 mstep_recordVo6.setRecord_standard(productsList3.get(i).get("record_standard"));
