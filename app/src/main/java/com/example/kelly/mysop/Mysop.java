@@ -43,6 +43,10 @@ import Ormlite.sop_detailVo;
 import Ormlite.sop_masterDao;
 import Ormlite.sop_masterVo;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+
+
 public class Mysop extends Activity {
 
 
@@ -119,6 +123,7 @@ public class Mysop extends Activity {
     private RuntimeExceptionDao<sop_detailVo, Integer> sop_detailRuntimeDao;
     private sop_detailDao msop_detailDao;
 
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,103 +133,20 @@ public class Mysop extends Activity {
         listInput1 = (ListView)findViewById(R.id.list_sop2);
        // adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,items);
 
-
-        /*
-        //測試用的insert 之後要刪掉
-        //第一個sop
-        //insert sop_detail
-        DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(Mysop.this);
-        sop_detailDao msop_detailDao2 = new sop_detailDao();
-        sop_detailVo msop_detailVo2 = new sop_detailVo();
-        msop_detailVo2.setSop_number("20151209");
-        msop_detailVo2.setStep_order("1");
-        msop_detailVo2.setStep_number("1");
-        msop_detailVo2.setStep_purpose("TEST_Purpose");
-        msop_detailVo2.setStep_intro("TEST_TEST_TEST_JE_NE_SAIS_PAS");
-        msop_detailVo2.setStart_rule("4");
-        msop_detailVo2.setStart_value1("http://www.ncu.edu.tw/");
-        msop_detailVo2.setStart_value2("");
-        msop_detailVo2.setFinish_rule("4");
-        msop_detailVo2.setFinish_value1("http://www.ncu.edu.tw/");
-        msop_detailVo2.setFinish_value2("");
-        msop_detailVo2.setNext_step_number("2");
-        msop_detailVo2.setNext_step_rule("1");
-
-        msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
-
-        //insert case_master
-        DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(Mysop.this);
-        case_masterDao mcase_masterDao4 = new case_masterDao();
-        case_masterVo mcase_masterVo4 = new case_masterVo();
-        mcase_masterVo4.setSop_number("20151209");
-        mcase_masterVo4.setStep_number("1");
-        mcase_masterVo4.setAccount("test@gmail.com");
-        mcase_masterVo4.setCase_number("123");
-        mcase_masterDao4.insert(mDatabaseHelper4, mcase_masterVo4);
-
-        //insert sop_master
-        DatabaseHelper mDatabaseHelper5 = DatabaseHelper.getHelper(Mysop.this);
-        sop_masterDao msop_masterDao5 = new sop_masterDao();
-        sop_masterVo msop_masterVo5 = new sop_masterVo();
-        msop_masterVo5.setSop_number("20151209");
-        msop_masterVo5.setSop_name("TEST_SOP");
-        msop_masterVo5.setSop_graph_src("NO");
-        msop_masterVo5.setSop_intro("TEST__SOP_INTRODUCTION");
-        msop_masterVo5.setSop_detail("TEST_SOP_DETAIL");
-        msop_masterVo5.setAccount("test@gmail.com");
-        msop_masterVo5.setStart_rule("4");
-        msop_masterDao5.insert(mDatabaseHelper5, msop_masterVo5);
-
-        //第二個sop
-        DatabaseHelper mDatabaseHelper22 = DatabaseHelper.getHelper(Mysop.this);
-        sop_detailDao msop_detailDao22 = new sop_detailDao();
-        sop_detailVo msop_detailVo22 = new sop_detailVo();
-        msop_detailVo22.setSop_number("20151208");
-        msop_detailVo22.setStep_order("1");
-        msop_detailVo22.setStep_number("3");
-        msop_detailVo22.setStep_purpose("TEST_Purpose2");
-        msop_detailVo22.setStep_intro("TEST_TEST_TEST_JE_NE_SAIS_PAS2");
-        msop_detailVo22.setStart_rule("1");
-        msop_detailVo22.setStart_value1("");
-        msop_detailVo22.setStart_value2("");
-        msop_detailVo22.setFinish_rule("1");
-        msop_detailVo22.setFinish_value1("");
-        msop_detailVo22.setFinish_value2("");
-        msop_detailVo22.setNext_step_number("4");
-        msop_detailVo22.setNext_step_rule("1");
-
-        msop_detailDao22.insert(mDatabaseHelper22, msop_detailVo22);
-
-        //insert case_master
-        DatabaseHelper mDatabaseHelper44 = DatabaseHelper.getHelper(Mysop.this);
-        case_masterDao mcase_masterDao44 = new case_masterDao();
-        case_masterVo mcase_masterVo44 = new case_masterVo();
-        mcase_masterVo44.setSop_number("20151208");
-        mcase_masterVo44.setStep_number("3");
-        mcase_masterVo44.setAccount("test@gmail.com");
-        mcase_masterVo44.setCase_number("234");
-        mcase_masterDao44.insert(mDatabaseHelper44, mcase_masterVo44);
-
-        //insert sop_master
-        DatabaseHelper mDatabaseHelper55 = DatabaseHelper.getHelper(Mysop.this);
-        sop_masterDao msop_masterDao55 = new sop_masterDao();
-        sop_masterVo msop_masterVo55 = new sop_masterVo();
-        msop_masterVo55.setSop_number("20151208");
-        msop_masterVo55.setSop_name("TEST_SOP2");
-        msop_masterVo55.setSop_graph_src("NO2");
-        msop_masterVo55.setSop_intro("TEST__SOP_INTRODUCTION2");
-        msop_masterVo55.setSop_detail("TEST_SOP_DETAIL2");
-        msop_masterVo55.setAccount("test@gmail.com");
-        msop_masterVo55.setStart_rule("1");
-        msop_masterDao55.insert(mDatabaseHelper55, msop_masterVo55);
-        //測試insert end
-        */
-
-
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         TAG_ACCOUNT=bundle.getString("TAG_ACCOUNT");
        // Log.d("Mysop's TAG_ACCOUNT",TAG_ACCOUNT);
+
+        if (checkPlayServices()) {
+            // Start IntentService to register this application with GCM.
+            Bundle b1 = new Bundle();
+            b1.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+            Intent i1 = new Intent(this, RegistrationIntentService.class);
+            i1.putExtras(bundle);
+            startService(i1);
+        }
+
 
                 // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
@@ -529,7 +451,19 @@ public class Mysop extends Activity {
 
 
 
-
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this,PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Log.i("GCM", "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
