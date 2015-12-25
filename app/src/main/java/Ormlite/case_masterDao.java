@@ -139,4 +139,20 @@ public static int delete(DatabaseHelper databaseHelper, String columnvalue, Stri
 		}
 		return null;
 	}
+
+	/* selectRaw2 */
+	public static List<case_masterVo> selectRaw2(DatabaseHelper databaseHelper,
+												String rawWhere ,String rawWhere2,String rawWhere3) {
+		RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
+				.getCase_masterDao();
+		QueryBuilder<case_masterVo, Integer> queryBuilder = case_masterDao
+				.queryBuilder();
+		try {
+			queryBuilder.where().raw(rawWhere).and().raw(rawWhere2).and().raw(rawWhere3);
+			return queryBuilder.query();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
