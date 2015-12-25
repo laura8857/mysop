@@ -102,16 +102,17 @@ public class StepCaseEnding extends Activity {
         Bundle bundle = intent.getExtras();	//取得Bundle
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");	//輸出Bundle內容
 //        TAG_ACCOUNT = bundle.getString("TAG_ACCOUNT");	//輸出Bundle內容
-        TAG_ACCOUNT="test@gmail.com";
+       // TAG_ACCOUNT="test@gmail.com";
         // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
         valueList = new ArrayList<HashMap<String, String>>();
 
         //orm account
-        //orm update
         DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(StepCaseEnding.this);
         member_accountDao mmember_accountDao = new  member_accountDao();
-        member_accountVo mmember_accountVo = new  member_accountVo();
+        List<member_accountVo> memberlist = null;
+        memberlist = mmember_accountDao.selectColumns(mDatabaseHelper4, "FIELD_Account");
+        TAG_ACCOUNT = memberlist.get(0).getAccount();
 
 
             //orm 用case_number去抓資料庫的紀錄單位和敘述
