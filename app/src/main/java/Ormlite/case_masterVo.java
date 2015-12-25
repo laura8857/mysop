@@ -20,6 +20,7 @@ public class case_masterVo extends MDVo implements Serializable
 	public static final String FIELD_Sop_do_result ="Sop_do_result";
 	public static final String FIELD_Do_channel ="Do_channel";
 	public static final String FIELD_Case_resource ="Case_resource";
+	public static final String FIELD_Case_mark ="Case_mark";
 	/*@DatabaseField(generatedId = true)
 	private int id;
 	public int getId()
@@ -150,25 +151,16 @@ public class case_masterVo extends MDVo implements Serializable
 	{
 		this.Case_resource = Case_resource;
 	}
+	@DatabaseField(columnName = FIELD_Case_mark, canBeNull = true)
+	private String Case_mark;
+	public String getCase_mark()
+	{
+		return Case_mark;
+	}
+	public void setCase_mark(String Case_mark)
+	{
+		this.Case_mark = Case_mark;
+	}
 
-//
-//	//join sop_master
-//	@DatabaseField
-//	private String Sop_name;
-//	private String Sop_graph_src;
-//
-//	@DatabaseField(foreign = true, foreignAutoRefresh = true)
-//	private sop_masterVo msop_master;
-//	public sop_masterVo getSop_masterVo(){
-//		return msop_master;
-//	}
-//
-////	public String getSop_name(){
-////		return Sop_name;
-////	}
-////
-////	public String getSop_graph_src(){
-////		return Sop_graph_src;
-////	}
 
 }

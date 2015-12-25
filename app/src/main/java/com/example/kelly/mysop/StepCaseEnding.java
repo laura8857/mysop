@@ -234,6 +234,8 @@ public class StepCaseEnding extends Activity {
             case_masterDao mcase_master2 = new case_masterDao();
             mcase_master2.delete(mDatabaseHelper2, "Case_number", TAG_CASE_NUMBER);
 
+          //  mcase_master2.update(mDatabaseHelper2,"Case_number",TAG_CASE_NUMBER,"Case_mark","1");
+
             Intent i = new Intent(this, Mysop.class);
             Bundle bundle = new Bundle();
             bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);

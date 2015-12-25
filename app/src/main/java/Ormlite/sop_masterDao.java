@@ -134,7 +134,7 @@ public class sop_masterDao
     }
 
 
-    public static List<sop_masterVo>join(DatabaseHelper databaseHelper,String rawWhere)  {
+    public static List<sop_masterVo> join(DatabaseHelper databaseHelper, String rawWhere)  {
         RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
                 .getCase_masterDao();
         QueryBuilder<case_masterVo, Integer> queryBuilder1 = case_masterDao
