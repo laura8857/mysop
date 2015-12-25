@@ -506,6 +506,7 @@ public class SplashActivity extends Activity {
                 mcase_masterVo4.setStep_number(productsList2.get(i).get("step_number"));
                 mcase_masterVo4.setAccount(productsList2.get(i).get("account"));
                 mcase_masterVo4.setCase_number(productsList2.get(i).get("case_number"));
+                mcase_masterVo4.setCase_mark("0");
                 mcase_masterDao4.insert(mDatabaseHelper4, mcase_masterVo4);
 
             }
