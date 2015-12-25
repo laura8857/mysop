@@ -14,8 +14,10 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -59,6 +61,16 @@ public class Stepdescription extends Activity {
     private static final String TAG_SUCCESS = "success";
     private int TAG_Next=0;
     String sHtml = "";
+
+    WebView ww;
+    Float OldX1;
+    Float OldX2;
+    Float NewX1;
+    Float NewX2;
+    Float OldY1;
+    Float OldY2;
+    Float NewY1;
+    Float NewY2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,17 +122,28 @@ public class Stepdescription extends Activity {
         sHtml = list1.get(0).getStep_intro();
 
         detector = new GestureDetector(new MySimpleOnGestureListener());
-        WebView ww = (WebView)findViewById(R.id.webView);
-        //WebSettings settings = ww.getSettings();//1224(直接檔案下載)
-        //settings.setDefaultTextEncodingName("utf-8");//1224(直接檔案下載)
-        ww.setInitialScale(85);
+        ww = (WebView)findViewById(R.id.webView);
+        WebSettings settings = ww.getSettings();
+        settings.setDefaultTextEncodingName("utf-8");
+        //settings.setSupportZoom(true);
+        //settings.setBuiltInZoomControls(true);
+        ww.getSettings().setUseWideViewPort(true);
+        ww.getSettings().setLoadWithOverviewMode(true);
+        //ww.setInitialScale(100);
+        ww.setOnTouchListener(new MyOnTouchListener());
 
         ww.loadDataWithBaseURL(null, sHtml, "text/html", "utf-8", null);//1225(html用資料庫之資料)
 
         //ww.loadUrl("file:///android_asset/webview/MySOP.html");//1224(直接檔案下載)
         // ww.loadUrl("file:///sdcard/MYSOPTEST/testhtml.html");
         //ww.loadData("中文", "text/html; charset=utf-8", "UTF-8");
-        ww.setOnTouchListener(new MyOnTouchListener());
+
+    }
+
+/*
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev){
+        return detector.onTouchEvent(ev);
     }
 
 /*    String StepName="";

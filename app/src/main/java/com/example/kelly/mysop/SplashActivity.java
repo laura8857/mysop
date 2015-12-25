@@ -103,7 +103,7 @@ public class SplashActivity extends Activity {
         mContext = this;
         manager =(DownloadManager)getSystemService(DOWNLOAD_SERVICE);
         receiver = new DownloadCompleteReceiver();
-        download();
+        //download();
 
     }
 
