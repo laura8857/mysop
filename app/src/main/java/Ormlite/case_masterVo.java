@@ -1,8 +1,9 @@
 package Ormlite;
 
-import java.io.Serializable;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import java.io.Serializable;
 //�op_number��
 @DatabaseTable(tableName = "case_master")
 public class case_masterVo extends MDVo implements Serializable
@@ -149,4 +150,25 @@ public class case_masterVo extends MDVo implements Serializable
 	{
 		this.Case_resource = Case_resource;
 	}
+
+//
+//	//join sop_master
+//	@DatabaseField
+//	private String Sop_name;
+//	private String Sop_graph_src;
+//
+//	@DatabaseField(foreign = true, foreignAutoRefresh = true)
+//	private sop_masterVo msop_master;
+//	public sop_masterVo getSop_masterVo(){
+//		return msop_master;
+//	}
+//
+////	public String getSop_name(){
+////		return Sop_name;
+////	}
+////
+////	public String getSop_graph_src(){
+////		return Sop_graph_src;
+////	}
+
 }

@@ -1,8 +1,9 @@
 package Ormlite;
 
-import java.io.Serializable;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+
+import java.io.Serializable;
 //【Sop_number】
 @DatabaseTable(tableName = "sop_master")
 public class sop_masterVo extends MDVo implements Serializable

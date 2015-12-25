@@ -1,10 +1,5 @@
 package com.example.kelly.mysop;
 
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -258,10 +254,9 @@ public class Mysop extends ActionBarActivity {
         msop_masterDao = new sop_masterDao();
         List<sop_masterVo>sopmasterlist = null;
        // sopmasterlist = msop_masterDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
-        sopmasterlist = msop_masterDao.selectRawByNest(mDatabaseHelper, "Account",TAG_ACCOUNT, "Sop_number") ;
-       // sopmasterlist = sop_masterDao.selectRawJoin(mDatabaseHelper, "Account",TAG_ACCOUNT);
-      //  Log.d("MYSOP1", sopmasterlist.get(0).getSop_name());
-      //  Log.d("MYSOP11", String.valueOf(sopmasterlist.get(0)));
+       // sopmasterlist = msop_masterDao.selectRawByNest(mDatabaseHelper, "Account",TAG_ACCOUNT, "Sop_number") ;
+        sopmasterlist = sop_masterDao.join(mDatabaseHelper, "Account=" + "'" + TAG_ACCOUNT+"'");
+        Log.d("MYSOP1", sopmasterlist.get(0).getSop_name());
                 //getcase_masterVo().getCase_number());
 
         msop_detailDao = new sop_detailDao();

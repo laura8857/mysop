@@ -133,21 +133,27 @@ public class sop_masterDao
         return null;
     }
 
-    /* selectRawByJoin */
-    public static List<sop_masterVo> selectRawJoin(DatabaseHelper databaseHelper,String column1,String value1) {
-        RuntimeExceptionDao<sop_masterVo, Integer> sop_masterDao = databaseHelper
-                .getSop_masterDao();
+
+    public static List<sop_masterVo>join(DatabaseHelper databaseHelper,String rawWhere)  {
         RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
                 .getCase_masterDao();
-        QueryBuilder<case_masterVo, Integer> subqueryBuilder = case_masterDao
+        QueryBuilder<case_masterVo, Integer> queryBuilder1 = case_masterDao
                 .queryBuilder();
-        QueryBuilder<sop_masterVo, Integer> queryBuilder = sop_masterDao
+        RuntimeExceptionDao<sop_masterVo, Integer> sop_masterDao = databaseHelper
+                .getSop_masterDao();
+        QueryBuilder<sop_masterVo, Integer> queryBuilder2 = sop_masterDao
                 .queryBuilder();
+        RuntimeExceptionDao<sop_detailVo, Integer> sop_detailDao = databaseHelper
+                .getSop_detailDao();
+        QueryBuilder<sop_detailVo, Integer> queryBuilder3 =sop_detailDao
+                .queryBuilder();
+
         try {
-            subqueryBuilder.where().eq(column1,value1);
-           // subqueryBuilder.join(queryBuilder).query();
-            return queryBuilder.join(subqueryBuilder).query();
-        } catch (SQLException e) {
+            queryBuilder1.join(queryBuilder3);
+            queryBuilder2.join(queryBuilder1);
+            queryBuilder2.where().raw(rawWhere);
+            return queryBuilder2.query();
+        }catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
