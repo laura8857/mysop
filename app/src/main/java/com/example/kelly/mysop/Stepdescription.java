@@ -58,6 +58,7 @@ public class Stepdescription extends Activity {
     private static String url_next = "http://140.115.80.237/front/mysop_stepdescription.jsp";
     private static final String TAG_SUCCESS = "success";
     private int TAG_Next=0;
+    String sHtml = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,14 +103,22 @@ public class Stepdescription extends Activity {
         }
         Log.d("TAG_Next",String.valueOf(TAG_Next));
 
+        DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
+        sop_detailDao msop_detailDao1 = new sop_detailDao();
+        List<sop_detailVo> list1 = null;
+        list1 = msop_detailDao1.selectRaw(mDatabaseHelper1, "Step_number="+TAG_STEP_NUMBER);
+        sHtml = list1.get(0).getStep_intro();
 
         detector = new GestureDetector(new MySimpleOnGestureListener());
         WebView ww = (WebView)findViewById(R.id.webView);
-        WebSettings settings = ww.getSettings();
-        settings.setDefaultTextEncodingName("utf-8");
+        //WebSettings settings = ww.getSettings();//1224(直接檔案下載)
+        //settings.setDefaultTextEncodingName("utf-8");//1224(直接檔案下載)
         ww.setInitialScale(85);
-        ww.loadUrl("file:///android_asset/webview/MySOP.html");
-       // ww.loadUrl("file:///sdcard/MYSOPTEST/testhtml.html");
+
+        ww.loadDataWithBaseURL(null, sHtml, "text/html", "utf-8", null);//1225(html用資料庫之資料)
+
+        //ww.loadUrl("file:///android_asset/webview/MySOP.html");//1224(直接檔案下載)
+        // ww.loadUrl("file:///sdcard/MYSOPTEST/testhtml.html");
         //ww.loadData("中文", "text/html; charset=utf-8", "UTF-8");
         ww.setOnTouchListener(new MyOnTouchListener());
     }

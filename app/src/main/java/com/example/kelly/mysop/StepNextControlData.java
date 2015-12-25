@@ -85,22 +85,23 @@ public class StepNextControlData extends Activity {
         list1 = mcase_recordDao1.selectRaw(mDatabaseHelper1, "Case_number ="+TAG_CASE_NUMBER+" and Step_order ="+TAG_STEP_ORDER);
 
         //資料格式"xxx，xxx。1，2"，只要這一步驟中使用者輸入的資料其中一個符合，就可以跳頁
+        //只比對第一筆資料(1225開會)
         for(int i=0;i<NextStepOption.length;i++){
-            for(int j=0;j<list1.size();j++){
-                if(list1.get(j).getRecord_value().equals(NextStepOption[i])){
 
-                    ss.setText("此步驟輸入的資料符合資料選擇下一步驟之條件");
-                    Pass = true;
-                    TAG_NEXT_STEP_NUMBER = NextStepNumber[i];
-                    Log.d("Data6",NextStepNumber[i]);
-                    /*Intent it = new Intent(StepNextControlData.this, StepActionControl.class);
-                    bundle.putString("TAG_NEXT_STEP_NUMBER", NextStepNumber[j]);
-                    it.putExtras(bundle);
-                    startActivity(it);
-                    finish();
-                    break;*/
-                }
+            if(list1.get(0).getRecord_value().equals(NextStepOption[i])){
+
+                ss.setText("此步驟輸入的資料符合資料選擇下一步驟之條件");
+                Pass = true;
+                TAG_NEXT_STEP_NUMBER = NextStepNumber[i];
+                Log.d("Data6",NextStepNumber[i]);
+                /*Intent it = new Intent(StepNextControlData.this, StepActionControl.class);
+                bundle.putString("TAG_NEXT_STEP_NUMBER", NextStepNumber[j]);
+                it.putExtras(bundle);
+                startActivity(it);
+                finish();
+                break;*/
             }
+
         }
 
         /*AlertDialog.Builder dialog = new AlertDialog.Builder(StepNextControlData.this);
