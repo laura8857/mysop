@@ -23,6 +23,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import org.json.JSONArray;
@@ -43,9 +45,6 @@ import Ormlite.sop_detailDao;
 import Ormlite.sop_detailVo;
 import Ormlite.sop_masterDao;
 import Ormlite.sop_masterVo;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 
 
 public class Mysop extends Activity {
@@ -134,10 +133,7 @@ public class Mysop extends Activity {
         listInput1 = (ListView)findViewById(R.id.list_sop2);
        // adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,items);
 
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         TAG_ACCOUNT=bundle.getString("TAG_ACCOUNT");
