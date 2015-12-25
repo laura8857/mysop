@@ -44,6 +44,10 @@ import Ormlite.sop_detailVo;
 import Ormlite.sop_masterDao;
 import Ormlite.sop_masterVo;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+
+
 public class Mysop extends Activity {
 
 
@@ -120,6 +124,7 @@ public class Mysop extends Activity {
     private RuntimeExceptionDao<sop_detailVo, Integer> sop_detailRuntimeDao;
     private sop_detailDao msop_detailDao;
 
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,11 +134,24 @@ public class Mysop extends Activity {
         listInput1 = (ListView)findViewById(R.id.list_sop2);
        // adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,items);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         TAG_ACCOUNT=bundle.getString("TAG_ACCOUNT");
        // Log.d("Mysop's TAG_ACCOUNT",TAG_ACCOUNT);
+
+        if (checkPlayServices()) {
+            // Start IntentService to register this application with GCM.
+            Bundle b1 = new Bundle();
+            b1.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+            Intent i1 = new Intent(this, RegistrationIntentService.class);
+            i1.putExtras(bundle);
+            startService(i1);
+        }
+
 
                 // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
@@ -439,7 +457,19 @@ public class Mysop extends Activity {
 
 
 
-
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this,PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Log.i("GCM", "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
