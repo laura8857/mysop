@@ -2,10 +2,16 @@ package com.example.kelly.mysop;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
+import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +22,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
 
 
 public class StepActionControlArtificial extends Activity {
@@ -32,6 +44,7 @@ public class StepActionControlArtificial extends Activity {
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
 
+    int TAG_START_REMIND = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +59,31 @@ public class StepActionControlArtificial extends Activity {
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
         ss.setText(Integer.toString(TAG_STEP_ORDER));
 
+        sop_detailDao msop_detailDao0 = new sop_detailDao();
+        DatabaseHelper mDatabaseHelper0 = DatabaseHelper.getHelper(this);
+        List<sop_detailVo> list0 = null;
+        list0 = msop_detailDao0.selectRaw(mDatabaseHelper0, "Step_number =" + TAG_STEP_NUMBER);
+        TAG_START_REMIND = Integer.valueOf(list0.get(0).getStart_remind());
+        Log.d("TAG_START_REMIND", list0.get(0).getStart_remind());
+        if(TAG_START_REMIND == 1){
+
+        }else if(TAG_START_REMIND == 2){
+
+        }else if(TAG_START_REMIND == 3){
+
+            Log.d("TAG_START_REMIND","震動響鈴");
+            //震動
+            Vibrator mVibrator;
+            mVibrator = (Vibrator) getSystemService(Service.VIBRATOR_SERVICE);
+            mVibrator.vibrate(1000);
+            //響鈴
+            NotificationManager mgr = (NotificationManager) this.getSystemService(Context.NOTIFICATION_SERVICE);
+            Notification nt = new Notification();
+            nt.defaults = Notification.DEFAULT_SOUND;
+            int soundId = new Random(System.currentTimeMillis()).nextInt(Integer.MAX_VALUE);
+            mgr.notify(soundId, nt);
+
+        }
 
         //new CheckStep().execute();
     }
