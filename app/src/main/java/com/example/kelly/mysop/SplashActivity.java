@@ -260,6 +260,9 @@ public class SplashActivity extends Activity {
                         String finishvalue2 = c.getString("finish_value2");
                         String nextsteprule = c.getString("next_step_rule");
                         String next_step_number = c.getString("next_step_number");
+                        String step_remind = c.getString("step_remind");
+                        String start_remind = c.getString("start_remind");
+
 
 
 
@@ -283,6 +286,9 @@ public class SplashActivity extends Activity {
                         map.put("finish_value2",finishvalue2);
                         map.put("next_step_rule",nextsteprule);
                         map.put("next_step_number", next_step_number);
+                        map.put("step_remind",step_remind);
+                        map.put("start_remind", start_remind);
+
 
                         Log.d("test12",String.valueOf(i));
 
@@ -489,6 +495,10 @@ public class SplashActivity extends Activity {
                 msop_detailVo2.setFinish_value2(productsList.get(i).get("finish_value2"));
                 msop_detailVo2.setNext_step_number(productsList.get(i).get("next_step_number"));
                 msop_detailVo2.setNext_step_rule(productsList.get(i).get("next_step_rule"));
+                msop_detailVo2.setStep_remind(productsList.get(i).get("step_remind"));
+                msop_detailVo2.setStart_remind(productsList.get(i).get("start_remind"));
+
+
 
                 msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
             }
