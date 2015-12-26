@@ -21,6 +21,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.j256.ormlite.dao.RuntimeExceptionDao;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
@@ -36,18 +40,21 @@ import java.util.HashMap;
 import java.util.List;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.case_masterDao;
+import Ormlite.case_masterVo;
+import Ormlite.mysopVo;
+import Ormlite.sop_detailDao;
+import Ormlite.sop_detailVo;
 import Ormlite.sop_masterDao;
 import Ormlite.sop_masterVo;
 
 public class DynamicAction extends Activity {
 
-    private sop_masterDao msop_masterDao;
-
-
     private ProgressDialog pDialog;
 
     JSONParser jsonParser = new JSONParser();
     ArrayList<HashMap<String, String>> productsList;
+    ArrayList<HashMap<String, String>> productsList1;
     //private static String url_all_products = "http://localhost:8080/kelly/test_getall.jsp";
     //private static String url_all_products = "http://140.115.80.237/front/mysop_mysop.jsp";
     private static String url_all_products = "http://140.115.80.237/front/mysop_dynamicAction.jsp";
@@ -77,7 +84,8 @@ public class DynamicAction extends Activity {
     JSONArray products = null;
 
     //帳號先寫死
-    String TAG_ACCOUNT = "test@gmail.com";
+   String TAG_ACCOUNT ="";
+    //String TAG_ACCOUNT = "test@gmail.com";
 
 
     //存casenumber  sopname
@@ -95,6 +103,15 @@ public class DynamicAction extends Activity {
     private String[] timesee1;
     private String[] photo1;
 
+    //orm
+    private RuntimeExceptionDao<case_masterVo, Integer> case_masterRuntimeDao;
+    private case_masterDao mcase_masterDao;
+    private RuntimeExceptionDao<sop_masterVo, Integer> sop_masterRuntimeDao;
+    private sop_masterDao msop_masterDao;
+    private RuntimeExceptionDao<sop_detailVo, Integer> sop_detailRuntimeDao;
+    private sop_detailDao msop_detailDao;
+
+    private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,17 +121,25 @@ public class DynamicAction extends Activity {
         listInput1 = (ListView)findViewById(R.id.list_dynamic2);
         // adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,items);
 
-        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
-        List<sop_masterVo> list =null;
-
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        //TAG_ACCOUNT=bundle.getString("TAG_ACCOUNT");
+        TAG_ACCOUNT=bundle.getString("TAG_ACCOUNT");
+
+        if (checkPlayServices()) {
+            // Start IntentService to register this application with GCM.
+            Bundle b1 = new Bundle();
+            b1.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+            Intent i1 = new Intent(this, RegistrationIntentService.class);
+            i1.putExtras(bundle);
+            startService(i1);
+        }
+
 
         // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
+        productsList1 = new ArrayList<HashMap<String, String>>();
         // Loading products in Background Thread
-        new LoadAllProducts().execute();
+        // new LoadAllProducts().execute();
 
         // TAG_ACCOUNT = bundle.getString("TAG_ACCOUNT");	//輸出Bundle內容
 
@@ -122,6 +147,39 @@ public class DynamicAction extends Activity {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
         Date curDate = new Date(System.currentTimeMillis()) ; // 獲取當前時間
         str = formatter.format(curDate);
+
+        //orm 用stepnumber去抓資料庫的東西
+
+        mcase_masterDao = new case_masterDao();
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        List<case_masterVo> caselist = null ;
+
+        msop_masterDao = new sop_masterDao();
+        List<sop_masterVo>sopmasterlist = null;
+        // sopmasterlist = msop_masterDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
+        sopmasterlist = msop_masterDao.selectRawByNest(mDatabaseHelper, "Account",TAG_ACCOUNT, "Sop_number") ;
+        List<mysopVo>mysoplist = null;
+
+        msop_detailDao = new sop_detailDao();
+        List<sop_detailVo>sopdetaillist = null;
+        //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
+        sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper,"Account",TAG_ACCOUNT,"Step_number");
+
+    }
+
+
+    private boolean checkPlayServices() {
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (resultCode != ConnectionResult.SUCCESS) {
+            if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
+                GooglePlayServicesUtil.getErrorDialog(resultCode, this,PLAY_SERVICES_RESOLUTION_REQUEST).show();
+            } else {
+                Log.i("GCM", "This device is not supported.");
+                finish();
+            }
+            return false;
+        }
+        return true;
     }
 
     @Override
