@@ -74,6 +74,7 @@ public class StepActionControlQRcode extends Activity {
         QRcode = list.get(0).getStart_value1();
         TAG_START_REMIND = Integer.valueOf(list.get(0).getStart_remind());
         Log.d("TAG_START_REMIND",list.get(0).getStart_remind());
+
         //1語音2手錶3響鈴
         if(TAG_START_REMIND == 1){
 

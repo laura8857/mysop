@@ -3,6 +3,7 @@ package com.example.kelly.mysop;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Layout;
@@ -25,6 +26,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -63,14 +65,7 @@ public class Stepdescription extends Activity {
     String sHtml = "";
 
     WebView ww;
-    Float OldX1;
-    Float OldX2;
-    Float NewX1;
-    Float NewX2;
-    Float OldY1;
-    Float OldY2;
-    Float NewY1;
-    Float NewY2;
+    int TAG_STEP_REMIND = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,6 +83,7 @@ public class Stepdescription extends Activity {
 
         TextView des_tw2 = (TextView)findViewById(R.id.des_textView2);
         des_tw2.setText(Integer.toString(TAG_STEP_ORDER));
+
 
         //TAG_CASE_NUMBER = "J1234";
         //TAG_STEP_NUMBER = "10";
@@ -120,6 +116,25 @@ public class Stepdescription extends Activity {
         List<sop_detailVo> list1 = null;
         list1 = msop_detailDao1.selectRaw(mDatabaseHelper1, "Step_number="+TAG_STEP_NUMBER);
         sHtml = list1.get(0).getStep_intro();
+        TAG_STEP_REMIND = Integer.valueOf(list1.get(0).getStep_remind());
+
+        //1語音2手錶
+        if(TAG_STEP_REMIND == 1){
+
+            MediaPlayer mp = new MediaPlayer();
+            try {
+                mp.setDataSource("/sdcard/MYSOPTEST/testmp3.mp3");
+                mp.prepare();
+            } catch (IllegalArgumentException e) {
+            } catch (IllegalStateException e) {
+            } catch (IOException e) {
+            }
+            mp.start();
+
+        }else if(TAG_STEP_REMIND == 2){
+
+        }
+
 
         detector = new GestureDetector(new MySimpleOnGestureListener());
         ww = (WebView)findViewById(R.id.webView);
