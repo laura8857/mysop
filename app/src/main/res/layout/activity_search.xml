@@ -12,7 +12,7 @@
 
         <ListView
             android:layout_width="189dp"
-            android:layout_height="749dp"
+            android:layout_height="1205dp"
             android:id="@+id/list_sop"
             android:layout_gravity="right"
             >

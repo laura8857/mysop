@@ -28,10 +28,10 @@
                 android:layout_weight="0.62">
 
                 <ImageView
-                    android:layout_width="140dp"
+                    android:layout_width="120dp"
                     android:layout_height="match_parent"
                     android:id="@+id/content_picture"
-                    android:src="@drawable/test"
+                    android:src="@drawable/mysop"
                     android:paddingTop="30dp"
                     android:paddingBottom="30dp" />
 
@@ -45,11 +45,13 @@
                         android:layout_width="204dp"
                         android:layout_height="wrap_content"
                         android:text="星巴克收藏好市多"
-                        android:textSize = "30dp"
+                        android:textSize = "23dp"
                         android:id="@+id/content_title"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="35dp"
-                        android:textColor="#f80d0410" />
+                        android:textColor="#f80d0410"
+                        android:layout_weight="0.29"
+                        android:singleLine="true" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -99,7 +101,7 @@
                 android:weightSum="1">
 
                 <TextView
-                    android:layout_width="122dp"
+                    android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="160"
@@ -113,7 +115,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:layout_width="122dp"
+                    android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="20"
@@ -124,7 +126,7 @@
                     android:textColor="#FFFFFF" />
 
                 <TextView
-                    android:layout_width="122dp"
+                    android:layout_width="110dp"
                     android:layout_height="match_parent"
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="無"
@@ -135,9 +137,9 @@
                     android:textSize="20dp"
                     android:textColor="#FFFFFF" />
 
-                    android:textSize="20dp"
-                    android:textColor="#FFFFFF"
-                    android:gravity="center_vertical|center_horizontal" />
+                android:textSize="20dp"
+                android:textColor="#FFFFFF"
+                android:gravity="center_vertical|center_horizontal" />
 
             </LinearLayout>
 
@@ -153,8 +155,8 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="收藏量"
                     android:id="@+id/downloadtext"
-                    android:layout_marginLeft="20dp"
-                    android:textColor="#7B7B7B" />
+                    android:textColor="#7B7B7B"
+                    android:layout_marginLeft="20dp" />
 
                 <TextView
                     android:layout_width="100dp"
@@ -162,7 +164,7 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:text="下載量"
                     android:id="@+id/textView18"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginLeft="15dp"
                     android:textColor="#7B7B7B" />
 
                 <TextView
@@ -172,7 +174,7 @@
                     android:text="啟動規則"
                     android:id="@+id/categorytext"
                     android:textColor="#7B7B7B"
-                    android:layout_marginLeft="20dp" />
+                    android:layout_marginRight="3dp" />
             </LinearLayout>
 
             <HorizontalScrollView
@@ -193,17 +195,16 @@
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:id="@+id/graph1"
-                        android:src="@drawable/test1"
+                        android:src="@drawable/mysop"
                         android:scaleType="fitXY"
                         android:layout_margin="2dp"
-                        android:background="#ff3455ff"
                         android:visibility="gone" />
 
                     <ImageView
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:id="@+id/graph2"
-                        android:src="@drawable/test2"
+                        android:src="@drawable/mysop"
                         android:scaleType="fitXY"
                         android:layout_margin="2dp"
                         android:visibility="gone" />
@@ -212,7 +213,7 @@
                         android:layout_width="200dp"
                         android:layout_height="200dp"
                         android:id="@+id/graph3"
-                        android:src="@drawable/test3"
+                        android:src="@drawable/mysop"
                         android:scaleType="fitXY"
                         android:layout_margin="2dp"
                         android:visibility="gone" />
@@ -250,16 +251,16 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:id="@+id/commentlayout">
 
                 <TextView
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:textAppearance="?android:attr/textAppearanceLarge"
-                       android:text="評論"
-                       android:id="@+id/textView8"
-                       android:layout_marginTop="20dp" />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:text="評論"
+                    android:id="@+id/textView8"
+                    android:layout_marginTop="20dp" />
 
                 <EditText
                     android:layout_width="fill_parent"
@@ -302,3 +303,4 @@
 
 
 </LinearLayout >
+

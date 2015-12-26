@@ -543,8 +543,11 @@ public class Mysop extends Activity {
                 //startActivity(new Intent().setClass(Mysop.this, Search.class));
                 Intent i = new Intent(this, Search.class);
                 Bundle bundle = new Bundle();
+                Bundle bundle2 = new Bundle();
                 bundle.putString("TAG_Key", "");
+                bundle2.putString("TAG_ACCOUNT", TAG_ACCOUNT);
                 i.putExtras(bundle);	//將參數放入intent
+                i.putExtras(bundle2);
                 startActivity(i);
                 break;
             case R.id.title_activity_dynamic_action:
