@@ -131,4 +131,21 @@ public class step_recordDao
         }
         return null;
     }
+
+
+    /* selectRaw */
+    public static List<step_recordVo> selectRaw2(DatabaseHelper databaseHelper,
+                                                String column1,String value1,String column2,String value2) {
+        RuntimeExceptionDao<step_recordVo, Integer> step_recordDao = databaseHelper
+                .getStep_recordDao();
+        QueryBuilder<step_recordVo, Integer> queryBuilder = step_recordDao
+                .queryBuilder();
+        try {
+            queryBuilder.where().in(column1,value1).and().in(column2,value2);
+            return queryBuilder.query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

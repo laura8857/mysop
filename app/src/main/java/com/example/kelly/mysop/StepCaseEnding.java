@@ -115,22 +115,13 @@ public class StepCaseEnding extends Activity {
         memberlist = mmember_accountDao.selectColumns(mDatabaseHelper4, "FIELD_Account");
         TAG_ACCOUNT = memberlist.get(0).getAccount();
 
-
-            //orm 用case_number去抓資料庫的紀錄單位和敘述
+            //orm
             DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
-            msop_detailDao = new sop_detailDao();
-            List<sop_detailVo> sopdetaillist = null;
-            sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper, "Case_number", TAG_CASE_NUMBER, "Sop_number");
-
-            //取出需要的sop_number 再找出step_number
-            mstep_recordDao = new step_recordDao();
-            List<step_recordVo> steprecordlist = null;
-             steprecordlist = mstep_recordDao.selectRawByNest(mDatabaseHelper,"Sop_number",sopdetaillist.get(0).getSop_number(),"Step_number");
-
             //取紀錄值
             mcase_recordDao = new case_recordDao();
             List<case_recordVo> caserecordlist = null;
             caserecordlist = mcase_recordDao.selectRaw(mDatabaseHelper, "Case_number=" + "'" + TAG_CASE_NUMBER + "'");
+
 
             recordorder = new String[caserecordlist.size()];
             steporder = new String[caserecordlist.size()];
@@ -141,13 +132,22 @@ public class StepCaseEnding extends Activity {
 
             LinearLayout ly = (LinearLayout) findViewById(R.id.endlayout);
 
-            Count = steprecordlist.size();
+            Count = caserecordlist.size();
 
-            for (int i = 0; i < steprecordlist.size(); i++) {
+            for (int i = 0; i < caserecordlist.size(); i++) {
+                //用case_number 還有case_record的step 去抓資料庫的紀錄單位和敘述
+                msop_detailDao = new sop_detailDao();
+                List<sop_detailVo> sopdetaillist = null;
+                sopdetaillist = msop_detailDao.selectRawByNest2(mDatabaseHelper, "Case_number", TAG_CASE_NUMBER, "Sop_number","Step_order",caserecordlist.get(i).getStep_order());
+
+                //取出需要的sop_number 再找出step_number 還需要order
+                mstep_recordDao = new step_recordDao();
+                List<step_recordVo> steprecordlist = null;
+                steprecordlist = mstep_recordDao.selectRaw2(mDatabaseHelper,"Step_number",sopdetaillist.get(0).getStep_order(),"Record_order",caserecordlist.get(i).getRecord_order());
 
                 TextView text1 = new TextView(StepCaseEnding.this);
                 text1.setTextSize(17);
-                text1.setText(steporder[i]+"."+recordorder[i]+steprecordlist.get(i).getRecord_text() + "(" + steprecordlist.get(i).getRecord_unit() + ")");
+                text1.setText(steporder[i]+"."+recordorder[i]+steprecordlist.get(0).getRecord_text() + "(" + steprecordlist.get(0).getRecord_unit() + ")");
 
 
                 edit[i] = new EditText(StepCaseEnding.this.getApplicationContext());
