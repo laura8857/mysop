@@ -67,6 +67,7 @@ public class StepActionControlNFC extends Activity {
     private DatabaseHelper mDatabaseHelper;
 
     int TAG_START_REMIND = 0;
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +98,7 @@ public class StepActionControlNFC extends Activity {
 
         //1語音2手錶3響鈴
         if(TAG_START_REMIND == 1){
-            MediaPlayer mp = new MediaPlayer();
+            mp = new MediaPlayer();
             try {
                 mp.setDataSource("/sdcard/MYSOPTEST/start"+TAG_STEP_NUMBER+".mp3");
                 mp.prepare();
@@ -237,12 +238,25 @@ public class StepActionControlNFC extends Activity {
 
     @Override
     public void onResume() {
+        if(mp != null) {
+            try {
+                mp.prepare();
+            } catch (IllegalArgumentException e) {
+            } catch (IllegalStateException e) {
+            } catch (IOException e) {
+            }
+            mp.start();
+        }
         super.onResume();
         if (mNfcAdapter != null)
             mNfcAdapter.enableForegroundDispatch(this, mPendingIntent, mIntentFilters, mNFCTechLists);
     }
     @Override
     public void onPause() {
+        if(mp != null){
+            mp.pause();
+            //mp.release();
+        }
         super.onPause();
         if (mNfcAdapter != null)
             mNfcAdapter.disableForegroundDispatch(this);
@@ -311,5 +325,13 @@ public class StepActionControlNFC extends Activity {
 
         }
     }*/
+
+    @Override
+    protected void onDestroy() {
+        if(mp != null) {
+            mp.release();
+        }
+        super.onDestroy();
+    }
 
 }

@@ -55,6 +55,7 @@ public class StepActionControlTime extends Activity {
     private sop_detailDao msop_detailDao;
 
     int TAG_START_REMIND = 0;
+    MediaPlayer mp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,7 @@ public class StepActionControlTime extends Activity {
 
         //1語音2手錶3響鈴
         if(TAG_START_REMIND == 1){
-            MediaPlayer mp = new MediaPlayer();
+            mp = new MediaPlayer();
             try {
                 mp.setDataSource("/sdcard/MYSOPTEST/start"+TAG_STEP_NUMBER+".mp3");
                 mp.prepare();
@@ -362,4 +363,32 @@ public class StepActionControlTime extends Activity {
 //
 //        }
 //    }
+    @Override
+    public void onPause(){
+        if(mp != null){
+            mp.pause();
+            //mp.release();
+        }
+        super.onPause();
+    }
+    @Override
+    protected void onDestroy() {
+        if(mp != null) {
+            mp.release();
+        }
+        super.onDestroy();
+    }
+    @Override
+    public void onResume(){
+        if(mp != null) {
+            try {
+                mp.prepare();
+            } catch (IllegalArgumentException e) {
+            } catch (IllegalStateException e) {
+            } catch (IOException e) {
+            }
+            mp.start();
+        }
+        super.onResume();
+    }
 }
