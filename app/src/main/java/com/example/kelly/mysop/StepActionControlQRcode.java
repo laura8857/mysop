@@ -9,6 +9,7 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.util.Log;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -56,6 +58,7 @@ public class StepActionControlQRcode extends Activity {
         textView1 = (TextView) findViewById(R.id.qrcode);
 
         TextView ss = (TextView)findViewById(R.id.textView2);
+        TextView StartMessage = (TextView)findViewById(R.id.textView12);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
@@ -73,11 +76,20 @@ public class StepActionControlQRcode extends Activity {
         Log.d("抓", list.get(0).getStart_value1());
         QRcode = list.get(0).getStart_value1();
         TAG_START_REMIND = Integer.valueOf(list.get(0).getStart_remind());
-        Log.d("TAG_START_REMIND",list.get(0).getStart_remind());
+        StartMessage.setText(list.get(0).getStart_message());
+        //Log.d("TAG_START_REMIND",list.get(0).getStart_remind());
 
         //1語音2手錶3響鈴
         if(TAG_START_REMIND == 1){
-
+            MediaPlayer mp = new MediaPlayer();
+            try {
+                mp.setDataSource("/sdcard/MYSOPTEST/start"+TAG_STEP_NUMBER+".mp3");
+                mp.prepare();
+            } catch (IllegalArgumentException e) {
+            } catch (IllegalStateException e) {
+            } catch (IOException e) {
+            }
+            mp.start();
         }else if(TAG_START_REMIND == 2){
 
         }else if(TAG_START_REMIND == 3){

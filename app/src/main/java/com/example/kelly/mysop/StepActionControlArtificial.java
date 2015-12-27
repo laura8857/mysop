@@ -8,6 +8,7 @@ import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -21,6 +22,7 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -52,6 +54,7 @@ public class StepActionControlArtificial extends Activity {
         setContentView(R.layout.activity_step_action_control_artificial);
 
         TextView ss = (TextView)findViewById(R.id.textView2);
+        TextView StartMessage = (TextView)findViewById(R.id.textView12);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
         TAG_STEP_NUMBER = bundle.getString("TAG_STEP_NUMBER");
@@ -64,9 +67,20 @@ public class StepActionControlArtificial extends Activity {
         List<sop_detailVo> list0 = null;
         list0 = msop_detailDao0.selectRaw(mDatabaseHelper0, "Step_number =" + TAG_STEP_NUMBER);
         TAG_START_REMIND = Integer.valueOf(list0.get(0).getStart_remind());
-        Log.d("TAG_START_REMIND", list0.get(0).getStart_remind());
-        if(TAG_START_REMIND == 1){
+        StartMessage.setText(list0.get(0).getStart_message());
+        //Log.d("TAG_START_REMIND", list0.get(0).getStart_remind());
 
+        //1語音2手錶3響鈴
+        if(TAG_START_REMIND == 1){
+            MediaPlayer mp = new MediaPlayer();
+            try {
+                mp.setDataSource("/sdcard/MYSOPTEST/start"+TAG_STEP_NUMBER+".mp3");
+                mp.prepare();
+            } catch (IllegalArgumentException e) {
+            } catch (IllegalStateException e) {
+            } catch (IOException e) {
+            }
+            mp.start();
         }else if(TAG_START_REMIND == 2){
 
         }else if(TAG_START_REMIND == 3){
