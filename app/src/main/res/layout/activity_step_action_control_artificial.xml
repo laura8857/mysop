@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="此步驟需要人工啟動，請按下方按鈕確認完工。"
+        android:text="此步驟需要人工啟動，請按下方按鈕確認啟動。"
         android:id="@+id/textView12"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="50dp"

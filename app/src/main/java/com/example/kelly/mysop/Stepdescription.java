@@ -123,7 +123,7 @@ public class Stepdescription extends Activity {
 
             MediaPlayer mp = new MediaPlayer();
             try {
-                mp.setDataSource("/sdcard/MYSOPTEST/testmp3.mp3");
+                mp.setDataSource("/sdcard/MYSOPTEST/step"+TAG_STEP_NUMBER+".mp3");
                 mp.prepare();
             } catch (IllegalArgumentException e) {
             } catch (IllegalStateException e) {
