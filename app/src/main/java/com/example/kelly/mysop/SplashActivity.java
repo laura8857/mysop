@@ -499,7 +499,7 @@ public class SplashActivity extends Activity {
                 msop_detailVo2.setStep_remind(productsList.get(i).get("step_remind"));
                 msop_detailVo2.setStart_remind(productsList.get(i).get("start_remind"));
                 msop_detailVo2.setStart_message(productsList.get(i).get("start_message"));
-
+                    Log.d("countproducts"+String.valueOf(i),productsList.get(i).get("step_number"));
 
                 msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
             }
