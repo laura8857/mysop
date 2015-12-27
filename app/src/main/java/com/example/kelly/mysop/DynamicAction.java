@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,14 +26,9 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.j256.ormlite.dao.RuntimeExceptionDao;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.InputStream;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -82,26 +78,34 @@ public class DynamicAction extends Activity {
     private TextView master;
 
     JSONArray products = null;
+    JSONArray products1 = null;
 
     //帳號先寫死
-   String TAG_ACCOUNT ="";
+    String TAG_ACCOUNT ="";
     //String TAG_ACCOUNT = "test@gmail.com";
 
 
     //存casenumber  sopname
     private String[] list;
     private String[] name;
+    private String[] steporder;
+    private String[] steptotal;
+
     private int[] logos = new int[] { R.drawable.nfc, R.drawable.beacon,
             R.drawable.gps,R.drawable.qrcode,R.drawable.white };
     int[] key;
     private String[] timesee;
-    private String[] photo;
+    private Drawable[] photo;
+    private Bitmap[] bmplist;
 
     private String[] list1;
     private String[] name1;
     int[] key1;
     private String[] timesee1;
-    private String[] photo1;
+    private Drawable[] photo1;
+    private Bitmap[] bmplist1;
+    private String[] steporder1;
+    private String[] steptotal1;
 
     //orm
     private RuntimeExceptionDao<case_masterVo, Integer> case_masterRuntimeDao;
@@ -117,13 +121,13 @@ public class DynamicAction extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dynamic_action);
-        listInput = (ListView)findViewById(R.id.list_dynamic);
-        listInput1 = (ListView)findViewById(R.id.list_dynamic2);
+        listInput = (ListView) findViewById(R.id.list_dynamic);
+        listInput1 = (ListView) findViewById(R.id.list_dynamic2);
         // adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,items);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
-        TAG_ACCOUNT=bundle.getString("TAG_ACCOUNT");
+        TAG_ACCOUNT = bundle.getString("TAG_ACCOUNT");
 
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
@@ -145,28 +149,56 @@ public class DynamicAction extends Activity {
 
         //時間
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
-        Date curDate = new Date(System.currentTimeMillis()) ; // 獲取當前時間
+        Date curDate = new Date(System.currentTimeMillis()); // 獲取當前時間
         str = formatter.format(curDate);
 
         //orm 用stepnumber去抓資料庫的東西
 
         mcase_masterDao = new case_masterDao();
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
-        List<case_masterVo> caselist = null ;
+        List<case_masterVo> caselist = null;
 
         msop_masterDao = new sop_masterDao();
-        List<sop_masterVo>sopmasterlist = null;
+        List<sop_masterVo> sopmasterlist = null;
         // sopmasterlist = msop_masterDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
-        sopmasterlist = msop_masterDao.selectRawByNest(mDatabaseHelper, "Account",TAG_ACCOUNT, "Sop_number") ;
-        List<mysopVo>mysoplist = null;
+        sopmasterlist = msop_masterDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Sop_number");
+        List<mysopVo> mysoplist = null;
 
         msop_detailDao = new sop_detailDao();
-        List<sop_detailVo>sopdetaillist = null;
+        List<sop_detailVo> sopdetaillist = null;
         //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
-        sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper,"Account",TAG_ACCOUNT,"Step_number");
+        sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Step_number");
 
+        //  Log.d("抓2",sopdetaillist.get(0).getStep_order());
+
+        //判斷mysop是否是空的
+        if (sopmasterlist.size() != 0) {
+            int k = 0;
+            if (sopmasterlist.size() % 2 == 0) {
+                x = sopmasterlist.size() / 2;
+            } else {
+                x = (sopmasterlist.size() + 1) / 2;
+            }
+
+            list = new String[x];
+            name = new String[x];
+            key = new int[x];
+            timesee = new String[x];
+            photo = new Drawable[x];
+            bmplist = new Bitmap[x];
+            steporder = new String[x];
+            steptotal = new String[x];
+            list1 = new String[sopmasterlist.size() / 2];
+            name1 = new String[sopmasterlist.size() / 2];
+            key1 = new int[sopmasterlist.size() / 2];
+            timesee1 = new String[sopmasterlist.size() / 2];
+            photo1 = new Drawable[sopmasterlist.size() / 2];
+            bmplist1 = new Bitmap[sopmasterlist.size() / 2];
+            steporder1 = new String[sopmasterlist.size() / 2];
+            steptotal1 = new String[sopmasterlist.size() / 2];
+
+        }
     }
-
 
     private boolean checkPlayServices() {
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
@@ -211,47 +243,40 @@ public class DynamicAction extends Activity {
         int id = item.getItemId();
         switch(id){
             case R.id.title_section1:
-              TAG_RULE = "1";
-                url_all_products = "http://140.115.80.237/front/mysop_dynamicAction.jsp";
-                new LoadAllProducts().execute();
+                TAG_RULE = "1";
+
                 break;
             case R.id.title_section2:
                 TAG_RULE = "2";
-                url_all_products = "http://140.115.80.237/front/mysop_dynamicAction.jsp";
-                new LoadAllProducts().execute();
+
                 break;
             case R.id.title_section3:
                 TAG_RULE = "4";
-                url_all_products = "http://140.115.80.237/front/mysop_dynamicAction.jsp";
-                new LoadAllProducts().execute();
+
                 break;
             case R.id.title_section4:
                 TAG_RULE = "5";
-                url_all_products = "http://140.115.80.237/front/mysop_dynamicAction.jsp";
-                new LoadAllProducts().execute();
+
 
                 break;
             case R.id.title_section5:
                 TAG_RULE = "3";
-                url_all_products = "http://140.115.80.237/front/mysop_dynamicAction.jsp";
-                new LoadAllProducts().execute();
+
                 setContentView(R.layout.activity_dynamic_action);
                 listInput = (ListView)findViewById(R.id.list_dynamic);
                 listInput1 = (ListView)findViewById(R.id.list_dynamic2);
                 break;
             case R.id.title_section6:
                 TAG_RULE = "6";
-                url_all_products = "http://140.115.80.237/front/mysop_dynamicAction.jsp";
-                new LoadAllProducts().execute();
+
                 break;
             case R.id.title_section7:
                 TAG_RULE = "7";
-                url_all_products = "http://140.115.80.237/front/mysop_dynamicAction.jsp";
-                new LoadAllProducts().execute();
+           
                 break;
             default: return false;
         }
-            return true;
+        return true;
     }
     //圖片網址
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
@@ -278,316 +303,6 @@ public class DynamicAction extends Activity {
             bmImage.setImageBitmap(result);
         }
     }
-    /**
-     * Background Async Task to Load all product by making HTTP Request
-     * */
-    class LoadAllProducts extends AsyncTask<String, String, String> {
-
-        /**
-         * Before starting background thread Show Progress Dialog
-         * */
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            pDialog = new ProgressDialog(DynamicAction.this);
-            pDialog.setMessage("Loading products. Please wait...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
-        }
-
-        /**
-         * getting All products from url
-         * */
-        protected String doInBackground(String... args) {
-            // Building Parameters
-            List<NameValuePair> params = new ArrayList<NameValuePair>();
-            params.add(new BasicNameValuePair("Account", TAG_ACCOUNT) );
-            params.add(new BasicNameValuePair("Rule", TAG_RULE) );
-            // getting JSON string from URL
-            JSONObject json = DynamicAction.this.jsonParser.makeHttpRequest(DynamicAction.url_all_products,"GET", params);
-
-            productsList.clear();
-            // Check your log cat for JSON reponse
-            Log.d("All Products: ", json.toString());
-
-            try {
-                // Checking for SUCCESS TAG
-                int success = json.getInt(TAG_SUCCESS);
-
-                if (success == 1) {
-                    // products found
-                    // Getting Array of Products
-                    products = json.getJSONArray(TAG_PRODUCTS);
-
-                    // looping through All Products
-                    for (int i = 0; i < products.length(); i++) {
-                        JSONObject c = products.getJSONObject(i);
-
-                        // Storing each json item in variable
-                        String sopname = c.getString(TAG_SOPNAME);
-                        String sopnumber = c.getString(TAG_CASENUMBER);
-                        String startrule = c.getString(TAG_STARTRULE);
-                        String startvalue = c.getString(TAG_STARTVALUE);
-                        String picture = c.getString(TAG_PICTURE);
-
-                        // creating new HashMap
-                        HashMap<String, String> map = new HashMap<String, String>();
-
-                        // adding each child node to HashMap key => value
-                        map.put(TAG_SOPNAME, sopname);
-                        map.put(TAG_CASENUMBER, sopnumber);
-                        map.put(TAG_STARTRULE, startrule);
-                        map.put(TAG_STARTVALUE,startvalue);
-                        map.put(TAG_PICTURE,picture);
-
-                        // adding HashList to ArrayList
-                        productsList.add(map);
-                    }
-                } else {
-
-
-                }
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
-
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
-        protected void onPostExecute(String file_url) {
-            // dismiss the dialog after getting all products
-            pDialog.dismiss();
-
-            int k=0;
-            if(products.length()%2==0){
-                x=products.length()/2;
-            }else{
-                x=(products.length()+1)/2;
-            }
-
-            list = new String[x];
-            name = new String[x];
-            key = new int[x];
-            timesee = new String[x];
-            photo = new String[x];
-            list1 = new String[products.length()/2];
-            name1 = new String[products.length()/2];
-            key1 = new int[products.length()/2];
-            timesee1 = new String[products.length()/2];
-            photo1 = new String[products.length()/2];
-            // updating UI from Background Thread
-            for (int i = 0; i < x; i++) {
-                list[i] = productsList.get(i).get(TAG_CASENUMBER);
-                name[i] = productsList.get(i).get(TAG_SOPNAME);
-                photo[i]=productsList.get(i).get(TAG_PICTURE);
-                switch (productsList.get(i).get(TAG_STARTRULE)){
-                    case "1":
-                        // cagetory.setText("人工啟動");
-                        key[i]=4;
-                        break;
-                    case "2":
-                        //cagetory.setText("前一步驟\n完工");
-                        key[i]=4;
-                        break;
-                    case "3":
-                        //cagetory.setText("Beacon");
-                        key[i]=1;
-                        break;
-                    case "4":
-                        //cagetory.setText("QR code");
-                        key[i]=3;
-                        break;
-                    case "5":
-                        //cagetory.setText("NFC");
-                        key[i]=0;
-                        break;
-                    case "6":
-                        //cagetory.setText("定位");
-                        key[i]=2;
-                        break;
-                    case "7":
-                        //cagetory.setText("時間到期");
-                        key[i]=4;
-                        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
-                        Date now = null;
-
-                        try {
-                            now = df.parse(productsList.get(i).get(TAG_STARTVALUE));
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        Date date = null;
-                        try {
-                            date = df.parse(str);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-
-                        long l;
-
-                        //比較時間大小
-                        if(now.getTime()>date.getTime()) {
-                            //未過期
-                            l = now.getTime() - date.getTime();
-                            check=0;
-                        }else{
-                            //過期
-                            l = date.getTime() - now.getTime();
-                            check=1;
-                        }
-                        //計算時間差
-                        long month=l/(30 * 24 * 60 * 60 * 1000);
-                        long day = l / (24 * 60 * 60 * 1000- month * 30);
-                        long hour = (l / (60 * 60 * 1000) - month * 30 * 24 - day * 24);
-                        long min = ((l / (60 * 1000)) - month * 30 * 24 * 60- day * 24 * 60 - hour * 60);
-                        long s = (l / 1000 - month * 30 * 24 * 60 * 60- day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
-                        System.out.println(month+"月" + day + "天" + hour + "小时" + min + "分" + s + "秒");
-
-                        if(check==0) {
-
-                            if (month == 0) {
-                                timedifference="還差" + day + "天" ;
-                            } else if (month == 0 && day == 0) {
-                                timedifference="還差" + hour + "小时" + min + "分";
-                            } else if (month == 0 && day == 0 && hour == 0) {
-                                timedifference="還差" + min + "分";
-                            } else {
-                                timedifference="還差" + month + "月" + day + "天";
-                            }
-                        }else{
-                            //過期
-                            // timedifference.setTextColor(Color.RED);
-                            if (month == 0) {
-                                timedifference="過期" + day + "天" ;
-                            } else if (month == 0 && day == 0) {
-                                timedifference="過期" + hour + "小时" + min + "分";
-                            } else if (month == 0 && day == 0 && hour == 0) {
-                                timedifference="過期" + min + "分";
-                            } else {
-                                timedifference="過期" + month + "月" + day + "天";
-                            }
-                        }
-                        timesee[i]=timedifference;
-                        break;
-                }
-            }
-
-            //另一邊
-            for (int i = products.length()-1; i >=x; i--) {
-
-
-                list1[k] = productsList.get(i).get(TAG_CASENUMBER);
-                name1[k] = productsList.get(i).get(TAG_SOPNAME);
-                photo[k]=productsList.get(i).get(TAG_PICTURE);
-                switch (productsList.get(i).get(TAG_STARTRULE)){
-                    case "1":
-                        // cagetory.setText("人工啟動");
-                        key1[k]=4;
-                        break;
-                    case "2":
-                        //cagetory.setText("前一步驟\n完工");
-                        key1[k]=4;
-                        break;
-                    case "3":
-                        //cagetory.setText("Beacon");
-                        key1[k]=1;
-                        break;
-                    case "4":
-                        //cagetory.setText("QR code");
-                        key1[k]=3;
-                        break;
-                    case "5":
-                        //cagetory.setText("NFC");
-                        key1[k]=0;
-                        break;
-                    case "6":
-                        //cagetory.setText("定位");
-                        key1[k]=2;
-                        break;
-                    case "7":
-                        //cagetory.setText("時間到期");
-                        key1[k]=4;
-                        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
-                        Date now = null;
-
-                        try {
-                            now = df.parse(productsList.get(i).get(TAG_STARTVALUE));
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-                        Date date = null;
-                        try {
-                            date = df.parse(str);
-                        } catch (ParseException e) {
-                            e.printStackTrace();
-                        }
-
-                        long l;
-
-                        //比較時間大小
-                        if(now.getTime()>date.getTime()) {
-                            //未過期
-                            l = now.getTime() - date.getTime();
-                            check=0;
-                        }else{
-                            //過期
-                            l = date.getTime() - now.getTime();
-                            check=1;
-                        }
-                        //計算時間差
-                        long month=l/(30 * 24 * 60 * 60 * 1000);
-                        long day = l / (24 * 60 * 60 * 1000- month * 30);
-                        long hour = (l / (60 * 60 * 1000) - month * 30 * 24 - day * 24);
-                        long min = ((l / (60 * 1000)) - month * 30 * 24 * 60- day * 24 * 60 - hour * 60);
-                        long s = (l / 1000 - month * 30 * 24 * 60 * 60- day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
-                        System.out.println(month+"月" + day + "天" + hour + "小时" + min + "分" + s + "秒");
-
-                        if(check==0) {
-
-                            if (month == 0) {
-                                timedifference="還差" + day + "天" ;
-                            } else if (month == 0 && day == 0) {
-                                timedifference="還差" + hour + "小时" + min + "分";
-                            } else if (month == 0 && day == 0 && hour == 0) {
-                                timedifference="還差" + min + "分";
-                            } else {
-                                timedifference="還差" + month + "月" + day + "天";
-                            }
-                        }else{
-                            //過期
-                            // timedifference.setTextColor(Color.RED);
-                            if (month == 0) {
-                                timedifference="過期" + day + "天" ;
-                            } else if (month == 0 && day == 0) {
-                                timedifference="過期" + hour + "小时" + min + "分";
-                            } else if (month == 0 && day == 0 && hour == 0) {
-                                timedifference="過期" + min + "分";
-                            } else {
-                                timedifference="過期" + month + "月" + day + "天";
-                            }
-                        }
-                        timesee1[k]=timedifference;
-                        break;
-                }
-                k++;
-            }
-
-
-            adapter = new MyAdapter(DynamicAction.this);
-            adapter1= new MyAdapter1(DynamicAction.this);
-            listInput.setAdapter(adapter);
-            listInput1.setAdapter(adapter1);
-
-            listInput.setOnItemClickListener(listener);
-            listInput1.setOnItemClickListener(listener);
-        }
-
-    }
-
     public class MyAdapter extends BaseAdapter {
         private LayoutInflater myInflater;
 
