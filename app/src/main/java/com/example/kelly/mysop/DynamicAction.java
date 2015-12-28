@@ -293,10 +293,9 @@ sopdetaillist = msop_detailDao.selectRawByNest3(mDatabaseHelper, "Account", TAG_
                 Intent intent6 = new Intent(this, DynamicAction.class);
                 intent6.putExtra("TAG_RULE",TAG_RULE);
                 startActivity(intent6);
-                break;
-            default: return false;
+                return super.onOptionsItemSelected(item);
         }
-        return true;
+        return false;
     }
     //圖片網址
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
