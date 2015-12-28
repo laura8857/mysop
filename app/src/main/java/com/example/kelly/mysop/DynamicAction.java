@@ -29,6 +29,7 @@ import com.j256.ormlite.dao.RuntimeExceptionDao;
 import org.json.JSONArray;
 
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -164,15 +165,14 @@ public class DynamicAction extends Activity {
         // sopmasterlist = msop_masterDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
         sopmasterlist = msop_masterDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Sop_number");
         List<mysopVo> mysoplist = null;
+
+        List<sop_detailVo> sopdetaillist = null;
+        msop_detailDao = new sop_detailDao();
 if(TAG_RULE == "") {
-    msop_detailDao = new sop_detailDao();
-    List<sop_detailVo> sopdetaillist = null;
     //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
     sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Step_number");
 }
         else{
-    msop_detailDao = new sop_detailDao();
-    List<sop_detailVo> sopdetaillist = null;
 sopdetaillist = msop_detailDao.selectRawByNest3(mDatabaseHelper, "Account", TAG_ACCOUNT,"Step_number","Start_rule",TAG_RULE);
         }
         //  Log.d("抓2",sopdetaillist.get(0).getStep_order());
@@ -203,6 +203,243 @@ sopdetaillist = msop_detailDao.selectRawByNest3(mDatabaseHelper, "Account", TAG_
             steporder1 = new String[sopmasterlist.size() / 2];
             steptotal1 = new String[sopmasterlist.size() / 2];
 
+            for (int i = 0; i < x; i++) {
+                List<case_masterVo>casemasterlist=null;
+                casemasterlist = mcase_masterDao.selectRaw2(mDatabaseHelper,"Account ="+"'"+TAG_ACCOUNT+"'","Sop_number ="+"'"+sopmasterlist.get(i).getSop_number()+"'","Case_mark ="+"'"+"0"+"'");
+                list[i]=casemasterlist.get(0).getCase_number();
+                Log.d("案號",casemasterlist.get(0).getCase_number());
+                //list[i] = caselist.get(i).getCase_number();
+                name[i] = sopmasterlist.get(i).getSop_name();
+                //圖片
+//            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
+//            bmplist[i] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+//            Drawable drawable = new BitmapDrawable(bmplist[i]);
+//            photo[i]=drawable;
+                //
+                steporder[i] = sopdetaillist.get(i).getStep_order();
+                List<sop_detailVo> listforcount = null;
+                //listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='" + TAG_ACCOUNT + "')");
+                listforcount = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Sop_number");
+                steptotal[i] = String.valueOf(listforcount.size());
+                //steptotal[i]=productsList1.get(i).get(TAG_TATOL);
+                switch (sopdetaillist.get(i).getStart_rule()) {
+                    case "1":
+                        // cagetory.setText("人工啟動");
+                        key[i] = 4;
+                        break;
+                    case "2":
+                        //cagetory.setText("前一步驟\n完工");
+                        key[i] = 4;
+                        break;
+                    case "3":
+                        //cagetory.setText("Beacon");
+                        key[i] = 1;
+                        break;
+                    case "4":
+                        //cagetory.setText("QR code");
+                        key[i] = 3;
+                        break;
+                    case "5":
+                        //cagetory.setText("NFC");
+                        key[i] = 0;
+                        break;
+                    case "6":
+                        //cagetory.setText("定位");
+                        key[i] = 2;
+                        break;
+                    case "7":
+                        //cagetory.setText("時間到期");
+                        key[i] = 4;
+                        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
+                        Date now = null;
+                        System.out.println("TIME is " + sopdetaillist.get(i).getStart_value1());
+                        System.out.println("NOW is " + str);
+
+                        try {
+                            now = df.parse(sopdetaillist.get(i).getStart_value1());
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        Date date = null;
+                        try {
+                            date = df.parse(str);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        long l;
+
+                        //比較時間大小
+                        if (now.getTime() > date.getTime()) {
+                            //未過期
+                            l = now.getTime() - date.getTime();
+                            check = 0;
+                        } else {
+                            //過期
+                            l = date.getTime() - now.getTime();
+                            check = 1;
+                        }
+                        long l2 = l / (30 * 24 * 60 * 60);
+
+                        //計算時間差
+                        long month = l2 / 1000;
+                        long day = l / (24 * 60 * 60 * 1000) - month * 30;
+                        long hour = (l / (60 * 60 * 1000) - month * 30 * 24 - day * 24);
+                        long min = ((l / (60 * 1000)) - month * 30 * 24 * 60 - day * 24 * 60 - hour * 60);
+                        long s = (l / 1000 - month * 30 * 24 * 60 * 60 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
+                        System.out.println(month + "月" + day + "天" + hour + "小时" + min + "分" + s + "秒");
+
+                        if (check == 0) {
+
+                            if (month <= 0) {
+                                timedifference = "還差" + day + "天";
+                            } else if (month <= 0 && day == 0) {
+                                timedifference = "還差" + hour + "小时" + min + "分";
+                            } else if (month <= 0 && day == 0 && hour == 0) {
+                                timedifference = "還差" + min + "分";
+                            } else {
+                                timedifference = "還差" + month + "月" + day + "天";
+                            }
+                        } else {
+                            //過期
+                            // timedifference.setTextColor(Color.RED);
+                            if (month == 0) {
+                                timedifference = "過期" + day + "天";
+                            } else if (month == 0 && day == 0) {
+                                timedifference = "過期" + hour + "小时" + min + "分";
+                            } else if (month == 0 && day == 0 && hour == 0) {
+                                timedifference = "過期" + min + "分";
+                            } else {
+                                timedifference = "過期" + month + "月" + day + "天";
+                            }
+                        }
+                        timesee[i] = timedifference;
+                        break;
+                }
+            }
+
+            //另一邊
+            for (int i = sopmasterlist.size() - 1; i >= x; i--) {
+                List<case_masterVo>casemasterlist=null;
+                casemasterlist = mcase_masterDao.selectRaw2(mDatabaseHelper, "Account =" + "'" + TAG_ACCOUNT + "'", "Sop_number =" + "'" + sopmasterlist.get(i).getSop_number()+"'","Case_mark ="+"'"+"0"+"'");
+                list1[k]=casemasterlist.get(0).getCase_number();
+                // list1[k] = caselist.get(i).getCase_number();
+                name1[k] = sopmasterlist.get(i).getSop_name();
+                //圖片
+//            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
+//            bmplist1[k] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+//            Drawable drawable = new BitmapDrawable(bmplist1[k]);
+//            photo1[k]=drawable;
+                //
+                steporder1[k] = sopdetaillist.get(i).getStep_order();
+                //steptotal1[k]=productsList1.get(i).get(TAG_TATOL);
+                List<sop_detailVo> listforcount1 = null;
+                //listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='" + TAG_ACCOUNT + "')");
+                listforcount1 = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Sop_number");
+                steptotal1[k] = String.valueOf(listforcount1.size());
+                switch (sopdetaillist.get(i).getStart_rule()) {
+                    case "1":
+                        // cagetory.setText("人工啟動");
+                        key1[k] = 4;
+                        break;
+                    case "2":
+                        //cagetory.setText("前一步驟\n完工");
+                        key1[k] = 4;
+                        break;
+                    case "3":
+                        //cagetory.setText("Beacon");
+                        key1[k] = 1;
+                        break;
+                    case "4":
+                        //cagetory.setText("QR code");
+                        key1[k] = 3;
+                        break;
+                    case "5":
+                        //cagetory.setText("NFC");
+                        key1[k] = 0;
+                        break;
+                    case "6":
+                        //cagetory.setText("定位");
+                        key1[k] = 2;
+                        break;
+                    case "7":
+                        //cagetory.setText("時間到期");
+                        key1[k] = 4;
+                        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
+                        Date now = null;
+
+                        try {
+                            now = df.parse(sopdetaillist.get(i).getStart_value1());
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        Date date = null;
+                        try {
+                            date = df.parse(str);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        long l;
+
+                        //比較時間大小
+                        if (now.getTime() > date.getTime()) {
+                            //未過期
+                            l = now.getTime() - date.getTime();
+                            check = 0;
+                        } else {
+                            //過期
+                            l = date.getTime() - now.getTime();
+                            check = 1;
+                        }
+                        long l2 = l / (30 * 24 * 60 * 60);
+
+                        //計算時間差
+                        long month = l2 / 1000;
+                        long day = l / (24 * 60 * 60 * 1000) - month * 30;
+                        long hour = (l / (60 * 60 * 1000) - month * 30 * 24 - day * 24);
+                        long min = ((l / (60 * 1000)) - month * 30 * 24 * 60 - day * 24 * 60 - hour * 60);
+                        long s = (l / 1000 - month * 30 * 24 * 60 * 60 - day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
+                        System.out.println(month + "月" + day + "天" + hour + "小时" + min + "分" + s + "秒");
+                        if (check == 0) {
+
+                            if (month == 0) {
+                                timedifference = "還差" + day + "天";
+                            } else if (month == 0 && day == 0) {
+                                timedifference = "還差" + hour + "小时" + min + "分";
+                            } else if (month == 0 && day == 0 && hour == 0) {
+                                timedifference = "還差" + min + "分";
+                            } else {
+                                timedifference = "還差" + month + "月" + day + "天";
+                            }
+                        } else {
+                            //過期
+                            // timedifference.setTextColor(Color.RED);
+                            if (month == 0) {
+                                timedifference = "過期" + day + "天";
+                            } else if (month == 0 && day == 0) {
+                                timedifference = "過期" + hour + "小时" + min + "分";
+                            } else if (month == 0 && day == 0 && hour == 0) {
+                                timedifference = "過期" + min + "分";
+                            } else {
+                                timedifference = "過期" + month + "月" + day + "天";
+                            }
+                        }
+                        timesee1[k] = timedifference;
+                        break;
+                }
+                k++;
+            }
+
+            adapter = new MyAdapter(DynamicAction.this);
+            adapter1 = new MyAdapter1(DynamicAction.this);
+            listInput.setAdapter(adapter);
+            listInput1.setAdapter(adapter1);
+
+            listInput.setOnItemClickListener(listener);
+            listInput1.setOnItemClickListener(listener1);
+        }else{
+
         }
     }
 
@@ -226,6 +463,8 @@ sopdetaillist = msop_detailDao.selectRawByNest3(mDatabaseHelper, "Account", TAG_
         getMenuInflater().inflate(R.menu.menu_dynamic_action, menu);
         return true;
     }
+
+
     private ListView.OnItemClickListener listener = new ListView.OnItemClickListener(){
 
         @Override
@@ -234,13 +473,45 @@ sopdetaillist = msop_detailDao.selectRawByNest3(mDatabaseHelper, "Account", TAG_
 
             Bundle bundle = new Bundle();
             bundle.putString("TAG_CASE_NUMBER", list[position]);
-            Intent it = new Intent(DynamicAction.this,StepActionControl.class);
-            it.putExtras(bundle);//將參數放入intent
-            startActivity(it);
+
+            if(steporder[position].equals("1")){
+
+                Intent it = new Intent(DynamicAction.this,Start.class);
+                it.putExtras(bundle);//將參數放入intent
+                startActivity(it);
+            }else{
+                Intent it = new Intent(DynamicAction.this,StepActionControl.class);
+                it.putExtras(bundle);//將參數放入intent
+                startActivity(it);
+            }
 
         }
 
     };
+    private ListView.OnItemClickListener listener1 = new ListView.OnItemClickListener(){
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id){
+            Toast.makeText(getApplicationContext(), "你選擇的是" + list1[position], Toast.LENGTH_SHORT).show();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_CASE_NUMBER", list1[position]);
+
+            if(steporder1[position].equals("1")){
+
+                Intent it = new Intent(DynamicAction.this,Start.class);
+                it.putExtras(bundle);//將參數放入intent
+                startActivity(it);
+            }else{
+                Intent it = new Intent(DynamicAction.this,StepActionControl.class);
+                it.putExtras(bundle);//將參數放入intent
+                startActivity(it);
+            }
+
+        }
+
+    };
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
