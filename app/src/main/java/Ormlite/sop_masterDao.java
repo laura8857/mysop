@@ -180,8 +180,7 @@ public class sop_masterDao
             //Log.d("TEST NEST",subqueryBuilder.query().get(0).getAccount());
             // in using the sub-query
             subqueryBuilder.selectColumns(column4);
-            subqueryBuilder2.where().in(column4, subqueryBuilder);
-            subqueryBuilder2.where().eq(column3, value3);
+            subqueryBuilder2.where().in(column4, subqueryBuilder).and().eq(column3, value3);
             subqueryBuilder2.selectColumns(column2);
             queryBuilder.where().in(column2, subqueryBuilder2);
             //Log.d("TEST NEST",queryBuilder.query().get(0).getAccount());
