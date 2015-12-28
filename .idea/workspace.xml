@@ -18,7 +18,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e6545c-f38f-4204-9d80-ad03792b6f17" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Mysop.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Mysop.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/menu/menu_mysop.xml" afterPath="$PROJECT_DIR$/app/src/main/res/menu/menu_mysop.xml" />
     </list>
     <ignored path="MySOP3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -68,21 +69,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="DynamicAction.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DynamicAction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37153196">
+            <state vertical-scroll-proportion="0.0">
               <caret line="297" column="18" selection-start-line="297" selection-start-column="18" selection-end-line="297" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Mysop.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Mysop.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Mysop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="10.555555">
-              <caret line="537" column="18" selection-start-line="537" selection-start-column="18" selection-end-line="537" selection-end-column="18" />
+            <state vertical-scroll-proportion="0.24716267">
+              <caret line="544" column="22" selection-start-line="544" selection-start-column="22" selection-end-line="544" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -92,7 +93,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_mysop.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="3" column="75" selection-start-line="3" selection-start-column="75" selection-end-line="3" selection-end-column="75" />
+              <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -1944,9 +1945,9 @@
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Stepdescription.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/Ormlite/sop_detailDao.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/menu_mysop.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Mysop.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java" />
       </list>
     </option>
   </component>
@@ -2939,26 +2940,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="297" column="18" selection-start-line="297" selection-start-column="18" selection-end-line="297" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_mysop.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="75" selection-start-line="3" selection-start-column="75" selection-end-line="3" selection-end-column="75" />
+          <caret line="3" column="45" selection-start-line="3" selection-start-column="45" selection-end-line="3" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Mysop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="10.555555">
-          <caret line="537" column="18" selection-start-line="537" selection-start-column="18" selection-end-line="537" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37153196">
-          <caret line="297" column="18" selection-start-line="297" selection-start-column="18" selection-end-line="297" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.24716267">
+          <caret line="544" column="22" selection-start-line="544" selection-start-column="22" selection-end-line="544" selection-end-column="22" />
           <folding />
         </state>
       </provider>

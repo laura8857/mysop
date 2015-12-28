@@ -541,6 +541,7 @@ public class Mysop extends Activity {
                 Bundle bundle3 =new Bundle();
                 bundle3.putString("TAG_ACCOUNT",TAG_ACCOUNT);
                 i1.putExtras(bundle3);
+                startActivity(i1);
                 break;
             case R.id.title_activity_searching:
                 //startActivity(new Intent().setClass(Mysop.this, Search.class));
@@ -558,6 +559,7 @@ public class Mysop extends Activity {
                 Bundle bundle4 =new Bundle();
                 bundle4.putString("TAG_ACCOUNT",TAG_ACCOUNT);
                 i2.putExtras(bundle4);
+                startActivity(i2);
 
                 break;
             case R.id.title_activity_logout:
