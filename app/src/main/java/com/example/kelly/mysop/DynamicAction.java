@@ -62,7 +62,6 @@ public class DynamicAction extends Activity {
     private static final String TAG_STARTVALUE = "startvalue";
     private static final String TAG_PICTURE = "picture";
     private static String str,timedifference;
-    public String TAG_RULE;
     public int check;
     //計算product 長度
     public int x;
@@ -83,6 +82,7 @@ public class DynamicAction extends Activity {
     //帳號先寫死
     String TAG_ACCOUNT ="";
     //String TAG_ACCOUNT = "test@gmail.com";
+    String TAG_RULE="";
 
 
     //存casenumber  sopname
@@ -128,6 +128,7 @@ public class DynamicAction extends Activity {
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         TAG_ACCOUNT = bundle.getString("TAG_ACCOUNT");
+        TAG_RULE =bundle.getString("TAG_RULE");
 
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
@@ -163,12 +164,17 @@ public class DynamicAction extends Activity {
         // sopmasterlist = msop_masterDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
         sopmasterlist = msop_masterDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Sop_number");
         List<mysopVo> mysoplist = null;
-
-        msop_detailDao = new sop_detailDao();
-        List<sop_detailVo> sopdetaillist = null;
-        //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
-        sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Step_number");
-
+if(TAG_RULE == "") {
+    msop_detailDao = new sop_detailDao();
+    List<sop_detailVo> sopdetaillist = null;
+    //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
+    sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Step_number");
+}
+        else{
+    msop_detailDao = new sop_detailDao();
+    List<sop_detailVo> sopdetaillist = null;
+sopdetaillist = msop_detailDao.selectRawByNest3(mDatabaseHelper, "Account", TAG_ACCOUNT,"Step_number","Start_rule",TAG_RULE);
+        }
         //  Log.d("抓2",sopdetaillist.get(0).getStep_order());
 
         //判斷mysop是否是空的
@@ -244,35 +250,49 @@ public class DynamicAction extends Activity {
         switch(id){
             case R.id.title_section1:
                 TAG_RULE = "1";
+                Intent intent = new Intent(this, DynamicAction.class);
+                intent.putExtra("TAG_RULE",TAG_RULE);
+                startActivity(intent);
 
                 break;
             case R.id.title_section2:
                 TAG_RULE = "2";
+                Intent intent1 = new Intent(this, DynamicAction.class);
+                intent1.putExtra("TAG_RULE", TAG_RULE);
+                startActivity(intent1);
 
                 break;
             case R.id.title_section3:
                 TAG_RULE = "4";
+                Intent intent2 = new Intent(this, DynamicAction.class);
+                intent2.putExtra("TAG_RULE",TAG_RULE);
+                startActivity(intent2);
 
                 break;
             case R.id.title_section4:
                 TAG_RULE = "5";
-
+                Intent intent3 = new Intent(this, DynamicAction.class);
+                intent3.putExtra("TAG_RULE",TAG_RULE);
+                startActivity(intent3);
 
                 break;
             case R.id.title_section5:
                 TAG_RULE = "3";
-
-                setContentView(R.layout.activity_dynamic_action);
-                listInput = (ListView)findViewById(R.id.list_dynamic);
-                listInput1 = (ListView)findViewById(R.id.list_dynamic2);
+                Intent intent4 = new Intent(this, DynamicAction.class);
+                intent4.putExtra("TAG_RULE",TAG_RULE);
+                startActivity(intent4);
                 break;
             case R.id.title_section6:
                 TAG_RULE = "6";
-
+                Intent intent5 = new Intent(this, DynamicAction.class);
+                intent5.putExtra("TAG_RULE",TAG_RULE);
+                startActivity(intent5);
                 break;
             case R.id.title_section7:
                 TAG_RULE = "7";
-           
+                Intent intent6 = new Intent(this, DynamicAction.class);
+                intent6.putExtra("TAG_RULE",TAG_RULE);
+                startActivity(intent6);
                 break;
             default: return false;
         }
