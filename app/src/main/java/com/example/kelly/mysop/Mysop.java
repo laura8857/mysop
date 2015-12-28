@@ -537,7 +537,10 @@ public class Mysop extends Activity {
         //noinspection SimplifiableIfStatement
         switch (id) {
             case R.id.title_activity_changepassword:
-                startActivity(new Intent().setClass(Mysop.this, Changepassword.class));
+                Intent i1 = new Intent (this, Changepassword.class);
+                Bundle bundle3 =new Bundle();
+                bundle3.putString("TAG_ACCOUNT",TAG_ACCOUNT);
+                i1.putExtras(bundle3);
                 break;
             case R.id.title_activity_searching:
                 //startActivity(new Intent().setClass(Mysop.this, Search.class));
@@ -551,7 +554,11 @@ public class Mysop extends Activity {
                 startActivity(i);
                 break;
             case R.id.title_activity_dynamic_action:
-                startActivity(new Intent().setClass(Mysop.this, DynamicAction.class));
+                Intent i2 = new Intent (this, DynamicAction.class);
+                Bundle bundle4 =new Bundle();
+                bundle4.putString("TAG_ACCOUNT",TAG_ACCOUNT);
+                i2.putExtras(bundle4);
+
                 break;
             case R.id.title_activity_logout:
                 startActivity(new Intent().setClass(Mysop.this, Logout.class));
