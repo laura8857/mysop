@@ -18,32 +18,40 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e6545c-f38f-4204-9d80-ad03792b6f17" name="Default" comment="">
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\android_beacon_library_2_1_beta_4.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\appcompat_v7_22_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\mediarouter_v7_22_0_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\ormlite_android_4_48.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\ormlite_core_4_48.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_ads_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_analytics_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_appindexing_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_appinvite_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_appstate_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_base_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_cast_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_drive_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_fitness_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_games_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_gcm_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_identity_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_location_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_maps_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_nearby_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_panorama_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_plus_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_safetynet_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_wallet_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_wearable_7_5_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\support_annotations_22_2_0.xml" afterPath="" />
+      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\support_v4_22_2_0.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MySOP3.iml" afterPath="$PROJECT_DIR$/MySOP3.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/android_beacon_library_2_1_beta_4.xml" afterPath="$PROJECT_DIR$/.idea/libraries/android_beacon_library_2_1_beta_4.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_22_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_22_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_22_0_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/mediarouter_v7_22_0_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_ads_7_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_ads_7_5_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_7_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_analytics_7_5_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_7_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_7_5_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appstate_7_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_appstate_7_5_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_cast_7_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_cast_7_5_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_location_7_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_location_7_5_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_7_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_nearby_7_5_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_panorama_7_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_panorama_7_5_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_plus_7_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_plus_7_5_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_7_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_safetynet_7_5_0.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_7_5_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/play_services_wallet_7_5_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/Ormlite/sop_masterDao.java" afterPath="$PROJECT_DIR$/app/src/main/java/Ormlite/sop_masterDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_22_2_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/support_v4_22_2_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MySOP3.iws" />
@@ -108,27 +116,27 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/sop_detailDao.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="153" column="52" selection-start-line="153" selection-start-column="52" selection-end-line="153" selection-end-column="52" />
+              <caret line="143" column="23" selection-start-line="143" selection-start-column="23" selection-end-line="143" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DynamicAction.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DynamicAction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5741858">
-              <caret line="177" column="137" selection-start-line="177" selection-start-column="137" selection-end-line="177" selection-end-column="137" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="176" column="135" selection-start-line="176" selection-start-column="135" selection-end-line="176" selection-end-column="135" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sop_masterDao.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="sop_masterDao.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/sop_masterDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="180" column="52" selection-start-line="180" selection-start-column="52" selection-end-line="180" selection-end-column="52" />
+            <state vertical-scroll-proportion="0.66224366">
+              <caret line="185" column="74" selection-start-line="185" selection-start-column="74" selection-end-line="185" selection-end-column="74" />
               <folding />
             </state>
           </provider>
@@ -1866,8 +1874,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/Ormlite/sop_masterDao.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/Ormlite/sop_masterDao.java" />
       </list>
     </option>
   </component>
@@ -1906,7 +1914,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -1955,6 +1962,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
@@ -2008,7 +2017,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2254,7 +2262,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2275,8 +2283,8 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2368703" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864675" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864675" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Memory Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -2284,8 +2292,8 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2231986" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2618629" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -2365,25 +2373,25 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_action_control_artificial.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_action_control_time.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/Stepdescription.java">
@@ -2494,91 +2502,91 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_cut_control_gps.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_action_control_gps.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_action_control_qrcode.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_action_control_ibeacon.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_action_control_time.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_action_control_artificial.xml">
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.42990655">
           <caret line="48" column="42" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
           <folding />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_cut_control_nfc.xml">
       <provider editor-type-id="android-designer">
         <state />
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_cut_control_nfc.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_action_control_nfc.xml">
+      <provider selected="true" editor-type-id="android-designer">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepcutcontrolArtificial.java">
@@ -2727,7 +2735,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="353" column="28" selection-start-line="353" selection-start-column="28" selection-end-line="353" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -2747,26 +2754,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="176" column="135" selection-start-line="176" selection-start-column="135" selection-end-line="176" selection-end-column="135" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/sop_detailDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="153" column="52" selection-start-line="153" selection-start-column="52" selection-end-line="153" selection-end-column="52" />
+          <caret line="143" column="23" selection-start-line="143" selection-start-column="23" selection-end-line="143" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/sop_masterDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="180" column="52" selection-start-line="180" selection-start-column="52" selection-end-line="180" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5741858">
-          <caret line="177" column="137" selection-start-line="177" selection-start-column="137" selection-end-line="177" selection-end-column="137" />
+        <state vertical-scroll-proportion="0.66224366">
+          <caret line="185" column="74" selection-start-line="185" selection-start-column="74" selection-end-line="185" selection-end-column="74" />
           <folding />
         </state>
       </provider>

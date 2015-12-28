@@ -168,17 +168,21 @@ public class sop_masterDao
                 .getSop_masterDao();
         RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
                 .getCase_masterDao();
+        RuntimeExceptionDao<sop_detailVo, Integer> sop_detailDao = databaseHelper
+                .getSop_detailDao();
         QueryBuilder<case_masterVo, Integer> subqueryBuilder = case_masterDao
                 .queryBuilder();
         QueryBuilder<sop_masterVo, Integer> queryBuilder = sop_masterDao
                 .queryBuilder();
+        QueryBuilder<sop_detailVo, Integer> subqueryBuilder2 = sop_detailDao.queryBuilder();
         try {
             subqueryBuilder.where().eq(column1, value1);
             //Log.d("TEST NEST",subqueryBuilder.query().get(0).getAccount());
             // in using the sub-query
+            subqueryBuilder2.where().eq(column3, value3);
+            subqueryBuilder2.selectColumns(column2);
             subqueryBuilder.selectColumns(column2);
-            queryBuilder.where().in(column2, subqueryBuilder);
-            queryBuilder.where().eq(column3,value3);
+            queryBuilder.where().in(column2, subqueryBuilder ).in(column2, subqueryBuilder2);
             //Log.d("TEST NEST",queryBuilder.query().get(0).getAccount());
             return queryBuilder.query();
         } catch (SQLException e) {
