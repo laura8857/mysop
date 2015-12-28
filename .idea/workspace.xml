@@ -102,7 +102,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/sop_masterDao.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.62846804">
-              <caret line="184" column="62" selection-start-line="184" selection-start-column="62" selection-end-line="184" selection-end-column="62" />
+              <caret line="184" column="52" selection-start-line="184" selection-start-column="52" selection-end-line="184" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -2744,7 +2744,7 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/sop_masterDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.62846804">
-          <caret line="184" column="62" selection-start-line="184" selection-start-column="62" selection-end-line="184" selection-end-column="62" />
+          <caret line="184" column="52" selection-start-line="184" selection-start-column="52" selection-end-line="184" selection-end-column="52" />
           <folding />
         </state>
       </provider>
