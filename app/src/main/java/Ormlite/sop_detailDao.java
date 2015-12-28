@@ -150,7 +150,9 @@ public class sop_detailDao
             //Log.d("TEST NEST",subqueryBuilder.query().get(0).getAccount());
             // in using the sub-query
             subqueryBuilder.selectColumns(column2);
-            queryBuilder.where().in(column2, subqueryBuilder).and().eq(column3, value3);
+            queryBuilder.where().in(column2, subqueryBuilder);
+            queryBuilder.where().eq(column3, value3);
+
             //Log.d("TEST NEST",queryBuilder.query().get(0).getAccount());
             return queryBuilder.query();
         } catch (SQLException e) {
