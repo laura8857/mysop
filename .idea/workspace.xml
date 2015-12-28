@@ -18,41 +18,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="32e6545c-f38f-4204-9d80-ad03792b6f17" name="Default" comment="">
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\android_beacon_library_2_1_beta_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\appcompat_v7_22_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\mediarouter_v7_22_0_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\ormlite_android_4_48.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\ormlite_core_4_48.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_ads_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_analytics_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_appindexing_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_appinvite_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_appstate_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_base_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_cast_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_drive_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_fitness_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_games_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_gcm_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_identity_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_location_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_maps_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_nearby_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_panorama_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_plus_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_safetynet_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_wallet_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\play_services_wearable_7_5_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\support_annotations_22_2_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="C:\Users\Chris\AndroidStudioProjects\MySOP3\.idea\libraries\support_v4_22_2_0.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/local.properties" afterPath="$PROJECT_DIR$/local.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/Ormlite/sop_masterDao.java" afterPath="$PROJECT_DIR$/app/src/main/java/Ormlite/sop_masterDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="MySOP3.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -126,7 +92,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="176" column="135" selection-start-line="176" selection-start-column="135" selection-end-line="176" selection-end-column="135" />
+              <caret line="325" column="163" selection-start-line="325" selection-start-column="163" selection-end-line="325" selection-end-column="163" />
               <folding />
             </state>
           </provider>
@@ -135,8 +101,8 @@
       <file leaf-file-name="sop_masterDao.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/sop_masterDao.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66224366">
-              <caret line="185" column="74" selection-start-line="185" selection-start-column="74" selection-end-line="185" selection-end-column="74" />
+            <state vertical-scroll-proportion="0.5609168">
+              <caret line="185" column="63" selection-start-line="185" selection-start-column="63" selection-end-line="185" selection-end-column="63" />
               <folding />
             </state>
           </provider>
@@ -2754,14 +2720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="176" column="135" selection-start-line="176" selection-start-column="135" selection-end-line="176" selection-end-column="135" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/sop_detailDao.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -2770,10 +2728,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="325" column="163" selection-start-line="325" selection-start-column="163" selection-end-line="325" selection-end-column="163" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/sop_masterDao.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66224366">
-          <caret line="185" column="74" selection-start-line="185" selection-start-column="74" selection-end-line="185" selection-end-column="74" />
+        <state vertical-scroll-proportion="0.5609168">
+          <caret line="185" column="63" selection-start-line="185" selection-start-column="63" selection-end-line="185" selection-end-column="63" />
           <folding />
         </state>
       </provider>

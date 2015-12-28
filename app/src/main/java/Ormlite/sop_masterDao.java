@@ -182,7 +182,7 @@ public class sop_masterDao
             subqueryBuilder2.where().eq(column3, value3);
             subqueryBuilder2.selectColumns(column2);
             subqueryBuilder.selectColumns(column2);
-            queryBuilder.where().in(column2, subqueryBuilder ).in(column2, subqueryBuilder2);
+            queryBuilder.where().in(column2, subqueryBuilder ).eq(column2, subqueryBuilder2);
             //Log.d("TEST NEST",queryBuilder.query().get(0).getAccount());
             return queryBuilder.query();
         } catch (SQLException e) {
