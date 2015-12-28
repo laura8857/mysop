@@ -108,7 +108,56 @@ public class SplashActivity extends Activity {
     }
 
     public void download() {
-        DownloadManager.Request down=new DownloadManager.Request (Uri.parse("http://140.115.80.237/front/download/testhtml.html"));
+
+        DatabaseHelper DatabaseHelperDL = DatabaseHelper.getHelper(this);
+        sop_detailDao sopdetailDaoDL = new sop_detailDao();
+        List<sop_detailVo> sop_detailDL;
+        sop_detailDL = sopdetailDaoDL.selectRaw(DatabaseHelperDL, "Start_remind=1");
+        DownloadManager.Request[] down = new DownloadManager.Request[50];
+
+        for(int i=0;i<sop_detailDL.size();i++){
+
+            down[i]=new DownloadManager.Request (Uri.parse("http://140.115.80.237/front/download/start"+sop_detailDL.get(i).getStep_number()+".mp3"));
+            //允許網路類型
+            down[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
+            //禁止發通知
+            down[i].setShowRunningNotification(false);
+            //不顯示下載頁面
+            down[i].setVisibleInDownloadsUi(false);
+            //下載後存放位置
+            //down.setDestinationInExternalFilesDir(mContext, null, "testhtml.html");
+            //在sdcard裡面的MYSOPTEST資料夾
+            down[i].setDestinationInExternalPublicDir("MYSOPTEST", "start"+sop_detailDL.get(i).getStep_number()+".mp3");
+            //將請求加入
+            manager.enqueue(down[i]);
+
+        }
+
+        DatabaseHelper DatabaseHelperDL1 = DatabaseHelper.getHelper(this);
+        sop_detailDao sopdetailDaoDL1 = new sop_detailDao();
+        List<sop_detailVo> sop_detailDL1;
+        sop_detailDL1 = sopdetailDaoDL1.selectRaw(DatabaseHelperDL1, "Step_remind=1");
+        DownloadManager.Request[] down1 = new DownloadManager.Request[50];
+
+        for(int i=0;i<sop_detailDL.size();i++) {
+
+            down1[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/front/download/step" + sop_detailDL.get(i).getStep_number() + ".mp3"));
+            //允許網路類型
+            down1[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
+            //禁止發通知
+            down1[i].setShowRunningNotification(false);
+            //不顯示下載頁面
+            down1[i].setVisibleInDownloadsUi(false);
+            //下載後存放位置
+            //down.setDestinationInExternalFilesDir(mContext, null, "testhtml.html");
+            //在sdcard裡面的MYSOPTEST資料夾
+            down1[i].setDestinationInExternalPublicDir("MYSOPTEST", "step" + sop_detailDL.get(i).getStep_number() + ".mp3");
+            //將請求加入
+            manager.enqueue(down1[i]);
+        }
+
+
+/*        DownloadManager.Request down=new DownloadManager.Request (Uri.parse("http://140.115.80.237/front/download/testhtml.html"));
         //允許網路類型
         down.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
         //禁止發通知
@@ -120,7 +169,7 @@ public class SplashActivity extends Activity {
         //在sdcard裡面的MYSOPTEST資料夾
         down.setDestinationInExternalPublicDir("MYSOPTEST", "testhtml.html");
         //將請求加入
-        manager.enqueue(down);
+        manager.enqueue(down);*/
     }
     class DownloadCompleteReceiver extends BroadcastReceiver {
         @Override
@@ -560,6 +609,8 @@ public class SplashActivity extends Activity {
                 mstep_recordDao6.insert(mDatabaseHelper6, mstep_recordVo6);
 
             }
+
+            download();
 /*
             //測試
             DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);
