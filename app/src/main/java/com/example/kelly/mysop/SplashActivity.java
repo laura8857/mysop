@@ -610,7 +610,7 @@ public class SplashActivity extends Activity {
 
             }
 
-            download();
+            //download();
 /*
             //測試
             DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);
