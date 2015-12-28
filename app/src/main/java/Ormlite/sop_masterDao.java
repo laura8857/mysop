@@ -163,4 +163,27 @@ public class sop_masterDao
         return null;
     }
 
+    public static List<sop_masterVo> selectRawByNest1(DatabaseHelper databaseHelper,String column1,String value1,String column2, String column3, String value3) {
+        RuntimeExceptionDao<sop_masterVo, Integer> sop_masterDao = databaseHelper
+                .getSop_masterDao();
+        RuntimeExceptionDao<case_masterVo, Integer> case_masterDao = databaseHelper
+                .getCase_masterDao();
+        QueryBuilder<case_masterVo, Integer> subqueryBuilder = case_masterDao
+                .queryBuilder();
+        QueryBuilder<sop_masterVo, Integer> queryBuilder = sop_masterDao
+                .queryBuilder();
+        try {
+            subqueryBuilder.where().eq(column1, value1);
+            //Log.d("TEST NEST",subqueryBuilder.query().get(0).getAccount());
+            // in using the sub-query
+            subqueryBuilder.selectColumns(column2);
+            queryBuilder.where().in(column2, subqueryBuilder);
+            queryBuilder.where().eq(column3,value3);
+            //Log.d("TEST NEST",queryBuilder.query().get(0).getAccount());
+            return queryBuilder.query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
