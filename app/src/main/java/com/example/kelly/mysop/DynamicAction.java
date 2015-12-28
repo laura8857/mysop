@@ -175,7 +175,7 @@ public class DynamicAction extends Activity {
             sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Step_number");
         }else{
             sopmasterlist = msop_masterDao.selectRawByNest1(mDatabaseHelper, "Account", TAG_ACCOUNT, "Sop_number","Start_rule",TAG_RULE, "Step_number");
-            sopdetaillist = msop_detailDao.selectRawByNest3(mDatabaseHelper, "Account", TAG_ACCOUNT,"Step_number","Start_rule",TAG_RULE, "SOP_number");
+            sopdetaillist = msop_detailDao.selectRawByNest3(mDatabaseHelper, "Account", TAG_ACCOUNT,"Step_number","Start_rule",TAG_RULE);
         }
         //  Log.d("抓2",sopdetaillist.get(0).getStep_order());
 
