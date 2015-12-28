@@ -129,8 +129,9 @@ public class DynamicAction extends Activity {
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
         TAG_ACCOUNT = bundle.getString("TAG_ACCOUNT");
-        TAG_RULE =bundle.getString("TAG_RULE");
-
+        if(intent.hasExtra("TAG_RULE")) {
+            TAG_RULE = bundle.getString("TAG_RULE");
+        }
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
             Bundle b1 = new Bundle();
@@ -522,6 +523,7 @@ public class DynamicAction extends Activity {
                 TAG_RULE = "1";
                 Intent intent = new Intent(this, DynamicAction.class);
                 intent.putExtra("TAG_RULE",TAG_RULE);
+                intent.putExtra("TAG_ACCOUNT",TAG_ACCOUNT);
                 startActivity(intent);
 
                 break;
@@ -529,6 +531,7 @@ public class DynamicAction extends Activity {
                 TAG_RULE = "2";
                 Intent intent1 = new Intent(this, DynamicAction.class);
                 intent1.putExtra("TAG_RULE", TAG_RULE);
+                intent1.putExtra("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(intent1);
 
                 break;
@@ -536,6 +539,7 @@ public class DynamicAction extends Activity {
                 TAG_RULE = "4";
                 Intent intent2 = new Intent(this, DynamicAction.class);
                 intent2.putExtra("TAG_RULE",TAG_RULE);
+                intent2.putExtra("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(intent2);
 
                 break;
@@ -543,6 +547,7 @@ public class DynamicAction extends Activity {
                 TAG_RULE = "5";
                 Intent intent3 = new Intent(this, DynamicAction.class);
                 intent3.putExtra("TAG_RULE",TAG_RULE);
+                intent3.putExtra("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(intent3);
 
                 break;
@@ -550,18 +555,21 @@ public class DynamicAction extends Activity {
                 TAG_RULE = "3";
                 Intent intent4 = new Intent(this, DynamicAction.class);
                 intent4.putExtra("TAG_RULE",TAG_RULE);
+                intent4.putExtra("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(intent4);
                 break;
             case R.id.title_section6:
                 TAG_RULE = "6";
                 Intent intent5 = new Intent(this, DynamicAction.class);
                 intent5.putExtra("TAG_RULE",TAG_RULE);
+                intent5.putExtra("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(intent5);
                 break;
             case R.id.title_section7:
                 TAG_RULE = "7";
                 Intent intent6 = new Intent(this, DynamicAction.class);
                 intent6.putExtra("TAG_RULE",TAG_RULE);
+                intent6.putExtra("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(intent6);
                 return super.onOptionsItemSelected(item);
         }
