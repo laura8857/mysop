@@ -527,7 +527,7 @@ public class DynamicAction extends Activity {
                 intent.putExtra("TAG_RULE",TAG_RULE);
                 intent.putExtra("TAG_ACCOUNT",TAG_ACCOUNT);
                 startActivity(intent);
-
+                finish();
                 break;
             case R.id.title_section2:
                 TAG_RULE = "2";
@@ -535,7 +535,7 @@ public class DynamicAction extends Activity {
                 intent1.putExtra("TAG_RULE", TAG_RULE);
                 intent1.putExtra("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(intent1);
-
+                finish();
                 break;
             case R.id.title_section3:
                 TAG_RULE = "4";
@@ -543,7 +543,7 @@ public class DynamicAction extends Activity {
                 intent2.putExtra("TAG_RULE",TAG_RULE);
                 intent2.putExtra("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(intent2);
-
+                finish();
                 break;
             case R.id.title_section4:
                 TAG_RULE = "5";
@@ -551,7 +551,7 @@ public class DynamicAction extends Activity {
                 intent3.putExtra("TAG_RULE",TAG_RULE);
                 intent3.putExtra("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(intent3);
-
+                finish();
                 break;
             case R.id.title_section5:
                 TAG_RULE = "3";
@@ -566,6 +566,7 @@ public class DynamicAction extends Activity {
                 intent5.putExtra("TAG_RULE",TAG_RULE);
                 intent5.putExtra("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(intent5);
+                finish();
                 break;
             case R.id.title_section7:
                 TAG_RULE = "7";
@@ -573,6 +574,7 @@ public class DynamicAction extends Activity {
                 intent6.putExtra("TAG_RULE",TAG_RULE);
                 intent6.putExtra("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(intent6);
+                finish();
                 return super.onOptionsItemSelected(item);
         }
         return false;

@@ -21,6 +21,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -117,6 +119,10 @@ public class SplashActivity extends Activity {
 
         for(int i=0;i<sop_detailDL.size();i++){
 
+            File file = new File(URI.create("file:///mnt/sdcard/MYSOPTEST/start" + sop_detailDL.get(i).getStep_number() + ".mp3").getPath());
+            if (file.exists()) {
+                break;
+            }
             down[i]=new DownloadManager.Request (Uri.parse("http://140.115.80.237/front/download/start"+sop_detailDL.get(i).getStep_number()+".mp3"));
             //允許網路類型
             down[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
@@ -141,6 +147,10 @@ public class SplashActivity extends Activity {
 
         for(int i=0;i<sop_detailDL.size();i++) {
 
+            File file = new File(URI.create("file:///mnt/sdcard/MYSOPTEST/step" + sop_detailDL.get(i).getStep_number() + ".mp3").getPath());
+            if (file.exists()) {
+                break;
+            }
             down1[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/front/download/step" + sop_detailDL.get(i).getStep_number() + ".mp3"));
             //允許網路類型
             down1[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
@@ -610,7 +620,7 @@ public class SplashActivity extends Activity {
 
             }
 
-            //download();
+            download();
 /*
             //測試
             DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);
