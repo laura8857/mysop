@@ -2,8 +2,6 @@
 xmlns:tools="http://schemas.android.com/tools"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 tools:context="com.example.kelly.mysop.Mysop">
-    <item android:id="@+id/menu" android:title="@string/menu" android:orderInCategory="0" android:icon="@drawable/menu" app:showAsAction="always">
-        <menu>
         <item android:id="@+id/title_activity_changepassword" android:title="@string/title_activity_changepassword"
             android:orderInCategory="100" app:showAsAction="never" />
         <item android:id="@+id/title_activity_searching" android:title="@string/title_activity_searching"
@@ -20,6 +18,4 @@ tools:context="com.example.kelly.mysop.Mysop">
         <item android:id="@+id/title_section5" android:title="@string/space" android:orderInCategory="200" app:showAsAction ="never"/>
         <item android:id="@+id/title_section6" android:title="@string/space" android:orderInCategory="200" app:showAsAction="never"/>
         <item android:id="@+id/title_section7" android:title="@string/space" android:orderInCategory="200" app:showAsAction="never"/>
-</menu>
-    </item>
 </menu>
