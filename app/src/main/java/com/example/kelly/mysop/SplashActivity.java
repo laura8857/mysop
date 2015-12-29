@@ -234,7 +234,7 @@ public class SplashActivity extends Activity {
             List<case_masterVo> uploadlist;
             uploadlist = case_masteruploadDao.selectRaw(DatabaseHelperupload,"Case_mark=1");
             //此人有無網路結案
-            if(uploadlist!=null){
+            if(uploadlist.size()!=0){
 
                 DatabaseHelper DatabaseHelperupload1 = DatabaseHelper.getHelper(SplashActivity.this);
                 case_recordDao case_recorduploadDao1 = new case_recordDao();
