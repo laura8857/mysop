@@ -132,14 +132,6 @@ public class DynamicAction extends Activity {
         if(intent.hasExtra("TAG_RULE")) {
             TAG_RULE = bundle.getString("TAG_RULE");
         }
-        if (checkPlayServices()) {
-            // Start IntentService to register this application with GCM.
-            Bundle b1 = new Bundle();
-            b1.putString("TAG_ACCOUNT", TAG_ACCOUNT);
-            Intent i1 = new Intent(this, RegistrationIntentService.class);
-            i1.putExtras(bundle);
-            startService(i1);
-        }
 
 
         // Hashmap for ListView

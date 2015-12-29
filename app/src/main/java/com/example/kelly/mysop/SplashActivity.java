@@ -219,7 +219,10 @@ public class SplashActivity extends Activity {
         if(info==null && account.isEmpty()) {
             Toast.makeText(SplashActivity.this,"請開啟網路",Toast.LENGTH_LONG);
         }else if(info==null && !account.isEmpty()) {
-            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
+            TAG_ACCOUNT = account.get(0).getAccount();
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
         }else if(info!=null && account.isEmpty()) {
             startActivity(new Intent().setClass(SplashActivity.this, Login.class));
         }else if(info!=null && !account.isEmpty()){

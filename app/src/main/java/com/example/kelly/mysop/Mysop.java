@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -139,15 +141,18 @@ public class Mysop extends Activity {
         TAG_ACCOUNT=bundle.getString("TAG_ACCOUNT");
        // Log.d("Mysop's TAG_ACCOUNT",TAG_ACCOUNT);
 
-        if (checkPlayServices()) {
-            // Start IntentService to register this application with GCM.
-            Bundle b1 = new Bundle();
-            b1.putString("TAG_ACCOUNT", TAG_ACCOUNT);
-            Intent i1 = new Intent(this, RegistrationIntentService.class);
-            i1.putExtras(bundle);
-            startService(i1);
+        ConnectivityManager CM = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = CM.getActiveNetworkInfo();
+        if(info!=null){
+            if (checkPlayServices()) {
+                // Start IntentService to register this application with GCM.
+                Bundle b1 = new Bundle();
+                b1.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+                Intent i1 = new Intent(this, RegistrationIntentService.class);
+                i1.putExtras(bundle);
+                startService(i1);
+            }
         }
-
 
                 // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
