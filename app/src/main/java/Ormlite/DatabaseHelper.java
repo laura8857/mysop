@@ -16,7 +16,7 @@ import java.sql.SQLException;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 10;
     private static final String DATABASE_NAME = "Demo";
     //private static DatabaseHelper instance;
 
@@ -71,6 +71,9 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.dropTable(connectionSource,step_recordVo.class,true);
             TableUtils.dropTable(connectionSource,sop_detailDao.class,true);
             TableUtils.dropTable(connectionSource,case_masterVo.class,true);
+            TableUtils.dropTable(connectionSource,system_messageVo.class,true);
+            TableUtils.dropTable(connectionSource,memoVo.class,true);
+
             TableUtils.createTable(connectionSource, member_accountVo.class);
             TableUtils.createTable(connectionSource, rule_setVo.class);
             TableUtils.createTable(connectionSource, case_masterVo.class);
@@ -113,7 +116,7 @@ public static DatabaseHelper databaseHelper;//
             TableUtils.createTable(connectionSource, step_recordVo.class);
             TableUtils.createTable(connectionSource, case_detailVo.class);
             TableUtils.createTable(connectionSource, system_messageVo.class);
-            TableUtils.clearTable(connectionSource,memoVo.class);
+            TableUtils.createTable(connectionSource, memoVo.class);
 
             //TableUtils.createTable(connectionSource, Group.class);
         } catch (SQLException e) {
