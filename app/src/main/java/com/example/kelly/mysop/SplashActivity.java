@@ -58,8 +58,8 @@ public class SplashActivity extends Activity {
     private static String url_all_products1 = "http://140.115.80.237/front/mysop_sop_master.jsp";
     private static String url_all_products2 = "http://140.115.80.237/front/mysop_case_master.jsp";
     private static String url_all_products3 = "http://140.115.80.237/front/mysop_step_record.jsp";
-    private static String url_upload1 = "http://140.115.80.237/front/.jsp";
-    private static String url_upload2 = "http://140.115.80.237/front/.jsp";
+    private static String url_upload1 = "http://140.115.80.237/front/upload_case_record.jsp";
+    private static String url_upload2 = "http://140.115.80.237/front/upload_case_master.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_CASENUMBER = "casenumber";
@@ -217,14 +217,16 @@ public class SplashActivity extends Activity {
         NetworkInfo info = CM.getActiveNetworkInfo();
         //null代表沒網路
         if(info==null && account.isEmpty()) {
-            Toast.makeText(SplashActivity.this,"請開啟網路",Toast.LENGTH_LONG);
+            Toast.makeText(SplashActivity.this,"請開啟網路，並重新啟動",Toast.LENGTH_LONG).show();
         }else if(info==null && !account.isEmpty()) {
             TAG_ACCOUNT = account.get(0).getAccount();
             Bundle bundle = new Bundle();
             bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
             startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
         }else if(info!=null && account.isEmpty()) {
-            startActivity(new Intent().setClass(SplashActivity.this, Login.class));
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_Key", "");
+            startActivity(new Intent().setClass(SplashActivity.this, Home.class).putExtras(bundle));
         }else if(info!=null && !account.isEmpty()){
 
             DatabaseHelper DatabaseHelperupload = DatabaseHelper.getHelper(SplashActivity.this);
