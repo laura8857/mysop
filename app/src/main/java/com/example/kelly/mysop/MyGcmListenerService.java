@@ -39,7 +39,6 @@ public class MyGcmListenerService extends GcmListenerService {
         system_messageDao msystem_messageDao = new system_messageDao();
         system_messageVo msystem_messageVo = new system_messageVo();
         msystem_messageVo.setSystem_message(message);
-        msystem_messageVo.setMessage_mark("noMark");
         msystem_messageDao.insert(mDatabaseHelper,msystem_messageVo);
 
         if (from.startsWith("/topics/")) {

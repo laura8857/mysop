@@ -18,8 +18,9 @@ import com.j256.ormlite.dao.RuntimeExceptionDao;
 import java.util.List;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.memoDao;
+import Ormlite.memoVo;
 import Ormlite.system_messageDao;
-import Ormlite.system_messageVo;
 
 /**
  * Created by laura on 15/12/28.
@@ -33,8 +34,8 @@ public class SystemMessageMemo extends Activity {
     private int messagesize;
 
     //orm
-    private RuntimeExceptionDao<system_messageVo, Integer> system_messageVoRuntimeDao;
-    private system_messageDao msystem_messageDao;
+    private RuntimeExceptionDao<memoVo, Integer> memoVoRuntimeDao;
+    private memoDao mmemoDao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
@@ -47,8 +48,8 @@ public class SystemMessageMemo extends Activity {
 
 
         //orm
-        List<system_messageVo> systemmessagelist = null ;
-        systemmessagelist = msystem_messageDao.selectRaw(mDatabaseHelper, "Message_mark=" + "'" + "Mark" + "'");
+        List<memoVo> systemmessagelist = null ;
+        systemmessagelist = mmemoDao.selectRaw2(mDatabaseHelper);
         messagesize=systemmessagelist.size();
         if(messagesize>0) {
             messagelist = new String[systemmessagelist.size()];
@@ -100,8 +101,8 @@ public class SystemMessageMemo extends Activity {
 
         //orm
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SystemMessageMemo.this);
-        List<system_messageVo> systemmessagelist = null ;
-        systemmessagelist = msystem_messageDao.selectRaw(mDatabaseHelper, "Message_mark="+"'"+"Mark"+"'");
+        List<memoVo> systemmessagelist = null ;
+        systemmessagelist = mmemoDao.selectRaw2(mDatabaseHelper);
         messagelist = new String[systemmessagelist.size()];
         checklist = new Boolean[systemmessagelist.size()];
         messagesize=systemmessagelist.size();
@@ -116,8 +117,8 @@ public class SystemMessageMemo extends Activity {
     public void refreshMemo(View v){
         //orm
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SystemMessageMemo.this);
-        List<system_messageVo> systemmessagelist = null ;
-        systemmessagelist = msystem_messageDao.selectRaw(mDatabaseHelper, "Message_mark="+"'"+"Mark"+"'");
+        List<memoVo> systemmessagelist = null ;
+        systemmessagelist = mmemoDao.selectRaw2(mDatabaseHelper);
         messagelist = new String[systemmessagelist.size()];
         checklist = new Boolean[systemmessagelist.size()];
         messagesize=systemmessagelist.size();

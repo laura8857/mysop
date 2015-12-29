@@ -1,21 +1,20 @@
 package Ormlite;
 
-/**
- * Created by kelly on 2015/12/24.
- */
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
 
-@DatabaseTable(tableName = "system_message")
-public class system_messageVo extends MDVo implements Serializable{
-
+/**
+ * Created by laura on 15/12/29.
+ */
+@DatabaseTable(tableName = "memo")
+public class memoVo extends MDVo implements Serializable {
     public static final String FIELD_Id ="id";
     public static final String FIELD_System_message ="System_message";
 
 
-    @DatabaseField(generatedId = true,columnName = FIELD_Id)
+    @DatabaseField(columnName = FIELD_Id,canBeNull = true)
     private int id;
     public int getId()
     {
@@ -35,6 +34,5 @@ public class system_messageVo extends MDVo implements Serializable{
     {
         this.System_message = System_message;
     }
-
 
 }

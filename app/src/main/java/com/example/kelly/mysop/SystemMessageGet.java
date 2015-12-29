@@ -20,6 +20,8 @@ import com.j256.ormlite.dao.RuntimeExceptionDao;
 import java.util.List;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.memoDao;
+import Ormlite.memoVo;
 import Ormlite.system_messageDao;
 import Ormlite.system_messageVo;
 
@@ -52,7 +54,7 @@ public class SystemMessageGet extends  Activity {
         for(int i=0;i<10;i++) {
             system_messageVo msystem_messageVo = new system_messageVo();
             msystem_messageVo.setSystem_message("測試" + i);
-            msystem_messageVo.setMessage_mark("noMark");
+            //msystem_messageVo.setMessage_mark("noMark");
             msystem_messageDao.insert(mDatabaseHelper, msystem_messageVo);
         }
 
@@ -134,7 +136,16 @@ public class SystemMessageGet extends  Activity {
             if(checklist[i]==true){
                 DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(SystemMessageGet.this);
                 system_messageDao msystem_messageDao = new system_messageDao();
-                msystem_messageDao.update(mDatabaseHelper2,"System_message",messagelist[i],"Message_mark","Mark");
+                List<system_messageVo> systemmessagelist2 = null ;
+                systemmessagelist2= msystem_messageDao.selectRaw(mDatabaseHelper2,"System_message="+"'"+messagelist[i]+"'");
+
+                //加入memo表格
+                memoVo mmemoVo = new memoVo();
+                memoDao mmemoDao = new memoDao();
+                mmemoVo.setSystem_message(systemmessagelist2.get(0).getSystem_message());
+                mmemoVo.setId(systemmessagelist2.get(0).getId());
+                mmemoDao.insert(mDatabaseHelper2,mmemoVo);
+
 
             }
         }
