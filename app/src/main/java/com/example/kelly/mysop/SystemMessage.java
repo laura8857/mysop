@@ -1,18 +1,32 @@
 package com.example.kelly.mysop;
 
-import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
+import android.app.TabActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TabHost;
 
 
-public class SystemMessage extends Activity {
+public class SystemMessage  extends TabActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_message);
+        addNewTab(SystemMessageGet.class, "Message");
+        addNewTab(SystemMessageMemo.class, "Memo");
+        getTabHost().setCurrentTab(0);
+        getTabHost().requestFocus();
+
+
+    }
+    public void addNewTab(Class<?> cls, String tabName){
+        Intent intent = new Intent().setClass(this, cls);
+        TabHost.TabSpec spec = getTabHost().newTabSpec(tabName)
+                .setIndicator(tabName)
+                .setContent(intent);
+        getTabHost().addTab(spec);
     }
 
 

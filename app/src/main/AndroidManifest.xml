@@ -40,6 +40,9 @@
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
     <!-- 判斷手機連線 -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- TAB-->
+    <activity android:name=".Message"></activity>
+    <activity android:name=".Memo"></activity>
 
     <uses-feature
         android:name="android.hardware.nfc"
@@ -162,6 +165,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".RegisterError"
@@ -330,6 +334,19 @@
             android:name=".SystemMessage"
             android:label="@string/title_activity_system_message"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
+
+        </activity>
+        <activity
+            android:name=".SystemMessageGet"
+            android:label="@string/title_activity_system_message"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+
+        </activity>
+        <activity
+            android:name=".SystemMessageMemo"
+            android:label="@string/title_activity_system_message"
+            android:theme="@android:style/Theme.Light.NoTitleBar" >
+
         </activity>
     </application>
 

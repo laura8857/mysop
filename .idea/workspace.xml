@@ -17,11 +17,15 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="app: com.example.kelly.mysop" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="32e6545c-f38f-4204-9d80-ad03792b6f17" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/DynamicAction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SplashActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SplashActivity.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
+=======
+    <list default="true" id="32e6545c-f38f-4204-9d80-ad03792b6f17" name="Default" comment="" />
+>>>>>>> Stashed changes
     <ignored path="MySOP3.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -75,9 +79,27 @@
       <file leaf-file-name="SplashActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/SplashActivity.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state vertical-scroll-proportion="0.7525773" vertical-offset="2403" max-vertical-offset="14904">
               <caret line="151" column="22" selection-start-line="151" selection-start-column="22" selection-end-line="151" selection-end-column="22" />
+=======
+<<<<<<< Updated upstream
+            <state vertical-scroll-proportion="0.0" vertical-offset="13018" max-vertical-offset="14720">
+              <caret line="613" column="2" selection-start-line="613" selection-start-column="2" selection-end-line="613" selection-end-column="2" />
+=======
+<<<<<<< Updated upstream
+            <state vertical-scroll-proportion="2.2341464" vertical-offset="5823" max-vertical-offset="7429">
+              <caret line="330" column="28" selection-start-line="330" selection-start-column="28" selection-end-line="330" selection-end-column="28" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
               <folding />
+=======
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <marker date="1451148108000" expanded="true" signature="151265:151280" placeholder="..." />
+              </folding>
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -85,8 +107,23 @@
       <file leaf-file-name="sop_detailDao.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/Ormlite/sop_detailDao.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state vertical-scroll-proportion="-16.034483" vertical-offset="3031" max-vertical-offset="3795">
               <caret line="156" column="40" selection-start-line="156" selection-start-column="40" selection-end-line="156" selection-end-column="40" />
+=======
+<<<<<<< Updated upstream
+            <state vertical-scroll-proportion="0.0" vertical-offset="3191" max-vertical-offset="3772">
+              <caret line="153" column="52" selection-start-line="153" selection-start-column="52" selection-end-line="153" selection-end-column="52" />
+=======
+<<<<<<< Updated upstream
+            <state vertical-scroll-proportion="0.0" vertical-offset="5225" max-vertical-offset="6118">
+              <caret line="262" column="27" selection-start-line="262" selection-start-column="27" selection-end-line="262" selection-end-column="27" />
+=======
+            <state vertical-scroll-proportion="0.0">
+              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
@@ -135,8 +172,42 @@
       <file leaf-file-name="StepActionControl.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepActionControl.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state vertical-scroll-proportion="0.0" vertical-offset="1357" max-vertical-offset="10580">
+=======
+<<<<<<< Updated upstream
+            <state vertical-scroll-proportion="0.0" vertical-offset="644" max-vertical-offset="10005">
+>>>>>>> Stashed changes
               <caret line="59" column="52" selection-start-line="59" selection-start-column="8" selection-end-line="59" selection-end-column="52" />
+=======
+<<<<<<< Updated upstream
+            <state vertical-scroll-proportion="0.0" vertical-offset="3385" max-vertical-offset="4416">
+              <caret line="209" column="23" selection-start-line="209" selection-start-column="23" selection-end-line="209" selection-end-column="23" />
+=======
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+>>>>>>> Stashed changes
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StepActionControlIbeacon.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepActionControlIbeacon.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="5800" max-vertical-offset="6877">
+              <caret line="328" column="23" selection-start-line="328" selection-start-column="23" selection-end-line="328" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StepActionControlNFC.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepActionControlNFC.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="6444" max-vertical-offset="6877">
+              <caret line="329" column="32" selection-start-line="329" selection-start-column="32" selection-end-line="329" selection-end-column="32" />
+>>>>>>> Stashed changes
               <folding />
             </state>
           </provider>
@@ -1816,10 +1887,17 @@
   </component>
   <component name="PropertiesComponent">
     <property name="recentsLimit" value="5" />
+<<<<<<< Updated upstream
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="F5AZFG15L996" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus_5_API_21_x86" />
+<<<<<<< Updated upstream
     <property name="FullScreen" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../MyApplication1" />
+=======
+=======
+    <property name="FullScreen" value="false" />
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
   </component>
   <component name="RunManager" selected="Android Application.SplashActivity">
     <configuration default="false" name="SplashActivity" type="AndroidRunConfigurationType" factoryName="Android Application" temporary="true">
@@ -2012,8 +2090,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< Updated upstream
     <frame x="1" y="1" width="1364" height="726" extended-state="0" />
     <editor active="true" />
+=======
+    <frame x="0" y="23" width="1280" height="773" extended-state="6" />
+    <editor active="false" />
+>>>>>>> Stashed changes
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2114,6 +2197,29 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< Updated upstream
+=======
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepActionControlTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <caret line="101" column="23" selection-start-line="90" selection-start-column="0" selection-end-line="101" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/kelly/mysop/StepActionControlArtificial.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+<<<<<<< Updated upstream
+=======
+          <folding>
+            <marker date="1451148108000" expanded="true" signature="151265:151280" placeholder="..." />
+          </folding>
+>>>>>>> Stashed changes
+        </state>
+      </provider>
+    </entry>
+>>>>>>> Stashed changes
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_step_action_control_artificial.xml">
       <provider selected="true" editor-type-id="android-designer">
         <state />
@@ -2160,8 +2266,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/.idea/gradle.xml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -2174,8 +2286,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/app.iml">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>

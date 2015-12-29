@@ -2,15 +2,14 @@ package com.example.kelly.mysop;
 
 import android.app.NotificationManager;
 import android.app.PendingIntent;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.IBinder;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
+
 import com.google.android.gms.gcm.GcmListenerService;
 
 import Ormlite.DatabaseHelper;
@@ -40,6 +39,7 @@ public class MyGcmListenerService extends GcmListenerService {
         system_messageDao msystem_messageDao = new system_messageDao();
         system_messageVo msystem_messageVo = new system_messageVo();
         msystem_messageVo.setSystem_message(message);
+        msystem_messageVo.setMessage_mark("noMark");
         msystem_messageDao.insert(mDatabaseHelper,msystem_messageVo);
 
         if (from.startsWith("/topics/")) {

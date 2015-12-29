@@ -238,7 +238,6 @@ public static DatabaseHelper databaseHelper;//
     }
 
 
-
     public Dao<User, Integer> getDao() throws SQLException {
         if (simpleDao == null) {
             simpleDao = getDao(User.class);

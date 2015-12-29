@@ -1,6 +1,7 @@
 package Ormlite;
 
 import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
 import java.sql.SQLException;
@@ -55,12 +56,27 @@ public class system_messageDao {
         return 0;
     }
 
-    /* delete */
-    public static int delete(DatabaseHelper databaseHelper, system_messageVo system_messageVo) {
+//    /* delete */
+//    public static int delete(DatabaseHelper databaseHelper, system_messageVo system_messageVo) {
+//        RuntimeExceptionDao<system_messageVo, Integer> system_messageDao = databaseHelper
+//                .getSystem_messageDao();
+//        try {
+//            return system_messageDao.delete(system_messageVo);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return 0;
+//    }
+
+    public static int delete(DatabaseHelper databaseHelper, String columnvalue, String originalvalue) {
         RuntimeExceptionDao<system_messageVo, Integer> system_messageDao = databaseHelper
                 .getSystem_messageDao();
+        DeleteBuilder<system_messageVo,Integer> deleteBuilder = system_messageDao.deleteBuilder();
         try {
-            return system_messageDao.delete(system_messageVo);
+            //判斷式 哪一欄 = 值
+            deleteBuilder.where().eq(columnvalue, originalvalue);
+
+            return deleteBuilder.delete();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -107,6 +123,21 @@ public class system_messageDao {
                 .queryBuilder();
         try {
             queryBuilder.where().raw(rawWhere);
+            return queryBuilder.query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    /* selectRaw */
+    public static List<system_messageVo> selectRaw2(DatabaseHelper databaseHelper) {
+        RuntimeExceptionDao<system_messageVo, Integer> system_messageDao = databaseHelper
+                .getSystem_messageDao();
+        QueryBuilder<system_messageVo, Integer> queryBuilder = system_messageDao
+                .queryBuilder();
+        try {
+
             return queryBuilder.query();
         } catch (SQLException e) {
             e.printStackTrace();
