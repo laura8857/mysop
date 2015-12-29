@@ -7,6 +7,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,6 +32,8 @@ import java.util.List;
 import Ormlite.DatabaseHelper;
 import Ormlite.case_masterDao;
 import Ormlite.case_masterVo;
+import Ormlite.case_recordDao;
+import Ormlite.case_recordVo;
 import Ormlite.member_accountDao;
 import Ormlite.member_accountVo;
 import Ormlite.sop_detailDao;
@@ -54,6 +58,8 @@ public class SplashActivity extends Activity {
     private static String url_all_products1 = "http://140.115.80.237/front/mysop_sop_master.jsp";
     private static String url_all_products2 = "http://140.115.80.237/front/mysop_case_master.jsp";
     private static String url_all_products3 = "http://140.115.80.237/front/mysop_step_record.jsp";
+    private static String url_upload1 = "http://140.115.80.237/front/.jsp";
+    private static String url_upload2 = "http://140.115.80.237/front/.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_CASENUMBER = "casenumber";
@@ -84,22 +90,18 @@ public class SplashActivity extends Activity {
         productsList2 = new ArrayList<HashMap<String, String>>();
         productsList3 = new ArrayList<HashMap<String, String>>();
 
-        //寫死 insert
+        //寫死 insert，之後把他刪掉
         DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
         member_accountDao mmember_accountDao1;
         mmember_accountDao1 = new member_accountDao();
         member_accountVo mmember_accountVo = new member_accountVo();
-
         mmember_accountVo.setAccount("test@gmail.com");
         mmember_accountVo.setUsername("user1");
         mmember_accountVo.setPassword("test");
-
         mmember_accountDao1.insert(mDatabaseHelper1, mmember_accountVo);
 
         getAccount();
-        //DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
-        //List<member_accountVo> list;
-        //list = mmember_accountDao1.selectRaw(mDatabaseHelper1, "account=test@gmail.com");
+
 
         //下載
         mContext = this;
@@ -145,13 +147,13 @@ public class SplashActivity extends Activity {
         sop_detailDL1 = sopdetailDaoDL1.selectRaw(DatabaseHelperDL1, "Step_remind=1");
         DownloadManager.Request[] down1 = new DownloadManager.Request[50];
 
-        for(int i=0;i<sop_detailDL.size();i++) {
+        for(int i=0;i<sop_detailDL1.size();i++) {
 
-            File file = new File(URI.create("file:///mnt/sdcard/MYSOPTEST/step" + sop_detailDL.get(i).getStep_number() + ".mp3").getPath());
+            File file = new File(URI.create("file:///mnt/sdcard/MYSOPTEST/step" + sop_detailDL1.get(i).getStep_number() + ".mp3").getPath());
             if (file.exists()) {
                 break;
             }
-            down1[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/front/download/step" + sop_detailDL.get(i).getStep_number() + ".mp3"));
+            down1[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/front/download/step" + sop_detailDL1.get(i).getStep_number() + ".mp3"));
             //允許網路類型
             down1[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
             //禁止發通知
@@ -161,7 +163,7 @@ public class SplashActivity extends Activity {
             //下載後存放位置
             //down.setDestinationInExternalFilesDir(mContext, null, "testhtml.html");
             //在sdcard裡面的MYSOPTEST資料夾
-            down1[i].setDestinationInExternalPublicDir("MYSOPTEST", "step" + sop_detailDL.get(i).getStep_number() + ".mp3");
+            down1[i].setDestinationInExternalPublicDir("MYSOPTEST", "step" + sop_detailDL1.get(i).getStep_number() + ".mp3");
             //將請求加入
             manager.enqueue(down1[i]);
         }
@@ -210,13 +212,52 @@ public class SplashActivity extends Activity {
         member_accountDao mmember_accountDao = new member_accountDao();
         List<member_accountVo> account;
         account = mmember_accountDao.selectColumns(mDatabaseHelper, "FIELD_Account");
-        if (account.isEmpty()) {
+
+        ConnectivityManager CM = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = CM.getActiveNetworkInfo();
+        //null代表沒網路
+        if(info==null && account.isEmpty()) {
+            Toast.makeText(SplashActivity.this,"請開啟網路",Toast.LENGTH_LONG);
+        }else if(info==null && !account.isEmpty()) {
+            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class));
+        }else if(info!=null && account.isEmpty()) {
             startActivity(new Intent().setClass(SplashActivity.this, Login.class));
-        } else {
+        }else if(info!=null && !account.isEmpty()){
+
+            DatabaseHelper DatabaseHelperupload = DatabaseHelper.getHelper(SplashActivity.this);
+            case_masterDao case_masteruploadDao = new case_masterDao();
+            List<case_masterVo> uploadlist;
+            uploadlist = case_masteruploadDao.selectRaw(DatabaseHelperupload,"Case_mark=1");
+            //此人有無網路結案
+            if(uploadlist!=null){
+
+                DatabaseHelper DatabaseHelperupload1 = DatabaseHelper.getHelper(SplashActivity.this);
+                case_recordDao case_recorduploadDao1 = new case_recordDao();
+                List<case_recordVo> uploadlist1;
+                for(int i=0;i<uploadlist.size();i++) {
+                    uploadlist1 = case_recorduploadDao1.selectRaw(DatabaseHelperupload1,"Case_number="+uploadlist.get(i).getCase_number());
+                    //上傳記錄值case_record
+                    for(int j=0;j<uploadlist1.size();j++) {
+                        UpLoad1[] upload1 = new UpLoad1[uploadlist1.size() - 1];
+                        upload1[i] = new UpLoad1();
+                        upload1[i].execute(uploadlist1.get(i).getCase_number(), uploadlist1.get(i).getStep_order(), uploadlist1.get(i).getRecord_order(), uploadlist1.get(i).getRecord_value());
+                    }
+                    //上傳刪除case_master
+                    UpLoad2[] upload2 = new UpLoad2[uploadlist.size() - 1];
+                    upload2[i] = new UpLoad2();
+                    upload2[i].execute(uploadlist.get(i).getCase_number());
+                    //手機刪case_record、case_master
+                    DatabaseHelper DatabaseHelperupload2 = DatabaseHelper.getHelper(SplashActivity.this);
+                    case_recordDao case_recordupload2 = new case_recordDao();
+                    case_recordupload2.delete(DatabaseHelperupload2,"Case_number",uploadlist.get(i).getCase_number());
+                    DatabaseHelper DatabaseHelperupload3 = DatabaseHelper.getHelper(SplashActivity.this);
+                    case_masterDao case_masteruploadDao3 = new case_masterDao();
+                    case_masteruploadDao3.delete(DatabaseHelperupload3,"Case_number",uploadlist.get(i).getCase_number());
+                }
+            }
             TAG_ACCOUNT = account.get(0).getAccount();
             new LoadAllProducts().execute();
         }
-
     }
 
     @Override
@@ -240,6 +281,83 @@ public class SplashActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    //更改紀錄
+    class UpLoad1 extends AsyncTask<String, String, String> {
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(SplashActivity.this);
+            pDialog.setMessage("Changing..Please wait...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+
+        }
+        protected String doInBackground(String... args) {
+
+            ArrayList params = new ArrayList();
+
+            params.add(new BasicNameValuePair("CaseNumber", args[0]));
+            params.add(new BasicNameValuePair("StepOrder", args[1]));
+            params.add(new BasicNameValuePair("RecordOrder", args[2]));
+            params.add(new BasicNameValuePair("RecordText", args[3]));
+            // 上傳紀錄的紀錄
+            JSONObject jsonupload1 = SplashActivity.this.jsonParser.makeHttpRequest(SplashActivity.url_upload1, "POST", params);
+            try {
+                int e = jsonupload1.getInt(TAG_SUCCESS);
+                if(e == 1) {
+                    Log.d("updoad1","成功");
+                }else{
+                    Log.d("updoad1","失敗");
+                }
+
+            } catch (JSONException var9) {
+                var9.printStackTrace();
+            }
+            return null;
+        }
+        protected void onPostExecute(String file_url) {
+            pDialog.dismiss();
+        }
+    }
+
+    //結案
+    class UpLoad2 extends AsyncTask<String, String, String> {
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(SplashActivity.this);
+            pDialog.setMessage("Being Close. Please wait...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
+
+        protected String doInBackground(String... args) {
+
+            ArrayList params2 = new ArrayList();
+            params2.add(new BasicNameValuePair("Casenumber", args[0]) );
+            JSONObject jsonupload2 = SplashActivity.this.jsonParser.makeHttpRequest(SplashActivity.url_upload2,"POST",params2);
+            try {
+                int e3 = jsonupload2.getInt(TAG_SUCCESS);
+                if(e3 == 1) {
+                    Log.d("updoad2","成功");
+                }else {
+                    Log.d("updoad2","失敗");
+                }
+            } catch (JSONException var9) {
+                var9.printStackTrace();
+            }
+            return null;
+        }
+        protected void onPostExecute(String file_url) {
+            pDialog.dismiss();
+
+        }
+    }
+
+
+
+
 
 //下載
 
@@ -293,7 +411,7 @@ public class SplashActivity extends Activity {
 
                     // looping through All Products
                     for (int i = 0; i < products.length(); i++) {
-                    //for (int i = 0; i < 2; i++) {
+                        //for (int i = 0; i < 2; i++) {
 
                         JSONObject c = products.getJSONObject(i);
 
@@ -309,13 +427,14 @@ public class SplashActivity extends Activity {
                         String stepname = c.getString("step_name");
                         String steppurpose = c.getString("step_purpose");
                         String stepintro = c.getString("step_intro");
+                        Log.d("finish",c.getString("step_intro"));
+                        Log.d("finish",c.getString("step_intro").replace("\\",""));
                         String startrule = c.getString("start_rule");
                         String startvalue1 = c.getString("start_value1");
                         String startvalue2 = c.getString("start_value2");
                         String finishrule = c.getString("finish_rule");
                         Log.d("finish",c.getString("finish_value1"));
                         String finishvalue1 = c.getString("finish_value1");
-
                         String finishvalue2 = c.getString("finish_value2");
                         String nextsteprule = c.getString("next_step_rule");
                         String next_step_number = c.getString("next_step_number");
@@ -543,10 +662,11 @@ public class SplashActivity extends Activity {
                 msop_detailVo2.setSop_number(productsList.get(i).get("sop_number"));
                 msop_detailVo2.setStep_order(productsList.get(i).get("step_order"));
                 msop_detailVo2.setStep_number(productsList.get(i).get("step_number"));
-                    Log.d("countproducts"+String.valueOf(i),productsList.get(i).get("step_number"));
+                Log.d("countproducts"+String.valueOf(i),productsList.get(i).get("step_number"));
                 msop_detailVo2.setStep_name(productsList.get(i).get("step_name"));
                 msop_detailVo2.setStep_purpose(productsList.get(i).get("step_purpose"));
                 msop_detailVo2.setStep_intro(productsList.get(i).get("step_intro"));
+                Log.d("countproducts"+String.valueOf(i),productsList.get(i).get("step_intro"));
                 msop_detailVo2.setStart_rule(productsList.get(i).get("start_rule"));
                 msop_detailVo2.setStart_value1(productsList.get(i).get("start_value1"));
                 msop_detailVo2.setStart_value2(productsList.get(i).get("start_value2"));
@@ -558,7 +678,7 @@ public class SplashActivity extends Activity {
                 msop_detailVo2.setStep_remind(productsList.get(i).get("step_remind"));
                 msop_detailVo2.setStart_remind(productsList.get(i).get("start_remind"));
                 msop_detailVo2.setStart_message(productsList.get(i).get("start_message"));
-                    Log.d("countproducts"+String.valueOf(i),productsList.get(i).get("step_number"));
+
 
                 msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
             }
