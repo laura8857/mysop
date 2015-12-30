@@ -79,19 +79,14 @@ public class sop_masterDao
         return null;
     }
 
-    /* selectRaw */
-    public static sop_masterVo getSop_masterVo(DatabaseHelper databaseHelper) {
+    /* selectAll */
+    public static List<sop_masterVo> selectAll(DatabaseHelper databaseHelper) {
         RuntimeExceptionDao<sop_masterVo, Integer> sop_masterDao = databaseHelper
                 .getSop_masterDao();
         QueryBuilder<sop_masterVo, Integer> queryBuilder = sop_masterDao
                 .queryBuilder();
         try {
-
-            List<sop_masterVo> data = queryBuilder.where().raw("1=1").query();
-            if (data.size() > 0) {
-                return data.get(0);
-            }
-            return null;
+            return queryBuilder.query();
         } catch (Exception e) {
             e.printStackTrace();
         }

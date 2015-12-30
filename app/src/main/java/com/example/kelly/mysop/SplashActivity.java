@@ -168,6 +168,34 @@ public class SplashActivity extends Activity {
             manager.enqueue(down1[i]);
         }
 
+        DatabaseHelper DatabaseHelperDL2 = DatabaseHelper.getHelper(this);
+        sop_masterDao sopmasterDaoDL2 = new sop_masterDao();
+        List<sop_masterVo> sop_masterDL2;
+        sop_masterDL2 = sopmasterDaoDL2.selectAll(DatabaseHelperDL2);
+        DownloadManager.Request[] down2 = new DownloadManager.Request[50];
+
+        for(int i=0;i<sop_masterDL2.size();i++) {
+
+            String[] graph = sop_masterDL2.get(i).getSop_graph_src().split("/");
+
+            File file = new File(URI.create("file:///mnt/sdcard/MYSOPTEST/" + graph[graph.length-1] ).getPath());
+            if (file.exists()) {
+                break;
+            }
+            down2[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/front/picture/" + graph[graph.length-1]));
+            //允許網路類型
+            down2[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
+            //禁止發通知
+            down2[i].setShowRunningNotification(false);
+            //不顯示下載頁面
+            down2[i].setVisibleInDownloadsUi(false);
+            //下載後存放位置
+            //down.setDestinationInExternalFilesDir(mContext, null, "testhtml.html");
+            //在sdcard裡面的MYSOPTEST資料夾
+            down2[i].setDestinationInExternalPublicDir("MYSOPTEST", graph[graph.length-1]);
+            //將請求加入
+            manager.enqueue(down2[i]);
+        }
 
 /*        DownloadManager.Request down=new DownloadManager.Request (Uri.parse("http://140.115.80.237/front/download/testhtml.html"));
         //允許網路類型
@@ -189,7 +217,7 @@ public class SplashActivity extends Activity {
             if(intent.getAction().equals(DownloadManager.ACTION_DOWNLOAD_COMPLETE)){
                 long downId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
                 Log.v("SplashActivity"," download complete! id : "+downId);
-                Toast.makeText(context, intent.getAction()+"id : "+downId, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context, intent.getAction()+"id : "+downId, Toast.LENGTH_SHORT).show();
             }
         }
     }
