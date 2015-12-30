@@ -155,15 +155,14 @@ public class Emailverify extends Activity {
         }
 
         protected Integer doInBackground(Integer... args1) {
-            String InputEmailVerify =  Emailverify.this.InputEmailVerify.getText().toString();
 
             ArrayList params = new ArrayList();
             params.add(new BasicNameValuePair("Account", TAG_ACCOUNT));
-            JSONObject json = Emailverify.this.jsonParser.makeHttpRequest(Emailverify.url, "POST", params);
-            Log.d("Create Response", json.toString());
+            JSONObject json2 = Emailverify.this.jsonParser.makeHttpRequest(Emailverify.url1, "POST", params);
+            Log.d("Create Response", json2.toString());
 
             try {
-                int e = json.getInt(TAG_SUCCESS);
+                int e = json2.getInt(TAG_SUCCESS);
                 if(e == 1) {
                     return 1;
                 }else{
@@ -180,9 +179,8 @@ public class Emailverify extends Activity {
             Emailverify.this.pDialog.dismiss();
             if(ans1==1){
                 Toast.makeText(Emailverify.this,"驗證信重寄成功!",Toast.LENGTH_LONG).show();
-            }else if(ans1==6){
+            }else{
                 Toast.makeText(Emailverify.this,"驗證信重寄失敗!",Toast.LENGTH_LONG).show();
-            }else {
             }
         }
     }
