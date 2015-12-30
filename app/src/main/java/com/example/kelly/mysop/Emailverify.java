@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
@@ -27,10 +28,11 @@ public class Emailverify extends Activity {
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
     private static String url = "http://140.115.80.237/front/mysop_captcha.jsp";
+    private static String url1 = "http://140.115.80.237/mysop/mysop_register1.jsp";
     private static final String TAG_SUCCESS = "success";
     private EditText InputEmailVerify;
     String TAG_ACCOUNT = "";
-
+    String TAG_Key = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,12 +71,15 @@ public class Emailverify extends Activity {
 
     public void emailverify_check(View view) {
 
-        (Emailverify.this.new CreateAccount()).execute(new String[0]);
+
+        new CreateAccount().execute();
+    }
+    public void emailverify_resend(View view) {
+
+        new resend().execute();
     }
 
-    class CreateAccount extends AsyncTask<String, String, String> {
-        CreateAccount() {
-        }
+    class CreateAccount extends AsyncTask<Integer, Integer, Integer> {
 
         protected void onPreExecute() {
             super.onPreExecute();
@@ -85,7 +90,7 @@ public class Emailverify extends Activity {
             Emailverify.this.pDialog.show();
         }
 
-        protected String doInBackground(String... args) {
+        protected Integer doInBackground(Integer... args) {
             String InputEmailVerify =  Emailverify.this.InputEmailVerify.getText().toString();
 
             ArrayList params = new ArrayList();
@@ -98,19 +103,11 @@ public class Emailverify extends Activity {
             try {
                 int e = json.getInt(TAG_SUCCESS);
                 if(e == 1) {
-/*                    Intent i = new Intent(Emailverify.this.getApplicationContext(), Home.class);
-                    Emailverify.this.startActivity(i);
-                    Emailverify.this.finish();
-                    AlertDialog.Builder dialog = new AlertDialog.Builder(Emailverify.this);
-                    dialog.setTitle("");
-                    dialog.setMessage("成功！");
-                    dialog.show(); */
-
-
+                    return 1;
                 }else if(e == 6){
-                    Intent i = new Intent(Emailverify.this.getApplicationContext(), EmailVertifyError.class);
-                    Emailverify.this.startActivity(i);
-                    Emailverify.this.finish();
+                    return 6;
+                }else{
+                    return 2;
                 }
             } catch (JSONException var9) {
                 var9.printStackTrace();
@@ -119,11 +116,77 @@ public class Emailverify extends Activity {
             return null;
         }
 
-        protected void onPostExecute(String file_url) {
+        protected void onPostExecute(Integer ans) {
             Emailverify.this.pDialog.dismiss();
-
-
+            if(ans==1){
+                Toast.makeText(Emailverify.this,"註冊成功!",Toast.LENGTH_LONG).show();
+                Intent i = new Intent(Emailverify.this.getApplicationContext(), Home.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("TAG_Key", TAG_Key);
+                i.putExtras(bundle);
+                Emailverify.this.startActivity(i);
+                Emailverify.this.finish();
+                AlertDialog.Builder dialog = new AlertDialog.Builder(Emailverify.this);
+                dialog.setTitle("");
+                dialog.setMessage("註冊成功！");
+                dialog.show();
+            }else if(ans==6){
+                Intent i = new Intent(Emailverify.this.getApplicationContext(), EmailVertifyError.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+                i.putExtras(bundle);
+                Emailverify.this.startActivity(i);
+                Emailverify.this.finish();
+            }else {
+            }
         }
     }
+
+    //重寄
+    class resend extends AsyncTask<Integer, Integer, Integer> {
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Emailverify.this.pDialog = new ProgressDialog(Emailverify.this);
+            Emailverify.this.pDialog.setMessage("Sending...");
+            Emailverify.this.pDialog.setIndeterminate(false);
+            Emailverify.this.pDialog.setCancelable(true);
+            Emailverify.this.pDialog.show();
+        }
+
+        protected Integer doInBackground(Integer... args1) {
+            String InputEmailVerify =  Emailverify.this.InputEmailVerify.getText().toString();
+
+            ArrayList params = new ArrayList();
+            params.add(new BasicNameValuePair("Account", TAG_ACCOUNT));
+            JSONObject json = Emailverify.this.jsonParser.makeHttpRequest(Emailverify.url, "POST", params);
+            Log.d("Create Response", json.toString());
+
+            try {
+                int e = json.getInt(TAG_SUCCESS);
+                if(e == 1) {
+                    return 1;
+                }else{
+                    return 2;
+                }
+            } catch (JSONException var9) {
+                var9.printStackTrace();
+            }
+
+            return null;
+        }
+
+        protected void onPostExecute(Integer ans1) {
+            Emailverify.this.pDialog.dismiss();
+            if(ans1==1){
+                Toast.makeText(Emailverify.this,"驗證信重寄成功!",Toast.LENGTH_LONG).show();
+            }else if(ans1==6){
+                Toast.makeText(Emailverify.this,"驗證信重寄失敗!",Toast.LENGTH_LONG).show();
+            }else {
+            }
+        }
+    }
+
+
 }
 

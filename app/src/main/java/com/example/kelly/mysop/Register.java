@@ -38,7 +38,7 @@ public class Register extends Activity {
     String strHint4;
 
     JSONParser jsonParser = new JSONParser();
-    private static String url_create_product = "http://140.115.80.237/front/mysop_register.jsp";
+    private static String url_create_product = "http://140.115.80.237/mysop/mysop_register.jsp";
     private static final String TAG_SUCCESS = "success";
     String TAG_ACCOUNT = "";
 
@@ -123,7 +123,7 @@ public class Register extends Activity {
         String str = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
         String Email = Register.this.et1.getText().toString();
         if(ConfirmPassword.equals(Password)&&Email.matches(str)){
-            (Register.this.new CreateAccount()).execute(new String[0]);
+            new CreateAccount().execute();
         }else if(!ConfirmPassword.equals(Password)&&Email.matches(str)){
             AlertDialog.Builder dialog = new AlertDialog.Builder(Register.this);
             dialog.setTitle("咦！");
@@ -142,8 +142,7 @@ public class Register extends Activity {
         }
     }
 
-    class CreateAccount extends AsyncTask<String, String, String> {
-        CreateAccount() {}
+    class CreateAccount extends AsyncTask<Integer, Integer, Integer> {
 
         protected void onPreExecute() {
             super.onPreExecute();
@@ -154,7 +153,7 @@ public class Register extends Activity {
             Register.this.pDialog.show();
         }
 
-        protected String doInBackground(String... args) {
+        protected Integer doInBackground(Integer... args) {
             String Account = Register.this.et1.getText().toString();
             String Password = Register.this.et2.getText().toString();
             //String ConfirmPassword = Register.this.et3.getText().toString();
@@ -172,24 +171,11 @@ public class Register extends Activity {
             try {
                 int e = json.getInt(TAG_SUCCESS);
                 if(e == 1) {
-                    Register.this.TAG_ACCOUNT = Register.this.et1.getText().toString();
-                    Intent i = new Intent(Register.this.getApplicationContext(), Emailverify.class);
-                   //Intent i = new Intent(Register.this.getApplicationContext(), Search.class);
-
-                    //設定傳送參數
-                    Bundle bundle = new Bundle();
-                    bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
-                    //bundle.putString("TAG_Key", "");
-                    i.putExtras(bundle);	//將參數放入intent
-
-                    Register.this.startActivity(i);
-                    Register.this.finish();
+                    return 1;
                 }else if(e == 2){
-                    //帳號有人使用了
-                    Intent ii = new Intent(Register.this.getApplicationContext(),RegisterError.class);
-                    Register.this.startActivity(ii);
-                    Register.this.finish();
-
+                    return 2;
+                }else{
+                    return 3;
                 }
             } catch (JSONException var9) {
                 var9.printStackTrace();
@@ -198,9 +184,30 @@ public class Register extends Activity {
             return null;
         }
 
-        protected void onPostExecute(String file_url) {
-        Register.this.pDialog.dismiss();
-    }
+        protected void onPostExecute(Integer ans) {
+            Register.this.pDialog.dismiss();
+            if(ans==1){
+                Register.this.TAG_ACCOUNT = Register.this.et1.getText().toString();
+                Intent i = new Intent(Register.this.getApplicationContext(), Emailverify.class);
+                //Intent i = new Intent(Register.this.getApplicationContext(), Search.class);
+
+                //設定傳送參數
+                Bundle bundle = new Bundle();
+                bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+                //bundle.putString("TAG_Key", "");
+                i.putExtras(bundle);	//將參數放入intent
+
+                Register.this.startActivity(i);
+                Register.this.finish();
+            }else if(ans==2){
+                //帳號有人使用了
+                Intent ii = new Intent(Register.this.getApplicationContext(),RegisterError.class);
+                Register.this.startActivity(ii);
+                Register.this.finish();
+            }else{
+
+            }
+        }
     }
 }
 

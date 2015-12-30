@@ -10,10 +10,18 @@ import android.view.View;
 
 public class EmailVertifyError extends Activity {
 
+    String TAG_ACCOUNT = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_vertify_error);
+
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();	//取得Bundle
+        TAG_ACCOUNT = bundle.getString("TAG_ACCOUNT");	//輸出Bundle內容
+
+
     }
 
 
@@ -41,9 +49,10 @@ public class EmailVertifyError extends Activity {
 
     public void backToEmailVerify(View v){
         Intent it = new Intent(this,Emailverify.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+        it.putExtras(bundle);
         startActivity(it);
-
-       //  Intent i = new Intent(this, Search.class);
-
+        finish();
     }
 }

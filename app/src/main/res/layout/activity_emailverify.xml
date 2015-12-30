@@ -50,7 +50,8 @@
         android:layout_gravity="center_horizontal"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
-        android:layout_marginBottom="61dp" />
+        android:layout_marginBottom="61dp"
+        android:onClick="emailverify_resend" />
 
     <EditText
         android:layout_width="wrap_content"
