@@ -6,6 +6,8 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,14 +50,17 @@ public class Changepassword extends Activity {
     JSONParser jsonParser = new JSONParser();
     private static String url_changepassword = "http://140.115.80.237/front/mysop_changePassword.jsp";
     private static final String TAG_SUCCESS = "success";
-    static String TAG_ACCOUNT = "q@gmail.com";
-
+    String TAG_ACCOUNT = "";
+    String NewPassword = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_changepassword);
 
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        TAG_ACCOUNT = bundle.getString("TAG_ACCOUNT");
 
         et1 = (EditText) findViewById(R.id.Originalpassword);
         et2 = (EditText) findViewById(R.id.NewPassword);
@@ -127,11 +132,20 @@ public class Changepassword extends Activity {
     private member_accountDao mmember_accountDao;
 
     public void changepassword_check(View view){
-        String NewPassword = Changepassword.this.et2.getText().toString();
+        NewPassword = Changepassword.this.et2.getText().toString();
         String ConfirmNewPassword = Changepassword.this.et3.getText().toString();
-        if(ConfirmNewPassword.equals(NewPassword)){
-            //(Changepassword.this.new CreateAccount()).execute(new String[0]);
 
+        ConnectivityManager CM = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo info = CM.getActiveNetworkInfo();
+        //null代表沒網路
+        if(info!=null) {
+
+            if (ConfirmNewPassword.equals(NewPassword)) {
+
+                new CreateAccount().execute();
+
+
+/*
             DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
             mmember_accountDao = new member_accountDao();
             //menber_accountRuntimeDao = mDatabaseHelper.getMember_accountDao();
@@ -170,14 +184,14 @@ public class Changepassword extends Activity {
             mmember_accountVo5.setPassword("testing2");
             mmember_accountDao5.insert(mDatabaseHelper5,mmember_accountVo5);
 
-
+*/
             /*mmember_accountVo = mmember_accountDao.queryForId(1);
             mmember_accountVo.setPassword(NewPassword);
             mmember_accountDao.update(mmember_accountVo);*/
-            //Toast.makeText(this, mmember_accountVo.getPassword(), Toast.LENGTH_SHORT).show();
-            Log.d("TEST","TEST");
+                //Toast.makeText(this, mmember_accountVo.getPassword(), Toast.LENGTH_SHORT).show();
+                //Log.d("TEST", "TEST");
 
-
+/*
             //測試巢狀是否可用
             DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(this);
             case_masterDao mcase_masterDao4 = new case_masterDao();
@@ -192,36 +206,36 @@ public class Changepassword extends Activity {
 
             Intent it = new Intent(Changepassword.this,ChangePasswordError.class);
             startActivity(it);
+*/
 
-
+            } else {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(Changepassword.this);
+                dialog.setTitle("咦！");
+                dialog.setMessage("請確認新密碼一致");
+                dialog.show();
+            }
         }else{
-            AlertDialog.Builder dialog = new AlertDialog.Builder(Changepassword.this);
-            dialog.setTitle("咦！");
-            dialog.setMessage("請確認密碼一致");
-            dialog.show();
+            Toast.makeText(this,"請開啟網路",Toast.LENGTH_LONG).show();
         }
     }
 
 
 
 
-    /*class CreateAccount extends AsyncTask<String, String, String> {
-        CreateAccount() {}
+    class CreateAccount extends AsyncTask<Integer, Integer, Integer> {
 
         protected void onPreExecute() {
             super.onPreExecute();
-            Changepassword.this.pDialog = new ProgressDialog(Changepassword.this);
-            Changepassword.this.pDialog.setMessage("Changing...");
-            Changepassword.this.pDialog.setIndeterminate(false);
-            Changepassword.this.pDialog.setCancelable(true);
-            Changepassword.this.pDialog.show();
+            pDialog = new ProgressDialog(Changepassword.this);
+            pDialog.setMessage("Changing...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
         }
 
-        protected String doInBackground(String... args) {
+        protected Integer doInBackground(Integer... args) {
             String Originalpassword = Changepassword.this.et1.getText().toString();
-            String NewPassword = Changepassword.this.et2.getText().toString();
-
-
+            //String NewPassword = Changepassword.this.et2.getText().toString();
 
             ArrayList params = new ArrayList();
             params.add(new BasicNameValuePair("Password", Originalpassword));
@@ -229,19 +243,16 @@ public class Changepassword extends Activity {
             params.add(new BasicNameValuePair("Account", TAG_ACCOUNT));
 
             JSONObject json = Changepassword.this.jsonParser.makeHttpRequest(Changepassword.url_changepassword, "POST", params);
-            Log.d("Create Response", json.toString());
 
             try {
                 int e = json.getInt(TAG_SUCCESS);
                 if(e == 1) {
 
-                    Intent it = new Intent(Changepassword.this,Mysop.class);
-                    startActivity(it);
+                    return 1;
 
                 }else if(e == 6){
 
-                    Intent it = new Intent(Changepassword.this,ChangePasswordError.class);
-                    startActivity(it);
+                    return 6;
                 }
             } catch (JSONException var9) {
                 var9.printStackTrace();
@@ -250,10 +261,27 @@ public class Changepassword extends Activity {
             return null;
         }
 
-        protected void onPostExecute(String file_url) {
-            Changepassword.this.pDialog.dismiss();
+        protected void onPostExecute(Integer ans) {
+            pDialog.dismiss();
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+            if(ans==1){
+                Toast.makeText(Changepassword.this,"變更密碼成功!",Toast.LENGTH_LONG).show();
+                DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(Changepassword.this);
+                member_accountDao mmember_accountDao = new member_accountDao();
+                mmember_accountDao.update(mDatabaseHelper,"account",TAG_ACCOUNT,"password",NewPassword);
+
+                Intent it = new Intent(Changepassword.this,Mysop.class).putExtras(bundle);
+                startActivity(it);
+                finish();
+            }else if(ans==6){
+                Intent it = new Intent(Changepassword.this,ChangePasswordError.class).putExtras(bundle);
+                startActivity(it);
+                finish();
+            }
+
         }
-    }*/
+    }
 
 
 

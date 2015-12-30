@@ -25,13 +25,18 @@ public class ChangePasswordError extends Activity {
 
     private RuntimeExceptionDao<member_accountVo, Integer> menber_accountRuntimeDao;
     private member_accountDao mmember_accountDao;
+    String TAG_ACCOUNT = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password_error);
 
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        TAG_ACCOUNT = bundle.getString("TAG_ACCOUNT");
 
+/*
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         mmember_accountDao = new member_accountDao();
         //menber_accountRuntimeDao = mDatabaseHelper.getMember_accountDao();
@@ -62,6 +67,8 @@ public class ChangePasswordError extends Activity {
         list2 = mmember_accountDao2.selectRawByNest(mDatabaseHelper2, "Case_number","111","account");
 
         Log.d("抓44", list2.get(0).getUsername());
+
+*/
 
 /*原本的巢狀不能用
         DatabaseHelper mDatabaseHelper6 = DatabaseHelper.getHelper(this);
@@ -96,8 +103,11 @@ public class ChangePasswordError extends Activity {
         return super.onOptionsItemSelected(item);
     }
     public void backTochangepassword (View v){
-        Intent it = new Intent(this,Changepassword.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+        Intent it = new Intent(ChangePasswordError.this,Changepassword.class).putExtras(bundle);
         startActivity(it);
+        finish();
     }
 
 }
