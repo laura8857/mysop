@@ -224,6 +224,35 @@ public class StepCaseEnding extends Activity {
     //結案 和上傳
     public void close (View v){
 
+        //無論連線或離線都要刪掉的orm
+        DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(StepCaseEnding.this);
+        case_masterDao mcase_masterDao4 = new case_masterDao();
+        List<case_masterVo> caselist = null ;
+        caselist = mcase_masterDao4.selectRaw(mDatabaseHelper4,"Case_number="+"'"+TAG_CASE_NUMBER+"'");
+        //delete sop_master中的sop
+        sop_masterDao msop_masterDao = new sop_masterDao();
+        msop_masterDao.delete(mDatabaseHelper4,"Sop_number",caselist.get(0).getSop_number());
+        //delete step_detail
+        sop_detailDao msop_detailDao = new sop_detailDao();
+        msop_detailDao.delete(mDatabaseHelper4,"Sop_number",caselist.get(0).getSop_number());
+        //delete step_record
+        step_recordDao mstep_record = new step_recordDao();
+        //取紀錄值
+        mcase_recordDao = new case_recordDao();
+        List<case_recordVo> caserecordlist = null;
+        caserecordlist = mcase_recordDao.selectRaw(mDatabaseHelper4, "Case_number=" + "'" + TAG_CASE_NUMBER + "'");
+        for(int i =0;i<Count;i++){
+            //用case_number 還有case_record的step 去抓資料庫的紀錄單位和敘述
+            msop_detailDao = new sop_detailDao();
+            List<sop_detailVo> sopdetaillist = null;
+            sopdetaillist = msop_detailDao.selectRawByNest2(mDatabaseHelper4, "Case_number", TAG_CASE_NUMBER, "Sop_number","Step_order",caserecordlist.get(i).getStep_order());
+            //取出需要的sop_number 再找出step_number 還需要order
+            mstep_recordDao = new step_recordDao();
+            mstep_recordDao.delete2(mDatabaseHelper4, "Step_number", sopdetaillist.get(0).getStep_order(), "Record_order", caserecordlist.get(i).getRecord_order());
+
+        }
+
+
         //檢查是否有網路
         ConnectivityManager CM = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo info = CM.getActiveNetworkInfo();
@@ -235,12 +264,12 @@ public class StepCaseEnding extends Activity {
             case_masterDao mcase_master2 = new case_masterDao();
 
             mcase_master2.update(mDatabaseHelper2,"Case_number",TAG_CASE_NUMBER,"Case_mark","1");
-             List<case_masterVo> caselist = null ;
-             caselist = mcase_masterDao.selectRaw(mDatabaseHelper2,"Case_number="+"'"+TAG_CASE_NUMBER+"'");
-             Log.d("casemark",caselist.get(0).getCase_mark());
-            //delete sop_master中的sop
-            sop_masterDao msop_master = new sop_masterDao();
-            sop_masterDao.delete(mDatabaseHelper2,"Sop_number",caselist.get(0).getSop_number());
+//             List<case_masterVo> caselist = null ;
+//             caselist = mcase_masterDao.selectRaw(mDatabaseHelper2,"Case_number="+"'"+TAG_CASE_NUMBER+"'");
+//             Log.d("casemark",caselist.get(0).getCase_mark());
+//            //delete sop_master中的sop
+//            sop_masterDao msop_masterDao = new sop_masterDao();
+//            msop_masterDao.delete(mDatabaseHelper2,"Sop_number",caselist.get(0).getSop_number());
 
             Intent i = new Intent(this, Mysop.class);
             Bundle bundle = new Bundle();

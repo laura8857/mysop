@@ -1,6 +1,7 @@
 package Ormlite;
 
 import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
 
 import java.sql.SQLException;
@@ -50,12 +51,27 @@ public class sop_detailDao
         return 0;
     }
 
-    /* delete */
-    public static int delete(DatabaseHelper databaseHelper, sop_detailVo sop_detailVo) {
+//    /* delete */
+//    public static int delete(DatabaseHelper databaseHelper, sop_detailVo sop_detailVo) {
+//        RuntimeExceptionDao<sop_detailVo, Integer> sop_detailDao = databaseHelper
+//                .getSop_detailDao();
+//        try {
+//            return sop_detailDao.delete(sop_detailVo);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return 0;
+//    }
+
+    public static int delete(DatabaseHelper databaseHelper, String columnvalue, String originalvalue) {
         RuntimeExceptionDao<sop_detailVo, Integer> sop_detailDao = databaseHelper
                 .getSop_detailDao();
+        DeleteBuilder<sop_detailVo,Integer> deleteBuilder = sop_detailDao.deleteBuilder();
         try {
-            return sop_detailDao.delete(sop_detailVo);
+            //判斷式 哪一欄 = 值
+            deleteBuilder.where().eq(columnvalue, originalvalue);
+
+            return deleteBuilder.delete();
         } catch (Exception e) {
             e.printStackTrace();
         }

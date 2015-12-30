@@ -20,7 +20,6 @@ import java.util.List;
 import Ormlite.DatabaseHelper;
 import Ormlite.memoDao;
 import Ormlite.memoVo;
-import Ormlite.system_messageDao;
 
 /**
  * Created by laura on 15/12/28.
@@ -93,8 +92,8 @@ public class SystemMessageMemo extends Activity {
         for(int i =0;i<messagesize;i++){
             if(checklist[i]==true){
                 DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(SystemMessageMemo.this);
-                system_messageDao msystem_messageDao = new system_messageDao();
-                msystem_messageDao.update(mDatabaseHelper2, "System_message", messagelist[i], "Message_mark", "noMark");
+                memoDao mmemoDao = new memoDao();
+                mmemoDao.delete(mDatabaseHelper2,"System_message",messagelist[i]);
 
             }
         }

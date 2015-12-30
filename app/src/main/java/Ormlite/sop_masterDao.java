@@ -66,6 +66,7 @@ public class sop_masterDao
         return 0;
     }
 
+
     /* select by id */
     public static sop_masterVo select(DatabaseHelper databaseHelper, int id) {
         RuntimeExceptionDao<sop_masterVo, Integer> sop_masterDao = databaseHelper
