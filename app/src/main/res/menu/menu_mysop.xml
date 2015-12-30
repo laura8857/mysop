@@ -8,6 +8,8 @@ tools:context="com.example.kelly.mysop.Mysop">
             android:orderInCategory="100" app:showAsAction="never" />
         <item android:id="@+id/title_activity_dynamic_action" android:title="@string/title_activity_dynamic_action"
             android:orderInCategory="100" app:showAsAction="never" />
+        <item android:id="@+id/title_activity_system_message" android:title="@string/title_activity_system_message"
+            android:orderInCategory="100" app:showAsAction="never" />
         <item android:id="@+id/title_activity_logout" android:title="@string/title_activity_logout"
             android:orderInCategory="100" app:showAsAction="never" />
         <item android:id="@+id/title_settings" android:title="settings" android:orderInCategory="100" app:showAsAction="never"/>
@@ -17,5 +19,5 @@ tools:context="com.example.kelly.mysop.Mysop">
         <item android:id="@+id/title_section4" android:title="@string/space" android:orderInCategory="200" app:showAsAction ="never"/>
         <item android:id="@+id/title_section5" android:title="@string/space" android:orderInCategory="200" app:showAsAction ="never"/>
         <item android:id="@+id/title_section6" android:title="@string/space" android:orderInCategory="200" app:showAsAction="never"/>
-        <item android:id="@+id/title_section7" android:title="@string/space" android:orderInCategory="200" app:showAsAction="never"/>
+
 </menu>

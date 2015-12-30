@@ -567,6 +567,11 @@ public class Mysop extends Activity {
                 startActivity(i2);
 
                 break;
+            case R.id.title_activity_system_message:
+                Intent i3 = new Intent (this, SystemMessage.class);
+                startActivity(i3);
+
+                break;
             case R.id.title_activity_logout:
                 startActivity(new Intent().setClass(Mysop.this, Logout.class));
 
