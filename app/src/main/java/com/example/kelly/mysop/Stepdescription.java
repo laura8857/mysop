@@ -105,7 +105,7 @@ public class Stepdescription extends Activity {
         step_recordDao mstep_recordDao = new step_recordDao();
         List<step_recordVo> list = null;
         list = mstep_recordDao.selectRaw(mDatabaseHelper, "Step_number="+TAG_STEP_NUMBER);
-        if(!list.equals(null)){
+        if(list.size()!=0){
             TAG_Next = 1;
         }else{
             TAG_Next = 2;

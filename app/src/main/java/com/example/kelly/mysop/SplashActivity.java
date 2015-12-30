@@ -58,8 +58,8 @@ public class SplashActivity extends Activity {
     private static String url_all_products1 = "http://140.115.80.237/front/mysop_sop_master.jsp";
     private static String url_all_products2 = "http://140.115.80.237/front/mysop_case_master.jsp";
     private static String url_all_products3 = "http://140.115.80.237/front/mysop_step_record.jsp";
-    private static String url_upload1 = "http://140.115.80.237/front/upload_case_record.jsp";
-    private static String url_upload2 = "http://140.115.80.237/front/upload_case_master.jsp";
+    private static String url_upload1 = "http://140.115.80.237/front/mysop_steprecording3.jsp";
+    private static String url_upload2 = "http://140.115.80.237/front/mysop_stepCaseclose2.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_CASENUMBER = "casenumber";
@@ -243,12 +243,12 @@ public class SplashActivity extends Activity {
                     uploadlist1 = case_recorduploadDao1.selectRaw(DatabaseHelperupload1,"Case_number="+uploadlist.get(i).getCase_number());
                     //上傳記錄值case_record
                     for(int j=0;j<uploadlist1.size();j++) {
-                        UpLoad1[] upload1 = new UpLoad1[uploadlist1.size() - 1];
-                        upload1[i] = new UpLoad1();
-                        upload1[i].execute(uploadlist1.get(i).getCase_number(), uploadlist1.get(i).getStep_order(), uploadlist1.get(i).getRecord_order(), uploadlist1.get(i).getRecord_value());
+                        UpLoad1[] upload1 = new UpLoad1[uploadlist1.size()];
+                        upload1[j] = new UpLoad1();
+                        upload1[j].execute(uploadlist1.get(j).getCase_number(), uploadlist1.get(j).getStep_order(), uploadlist1.get(j).getRecord_order(), uploadlist1.get(j).getRecord_value());
                     }
                     //上傳刪除case_master
-                    UpLoad2[] upload2 = new UpLoad2[uploadlist.size() - 1];
+                    UpLoad2[] upload2 = new UpLoad2[uploadlist.size()];
                     upload2[i] = new UpLoad2();
                     upload2[i].execute(uploadlist.get(i).getCase_number());
                     //手機刪case_record、case_master
