@@ -55,7 +55,7 @@ public class StepActionControlArtificial extends Activity {
         setContentView(R.layout.activity_step_action_control_artificial);
 
         TextView ss = (TextView)findViewById(R.id.textView2);
-        TextView StartMessage = (TextView)findViewById(R.id.textView12);
+        TextView StartMessage = (TextView)findViewById(R.id.textView17);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
         TAG_STEP_NUMBER = bundle.getString("TAG_STEP_NUMBER");

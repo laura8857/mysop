@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="請使用NFC"
+        android:text="NFC啟動"
         android:id="@+id/AC_NFC_textView4"
         android:textColor="#7e7e7e"
         android:layout_below="@+id/AC_NFC_textView3"
@@ -53,10 +53,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text=""
+        android:text="啟動訊息"
         android:id="@+id/AC_NFC_textView5"
+        android:textColor="#ff1b1b1b"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/AC_NFC_textView4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="請使用NFC"
+        android:id="@+id/AC_NFC_textView6"
         android:textColor="#7e7e7e"
-        android:layout_below="@+id/AC_NFC_textView4"
+        android:layout_below="@+id/AC_NFC_textView5"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>

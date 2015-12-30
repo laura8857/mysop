@@ -311,9 +311,9 @@ public class SplashActivity extends Activity {
             try {
                 int e = jsonupload1.getInt(TAG_SUCCESS);
                 if(e == 1) {
-                    Log.d("updoad1","成功");
+                    Log.d("upload1","成功");
                 }else{
-                    Log.d("updoad1","失敗");
+                    Log.d("upload1","失敗");
                 }
 
             } catch (JSONException var9) {
@@ -345,9 +345,9 @@ public class SplashActivity extends Activity {
             try {
                 int e3 = jsonupload2.getInt(TAG_SUCCESS);
                 if(e3 == 1) {
-                    Log.d("updoad2","成功");
+                    Log.d("upload2","成功");
                 }else {
-                    Log.d("updoad2","失敗");
+                    Log.d("upload2","失敗");
                 }
             } catch (JSONException var9) {
                 var9.printStackTrace();

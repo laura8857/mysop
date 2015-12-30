@@ -59,7 +59,7 @@ public class StepActionControlQRcode extends Activity {
         textView1 = (TextView) findViewById(R.id.qrcode);
 
         TextView ss = (TextView)findViewById(R.id.textView2);
-        TextView StartMessage = (TextView)findViewById(R.id.textView12);
+        TextView StartMessage = (TextView)findViewById(R.id.textView17);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");

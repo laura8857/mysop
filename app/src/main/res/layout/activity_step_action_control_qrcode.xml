@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="請使用QR code"
+        android:text="QR code啟動"
         android:id="@+id/textView12"
         android:textColor="#7e7e7e"
         android:layout_below="@+id/textView13"
@@ -71,5 +71,25 @@
         android:id="@+id/qrcode"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="啟動訊息"
+        android:id="@+id/textView16"
+        android:textColor="#ff1b1b1b"
+        android:layout_below="@+id/textView12"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="請使用QR code"
+        android:id="@+id/textView17"
+        android:textColor="#7e7e7e"
+        android:layout_below="@+id/textView16"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -46,11 +46,44 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="此步驟需要人工啟動，請按下方按鈕確認啟動。"
+        android:text="啟動方法"
         android:id="@+id/textView12"
+        android:textColor="#ff1b1b1b"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="50dp"
-        android:layout_alignParentLeft="true"
-        android:textColor="#7e7e7e" />
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="人工啟動"
+        android:id="@+id/textView13"
+        android:textColor="#7e7e7e"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView12"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="啟動訊息"
+        android:id="@+id/textView16"
+        android:textColor="#ff1b1b1b"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView13"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="此步驟需要人工啟動，請按下方按鈕確認啟動。"
+        android:id="@+id/textView17"
+        android:textColor="#7e7e7e"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView16"
+        android:layout_alignParentLeft="true" />
 
 </RelativeLayout>

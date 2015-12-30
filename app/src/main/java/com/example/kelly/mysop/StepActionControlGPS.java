@@ -69,7 +69,7 @@ public class StepActionControlGPS extends Activity {
         setContentView(R.layout.activity_step_action_control_gps);
 
         TextView ss = (TextView)findViewById(R.id.textView2);
-        TextView StartMessage = (TextView)findViewById(R.id.textView12);
+        TextView StartMessage = (TextView)findViewById(R.id.textView17);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");

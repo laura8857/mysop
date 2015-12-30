@@ -77,7 +77,7 @@ public class StepActionControlIbeacon extends Activity implements BeaconConsumer
         mDatabaseHelper = DatabaseHelper.getHelper(this);
 
         TextView ss = (TextView)findViewById(R.id.AC_ibeacon_textView2);
-        TextView StartMessage = (TextView)findViewById(R.id.AC_ibeacon_textView4);
+        TextView StartMessage = (TextView)findViewById(R.id.AC_ibeacon_textView6);
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
