@@ -16,12 +16,17 @@ import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.member_accountDao;
+import Ormlite.member_accountVo;
 
 public class Login extends Activity {
 
@@ -36,6 +41,7 @@ public class Login extends Activity {
     JSONParser jsonParser = new JSONParser();
     private static final String TAG_SUCCESS = "success";
     static String TAG_ACCOUNT = "";
+    String Password ="";
 
 
     @Override
@@ -106,25 +112,22 @@ public class Login extends Activity {
     }
 
     public void login_check(View view) {
-         (Login.this.new CreateAccount()).execute(new String[0]);
+        new CreateAccount().execute();
     }
-    class CreateAccount extends AsyncTask<String, String, String> {
-
+    class CreateAccount extends AsyncTask<Integer, Integer, Integer> {
 
         protected void onPreExecute() {
             super.onPreExecute();
-            Login.this.pDialog = new ProgressDialog(Login.this);
-            Login.this.pDialog.setMessage("Login...");
-            Login.this.pDialog.setIndeterminate(false);
-            Login.this.pDialog.setCancelable(true);
-            Login.this.pDialog.show();
+            pDialog = new ProgressDialog(Login.this);
+            pDialog.setMessage("Login...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
         }
 
-        protected String doInBackground(String... args) {
+        protected Integer doInBackground(Integer... args) {
             TAG_ACCOUNT = Login.this.et1.getText().toString();
-            String Password = Login.this.et2.getText().toString();
-
-
+            Password = Login.this.et2.getText().toString();
 
             ArrayList params = new ArrayList();
             params.add(new BasicNameValuePair("Account", TAG_ACCOUNT));
@@ -136,18 +139,9 @@ public class Login extends Activity {
             try {
                 int e = json.getInt(TAG_SUCCESS);
                 if(e == 1) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
-                    Intent it = new Intent(Login.this,Mysop.class);
-                     it.putExtras(bundle);//將參數放入intent
-                    startActivity(it);
-                    finish();
-
+                    return 1;
                 }else if(e == 6){
-
-                    Intent i = new Intent(Login.this.getApplicationContext(), Error.class);
-                    Login.this.startActivity(i);
-                    Login.this.finish();
+                    return 6;
                 }
             } catch (JSONException var9) {
                 var9.printStackTrace();
@@ -156,8 +150,30 @@ public class Login extends Activity {
             return null;
         }
 
-        protected void onPostExecute(String file_url) {
-            Login.this.pDialog.dismiss();
+        protected void onPostExecute(Integer ans) {
+            pDialog.dismiss();
+            if(ans==1){
+                DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(Login.this);
+                member_accountDao mmember_accountDao = new member_accountDao();
+                member_accountVo mmember_accountVo = new member_accountVo();
+                mmember_accountVo.setAccount(TAG_ACCOUNT);
+                mmember_accountVo.setPassword(Password);
+                mmember_accountDao.insert(mDatabaseHelper,mmember_accountVo);
+
+                Bundle bundle = new Bundle();
+                bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
+                Intent it = new Intent(Login.this,Mysop.class);
+                it.putExtras(bundle);//將參數放入intent
+                startActivity(it);
+                finish();
+            }else if(ans==6){
+                Intent i = new Intent(Login.this, Error.class);
+                Login.this.startActivity(i);
+                Login.this.finish();
+            }else{
+                Toast.makeText(Login.this, "系統錯誤", Toast.LENGTH_LONG).show();
+            }
+
         }
     }
 

@@ -34,7 +34,7 @@ public class member_accountVo extends MDVo implements Serializable
 	{
 		this.Account = account;
 	}
-	@DatabaseField(columnName = FIELD_Username, canBeNull = false)
+	@DatabaseField(columnName = FIELD_Username, canBeNull = true)
 	private String Username;
 	public String getUsername()
 	{

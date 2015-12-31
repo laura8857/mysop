@@ -126,10 +126,10 @@ public class Emailverify extends Activity {
                 i.putExtras(bundle);
                 Emailverify.this.startActivity(i);
                 Emailverify.this.finish();
-                AlertDialog.Builder dialog = new AlertDialog.Builder(Emailverify.this);
+      /*          AlertDialog.Builder dialog = new AlertDialog.Builder(Emailverify.this);
                 dialog.setTitle("");
                 dialog.setMessage("註冊成功！");
-                dialog.show();
+                dialog.show();*/
             }else if(ans==6){
                 Intent i = new Intent(Emailverify.this.getApplicationContext(), EmailVertifyError.class);
                 Bundle bundle = new Bundle();
@@ -138,6 +138,7 @@ public class Emailverify extends Activity {
                 Emailverify.this.startActivity(i);
                 Emailverify.this.finish();
             }else {
+                Toast.makeText(Emailverify.this,"系統錯誤",Toast.LENGTH_LONG).show();
             }
         }
     }

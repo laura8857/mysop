@@ -409,7 +409,7 @@ public class Steprecording extends Activity {
                 intent2.putExtras(bundle2);//將參數放入intent
                 startActivity(intent2);
                 //切換畫面，右近左出
-                overridePendingTransition(R.anim.in_from_right, R.anim.out_to_right);
+                overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
                 finish();
                 return true;
 

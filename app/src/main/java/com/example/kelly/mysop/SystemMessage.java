@@ -16,7 +16,14 @@ public class SystemMessage  extends TabActivity {
         setContentView(R.layout.activity_system_message);
         addNewTab(SystemMessageGet.class, "Message");
         addNewTab(SystemMessageMemo.class, "Memo");
-        getTabHost().setCurrentTab(0);
+
+        Intent intent = this.getIntent();
+        Bundle bundle = intent.getExtras();
+        if(intent.hasExtra("PAGE")){
+            getTabHost().setCurrentTab(1);
+        }else{
+            getTabHost().setCurrentTab(0);
+        }
         getTabHost().requestFocus();
 
 
