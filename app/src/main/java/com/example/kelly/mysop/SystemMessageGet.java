@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,7 +34,7 @@ public class SystemMessageGet extends  Activity {
     MyAdapter adapter = null;
     private String[] testlist = {"鉛筆","原子筆","鋼筆","毛筆","彩色筆"};
     private String[] messagelist;
-    private Boolean[] checklist;
+    private int[] checklist;
     private int messagesize;
 
 
@@ -62,11 +62,12 @@ public class SystemMessageGet extends  Activity {
         List<system_messageVo> systemmessagelist = null ;
         systemmessagelist = msystem_messageDao.selectRaw2(mDatabaseHelper);
         messagelist = new String[systemmessagelist.size()];
-        checklist = new Boolean[systemmessagelist.size()];
+        checklist = new int[systemmessagelist.size()];
+        //checklist = new Boolean[systemmessagelist.size()];
         messagesize=systemmessagelist.size();
         for(int i =0;i<systemmessagelist.size();i++){
         messagelist[i]=systemmessagelist.get(i).getSystem_message();
-            checklist[i]=false;
+            checklist[i]=R.drawable.uncheck;
         }
 
 
@@ -90,16 +91,17 @@ public class SystemMessageGet extends  Activity {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id){
-            CheckBox cbx = (CheckBox)view.findViewById(R.id.check);
-            if(!cbx.isChecked()) {
-                checklist[position] = true;
-                cbx.setChecked(checklist[position]);
+           // CheckBox cbx = (CheckBox)view.findViewById(R.id.check);
+            if(checklist[position]==R.drawable.uncheck) {
+                checklist[position] = R.drawable.check;
+               // cbx.setChecked(checklist[position]);
                 Toast.makeText(getApplicationContext(), "你選擇的是" + messagelist[position], Toast.LENGTH_SHORT).show();
             }else {
-                checklist[position]=false;
-                cbx.setChecked(checklist[position]);
+                checklist[position]=R.drawable.uncheck;
+                Toast.makeText(getApplicationContext(), "你取消的是" + messagelist[position], Toast.LENGTH_SHORT).show();
+               // cbx.setChecked(checklist[position]);
             }
-
+            listView.invalidateViews();
         }
 
     };
@@ -108,7 +110,7 @@ public class SystemMessageGet extends  Activity {
     public void deletemessage (View v){
 
         for(int i =0;i<messagesize;i++){
-            if(checklist[i]==true){
+            if(checklist[i]==R.drawable.check){
                 DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(SystemMessageGet.this);
                 system_messageDao msystem_messageDao = new system_messageDao();
                 msystem_messageDao.delete(mDatabaseHelper2,"System_message",messagelist[i]);
@@ -121,11 +123,11 @@ public class SystemMessageGet extends  Activity {
         List<system_messageVo> systemmessagelist = null ;
         systemmessagelist = msystem_messageDao.selectRaw2(mDatabaseHelper);
         messagelist = new String[systemmessagelist.size()];
-        checklist = new Boolean[systemmessagelist.size()];
+        checklist = new int[systemmessagelist.size()];
         messagesize=systemmessagelist.size();
         for(int i =0;i<systemmessagelist.size();i++){
             messagelist[i]=systemmessagelist.get(i).getSystem_message();
-            checklist[i]=false;
+            checklist[i]=R.drawable.uncheck;
         }
         listView.invalidateViews();
     }
@@ -133,7 +135,7 @@ public class SystemMessageGet extends  Activity {
     //加入到備忘錄
     public void insertMemo(View v){
         for(int i =0;i<messagesize;i++){
-            if(checklist[i]==true){
+            if(checklist[i]==R.drawable.check){
                 DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(SystemMessageGet.this);
                 system_messageDao msystem_messageDao = new system_messageDao();
                 List<system_messageVo> systemmessagelist2 = null ;
@@ -188,10 +190,12 @@ public class SystemMessageGet extends  Activity {
 
 
             TextView Name = (TextView) convertView.findViewById(R.id.name);
-            CheckBox check = (CheckBox)convertView.findViewById(R.id.check);
+            ImageView checkbutton = (ImageView)convertView.findViewById(R.id.checkbutton);
+           // CheckBox check = (CheckBox)convertView.findViewById(R.id.check);
 
             Name.setText(messagelist[position]);
-            check.setChecked(checklist[position]);
+            checkbutton.setImageResource(checklist[position]);
+            //check.setChecked(checklist[position]);
 
             return convertView;
         }

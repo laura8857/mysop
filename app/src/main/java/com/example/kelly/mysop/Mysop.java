@@ -6,11 +6,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -104,17 +104,19 @@ public class Mysop extends Activity {
             R.drawable.gps,R.drawable.qrcode,R.drawable.white };
     int[] key;
     private String[] timesee;
-    private Drawable[] photo;
+ //   private Drawable[] photo;
     private Bitmap[] bmplist;
+    private String[] photo;
 
     private String[] list1;
     private String[] name1;
     int[] key1;
     private String[] timesee1;
-    private Drawable[] photo1;
+    //private Drawable[] photo1;
     private Bitmap[] bmplist1;
     private String[] steporder1;
     private String[] steptotal1;
+    private String []photo1;
 
 
     //orm
@@ -209,7 +211,8 @@ public class Mysop extends Activity {
             name = new String[x];
             key = new int[x];
             timesee = new String[x];
-            photo = new Drawable[x];
+            photo = new String[x];
+            //photo = new Drawable[x];
             bmplist = new Bitmap[x];
             steporder = new String[x];
             steptotal = new String[x];
@@ -217,7 +220,8 @@ public class Mysop extends Activity {
             name1 = new String[sopmasterlist.size() / 2];
             key1 = new int[sopmasterlist.size() / 2];
             timesee1 = new String[sopmasterlist.size() / 2];
-            photo1 = new Drawable[sopmasterlist.size() / 2];
+           // photo1 = new Drawable[sopmasterlist.size() / 2];
+            photo1 = new String[sopmasterlist.size() / 2];
             bmplist1 = new Bitmap[sopmasterlist.size()/ 2];
             steporder1 = new String[sopmasterlist.size() / 2];
             steptotal1 = new String[sopmasterlist.size() / 2];
@@ -230,6 +234,7 @@ public class Mysop extends Activity {
                 //list[i] = caselist.get(i).getCase_number();
                 name[i] = sopmasterlist.get(i).getSop_name();
                 //圖片
+                photo[i] ="file:///mnt/sdcard/MYSOPTEST/"+sopmasterlist.get(i).getSop_number();
 //            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
 //            bmplist[i] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 //            Drawable drawable = new BitmapDrawable(bmplist[i]);
@@ -345,6 +350,7 @@ public class Mysop extends Activity {
                // list1[k] = caselist.get(i).getCase_number();
                 name1[k] = sopmasterlist.get(i).getSop_name();
                 //圖片
+                photo1[k] ="file:///mnt/sdcard/MYSOPTEST/"+sopmasterlist.get(i).getSop_number();
 //            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
 //            bmplist1[k] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 //            Drawable drawable = new BitmapDrawable(bmplist1[k]);
@@ -604,6 +610,23 @@ public class Mysop extends Activity {
 
         protected void onPostExecute(Bitmap result) {
             bmImage.setImageBitmap(result);
+        }
+    }
+
+
+    //讀取SDCard圖片，型態為Bitmap
+    private static Bitmap getBitmapFromSDCard(String file)
+    {
+        try
+        {
+            String sd = Environment.getExternalStorageDirectory().toString();
+            Bitmap bitmap = BitmapFactory.decodeFile(sd + "/" + file);
+            return bitmap;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
         }
     }
     /**
@@ -1000,7 +1023,7 @@ public class Mysop extends Activity {
             ImageView MysopLogo = (ImageView) convertView.findViewById(R.id.mysoplogo);
             ProgressBar progressBar = (ProgressBar)convertView.findViewById(R.id.progresssop);
 
-           // new DownloadImageTask(MysopLogo)
+            // new DownloadImageTask(MysopLogo)
            //         .execute(photo[position]);
             //MysopLogo.setImageDrawable(photo[position]);
             if(logos[key[position]]!=R.drawable.white){
@@ -1008,6 +1031,7 @@ public class Mysop extends Activity {
                 time.setVisibility(8);
             }
             Logo.setImageResource(logos[key[position]]);
+            MysopLogo.setImageBitmap(getBitmapFromSDCard(photo[position]));
             Name.setText(" "+name[position]);
             number.setText(list[position]);
             time.setText(timesee[position]);
@@ -1067,6 +1091,7 @@ public class Mysop extends Activity {
                 time1.setVisibility(8);
             }
             Logo1.setImageResource(logos[key1[position]]);
+            MysopLogo1.setImageBitmap(getBitmapFromSDCard(photo1[position]));
             Name1.setText(" " + name1[position]);
             number1.setText(list1[position]);
             time1.setText(timesee1[position]);
