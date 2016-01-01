@@ -79,6 +79,9 @@ public class SplashActivity extends Activity {
     DownloadManager manager ;
     DownloadCompleteReceiver receiver;
 
+    int DetectDownload=0;
+    int DetectDownloadReceive=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -138,7 +141,7 @@ public class SplashActivity extends Activity {
             down[i].setDestinationInExternalPublicDir("MYSOPTEST", "start"+sop_detailDL.get(i).getStep_number()+".mp3");
             //將請求加入
             manager.enqueue(down[i]);
-
+            DetectDownload++;
         }
 
         DatabaseHelper DatabaseHelperDL1 = DatabaseHelper.getHelper(this);
@@ -166,6 +169,7 @@ public class SplashActivity extends Activity {
             down1[i].setDestinationInExternalPublicDir("MYSOPTEST", "step" + sop_detailDL1.get(i).getStep_number() + ".mp3");
             //將請求加入
             manager.enqueue(down1[i]);
+            DetectDownload++;
         }
 
         DatabaseHelper DatabaseHelperDL2 = DatabaseHelper.getHelper(this);
@@ -195,7 +199,9 @@ public class SplashActivity extends Activity {
             down2[i].setDestinationInExternalPublicDir("MYSOPTEST", graph[graph.length-1]);
             //將請求加入
             manager.enqueue(down2[i]);
+            DetectDownload++;
         }
+
 
 /*        DownloadManager.Request down=new DownloadManager.Request (Uri.parse("http://140.115.80.237/front/download/testhtml.html"));
         //允許網路類型
@@ -218,6 +224,12 @@ public class SplashActivity extends Activity {
                 long downId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
                 Log.v("SplashActivity"," download complete! id : "+downId);
                 //Toast.makeText(context, intent.getAction()+"id : "+downId, Toast.LENGTH_SHORT).show();
+                DetectDownloadReceive++;
+                if(DetectDownload==DetectDownloadReceive){
+                    Bundle bundle = new Bundle();
+                    bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+                    startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
+                }
             }
         }
     }
@@ -824,9 +836,9 @@ public class SplashActivity extends Activity {
 */
 
             //startActivity(new Intent().setClass(SplashActivity.this, Login.class));
-            Bundle bundle = new Bundle();
-            bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
-            startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
+            //Bundle bundle = new Bundle();
+            //bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+            //startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
         }
     }
 }
