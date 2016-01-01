@@ -47,7 +47,7 @@ public class SystemMessageGet extends  Activity {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_message_get);
-        getWindow().setWindowAnimations(0);
+        //getWindow().setWindowAnimations(0);
 
         listView = (ListView)findViewById(R.id.getlist);
 
@@ -161,10 +161,11 @@ public class SystemMessageGet extends  Activity {
         Bundle bundle = new Bundle();
         bundle.putInt("PAGE", 1);
         Intent it = new Intent(SystemMessageGet.this,SystemMessage.class).putExtras(bundle);
+        //SystemMessageGet.this.overridePendingTransition(R.anim.no_animation,R.anim.no_animation);
         it.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(it);
         finish();
-        (SystemMessageGet.this).overridePendingTransition(0,0);
+        SystemMessageGet.this.overridePendingTransition(R.anim.no_animation,R.anim.no_animation);
 
     }
 

@@ -93,7 +93,7 @@ public class SplashActivity extends Activity {
         productsList2 = new ArrayList<HashMap<String, String>>();
         productsList3 = new ArrayList<HashMap<String, String>>();
 
-        //寫死 insert，之後把他刪掉
+/*        //寫死 insert，之後把他刪掉
         DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
         member_accountDao mmember_accountDao1;
         mmember_accountDao1 = new member_accountDao();
@@ -101,7 +101,7 @@ public class SplashActivity extends Activity {
         mmember_accountVo.setAccount("test@gmail.com");
         mmember_accountVo.setUsername("user1");
         mmember_accountVo.setPassword("test");
-        mmember_accountDao1.insert(mDatabaseHelper1, mmember_accountVo);
+        mmember_accountDao1.insert(mDatabaseHelper1, mmember_accountVo);*/
 
         getAccount();
 
@@ -836,9 +836,11 @@ public class SplashActivity extends Activity {
 */
 
             //startActivity(new Intent().setClass(SplashActivity.this, Login.class));
-            //Bundle bundle = new Bundle();
-            //bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
-            //startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
+            if(DetectDownload==0) {
+                Bundle bundle = new Bundle();
+                bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+                startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
+            }
         }
     }
 }
