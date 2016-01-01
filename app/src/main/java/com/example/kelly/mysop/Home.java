@@ -21,7 +21,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,10 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.InputStream;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -308,13 +304,15 @@ public class Home extends Activity {
             for (int i = 0; i < x; i++) {
                 name[i]=productsList.get(i).get(TAG_SOPNAME);
                 master[i]=productsList.get(i).get(TAG_USERNAME);
-                photo[i]=productsList.get(i).get(TAG_PICTURE);
+                String[] graph = productsList.get(i).get(TAG_PICTURE).split("/");
+                photo[i]="http://140.115.80.237/front/picture/"+graph[graph.length-1];
                 likeu[i]=productsList.get(i).get(TAG_LIKE);
             }
             for (int i = products.length()-1; i >=x; i--) {
                 name1[k]=productsList.get(i).get(TAG_SOPNAME);
                 master1[k]=productsList.get(i).get(TAG_USERNAME);
-                photo1[k]=productsList.get(i).get(TAG_PICTURE);
+                String[] graph1 = productsList.get(i).get(TAG_PICTURE).split("/");
+                photo1[k]="http://140.115.80.237/front/picture/"+graph1[graph1.length-1];
                 likeu1[k]=productsList.get(i).get(TAG_LIKE);
                 k++;
             }

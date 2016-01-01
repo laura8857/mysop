@@ -236,7 +236,8 @@ public class Mysop extends Activity {
                 //list[i] = caselist.get(i).getCase_number();
                 name[i] = sopmasterlist.get(i).getSop_name();
                 //圖片
-                photo[i] ="MYSOPTEST/"+sopmasterlist.get(i).getSop_number()+".jpg";
+                String[] graph = sopmasterlist.get(i).getSop_graph_src().split("/");
+                photo[i] ="MYSOPTEST/"+graph[graph.length-1];
                 Log.d(list[i],photo[i]);
 //            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
 //            bmplist[i] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -353,12 +354,9 @@ public class Mysop extends Activity {
                // list1[k] = caselist.get(i).getCase_number();
                 name1[k] = sopmasterlist.get(i).getSop_name();
                 //圖片
-                photo1[k] ="MYSOPTEST/"+sopmasterlist.get(i).getSop_number()+".jpg";
+                String[] graph = sopmasterlist.get(i).getSop_graph_src().split("/");
+                photo1[k] ="MYSOPTEST/"+graph[graph.length-1];
                 Log.d(name1[k],photo[k]);
-//            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
-//            bmplist1[k] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-//            Drawable drawable = new BitmapDrawable(bmplist1[k]);
-//            photo1[k]=drawable;
                 //
                 steporder1[k] = sopdetaillist.get(i).getStep_order();
                 //steptotal1[k]=productsList1.get(i).get(TAG_TATOL);

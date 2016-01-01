@@ -54,12 +54,16 @@ public class SystemMessageGet extends  Activity {
 
         //orm insert測試
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
-        for(int i=0;i<10;i++) {
-            system_messageVo msystem_messageVo = new system_messageVo();
-            msystem_messageVo.setSystem_message("測試" + i);
-            //msystem_messageVo.setMessage_mark("noMark");
-            msystem_messageDao.insert(mDatabaseHelper, msystem_messageVo);
-        }
+//        for(int i=0;i<10;i++) {
+//            //時間
+//            SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+//            Date curDate = new Date(System.currentTimeMillis()) ; // 獲取當前時間
+//            String str = formatter.format(curDate);
+//            system_messageVo msystem_messageVo = new system_messageVo();
+//            msystem_messageVo.setSystem_message("測試" + str+" "+i);
+//            //msystem_messageVo.setMessage_mark("noMark");
+//            msystem_messageDao.insert(mDatabaseHelper, msystem_messageVo);
+//        }
 
         //orm
         List<system_messageVo> systemmessagelist = null ;
@@ -77,7 +81,6 @@ public class SystemMessageGet extends  Activity {
         adapter  = new MyAdapter(SystemMessageGet.this);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(listener);
-
 
 
 

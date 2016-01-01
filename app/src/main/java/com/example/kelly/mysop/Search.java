@@ -354,14 +354,16 @@ public class Search extends Activity {
             for (int i = 0; i < x; i++) {
                 name[i]=productsList.get(i).get(TAG_SOPNAME);
                 master[i]=productsList.get(i).get(TAG_USERNAME);
-                photo[i]=productsList.get(i).get(TAG_PICTURE);
+                String[] graph = productsList.get(i).get(TAG_PICTURE).split("/");
+                photo[i]="http://140.115.80.237/front/picture/"+graph[graph.length-1];
                 sopnumber[i]=productsList.get(i).get(TAG_SOPNUMBER);
                 likeu[i]=productsList.get(i).get(TAG_LIKE);
             }
             for (int i = products.length()-1; i >=x; i--) {
                 name1[k]=productsList.get(i).get(TAG_SOPNAME);
                 master1[k]=productsList.get(i).get(TAG_USERNAME);
-                photo1[k]=productsList.get(i).get(TAG_PICTURE);
+                String[] graph1 = productsList.get(i).get(TAG_PICTURE).split("/");
+                photo1[k]="http://140.115.80.237/front/picture/"+graph1[graph1.length-1];
                 sopnumber1[k]=productsList.get(i).get(TAG_SOPNUMBER);
                 likeu1[k]=productsList.get(i).get(TAG_LIKE);
                 k++;
