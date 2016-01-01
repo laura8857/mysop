@@ -1,17 +1,13 @@
 package com.example.kelly.mysop;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.content.Intent;
-import android.view.View;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
@@ -162,7 +158,7 @@ public class Login extends Activity {
 
                 Bundle bundle = new Bundle();
                 bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
-                Intent it = new Intent(Login.this,Mysop.class);
+                Intent it = new Intent(Login.this,SplashActivity.class);
                 it.putExtras(bundle);//將參數放入intent
                 startActivity(it);
                 finish();
