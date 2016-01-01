@@ -8,7 +8,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -31,7 +30,6 @@ import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import org.json.JSONArray;
 
-import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -156,13 +154,17 @@ public class Mysop extends Activity {
             }
         }
 
-                // Hashmap for ListView
+
+
+        // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
         productsList1 = new ArrayList<HashMap<String, String>>();
         // Loading products in Background Thread
        // new LoadAllProducts().execute();
 
         // TAG_ACCOUNT = bundle.getString("TAG_ACCOUNT");	//輸出Bundle內容
+
+
 
         //時間
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmm");
@@ -234,7 +236,8 @@ public class Mysop extends Activity {
                 //list[i] = caselist.get(i).getCase_number();
                 name[i] = sopmasterlist.get(i).getSop_name();
                 //圖片
-                photo[i] ="file:///mnt/sdcard/MYSOPTEST/"+sopmasterlist.get(i).getSop_number();
+                photo[i] ="MYSOPTEST/"+sopmasterlist.get(i).getSop_number()+".jpg";
+                Log.d(list[i],photo[i]);
 //            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
 //            bmplist[i] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 //            Drawable drawable = new BitmapDrawable(bmplist[i]);
@@ -345,12 +348,13 @@ public class Mysop extends Activity {
             //另一邊
             for (int i = sopmasterlist.size() - 1; i >= x; i--) {
                 List<case_masterVo>casemasterlist=null;
-                casemasterlist = mcase_masterDao.selectRaw2(mDatabaseHelper, "Account =" + "'" + TAG_ACCOUNT + "'", "Sop_number =" + "'" + sopmasterlist.get(i).getSop_number()+"'","Case_mark ="+"'"+"0"+"'");
+                casemasterlist = mcase_masterDao.selectRaw2(mDatabaseHelper, "Account =" + "'" + TAG_ACCOUNT + "'", "Sop_number =" + "'" + sopmasterlist.get(i).getSop_number() + "'", "Case_mark =" + "'" + "0" + "'");
                 list1[k]=casemasterlist.get(0).getCase_number();
                // list1[k] = caselist.get(i).getCase_number();
                 name1[k] = sopmasterlist.get(i).getSop_name();
                 //圖片
-                photo1[k] ="file:///mnt/sdcard/MYSOPTEST/"+sopmasterlist.get(i).getSop_number();
+                photo1[k] ="MYSOPTEST/"+sopmasterlist.get(i).getSop_number()+".jpg";
+                Log.d(name1[k],photo[k]);
 //            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
 //            bmplist1[k] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 //            Drawable drawable = new BitmapDrawable(bmplist1[k]);
@@ -587,31 +591,7 @@ public class Mysop extends Activity {
         return false;
     }
 
-    //圖片網址
-    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        ImageView bmImage;
 
-        public DownloadImageTask(ImageView bmImage) {
-            this.bmImage = bmImage;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
-            }
-            return mIcon11;
-        }
-
-        protected void onPostExecute(Bitmap result) {
-            bmImage.setImageBitmap(result);
-        }
-    }
 
 
     //讀取SDCard圖片，型態為Bitmap
@@ -629,360 +609,7 @@ public class Mysop extends Activity {
             return null;
         }
     }
-    /**
-     * Background Async Task to Load all product by making HTTP Request
-     * */
-//    class LoadAllProducts extends AsyncTask<String, String, String> {
-//
-//        /**
-//         * Before starting background thread Show Progress Dialog
-//         * */
-//        @Override
-//        protected void onPreExecute() {
-//            super.onPreExecute();
-//            pDialog = new ProgressDialog(Mysop.this);
-//            pDialog.setMessage("Loading products. Please wait...");
-//            pDialog.setIndeterminate(false);
-//            pDialog.setCancelable(false);
-//            pDialog.show();
-//        }
-//
-//        /**
-//         * getting All products from url
-//         * */
-//        protected String doInBackground(String... args) {
-//            // Building Parameters
-//            List<NameValuePair> params = new ArrayList<NameValuePair>();
-//            params.add(new BasicNameValuePair("Account", TAG_ACCOUNT) );
-//            // getting JSON string from URL
-//            JSONObject json = Mysop.this.jsonParser.makeHttpRequest(Mysop.url_all_products,"GET", params);
-//            JSONObject json1 = Mysop.this.jsonParser.makeHttpRequest(Mysop.url_all_products1,"GET", params);
-//
-//            // Check your log cat for JSON reponse
-//            Log.d("All Products: ", json.toString());
-//
-//            try {
-//                // Checking for SUCCESS TAG
-//                int success = json.getInt(TAG_SUCCESS);
-//
-//                if (success == 1) {
-//                    // products found
-//                    // Getting Array of Products
-//                    products = json.getJSONArray(TAG_PRODUCTS);
-//
-//                    // looping through All Products
-//                    for (int i = 0; i < products.length(); i++) {
-//                        JSONObject c = products.getJSONObject(i);
-//
-//                        // Storing each json item in variable
-//                        String sopname = c.getString(TAG_SOPNAME);
-//                        String sopnumber = c.getString(TAG_CASENUMBER);
-//                        String startrule = c.getString(TAG_STARTRULE);
-//                        String startvalue = c.getString(TAG_STARTVALUE);
-//                        String picture = c.getString(TAG_PICTURE);
-//                        String order = c.getString(TAG_ORDER);
-//
-//                        // creating new HashMap
-//                        HashMap<String, String> map = new HashMap<String, String>();
-//
-//                        // adding each child node to HashMap key => value
-//                        map.put(TAG_SOPNAME, sopname);
-//                        map.put(TAG_CASENUMBER, sopnumber);
-//                        map.put(TAG_STARTRULE, startrule);
-//                        map.put(TAG_STARTVALUE,startvalue);
-//                        map.put(TAG_PICTURE,picture);
-//                        map.put(TAG_ORDER,order);
-//
-//
-//                        // adding HashList to ArrayList
-//                        productsList.add(map);
-//                    }
-//                } else {
-//
-//
-//                }
-//                // Checking for SUCCESS TAG
-//                int success1 = json1.getInt(TAG_SUCCESS);
-//
-//                if (success1 == 1) {
-//                    // products found
-//                    // Getting Array of Products
-//                    products1 = json1.getJSONArray(TAG_PRODUCTS);
-//
-//                    // looping through All Products
-//                    for (int i = 0; i < products1.length(); i++) {
-//                        JSONObject c = products1.getJSONObject(i);
-//
-//                        // Storing each json item in variable
-//                        String total = c.getString(TAG_TATOL);
-//                        String number = c.getString(TAG_SOPNUMBER);
-//
-//                        // creating new HashMap
-//                        HashMap<String, String> map = new HashMap<String, String>();
-//
-//                        // adding each child node to HashMap key => value
-//                        map.put(TAG_TATOL, total);
-//                        map.put(TAG_SOPNUMBER, number);
-//
-//                        // adding HashList to ArrayList
-//                        productsList1.add(map);
-//                    }
-//                } else {
-//
-//
-//                }
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//
-//            return null;
-//        }
-//
-//        /**
-//         * After completing background task Dismiss the progress dialog
-//         * **/
-//        protected void onPostExecute(String file_url) {
-//            // dismiss the dialog after getting all products
-//            pDialog.dismiss();
-//
-//            int k=0;
-//            if(products.length()%2==0){
-//                x=products.length()/2;
-//            }else{
-//                x=(products.length()+1)/2;
-//            }
-//
-//            list = new String[x];
-//            name = new String[x];
-//            key = new int[x];
-//            timesee = new String[x];
-//            photo = new String[x];
-//            steporder = new String[x];
-//            steptotal = new String[x];
-//            list1 = new String[products.length()/2];
-//            name1 = new String[products.length()/2];
-//            key1 = new int[products.length()/2];
-//            timesee1 = new String[products.length()/2];
-//            photo1 = new String[products.length()/2];
-//            steporder1 = new String[products.length()/2];
-//            steptotal1 = new String[products.length()/2];
-//            // updating UI from Background Thread
-//            for (int i = 0; i < x; i++) {
-//                list[i] = productsList.get(i).get(TAG_CASENUMBER);
-//                name[i] = productsList.get(i).get(TAG_SOPNAME);
-//                photo[i]=productsList.get(i).get(TAG_PICTURE);
-//                steporder[i]=productsList.get(i).get(TAG_ORDER);
-//                steptotal[i]=productsList1.get(i).get(TAG_TATOL);
-//                switch (productsList.get(i).get(TAG_STARTRULE)){
-//                    case "1":
-//                       // cagetory.setText("人工啟動");
-//                        key[i]=4;
-//                        break;
-//                    case "2":
-//                        //cagetory.setText("前一步驟\n完工");
-//                        key[i]=4;
-//                        break;
-//                    case "3":
-//                        //cagetory.setText("Beacon");
-//                        key[i]=1;
-//                        break;
-//                    case "4":
-//                        //cagetory.setText("QR code");
-//                        key[i]=3;
-//                        break;
-//                    case "5":
-//                        //cagetory.setText("NFC");
-//                        key[i]=0;
-//                        break;
-//                    case "6":
-//                        //cagetory.setText("定位");
-//                        key[i]=2;
-//                        break;
-//                    case "7":
-//                        //cagetory.setText("時間到期");
-//                        key[i]=4;
-//                        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
-//                        Date now = null;
-//                        System.out.println("TIME is "+productsList.get(i).get(TAG_STARTVALUE));
-//                        System.out.println("NOW is "+str);
-//
-//                        try {
-//                            now = df.parse(productsList.get(i).get(TAG_STARTVALUE));
-//                        } catch (ParseException e) {
-//                            e.printStackTrace();
-//                        }
-//                        Date date = null;
-//                        try {
-//                            date = df.parse(str);
-//                        } catch (ParseException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                        long l;
-//
-//                        //比較時間大小
-//                        if(now.getTime()>date.getTime()) {
-//                            //未過期
-//                            l = now.getTime() - date.getTime();
-//                            check=0;
-//                        }else{
-//                            //過期
-//                            l = date.getTime() - now.getTime();
-//                            check=1;
-//                        }
-//                        long l2 = l/(30*24*60*60);
-//
-//                        //計算時間差
-//                        long month=l2/1000;
-//                        long day = l / (24 * 60 * 60 * 1000)- month * 30;
-//                        long hour = (l / (60 * 60 * 1000) - month * 30 * 24 - day * 24);
-//                        long min = ((l / (60 * 1000)) - month * 30 * 24 * 60- day * 24 * 60 - hour * 60);
-//                        long s = (l / 1000 - month * 30 * 24 * 60 * 60- day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
-//                        System.out.println(month+"月" + day + "天" + hour + "小时" + min + "分" + s + "秒");
-//
-//                        if(check==0) {
-//
-//                            if (month <= 0) {
-//                                timedifference="還差" + day + "天" ;
-//                            } else if (month <= 0 && day == 0) {
-//                                timedifference="還差" + hour + "小时" + min + "分";
-//                            } else if (month <= 0 && day == 0 && hour == 0) {
-//                                timedifference="還差" + min + "分";
-//                            } else {
-//                                timedifference="還差" + month + "月" + day + "天";
-//                            }
-//                        }else{
-//                            //過期
-//                           // timedifference.setTextColor(Color.RED);
-//                            if (month == 0) {
-//                                timedifference="過期" + day + "天" ;
-//                            } else if (month == 0 && day == 0) {
-//                                timedifference="過期" + hour + "小时" + min + "分";
-//                            } else if (month == 0 && day == 0 && hour == 0) {
-//                                timedifference="過期" + min + "分";
-//                            } else {
-//                                timedifference="過期" + month + "月" + day + "天";
-//                            }
-//                        }
-//                        timesee[i]=timedifference;
-//                        break;
-//                }
-//            }
-//
-//            //另一邊
-//            for (int i = products.length()-1; i >=x; i--) {
-//
-//
-//                list1[k] = productsList.get(i).get(TAG_CASENUMBER);
-//                name1[k] = productsList.get(i).get(TAG_SOPNAME);
-//                photo1[k]=productsList.get(i).get(TAG_PICTURE);
-//                steporder1[k]=productsList.get(i).get(TAG_ORDER);
-//                steptotal1[k]=productsList1.get(i).get(TAG_TATOL);
-//                switch (productsList.get(i).get(TAG_STARTRULE)){
-//                    case "1":
-//                        // cagetory.setText("人工啟動");
-//                        key1[k]=4;
-//                        break;
-//                    case "2":
-//                        //cagetory.setText("前一步驟\n完工");
-//                        key1[k]=4;
-//                        break;
-//                    case "3":
-//                        //cagetory.setText("Beacon");
-//                        key1[k]=1;
-//                        break;
-//                    case "4":
-//                        //cagetory.setText("QR code");
-//                        key1[k]=3;
-//                        break;
-//                    case "5":
-//                        //cagetory.setText("NFC");
-//                        key1[k]=0;
-//                        break;
-//                    case "6":
-//                        //cagetory.setText("定位");
-//                        key1[k]=2;
-//                        break;
-//                    case "7":
-//                        //cagetory.setText("時間到期");
-//                        key1[k]=4;
-//                        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
-//                        Date now = null;
-//
-//                        try {
-//                            now = df.parse(productsList.get(i).get(TAG_STARTVALUE));
-//                        } catch (ParseException e) {
-//                            e.printStackTrace();
-//                        }
-//                        Date date = null;
-//                        try {
-//                            date = df.parse(str);
-//                        } catch (ParseException e) {
-//                            e.printStackTrace();
-//                        }
-//
-//                        long l;
-//
-//                        //比較時間大小
-//                        if(now.getTime()>date.getTime()) {
-//                            //未過期
-//                            l = now.getTime() - date.getTime();
-//                            check=0;
-//                        }else{
-//                            //過期
-//                            l = date.getTime() - now.getTime();
-//                            check=1;
-//                        }
-//                        long l2 = l/(30*24*60*60);
-//
-//                        //計算時間差
-//                        long month=l2/1000;
-//                        long day = l / (24 * 60 * 60 * 1000)- month * 30;
-//                        long hour = (l / (60 * 60 * 1000) - month * 30 * 24 - day * 24);
-//                        long min = ((l / (60 * 1000)) - month * 30 * 24 * 60- day * 24 * 60 - hour * 60);
-//                        long s = (l / 1000 - month * 30 * 24 * 60 * 60- day * 24 * 60 * 60 - hour * 60 * 60 - min * 60);
-//                        System.out.println(month+"月" + day + "天" + hour + "小时" + min + "分" + s + "秒");
-//                        if(check==0) {
-//
-//                            if (month == 0) {
-//                                timedifference="還差" + day + "天" ;
-//                            } else if (month == 0 && day == 0) {
-//                                timedifference="還差" + hour + "小时" + min + "分";
-//                            } else if (month == 0 && day == 0 && hour == 0) {
-//                                timedifference="還差" + min + "分";
-//                            } else {
-//                                timedifference="還差" + month + "月" + day + "天";
-//                            }
-//                        }else{
-//                            //過期
-//                            // timedifference.setTextColor(Color.RED);
-//                            if (month == 0) {
-//                                timedifference="過期" + day + "天" ;
-//                            } else if (month == 0 && day == 0) {
-//                                timedifference="過期" + hour + "小时" + min + "分";
-//                            } else if (month == 0 && day == 0 && hour == 0) {
-//                                timedifference="過期" + min + "分";
-//                            } else {
-//                                timedifference="過期" + month + "月" + day + "天";
-//                            }
-//                        }
-//                        timesee1[k]=timedifference;
-//                        break;
-//                }
-//                k++;
-//            }
-//
-//
-//            adapter = new MyAdapter(Mysop.this);
-//            adapter1= new MyAdapter1(Mysop.this);
-//            listInput.setAdapter(adapter);
-//            listInput1.setAdapter(adapter1);
-//
-//            listInput.setOnItemClickListener(listener);
-//            listInput1.setOnItemClickListener(listener1);
-//        }
-//
-//    }
+
 
     public class MyAdapter extends BaseAdapter {
         private LayoutInflater myInflater;
@@ -1102,4 +729,7 @@ public class Mysop extends Activity {
         }
 
     }
-}
+
+
+
+    }
