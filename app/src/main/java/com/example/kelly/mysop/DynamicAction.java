@@ -6,9 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -96,14 +97,14 @@ public class DynamicAction extends Activity {
             R.drawable.gps,R.drawable.qrcode,R.drawable.white };
     int[] key;
     private String[] timesee;
-    private Drawable[] photo;
+    private String[] photo;
     private Bitmap[] bmplist;
 
     private String[] list1;
     private String[] name1;
     int[] key1;
     private String[] timesee1;
-    private Drawable[] photo1;
+    private String[] photo1;
     private Bitmap[] bmplist1;
     private String[] steporder1;
     private String[] steptotal1;
@@ -184,7 +185,7 @@ public class DynamicAction extends Activity {
             name = new String[x];
             key = new int[x];
             timesee = new String[x];
-            photo = new Drawable[x];
+            photo = new String[x];
             bmplist = new Bitmap[x];
             steporder = new String[x];
             steptotal = new String[x];
@@ -192,7 +193,7 @@ public class DynamicAction extends Activity {
             name1 = new String[sopmasterlist.size() / 2];
             key1 = new int[sopmasterlist.size() / 2];
             timesee1 = new String[sopmasterlist.size() / 2];
-            photo1 = new Drawable[sopmasterlist.size() / 2];
+            photo1 = new String[sopmasterlist.size() / 2];
             bmplist1 = new Bitmap[sopmasterlist.size() / 2];
             steporder1 = new String[sopmasterlist.size() / 2];
             steptotal1 = new String[sopmasterlist.size() / 2];
@@ -205,6 +206,8 @@ public class DynamicAction extends Activity {
                 //list[i] = caselist.get(i).getCase_number();
                 name[i] = sopmasterlist.get(i).getSop_name();
                 //圖片
+                String[] graph = sopmasterlist.get(i).getSop_graph_src().split("/");
+                photo[i] ="MYSOPTEST/"+graph[graph.length-1];
 //            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
 //            bmplist[i] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 //            Drawable drawable = new BitmapDrawable(bmplist[i]);
@@ -320,6 +323,8 @@ public class DynamicAction extends Activity {
                 // list1[k] = caselist.get(i).getCase_number();
                 name1[k] = sopmasterlist.get(i).getSop_name();
                 //圖片
+                String[] graph = sopmasterlist.get(i).getSop_graph_src().split("/");
+                photo1[k] ="MYSOPTEST/"+graph[graph.length-1];
 //            byte bytes[] = Base64.decode(sopmasterlist.get(i).getSop_graph_src(), Base64.DEFAULT);
 //            bmplist1[k] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 //            Drawable drawable = new BitmapDrawable(bmplist1[k]);
@@ -596,6 +601,24 @@ public class DynamicAction extends Activity {
             bmImage.setImageBitmap(result);
         }
     }
+
+    //讀取SDCard圖片，型態為Bitmap
+    private static Bitmap getBitmapFromSDCard(String file)
+    {
+        try
+        {
+            String sd = Environment.getExternalStorageDirectory().toString();
+            Bitmap bitmap = BitmapFactory.decodeFile(sd + "/" + file);
+            return bitmap;
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+
     public class MyAdapter extends BaseAdapter {
         private LayoutInflater myInflater;
 
@@ -632,15 +655,23 @@ public class DynamicAction extends Activity {
             TextView number = (TextView) convertView
                     .findViewById(R.id.txtengname);
             TextView time = (TextView)convertView.findViewById(R.id.timetext);
+            ImageView MysopLogo = (ImageView) convertView.findViewById(R.id.mysoplogo);
+            ProgressBar progressBar = (ProgressBar)convertView.findViewById(R.id.progresssop);
 
+            // new DownloadImageTask(MysopLogo)
+            //         .execute(photo[position]);
+            //MysopLogo.setImageDrawable(photo[position]);
             if(logos[key[position]]!=R.drawable.white){
                 Logo.setVisibility(0);
                 time.setVisibility(8);
             }
             Logo.setImageResource(logos[key[position]]);
-            Name.setText(name[position]);
+            MysopLogo.setImageBitmap(getBitmapFromSDCard(photo[position]));
+            Name.setText(" "+name[position]);
             number.setText(list[position]);
             time.setText(timesee[position]);
+            progressBar.setMax(Integer.valueOf(steptotal[position]));
+            progressBar.setProgress(Integer.valueOf(steporder[position]) - 1);
 
             return convertView;
         }
@@ -683,18 +714,24 @@ public class DynamicAction extends Activity {
             TextView number1 = (TextView) convertView
                     .findViewById(R.id.txtengname);
             TextView time1 = (TextView)convertView.findViewById(R.id.timetext);
-//            LinearLayout soplayout1 = (LinearLayout)convertView.findViewById(R.id.soplinearlayout);
+            ImageView MysopLogo1 = (ImageView) convertView.findViewById(R.id.mysoplogo);
+            ProgressBar progressBar1 = (ProgressBar)convertView.findViewById(R.id.progresssop);
 
+
+//            new DownloadImageTask(MysopLogo1)
+//                    .execute(photo1[position]);
+            //   MysopLogo1.setImageDrawable(photo1[position]);
             if(logos[key1[position]]!=R.drawable.white){
                 Logo1.setVisibility(0);
                 time1.setVisibility(8);
             }
             Logo1.setImageResource(logos[key1[position]]);
-            Name1.setText(name1[position]);
+            MysopLogo1.setImageBitmap(getBitmapFromSDCard(photo1[position]));
+            Name1.setText(" " + name1[position]);
             number1.setText(list1[position]);
             time1.setText(timesee1[position]);
-
-
+            progressBar1.setMax(Integer.valueOf(steptotal1[position]));
+            progressBar1.setProgress(Integer.valueOf(steporder1[position]) - 1);
 
             return convertView;
         }
