@@ -126,8 +126,9 @@ public class SplashActivity extends Activity {
 
             File file = new File(URI.create("file:///mnt/sdcard/MYSOPTEST/start" + sop_detailDL.get(i).getStep_number() + ".mp3").getPath());
             if (file.exists()) {
-                break;
+                continue;
             }
+            DetectDownload=DetectDownload+1;
             down[i]=new DownloadManager.Request (Uri.parse("http://140.115.80.237/front/download/start"+sop_detailDL.get(i).getStep_number()+".mp3"));
             //允許網路類型
             down[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
@@ -141,7 +142,7 @@ public class SplashActivity extends Activity {
             down[i].setDestinationInExternalPublicDir("MYSOPTEST", "start"+sop_detailDL.get(i).getStep_number()+".mp3");
             //將請求加入
             manager.enqueue(down[i]);
-            DetectDownload++;
+
         }
 
         DatabaseHelper DatabaseHelperDL1 = DatabaseHelper.getHelper(this);
@@ -154,8 +155,9 @@ public class SplashActivity extends Activity {
 
             File file = new File(URI.create("file:///mnt/sdcard/MYSOPTEST/step" + sop_detailDL1.get(i).getStep_number() + ".mp3").getPath());
             if (file.exists()) {
-                break;
+                continue;
             }
+            DetectDownload=DetectDownload+1;
             down1[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/front/download/step" + sop_detailDL1.get(i).getStep_number() + ".mp3"));
             //允許網路類型
             down1[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
@@ -169,7 +171,7 @@ public class SplashActivity extends Activity {
             down1[i].setDestinationInExternalPublicDir("MYSOPTEST", "step" + sop_detailDL1.get(i).getStep_number() + ".mp3");
             //將請求加入
             manager.enqueue(down1[i]);
-            DetectDownload++;
+
         }
 
         DatabaseHelper DatabaseHelperDL2 = DatabaseHelper.getHelper(this);
@@ -184,8 +186,9 @@ public class SplashActivity extends Activity {
 
             File file = new File(URI.create("file:///mnt/sdcard/MYSOPTEST/" + graph[graph.length-1] ).getPath());
             if (file.exists()) {
-                break;
+                continue;
             }
+            DetectDownload=DetectDownload+1;
             down2[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/front/picture/" + graph[graph.length-1]));
             //允許網路類型
             down2[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
@@ -199,7 +202,7 @@ public class SplashActivity extends Activity {
             down2[i].setDestinationInExternalPublicDir("MYSOPTEST", graph[graph.length-1]);
             //將請求加入
             manager.enqueue(down2[i]);
-            DetectDownload++;
+
         }
 
 
@@ -429,6 +432,8 @@ public class SplashActivity extends Activity {
          * */
         protected String doInBackground(String... args) {
             // Building Parameters
+            DetectDownload=0;
+            DetectDownloadReceive=0;
             List<NameValuePair> params = new ArrayList<NameValuePair>();
 
             params.add(new BasicNameValuePair("Account", TAG_ACCOUNT) );
