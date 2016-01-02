@@ -556,6 +556,7 @@ public class DynamicAction extends Activity {
                 intent4.putExtra("TAG_RULE",TAG_RULE);
                 intent4.putExtra("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(intent4);
+                finish();
                 break;
             case R.id.title_section6:
                 TAG_RULE = "6";
