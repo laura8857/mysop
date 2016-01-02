@@ -491,7 +491,7 @@ public class Content extends Activity {
     }
 
     //加入清單
-    class SOPContent2 extends AsyncTask<String, String, String> {
+    class SOPContent2 extends AsyncTask<Integer, Integer, Integer> {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(Content.this);
@@ -501,7 +501,7 @@ public class Content extends Activity {
             pDialog.show();
         }
 
-        protected String doInBackground(String... args) {
+        protected Integer doInBackground(Integer... args) {
 
 
             //for get
@@ -516,19 +516,30 @@ public class Content extends Activity {
             try {
                 //加入清單
                 int e3 = json2.getInt(TAG_SUCCESS);
-                if(e3 == 1) {;
-                    Intent it = new Intent(Content.this,SplashActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
-                    it.putExtras(bundle);
-                    startActivity(it);
+                if(e3 == 1) {
+                    return 1;
+                }else{
+                    return 2;
                 }
 
             } catch (JSONException var9) {
                 var9.printStackTrace();
             }
-            pDialog.dismiss();
             return null;
+        }
+        protected void onPostExecute(Integer ans) {
+            pDialog.dismiss();
+            if(ans==1){
+                Intent it = new Intent(Content.this,SplashActivity.class);
+                Bundle bundle = new Bundle();
+                it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+                it.putExtras(bundle);
+                startActivity(it);
+            }else{
+                Toast.makeText(Content.this,"加入清單失敗!",Toast.LENGTH_LONG).show();
+            }
+
         }
 
     }

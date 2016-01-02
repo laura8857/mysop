@@ -122,6 +122,7 @@ public class Emailverify extends Activity {
                 Toast.makeText(Emailverify.this,"註冊成功!",Toast.LENGTH_LONG).show();
                 Intent i = new Intent(Emailverify.this.getApplicationContext(), Home.class);
                 Bundle bundle = new Bundle();
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 bundle.putString("TAG_Key", TAG_Key);
                 i.putExtras(bundle);
                 Emailverify.this.startActivity(i);
