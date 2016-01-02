@@ -43,7 +43,7 @@ public class Content extends Activity {
     private TextView title;
     private TextView master;
     private TextView download;
-    private TextView star;
+    private TextView collectionnumber;
     private TextView cagetory;
     private TextView subtitle;
     private TextView Ctext;
@@ -57,6 +57,8 @@ public class Content extends Activity {
     private static String url_create_product1 = "http://140.115.80.237/front/mysop_content1.jsp";
     //寫入評論
     private static String url_create_product2 = "http://140.115.80.237/front/mysop_content3.jsp";
+    //collection數
+    private static String url_create_product3 = "http://140.115.80.237/front/mysop_content4.jsp";
     //數like數
     private static String url_create_product4 = "http://140.115.80.237/front/mysop_content5.jsp";
     //加入清單
@@ -102,6 +104,7 @@ public class Content extends Activity {
     private static String GRAPH1="";
     private static String GRAPH2="";
     private static String GRAPH3="";
+    private static String collection="";
 
     private int likecount=0;
 
@@ -130,7 +133,7 @@ public class Content extends Activity {
         title=(TextView)findViewById(R.id.content_title);
         master=(TextView)findViewById(R.id.content_master);
         download=(TextView)findViewById(R.id.download);
-        star=(TextView)findViewById(R.id.star);
+        collectionnumber=(TextView)findViewById(R.id.collection);
         cagetory=(TextView)findViewById(R.id.category);
         subtitle=(TextView)findViewById(R.id.content_subtitle);
          Ctext=(TextView)findViewById(R.id.content_text);
@@ -259,7 +262,7 @@ public class Content extends Activity {
             JSONObject json1 = Content.this.jsonParser.makeHttpRequest(Content.url_create_product1, "GET", params1);
             JSONObject json3 = Content.this.jsonParser.makeHttpRequest(Content.url_create_product4, "GET", params3);
             JSONObject json2 = Content.this.jsonParser.makeHttpRequest(Content.url_create_product6, "GET", params2);
-
+            JSONObject json4 = Content.this.jsonParser.makeHttpRequest(Content.url_create_product3, "GET", params2);
 
             try {
 
@@ -333,7 +336,12 @@ public class Content extends Activity {
                 }else{
                 }
 
+                //collection
+                int e6 = json4.getInt(TAG_SUCCESS);
 
+                if(e6 == 1) {
+                    collection=json4.getString("collection");
+                }
             } catch (JSONException var9) {
                 var9.printStackTrace();
             }
@@ -342,7 +350,7 @@ public class Content extends Activity {
         }
 
 
-        /**
+        /*
          * After completing background task Dismiss the progress dialog
          * **/
         protected void onPostExecute(String file_url) {
@@ -400,8 +408,9 @@ public class Content extends Activity {
             }
 
 
-            //放入收藏數
+            //放入 like collection數
              download.setText(String.valueOf(likecount));
+            collectionnumber.setText(collection);
 
             //放入啟動規則
             switch (STARTRULE){
