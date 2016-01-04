@@ -1,16 +1,30 @@
 package com.example.kelly.mysop;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
+
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class Forget extends Activity {
 
     String TAG_ACCOUNT = "";
+    private ProgressDialog pDialog;
+    JSONParser jsonParser = new JSONParser();
+    private static final String TAG_SUCCESS = "success";
+    private static String url = "http://140.115.80.237/mysop/mysop_forgetpwd1.jsp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +58,59 @@ public class Forget extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
     public void confirm (View v){
         Intent it = new Intent(this,Login.class);
         startActivity(it);
+        finish();
     }
+
+    public void resend_password (View v){
+        new resendpassword().execute();
+    }
+
+    //重寄密碼
+    class resendpassword extends AsyncTask<Integer, Integer, Integer> {
+
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(Forget.this);
+            pDialog.setMessage("Sending...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(true);
+            pDialog.show();
+        }
+
+        protected Integer doInBackground(Integer... args1) {
+
+            ArrayList params = new ArrayList();
+            params.add(new BasicNameValuePair("Account", TAG_ACCOUNT));
+            JSONObject json2 = Forget.this.jsonParser.makeHttpRequest(Forget.url, "POST", params);
+            Log.d("Create Response", json2.toString());
+
+            try {
+                int e = json2.getInt(TAG_SUCCESS);
+                if(e == 1) {
+                    return 1;
+                }else{
+                    return 2;
+                }
+            } catch (JSONException var9) {
+                var9.printStackTrace();
+            }
+
+            return null;
+        }
+
+        protected void onPostExecute(Integer ans1) {
+            pDialog.dismiss();
+            if(ans1==1){
+                Toast.makeText(Forget.this, "重寄成功!", Toast.LENGTH_LONG).show();
+            }else{
+                Toast.makeText(Forget.this,"重寄失敗!",Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
+
 }

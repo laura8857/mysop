@@ -2,207 +2,207 @@
 <items version="2" >
 
     <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-maps/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-806e6afac8b3152427c16a315ad9e8f71f8a931c.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-identity/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="d405025c600055237c171a0bbabaa49d69696573">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-5201e008937d1015d2313e92c171dde624d5ff9a.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/libs/internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-38fe6a4dd54783222eeed916ea2395bc1b33668c.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-c571e915e06a171f5a1167c1316116b78e3b79da.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-nearby/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-465c86aea7af9f0e7c024365c50fe46352646426.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="f02127a85abd52a2cd526d4c2409f21969f80ee8">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-fb84b41b5c793f8fe8762f416535d9665b4f4b52.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-06458ed4c57e0e8783bfb42006b018afd844aa5c.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appinvite/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="63ec6e9f4fe5482a7447d0f3091b8e543a02554c">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-bcd029169e71f420f8b8d486c814f919880e725b.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-5c9c80efc09be7a6e480704775c62963141fc883.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-location/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-deec4f2848e30658abddd8d484328fec620bbd9b.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/org.altbeacon/android-beacon-library/2.1-beta-4/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="89d62ab9137a04141a73b489ebdd79939f0b346a">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-04fe113d125886e19969309da9d8990d0a9f14d4.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-ads/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-08bb8d22d88777f060a1b55590a59e9aae99cd87.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-games/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="02bac2dc792d78241077861566f2c82da955e7fa">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-9f7ab5410d60c18e5f94de5c74582540c1069df0.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-cast/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-f1e186e439ee383ddc3067c72ef20a9b45ffed42.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appstate/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="68c140702c7242d914655bcb3164d9e8c45b84cb">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-7ffb1deee183d04df8d89d3f18116e393afe0292.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-safetynet/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="1a6411087ab88ce5542f593e63a2752b6b0d6f1a">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-d5001a4319a6427f860db8a953efe6e6b0ae0f9c.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a78183f30e769a98ab4820794f597763088d3065">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-cf6ac7b079ca8f57f1066013bc52890b9d537a99.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wallet/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-0b66b88e8f9cfac85d070687c7a3f0531f5ebb0f.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-drive/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="f44d03c138cb6488fdbaa65e3a7e5878861a56d8">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-9f3a15c0bdcf5db3782c276dee52140404282d93.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-gcm/7.5.0/jars/classes.jar"
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\7.5.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="8d736fefa22d896e84a268354b3ed48a42663150">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-b33923383ae8946a8e373e9212b0cfd58bbfd242.jar" />
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-e2740387994f02c0a3d7345362e20e2dbe6d5dc5.jar" />
     </item>
     <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/22.0.0/jars/libs/internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="ba3df4eb0a630d7de294f0e48d3f9267d279b784">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/internal_impl-22.0.0-03e17723aa698ceb9846604abdf4e7094d30a97f.jar" />
-    </item>
-    <item
-        jar="/Users/laura/.gradle/caches/modules-2/files-2.1/com.j256.ormlite/ormlite-core/4.48/e579bd2905d0399af5029aaaf9817d5fa0ca88a5/ormlite-core-4.48.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="e579bd2905d0399af5029aaaf9817d5fa0ca88a5">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/ormlite-core-4.48-109b69d9ab512a08023b02477cbf4ddcd9967f91.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-fitness/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-e005b9708e598455f7b93bc95a306d949ec93481.jar" />
-    </item>
-    <item
-        jar="/Users/laura/.gradle/caches/modules-2/files-2.1/com.j256.ormlite/ormlite-android/4.48/afa06f539a4026c10b247386312aa67404b80a16/ormlite-android-4.48.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="afa06f539a4026c10b247386312aa67404b80a16">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/ormlite-android-4.48-647580584a5e482c6b0891378fd35cf008d62aec.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-panorama/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-b989f05f243120b3e107b124ce54161ffb92cbc1.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-wearable/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-66734359672202145100716318cbc9c390eb5647.jar" />
-    </item>
-    <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-plus/7.5.0/jars/classes.jar"
-        jumboMode="false"
-        revision="22.0.1"
-        sha1="272bc5d7063f24bc3a33ea1d318cde8f31f5ec4c">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-aefe6df1cf2e87f35db17f8136b31fa58d6c651e.jar" />
-    </item>
-    <item
-        jar="/Users/laura/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
+        jar="C:\Users\kelly\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-ee06adc77dc5090b91b50a2121972b760bb5c000.jar" />
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\support-annotations-22.2.0-57c3fbe1e7edb7f395ce970dfb1e0dee0975566e.jar" />
     </item>
     <item
-        jar="/Users/laura/MySOP3/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/7.5.0/jars/classes.jar"
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6836d188602ec5382d1967c58b00960eb8ff8773">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-08c71ca031a819f239feb89ea2c5852c1d316b43.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\7.5.0\jars\classes.jar"
         jumboMode="false"
         revision="22.0.1"
         sha1="e7b35244f50663b3f8d150714bca9ecd7a290da1">
-        <dex dex="/Users/laura/MySOP3/app/build/intermediates/pre-dexed/debug/classes-6e3aab02ec7d448e329c02b78136806c01e8a191.jar" />
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-501febdd860ee7718e1045bf3072021473ab1fd6.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.0.0\jars\libs\internal_impl-22.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ba3df4eb0a630d7de294f0e48d3f9267d279b784">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\internal_impl-22.0.0-f8622fd57ae38af3b5a52437003bcc600cd7bc55.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="63ec6e9f4fe5482a7447d0f3091b8e543a02554c">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-f379806a5fd1d3bbcb2c62deafc274757761da28.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a1372c17fccacca753d3951d3ad820571cbce075">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-03fa8fd4699aa0255deaf49a4f6c3c08ee63ce74.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-344d0d21f94037a08c1489023b3b72060825abb8.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a172852a35ff919e85b9b7f14bbc15c5bee25520">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-6e06dac8b9ec0896ca8c4690602a3fe29c019271.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-776f524fa436bb0ed08f9be54ec7ac7f2564a500.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\.gradle\caches\modules-2\files-2.1\com.j256.ormlite\ormlite-android\4.48\afa06f539a4026c10b247386312aa67404b80a16\ormlite-android-4.48.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="afa06f539a4026c10b247386312aa67404b80a16">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\ormlite-android-4.48-918fe57051df3e5b8d4c078f54c95db7b2ecce03.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\.gradle\caches\modules-2\files-2.1\com.j256.ormlite\ormlite-core\4.48\e579bd2905d0399af5029aaaf9817d5fa0ca88a5\ormlite-core-4.48.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e579bd2905d0399af5029aaaf9817d5fa0ca88a5">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\ormlite-core-4.48-04a840a204adc4cde917f0af5925555eff5884c5.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f02127a85abd52a2cd526d4c2409f21969f80ee8">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-6c90c9cb08a916531eac1e3ffc0b4e96d2e35ab9.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="6440e5e5cfe368f9bff3c537fb8988048069cb33">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-27ced3a0fe6028dd9bb607cbb8bab8bf833fee31.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a78183f30e769a98ab4820794f597763088d3065">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-f640766e02565dfb743ab5a4b8dbd874fa622e5e.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="29ebc7e04d877062317c8cc0e68b20f0c1fcda66">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-f0f01b67d2e082504c50ff82d9335018b289cdc8.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8e3a972f28b8bae817e382257ba177a31bcadbbc">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-371419ba718822f8ad16e593bb823cf2b7d4698c.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="272bc5d7063f24bc3a33ea1d318cde8f31f5ec4c">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-95e8e7b046c2f24aceb1bad2fb8e8358467b2e41.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f44d03c138cb6488fdbaa65e3a7e5878861a56d8">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-e6d07f5e54e16d1ca6a6c19a5a79da2912ec8744.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="69dd177337ead693c408c8dddc9546bb6f1244fa">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-716a7bfef94568e84c06205cb454b03ba29608d4.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="ba207be21987c11b37d9f8faa08ed6e722569f30">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-2d34747f6ade5bf79f4a4ebd8aea0876147abbda.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-appstate\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="68c140702c7242d914655bcb3164d9e8c45b84cb">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-cb469b064e376186b75777994fd3c6abbc434bf0.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\org.altbeacon\android-beacon-library\2.1-beta-4\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="89d62ab9137a04141a73b489ebdd79939f0b346a">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-ad772ab8b09ef2cc183bdc9f4657c9359e4a2dc7.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\internal_impl-22.2.0-5454aac8c0546dd732bd329d0526ecebb75fdf2c.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1e98ef3f124bb7a11f8575f9ff5dfea330b61b6f">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-b5661ac6f1703220713f5ad6def08b521a888365.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="d405025c600055237c171a0bbabaa49d69696573">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-945d33d7c37538ddac2fa429e2287707398cf775.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="06a42becc33232ec0ee125161da68c1829c9f8fd">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-e1c4ac5237d7c5d295c5161870de868c29451f00.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="02bac2dc792d78241077861566f2c82da955e7fa">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-ce36240d7d6337e565e4d6b9df9473836eaf0c3c.jar" />
+    </item>
+    <item
+        jar="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\7.5.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="1a6411087ab88ce5542f593e63a2752b6b0d6f1a">
+        <dex dex="C:\Users\kelly\AndroidStudioProjects\MySOP3\app\build\intermediates\pre-dexed\release\classes-6f05fee2af6ce2125f204f56a5f3c47348cfab34.jar" />
     </item>
 
 </items>

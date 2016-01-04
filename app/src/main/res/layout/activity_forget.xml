@@ -68,7 +68,8 @@
         android:layout_alignTop="@+id/button3"
         android:layout_alignStart="@+id/textView4"
         android:layout_alignBottom="@+id/button3"
-        android:layout_alignEnd="@+id/textView2" />
+        android:layout_alignEnd="@+id/textView2"
+        android:onClick="resend_password" />
 
     <Button
         android:layout_width="150dp"

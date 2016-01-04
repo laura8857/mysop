@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
@@ -94,6 +95,8 @@ public class Forgetpwd extends Activity {
 
                 }else if(e == 6){
                     returnvalue = 2;
+                }else{
+                    returnvalue = 3;
                 }
             } catch (JSONException var9) {
                 var9.printStackTrace();
@@ -105,7 +108,7 @@ public class Forgetpwd extends Activity {
         protected void onPostExecute(Integer returnvalue) {
             Forgetpwd.this.pDialog.dismiss();
             if(returnvalue == 1){
-
+                Toast.makeText(Forgetpwd.this, "寄送成功!", Toast.LENGTH_LONG).show();
                 TAG_ACCOUNT = Forgetpwd.this.et1.getText().toString();
                 Intent intent = new Intent();
                 intent.setClass(Forgetpwd.this, Forget.class);
@@ -117,10 +120,13 @@ public class Forgetpwd extends Activity {
                 startActivity(intent);
                 finish();
             }else if(returnvalue == 2){
-                AlertDialog.Builder dialog = new AlertDialog.Builder(Forgetpwd.this);
+                Toast.makeText(Forgetpwd.this, "查無此帳號!", Toast.LENGTH_LONG).show();
+/*                AlertDialog.Builder dialog = new AlertDialog.Builder(Forgetpwd.this);
                 dialog.setTitle("");
                 dialog.setMessage("查無此帳號!");
-                dialog.show();
+                dialog.show();*/
+            }else{
+                Toast.makeText(Forgetpwd.this, "系統錯誤!", Toast.LENGTH_LONG).show();
             }
 
         }
