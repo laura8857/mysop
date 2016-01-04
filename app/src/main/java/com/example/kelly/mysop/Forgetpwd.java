@@ -25,7 +25,7 @@ public class Forgetpwd extends Activity {
 
     private ProgressDialog pDialog;
 
-    private static String url_forgetpwd = "http://140.115.80.237/front/mysop_forgetpwd.jsp";
+    private static String url_forgetpwd = "http://140.115.80.237/mysop/mysop_forgetpwd.jsp";
     private EditText et1;
     String strHint1;
 
