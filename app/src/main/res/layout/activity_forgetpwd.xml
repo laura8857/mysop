@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="請輸入您的帳號，我們將會鎖定您的帳號並寄送您的新密碼至您的信箱。"
+        android:text="請輸入您的帳號，我們將會鎖定您的帳號並寄送您的密碼至您的信箱。"
         android:id="@+id/forgetpwd_textView1"
         android:layout_above="@+id/forgetpwd_editText1"
         android:layout_marginBottom="40dp"

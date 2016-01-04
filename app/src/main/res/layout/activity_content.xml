@@ -44,7 +44,7 @@
                     <TextView
                         android:layout_width="204dp"
                         android:layout_height="wrap_content"
-                        android:text="星巴克收藏好市多"
+                        android:text="SOPNAME"
                         android:textSize = "23dp"
                         android:id="@+id/content_title"
                         android:layout_marginLeft="15dp"

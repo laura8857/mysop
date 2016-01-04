@@ -38,7 +38,7 @@
         android:layout_width="290dp"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="我們已經鎖定了您的帳號並寄送您的新密碼至您的信箱，之後您仍可以變更您的密碼。如果您沒有收到我們的信件，請按「重寄」，我們會寄一封新的給您；或是按確認以回到登入頁。"
+        android:text="我們已經鎖定了您的帳號並寄送您的密碼至您的信箱，之後您仍可以變更您的密碼。如果您沒有收到我們的信件，請按「重寄」，我們會寄一封新的給您；或是按確認以回到登入頁。"
         android:id="@+id/textView2"
         android:textSize="18dp"
         android:textIsSelectable="true"
