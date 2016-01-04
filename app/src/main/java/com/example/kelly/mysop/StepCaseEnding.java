@@ -276,6 +276,7 @@ public class StepCaseEnding extends Activity {
             bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
             i.putExtras(bundle);	//將參數放入intent
             startActivity(i);
+            finish();
         }else {
             Log.d("network","Qui");
             //上傳
@@ -296,6 +297,7 @@ public class StepCaseEnding extends Activity {
             // List<case_masterVo> caselist = null ;
             // caselist = mcase_masterDao.selectRaw(mDatabaseHelper2,"Account="+"'"+"test@gmail.com"+"'");
             // Log.d("Here clear",caselist.get(0).getCase_number());
+            finish();
         }
 
 

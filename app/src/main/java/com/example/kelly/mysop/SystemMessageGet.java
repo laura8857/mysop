@@ -1,9 +1,12 @@
 package com.example.kelly.mysop;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -215,6 +218,32 @@ public class SystemMessageGet extends  Activity {
             return convertView;
         }
 
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {//捕捉返回鍵
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            ConfirmExit();//按返回鍵，則執行退出確認
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    public void ConfirmExit(){//退出確認
+        AlertDialog.Builder ad=new AlertDialog.Builder(SystemMessageGet.this);
+        ad.setTitle("離開");
+        ad.setMessage("確定要離開?");
+        ad.setPositiveButton("是", new DialogInterface.OnClickListener() {//退出按鈕
+            public void onClick(DialogInterface dialog, int i) {
+                // TODO Auto-generated method stub
+                SystemMessageGet.this.finish();//關閉activity
+
+            }
+        });
+        ad.setNegativeButton("否", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int i) {
+                //不退出不用執行任何操作
+            }
+        });
+        ad.show();//示對話框
     }
 
     }

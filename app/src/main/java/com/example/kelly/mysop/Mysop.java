@@ -1,8 +1,10 @@
 package com.example.kelly.mysop;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -581,8 +583,24 @@ public class Mysop extends Activity {
 
                 break;
             case R.id.title_activity_logout:
-                startActivity(new Intent().setClass(Mysop.this, Logout.class));
 
+                AlertDialog.Builder ad=new AlertDialog.Builder(Mysop.this);
+                ad.setTitle("登出");
+                ad.setMessage("確定要登出?");
+                ad.setPositiveButton("是", new DialogInterface.OnClickListener() {//退出按鈕
+                    public void onClick(DialogInterface dialog, int i) {
+                        // TODO Auto-generated method stub
+                        Mysop.this.finish();//關閉activity
+                        startActivity(new Intent().setClass(Mysop.this, Logout.class));
+
+                    }
+                });
+                ad.setNegativeButton("否", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int i) {
+                        //不退出不用執行任何操作
+                    }
+                });
+                ad.show();//示對話框
                 return super.onOptionsItemSelected(item);
         }
         //少下面的return

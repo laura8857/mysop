@@ -18,6 +18,7 @@ public class Logout extends Activity {
         member_accountVo mmember_accountVo = new member_accountVo();
         mmember_accountDao.delete(mDatabaseHelper,mmember_accountVo);
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logout);
         Intent i = new Intent(this, Home.class);
@@ -26,8 +27,8 @@ public class Logout extends Activity {
         bundle.putString("TAG_Key", "");
         i.putExtras(bundle);	//將參數放入intent
         startActivity(i);
+        finish();
 
 
     }
-
 }
