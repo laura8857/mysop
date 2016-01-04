@@ -100,6 +100,7 @@ public class Search extends Activity {
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
          TAG_ACCOUNT = bundle.getString("TAG_ACCOUNT");	//輸出Bundle內容
+
         TAG_Key = bundle.getString("TAG_Key");
 
         //檢查是否有網路
@@ -246,6 +247,7 @@ public class Search extends Activity {
             Intent intent = new Intent(this, Search.class); //前進至xxxx頁面
             intent.putExtra("TAG_Key", TAG_Key); //傳值
             startActivity(intent); //啟動出發
+            finish();
 
         }
     }
