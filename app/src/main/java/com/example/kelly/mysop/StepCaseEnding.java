@@ -143,7 +143,7 @@ public class StepCaseEnding extends Activity {
                 //取出需要的sop_number 再找出step_number 還需要order
                 mstep_recordDao = new step_recordDao();
                 List<step_recordVo> steprecordlist = null;
-                steprecordlist = mstep_recordDao.selectRaw2(mDatabaseHelper,"Step_number",sopdetaillist.get(0).getStep_order(),"Record_order",caserecordlist.get(i).getRecord_order());
+                steprecordlist = mstep_recordDao.selectRaw2(mDatabaseHelper,"Step_number",sopdetaillist.get(0).getStep_number(),"Record_order",caserecordlist.get(i).getRecord_order());
 
                 TextView text1 = new TextView(StepCaseEnding.this);
                 text1.setTextSize(17);
@@ -248,7 +248,8 @@ public class StepCaseEnding extends Activity {
             sopdetaillist = msop_detailDao.selectRawByNest2(mDatabaseHelper4, "Case_number", TAG_CASE_NUMBER, "Sop_number","Step_order",caserecordlist.get(i).getStep_order());
             //取出需要的sop_number 再找出step_number 還需要order
             mstep_recordDao = new step_recordDao();
-            mstep_recordDao.delete2(mDatabaseHelper4, "Step_number", sopdetaillist.get(0).getStep_order(), "Record_order", caserecordlist.get(i).getRecord_order());
+            mstep_recordDao.delete2(mDatabaseHelper4, "Step_number", sopdetaillist.get(0).getStep_number(), "Record_order", caserecordlist.get(i).getRecord_order());
+
 
         }
 
@@ -295,9 +296,9 @@ public class StepCaseEnding extends Activity {
             mcase_recordDao3.delete(mDatabaseHelper3, "Case_number", TAG_CASE_NUMBER);
             case_masterDao mcase_master3 = new case_masterDao();
             mcase_master3.delete(mDatabaseHelper3, "Case_number", TAG_CASE_NUMBER);
-            // List<case_masterVo> caselist = null ;
-            // caselist = mcase_masterDao.selectRaw(mDatabaseHelper2,"Account="+"'"+"test@gmail.com"+"'");
-            // Log.d("Here clear",caselist.get(0).getCase_number());
+//             List<case_masterVo> caselist1 = null ;
+//             caselist1 = mcase_masterDao.selectRaw(mDatabaseHelper3,"Account="+"'"+"test@gmail.com"+"'");
+//             Log.d("Here clear",caselist1.get(0).getCase_number());
             finish();
         }
 
