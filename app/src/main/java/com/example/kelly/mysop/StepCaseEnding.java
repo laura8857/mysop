@@ -230,25 +230,27 @@ public class StepCaseEnding extends Activity {
         List<case_masterVo> caselist = null ;
         caselist = mcase_masterDao4.selectRaw(mDatabaseHelper4,"Case_number="+"'"+TAG_CASE_NUMBER+"'");
         //delete sop_master中的sop
-        sop_masterDao msop_masterDao = new sop_masterDao();
-        msop_masterDao.delete(mDatabaseHelper4,"Sop_number",caselist.get(0).getSop_number());
+        sop_masterDao msop_masterDao4 = new sop_masterDao();
+        msop_masterDao4.delete(mDatabaseHelper4,"Sop_number",caselist.get(0).getSop_number());
         //delete step_detail
-        sop_detailDao msop_detailDao = new sop_detailDao();
-        msop_detailDao.delete(mDatabaseHelper4,"Sop_number",caselist.get(0).getSop_number());
+        sop_detailDao msop_detailDao4 = new sop_detailDao();
+        msop_detailDao4.delete(mDatabaseHelper4,"Sop_number",caselist.get(0).getSop_number());
         //delete step_record
-        step_recordDao mstep_record = new step_recordDao();
+        step_recordDao mstep_recordDao4;
+        sop_detailDao msop_detailDao5;
         //取紀錄值
-        mcase_recordDao = new case_recordDao();
-        List<case_recordVo> caserecordlist = null;
-        caserecordlist = mcase_recordDao.selectRaw(mDatabaseHelper4, "Case_number=" + "'" + TAG_CASE_NUMBER + "'");
+        DatabaseHelper mDatabaseHelper5 = DatabaseHelper.getHelper(StepCaseEnding.this);
+        case_recordDao mcase_recordDao4 = new case_recordDao();
+        List<case_recordVo> caserecordlist4 = null;
+        caserecordlist4 = mcase_recordDao4.selectRaw(mDatabaseHelper5, "Case_number=" + "'" + TAG_CASE_NUMBER + "'");
         for(int i =0;i<Count;i++){
             //用case_number 還有case_record的step 去抓資料庫的紀錄單位和敘述
-            msop_detailDao = new sop_detailDao();
-            List<sop_detailVo> sopdetaillist = null;
-            sopdetaillist = msop_detailDao.selectRawByNest2(mDatabaseHelper4, "Case_number", TAG_CASE_NUMBER, "Sop_number","Step_order",caserecordlist.get(i).getStep_order());
+            msop_detailDao5 = new sop_detailDao();
+            List<sop_detailVo> sopdetaillist5 = null;
+            sopdetaillist5 = msop_detailDao5.selectRawByNest2(mDatabaseHelper5, "Case_number", TAG_CASE_NUMBER, "Sop_number","Step_order",caserecordlist4.get(i).getStep_order());
             //取出需要的sop_number 再找出step_number 還需要order
-            mstep_recordDao = new step_recordDao();
-            mstep_recordDao.delete2(mDatabaseHelper4, "Step_number", sopdetaillist.get(0).getStep_number(), "Record_order", caserecordlist.get(i).getRecord_order());
+            mstep_recordDao4 = new step_recordDao();
+            mstep_recordDao4.delete2(mDatabaseHelper5, "Step_number", sopdetaillist5.get(0).getStep_number(), "Record_order", caserecordlist4.get(i).getRecord_order());
 
 
         }
