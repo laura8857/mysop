@@ -274,6 +274,7 @@ public class StepCaseEnding extends Activity {
             Intent i = new Intent(this, Mysop.class);
             Bundle bundle = new Bundle();
             bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             i.putExtras(bundle);	//將參數放入intent
             startActivity(i);
             finish();
@@ -389,6 +390,7 @@ public class StepCaseEnding extends Activity {
                     Intent i = new Intent(StepCaseEnding.this, Mysop.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     i.putExtras(bundle);	//將參數放入intent
                     startActivity(i);
                 }else {

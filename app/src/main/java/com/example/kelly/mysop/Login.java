@@ -159,7 +159,7 @@ public class Login extends Activity {
                 Bundle bundle = new Bundle();
                 bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
                 Intent it = new Intent(Login.this,SplashActivity.class);
-                it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 it.putExtras(bundle);//將參數放入intent
                 startActivity(it);
                 finish();

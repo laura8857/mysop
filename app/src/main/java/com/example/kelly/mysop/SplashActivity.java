@@ -232,6 +232,7 @@ public class SplashActivity extends Activity {
                     Bundle bundle = new Bundle();
                     bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
                     startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
+                    finish();
                 }
             }
         }
@@ -245,7 +246,12 @@ public class SplashActivity extends Activity {
 
     @Override
     protected void onDestroy() {
-        if(receiver != null)unregisterReceiver(receiver);
+        try {
+            if(receiver != null)unregisterReceiver(receiver);
+            receiver = null;
+        }catch (IllegalArgumentException e){
+
+        }
         super.onDestroy();
     }
 
@@ -266,10 +272,12 @@ public class SplashActivity extends Activity {
             Bundle bundle = new Bundle();
             bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
             startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
+            finish();
         }else if(info!=null && account.isEmpty()) {
             Bundle bundle = new Bundle();
             bundle.putString("TAG_Key", "");
             startActivity(new Intent().setClass(SplashActivity.this, Home.class).putExtras(bundle));
+            finish();
         }else if(info!=null && !account.isEmpty()){
 
             DatabaseHelper DatabaseHelperupload = DatabaseHelper.getHelper(SplashActivity.this);
@@ -845,6 +853,7 @@ public class SplashActivity extends Activity {
                 Bundle bundle = new Bundle();
                 bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
                 startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
+                finish();
             }
         }
     }
