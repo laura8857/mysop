@@ -1,6 +1,7 @@
 package Ormlite;
 
 import com.j256.ormlite.dao.RuntimeExceptionDao;
+import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.stmt.QueryBuilder;
 import com.j256.ormlite.stmt.UpdateBuilder;
 
@@ -69,7 +70,7 @@ public class member_accountDao {
 	}
 
 	/* delete */
-	public static int delete(DatabaseHelper databaseHelper, member_accountVo member_accountVo) {
+/*	public static int delete(DatabaseHelper databaseHelper, member_accountVo member_accountVo) {
 		RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
 				.getMember_accountDao();
 		try {
@@ -78,7 +79,21 @@ public class member_accountDao {
 			e.printStackTrace();
 		}
 		return 0;
-	}
+	}*/
+
+    /* delete */
+    public static int delete(DatabaseHelper databaseHelper, member_accountVo member_accountVo) {
+        RuntimeExceptionDao<member_accountVo, Integer> accountDao = databaseHelper
+                .getMember_accountDao();
+        DeleteBuilder<member_accountVo, Integer> deleteBuilder = accountDao
+                .deleteBuilder();
+        try {
+            return deleteBuilder.delete();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
 	/* selectRaw */
 	public static member_accountVo getMember_accountVo(DatabaseHelper databaseHelper) {
