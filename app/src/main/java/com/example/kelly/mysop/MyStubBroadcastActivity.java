@@ -14,7 +14,7 @@ public class MyStubBroadcastActivity extends Activity {
 
         Intent i = new Intent();
         i.setAction("com.example.kelly.mysop.SHOW_NOTIFICATION");
-        i.putExtra(MyPostNotificationReceiver.CONTENT_KEY, getString(R.string.title));
+        i.putExtra(MyPostNotificationReceiver.CONTENT_KEY, "啟動規則");
         sendBroadcast(i);
         finish();
     }

@@ -13,5 +13,6 @@ public class MyDisplayActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display);
         mTextView = (TextView) findViewById(R.id.text);
+        mTextView.setText("啟動方式：");
     }
 }

@@ -5,4 +5,11 @@
     tools:context="com.example.kelly.mysop.MyDisplayActivity" tools:deviceIds="wear">
     <TextView android:id="@+id/text" android:layout_width="wrap_content"
         android:layout_height="wrap_content" android:text="@string/hello" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="TEST MYSOP WEAR"
+        android:id="@+id/textView19" />
 </LinearLayout>
