@@ -229,12 +229,7 @@ public class StepCaseEnding extends Activity {
         case_masterDao mcase_masterDao4 = new case_masterDao();
         List<case_masterVo> caselist = null ;
         caselist = mcase_masterDao4.selectRaw(mDatabaseHelper4,"Case_number="+"'"+TAG_CASE_NUMBER+"'");
-        //delete sop_master中的sop
-        sop_masterDao msop_masterDao4 = new sop_masterDao();
-        msop_masterDao4.delete(mDatabaseHelper4,"Sop_number",caselist.get(0).getSop_number());
-        //delete step_detail
-        sop_detailDao msop_detailDao4 = new sop_detailDao();
-        msop_detailDao4.delete(mDatabaseHelper4,"Sop_number",caselist.get(0).getSop_number());
+        Log.d("caselist case number is ", caselist.get(0).getCase_number());
         //delete step_record
         step_recordDao mstep_recordDao4;
         sop_detailDao msop_detailDao5;
@@ -244,17 +239,34 @@ public class StepCaseEnding extends Activity {
         List<case_recordVo> caserecordlist4 = null;
         caserecordlist4 = mcase_recordDao4.selectRaw(mDatabaseHelper5, "Case_number=" + "'" + TAG_CASE_NUMBER + "'");
         for(int i =0;i<Count;i++){
+            Log.d("Caserecordlist4 "+i+" is ",caserecordlist4.get(i).getStep_order());
             //用case_number 還有case_record的step 去抓資料庫的紀錄單位和敘述
             msop_detailDao5 = new sop_detailDao();
             List<sop_detailVo> sopdetaillist5 = null;
             sopdetaillist5 = msop_detailDao5.selectRawByNest2(mDatabaseHelper5, "Case_number", TAG_CASE_NUMBER, "Sop_number","Step_order",caserecordlist4.get(i).getStep_order());
+           Log.d("sopdetail5 is",sopdetaillist5.get(0).getStep_number());
             //取出需要的sop_number 再找出step_number 還需要order
             mstep_recordDao4 = new step_recordDao();
             mstep_recordDao4.delete2(mDatabaseHelper5, "Step_number", sopdetaillist5.get(0).getStep_number(), "Record_order", caserecordlist4.get(i).getRecord_order());
+//            List<step_recordVo> step_recordtry = null ;
+//            step_recordtry = mstep_recordDao4.selectRaw(mDatabaseHelper5,"Step_number="+"'"+sopdetaillist5.get(0).getStep_number()+"'");
+//             Log.d("Here clear step_record ",step_recordtry.get(0).getStep_number());
+
 
 
         }
-
+        //delete sop_master中的sop
+        sop_masterDao msop_masterDao4 = new sop_masterDao();
+        msop_masterDao4.delete(mDatabaseHelper4,"Sop_number",caselist.get(0).getSop_number());
+//        List<sop_masterVo> sop_mastertry = null ;
+//        sop_mastertry = msop_masterDao4.selectRaw(mDatabaseHelper5,"Sop_number="+"'"+caselist.get(0).getSop_number()+"'");
+//        Log.d("Here clear sopmaster ", sop_mastertry.get(0).getSop_number());
+        //delete step_detail
+        sop_detailDao msop_detailDao4 = new sop_detailDao();
+        msop_detailDao4.delete(mDatabaseHelper4, "Sop_number", caselist.get(0).getSop_number());
+//        List<sop_detailVo> sop_detailtry = null ;
+//        sop_detailtry = msop_detailDao4.selectRaw(mDatabaseHelper5,"Sop_number="+"'"+caselist.get(0).getSop_number()+"'");
+//        Log.d("Here clear sop_detail ", sop_detailtry.get(0).getSop_number());
 
         //檢查是否有網路
         ConnectivityManager CM = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
