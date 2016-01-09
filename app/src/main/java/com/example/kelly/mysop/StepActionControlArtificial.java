@@ -12,6 +12,8 @@ import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -83,7 +85,17 @@ public class StepActionControlArtificial extends Activity {
             }
             mp.start();
         }else if(TAG_START_REMIND == 2){
-
+            Notification notification = new NotificationCompat.Builder(getApplication())
+                    .setSmallIcon(R.drawable.ftc3x)
+                    .setContentTitle("Step"+Integer.toString(TAG_STEP_ORDER))
+                    .setContentText("啟動方式：人工啟動")
+                    .extend(
+                            new NotificationCompat.WearableExtender().setHintShowBackgroundOnly(true))
+                    .build();
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplication());
+            Random random = new Random();
+            int notificationId = random.nextInt(9999 - 1000) + 1000;
+            notificationManager.notify(notificationId, notification);
         }else if(TAG_START_REMIND == 3){
 
             Log.d("TAG_START_REMIND","震動響鈴");

@@ -1,11 +1,14 @@
 package com.example.kelly.mysop;
 
 import android.app.Activity;
+import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.text.Layout;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -30,6 +33,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import Ormlite.DatabaseHelper;
 import Ormlite.sop_detailDao;
@@ -133,7 +137,18 @@ public class Stepdescription extends Activity {
             mp.start();
 
         }else if(TAG_STEP_REMIND == 2){
-
+            Log.d("DELETEHTMLTAG",sHtml.replaceAll("\\<.*?>",""));
+            Notification notification = new NotificationCompat.Builder(getApplication())
+                    .setSmallIcon(R.drawable.ftc3x)
+                    .setContentTitle("Step"+Integer.toString(TAG_STEP_ORDER))
+                    .setContentText(sHtml.replaceAll("\\<.*?>",""))
+                    .extend(
+                            new NotificationCompat.WearableExtender().setHintShowBackgroundOnly(true))
+                    .build();
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplication());
+            Random random = new Random();
+            int notificationId = random.nextInt(9999 - 1000) + 1000;
+            notificationManager.notify(notificationId, notification);
         }
 
 
