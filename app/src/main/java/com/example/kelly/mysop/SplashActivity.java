@@ -189,7 +189,8 @@ public class SplashActivity extends Activity {
                 continue;
             }
             DetectDownload=DetectDownload+1;
-            down2[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/front/picture/" + graph[graph.length-1]));
+            //down2[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/front/picture/" + graph[graph.length-1]));
+            down2[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/mysop/img/" + graph[graph.length-1]));
             //允許網路類型
             down2[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
             //禁止發通知

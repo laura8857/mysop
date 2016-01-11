@@ -138,6 +138,10 @@ public class Login extends Activity {
                     return 1;
                 }else if(e == 6){
                     return 6;
+                }else if(e == 7){
+                    return 7;
+                }else{
+                    return 2;
                 }
             } catch (JSONException var9) {
                 var9.printStackTrace();
@@ -163,7 +167,7 @@ public class Login extends Activity {
                 it.putExtras(bundle);//將參數放入intent
                 startActivity(it);
                 finish();
-            }else if(ans==6){
+            }else if(ans==6 || ans==7) {
                 Intent i = new Intent(Login.this, Error.class);
                 Login.this.startActivity(i);
                 Login.this.finish();
