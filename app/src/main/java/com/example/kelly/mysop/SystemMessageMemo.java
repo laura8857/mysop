@@ -113,23 +113,7 @@ public class SystemMessageMemo extends Activity {
         listView.invalidateViews();
     }
 
-    //重新整理
-    public void refreshMemo(View v){
-        //orm
-        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SystemMessageMemo.this);
-        List<memoVo> systemmessagelist = null ;
-        systemmessagelist = mmemoDao.selectRaw2(mDatabaseHelper);
-        messagelist = new String[systemmessagelist.size()];
-        checklist = new int[systemmessagelist.size()];
-        messagesize=systemmessagelist.size();
-        for(int i =0;i<systemmessagelist.size();i++){
-            messagelist[i]=systemmessagelist.get(i).getSystem_message();
-            checklist[i]=R.drawable.uncheck;
-        }
-        adapter = new MyAdapter(SystemMessageMemo.this);
-        listView.setAdapter(adapter);
-        listView.setOnItemClickListener(listener);
-    }
+
 
 
     public class MyAdapter extends BaseAdapter {
