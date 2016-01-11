@@ -525,10 +525,13 @@ public class Content extends Activity {
             try {
                 //加入清單
                 int e3 = json2.getInt(TAG_SUCCESS);
+
                 if(e3 == 1) {
                     return 1;
-                }else{
+                }else if(e3==6){
                     return 2;
+                }else{
+                    return 3;
                 }
 
             } catch (JSONException var9) {
@@ -545,6 +548,8 @@ public class Content extends Activity {
                 bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
                 it.putExtras(bundle);
                 startActivity(it);
+            }else if(ans==2){
+                Toast.makeText(Content.this,"代辦已有該SOP",Toast.LENGTH_LONG).show();
             }else{
                 Toast.makeText(Content.this,"加入清單失敗!",Toast.LENGTH_LONG).show();
             }
