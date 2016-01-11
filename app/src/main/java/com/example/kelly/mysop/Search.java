@@ -360,7 +360,7 @@ public class Search extends Activity {
                 name[i]=productsList.get(i).get(TAG_SOPNAME);
                 master[i]=productsList.get(i).get(TAG_USERNAME);
                 String[] graph = productsList.get(i).get(TAG_PICTURE).split("/");
-                photo[i]="http://140.115.80.237/front/picture/"+graph[graph.length-1];
+                photo[i]="http://140.115.80.237/mysop/img/"+graph[graph.length-1];
                 sopnumber[i]=productsList.get(i).get(TAG_SOPNUMBER);
                 likeu[i]=productsList.get(i).get(TAG_LIKE);
             }
@@ -368,7 +368,7 @@ public class Search extends Activity {
                 name1[k]=productsList.get(i).get(TAG_SOPNAME);
                 master1[k]=productsList.get(i).get(TAG_USERNAME);
                 String[] graph1 = productsList.get(i).get(TAG_PICTURE).split("/");
-                photo1[k]="http://140.115.80.237/front/picture/"+graph1[graph1.length-1];
+                photo1[k]="http://140.115.80.237/mysop/img/"+graph1[graph1.length-1];
                 sopnumber1[k]=productsList.get(i).get(TAG_SOPNUMBER);
                 likeu1[k]=productsList.get(i).get(TAG_LIKE);
                 k++;
