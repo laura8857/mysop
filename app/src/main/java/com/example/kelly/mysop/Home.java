@@ -25,6 +25,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,6 +62,7 @@ public class Home extends Activity {
 
     private ListView listInput;
     private ListView listInput1;
+    private ScrollView homescroll;
     //private ArrayAdapter<String> adapter;
     MyAdapter adapter = null;
     MyAdapter1 adapter1 = null;
@@ -83,6 +85,9 @@ public class Home extends Activity {
         setContentView(R.layout.activity_home);
         listInput = (ListView)findViewById(R.id.list_sop);
         listInput1 = (ListView)findViewById(R.id.list_sop2);
+        homescroll=(ScrollView)findViewById(R.id.homescroll);
+        homescroll.fullScroll(ScrollView.FOCUS_UP);
+        homescroll.smoothScrollTo(0, 0);
 
         productsList = new ArrayList<HashMap<String, String>>();
 

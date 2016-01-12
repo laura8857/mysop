@@ -9,20 +9,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class Register extends Activity {
@@ -122,23 +118,32 @@ public class Register extends Activity {
         String ConfirmPassword = Register.this.et3.getText().toString();
         String str = "^([a-zA-Z0-9_\\-\\.]+)@((\\[[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.)|(([a-zA-Z0-9\\-]+\\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\\]?)$";
         String Email = Register.this.et1.getText().toString();
-        if(ConfirmPassword.equals(Password)&&Email.matches(str)){
-            new CreateAccount().execute();
-        }else if(!ConfirmPassword.equals(Password)&&Email.matches(str)){
+        String Name = Register.this.et4.getText().toString();
+        if(ConfirmPassword.equals("")||Email.equals("")||Password.equals("")||Name.equals("")) {
             AlertDialog.Builder dialog = new AlertDialog.Builder(Register.this);
             dialog.setTitle("咦！");
-            dialog.setMessage("請確認密碼一致");
-            dialog.show();
-        }else if(ConfirmPassword.equals(Password)&&!Email.matches(str)){
-            AlertDialog.Builder dialog = new AlertDialog.Builder(Register.this);
-            dialog.setTitle("咦！");
-            dialog.setMessage("帳號不符合格式");
+            dialog.setMessage("請確實填完資料");
             dialog.show();
         }else{
-            AlertDialog.Builder dialog = new AlertDialog.Builder(Register.this);
-            dialog.setTitle("咦！");
-            dialog.setMessage("帳號不符合格式，且密碼須一致");
-            dialog.show();
+            if (ConfirmPassword.equals(Password) && Email.matches(str)) {
+                new CreateAccount().execute();
+            } else if (!ConfirmPassword.equals(Password) && Email.matches(str)) {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(Register.this);
+                dialog.setTitle("咦！");
+                dialog.setMessage("請確認密碼一致");
+                dialog.show();
+            } else if (ConfirmPassword.equals(Password) && !Email.matches(str)) {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(Register.this);
+                dialog.setTitle("咦！");
+                dialog.setMessage("帳號不符合格式");
+                dialog.show();
+
+            } else {
+                AlertDialog.Builder dialog = new AlertDialog.Builder(Register.this);
+                dialog.setTitle("咦！");
+                dialog.setMessage("帳號不符合格式，且密碼須一致");
+                dialog.show();
+            }
         }
     }
 
