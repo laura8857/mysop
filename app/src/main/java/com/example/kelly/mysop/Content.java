@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,6 +50,8 @@ public class Content extends Activity {
     private TextView Ctext;
     private ImageView graph1,graph2,graph3,likepitcure;
     private HorizontalScrollView horizontalScrollView;
+    private ScrollView scroll;
+    private ListView commentlist;
 
     JSONParser jsonParser = new JSONParser();
     //讀取 sop內容 圖片
@@ -146,6 +149,13 @@ public class Content extends Activity {
         likepitcure=(ImageView)findViewById(R.id.like);
 
         horizontalScrollView=( HorizontalScrollView)findViewById(R.id.horizontalScrollView);
+        scroll=(ScrollView)findViewById(R.id.contentscroll);
+        scroll.fullScroll(ScrollView.FOCUS_UP);
+        scroll.smoothScrollTo(0, 0);
+
+        commentlist=(ListView)findViewById(R.id.listInputText);
+        commentlist.setFocusable(false);
+
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle

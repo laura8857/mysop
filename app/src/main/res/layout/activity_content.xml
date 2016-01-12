@@ -13,7 +13,10 @@
 
     <ScrollView android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:id="@+id/contentscroll">
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -274,11 +277,7 @@
                     android:layout_height="25dp"
                     android:id="@+id/like"
                     android:src="@drawable/unlike"
-                    android:onClick="onlike" /><![CDATA[
-
-                />
-
-                ]]>
+                    android:onClick="onlike" />
 
                 <Button
                     android:layout_width="wrap_content"
