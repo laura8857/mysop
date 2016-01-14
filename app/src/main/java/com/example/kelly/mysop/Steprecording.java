@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -87,20 +88,28 @@ public class Steprecording extends Activity {
     private case_recordDao mcase_recordDao;
     private case_recordVo mcase_recordVo;
 
-    private GoogleApiClient mGoogleApiClient;
-    private static final String TAG = "PhoneActivity";
-    public static final String NOTIFICATION_PATH = "/notification";
-    public static final String NOTIFICATION_TIMESTAMP = "timestamp";
-    public static final String NOTIFICATION_TITLE = "title";
-    public static final String NOTIFICATION_CONTENT = "content";
-    public static final String ACTION_DISMISS = "com.example.kelly.mysop.DISMISS";
 
     private static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
+    private String wearcontent[];
+    boolean TAG_FROM_WEAR = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_steprecording);
+
+        //手錶
+        String fromwear = getIntent().getStringExtra("reply");
+        if(fromwear==null){
+            Bundle remoteInput = RemoteInput.getResultsFromIntent(getIntent());
+            if(remoteInput!=null){
+                fromwear = remoteInput.getCharSequence(Steprecording.EXTRA_VOICE_REPLY).toString();
+                Log.d("fromwear",fromwear);
+                wearcontent = fromwear.split(" ");
+                TAG_FROM_WEAR = true;
+            }
+        }
+
 
         TextView ss = (TextView)findViewById(R.id.textView6);
         Intent intent = this.getIntent();
@@ -146,6 +155,11 @@ public class Steprecording extends Activity {
             edit1[i].setOnFocusChangeListener(new MyOnFocusChangeListener());
             edit1[i].setSingleLine(true);
             edit1[i].setBackgroundColor(Color.parseColor("#FEFBE6"));
+            if(TAG_FROM_WEAR){
+               if(i<wearcontent.length) {
+                   edit1[i].setText(wearcontent[i]);
+               }
+            }
             //edit1[0].setText("eee");
             ly.addView(text1);
             ly.addView(edit1[i]);
@@ -162,13 +176,33 @@ public class Steprecording extends Activity {
         messageList = new ArrayList<>();
 
         //手錶
+        String replyLabel = getResources().getString(R.string.reply_label);
+        RemoteInput remoteInput = new RemoteInput.Builder(EXTRA_VOICE_REPLY)
+                .setLabel(replyLabel)
+                .build();
+        // Create an intent for the reply action
+        Intent replyIntent = new Intent(this, Steprecording.class);
+        Bundle wb = new Bundle();
+        wb.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
+        wb.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+        wb.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+        replyIntent.putExtras(wb);
+        PendingIntent replyPendingIntent =
+                PendingIntent.getActivity(this, 0, replyIntent,
+                        PendingIntent.FLAG_UPDATE_CURRENT);
+
+        NotificationCompat.Action action =
+                new NotificationCompat.Action.Builder(R.drawable.cast_ic_notification_0,
+                        getString(R.string.reply_label), replyPendingIntent)
+                        .addRemoteInput(remoteInput)
+                        .build();
 
         // Create builder for the main notification
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.mipmap.ic_launcher)
                         .setContentTitle("Step"+Integer.toString(TAG_STEP_ORDER))
-                        .setContentText("紀錄項(請往後滑)：");
+                        .setContentText("紀錄項(請往左滑)：");
 
 /*        // Create a big text style for the second page
         NotificationCompat.BigTextStyle secondPageStyle = new NotificationCompat.BigTextStyle();
@@ -193,13 +227,18 @@ public class Steprecording extends Activity {
             extras.add(extraPageNotification);
 
         }
-
+/*      //如果要跳頁
+        Intent mainIntent = new Intent(this, MyDisplayActivity.class);
+        PendingIntent mainPendingIntent = PendingIntent.getActivity(this, 0,
+                mainIntent, PendingIntent.FLAG_CANCEL_CURRENT);
+*/
 
         // Extend the notification builder with the second page
         Notification notification = notificationBuilder
                 .extend(new NotificationCompat.WearableExtender()
-                        .addPages(extras))
+                        .addPages(extras).addAction(action))
                         //.addPage(secondPageNotification))
+                //.addAction(android.R.drawable.ic_media_play, "Speak", mainPendingIntent)
                 .build();
 
         // Issue the notification
@@ -229,25 +268,6 @@ public class Steprecording extends Activity {
                 .build();
         mGoogleApiClient.connect();
         sendNotification();*/
-    }
-
-    //手錶
-    private void sendNotification() {
-        if (mGoogleApiClient.isConnected()) {
-            PutDataMapRequest dataMapRequest = PutDataMapRequest.create(NOTIFICATION_PATH);
-            // Make sure the data item is unique. Usually, this will not be required, as the payload
-            // (in this case the title and the content of the notification) will be different for almost all
-            // situations. However, in this example, the text and the content are always the same, so we need
-            // to disambiguate the data item by adding a field that contains teh current time in milliseconds.
-            dataMapRequest.getDataMap().putDouble(NOTIFICATION_TIMESTAMP, System.currentTimeMillis());
-            dataMapRequest.getDataMap().putString(NOTIFICATION_TITLE, "This is the title OHYA");
-            dataMapRequest.getDataMap().putString(NOTIFICATION_CONTENT, "This is a notification with some text OHYA.");
-            PutDataRequest putDataRequest = dataMapRequest.asPutDataRequest();
-            Wearable.DataApi.putDataItem(mGoogleApiClient, putDataRequest);
-        }
-        else {
-            Log.e(TAG, "No connection to wearable available!");
-        }
     }
 
 

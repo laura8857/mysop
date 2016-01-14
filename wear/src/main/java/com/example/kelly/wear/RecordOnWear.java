@@ -1,9 +1,14 @@
 package com.example.kelly.wear;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.app.RemoteInput;
 import android.support.wearable.activity.WearableActivity;
 import android.support.wearable.view.WatchViewStub;
 import android.widget.TextView;
@@ -30,6 +35,9 @@ public class RecordOnWear extends WearableActivity {
         });
     }
 
+
+
+/*
     // Create an intent that can start the Speech Recognizer activity
     private void displaySpeechRecognizer() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -51,6 +59,6 @@ public class RecordOnWear extends WearableActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
-
+*/
 }
 
