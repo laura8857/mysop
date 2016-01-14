@@ -2,6 +2,8 @@ package com.example.kelly.mysop;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -9,6 +11,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.app.RemoteInput;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -34,6 +39,7 @@ import org.json.JSONArray;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 
 import Ormlite.DatabaseHelper;
 import Ormlite.case_recordDao;
@@ -87,8 +93,9 @@ public class Steprecording extends Activity {
     public static final String NOTIFICATION_TIMESTAMP = "timestamp";
     public static final String NOTIFICATION_TITLE = "title";
     public static final String NOTIFICATION_CONTENT = "content";
-
     public static final String ACTION_DISMISS = "com.example.kelly.mysop.DISMISS";
+
+    private static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,7 +162,53 @@ public class Steprecording extends Activity {
         messageList = new ArrayList<>();
 
         //手錶
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
+
+        // Create builder for the main notification
+        NotificationCompat.Builder notificationBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.mipmap.ic_launcher)
+                        .setContentTitle("Step"+Integer.toString(TAG_STEP_ORDER))
+                        .setContentText("紀錄項(請往後滑)：");
+
+/*        // Create a big text style for the second page
+        NotificationCompat.BigTextStyle secondPageStyle = new NotificationCompat.BigTextStyle();
+        secondPageStyle.setBigContentTitle("Page 2")
+                .bigText("A lot of text...");
+
+        // Create second page notification
+        Notification secondPageNotification =
+                new NotificationCompat.Builder(this)
+                        .setStyle(secondPageStyle)
+                        .build();
+*/
+        List extras = new ArrayList();
+        for (int i = 0; i < count; i++) {
+
+            NotificationCompat.BigTextStyle extraPageStyle = new NotificationCompat.BigTextStyle();
+            extraPageStyle.setBigContentTitle("第"+String.valueOf(i)+"項")
+                    .bigText(list.get(i).getRecord_text());
+            Notification extraPageNotification = new NotificationCompat.Builder(this)
+                    .setStyle(extraPageStyle)
+                    .build();
+            extras.add(extraPageNotification);
+
+        }
+
+
+        // Extend the notification builder with the second page
+        Notification notification = notificationBuilder
+                .extend(new NotificationCompat.WearableExtender()
+                        .addPages(extras))
+                        //.addPage(secondPageNotification))
+                .build();
+
+        // Issue the notification
+        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplication());
+        Random random = new Random();
+        int notificationId = random.nextInt(9999 - 1000) + 1000;
+        notificationManager.notify(notificationId, notification);
+
+/*        mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
                     @Override
                     public void onConnected(Bundle connectionHint) {
@@ -175,7 +228,7 @@ public class Steprecording extends Activity {
                 .addApi(Wearable.API)
                 .build();
         mGoogleApiClient.connect();
-        sendNotification();
+        sendNotification();*/
     }
 
     //手錶
