@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,13 +13,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -86,6 +80,7 @@ public class StepCutControlTime extends Activity {
             intent1.putExtras(bundle1);//將參數放入intent
             startActivity(intent1);
             timebtn.setText("啟動");
+            finish();
 
         }else {
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
@@ -146,6 +141,7 @@ public class StepCutControlTime extends Activity {
                 intent2.putExtras(bundle2);//將參數放入intent
                 startActivity(intent2);
                 timebtn.setText("啟動");
+                finish();
             }
         }
 

@@ -219,6 +219,7 @@ public class StepActionControlGPS extends Activity {
                     bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
                     intent.putExtras(bundle);//將參數放入intent
                     startActivity(intent);
+                    finish();
 
                 }
             }

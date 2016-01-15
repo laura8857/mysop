@@ -172,6 +172,7 @@ public class StepCutControlNFC extends Activity {
             bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
             Intent.putExtras(bundle);//將參數放入intent
             startActivity(Intent);
+            finish();
             //切換畫面，右近左出
             overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
         }else{

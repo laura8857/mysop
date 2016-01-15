@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -14,11 +13,6 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import Ormlite.DatabaseHelper;
@@ -130,6 +124,7 @@ public class StepCutControlQRcode extends Activity {
                     bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
                     intent1.putExtras(bundle);//將參數放入intent
                     startActivity(intent1);
+                    finish();
                 }else {
                     AlertDialog.Builder dialog = new AlertDialog.Builder(StepCutControlQRcode.this);
                     dialog.setTitle("");

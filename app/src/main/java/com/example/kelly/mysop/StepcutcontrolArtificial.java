@@ -108,5 +108,6 @@ public class StepcutcontrolArtificial extends Activity implements GestureDetecto
         bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
         intent.putExtras(bundle);//將參數放入intent
         startActivity(intent);
+        finish();
     }
 }

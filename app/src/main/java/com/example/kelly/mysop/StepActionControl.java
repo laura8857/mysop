@@ -1,29 +1,17 @@
 package com.example.kelly.mysop;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
 import java.util.List;
 
 import Ormlite.DatabaseHelper;
 import Ormlite.case_masterDao;
-import Ormlite.case_masterVo;
-import Ormlite.member_accountDao;
-import Ormlite.member_accountVo;
 import Ormlite.sop_detailDao;
 import Ormlite.sop_detailVo;
 
@@ -116,20 +104,21 @@ public class StepActionControl extends Activity {
                 Intent it1 = new Intent(StepActionControl.this,StepActionControlArtificial.class);
                 it1.putExtras(bundle);//將參數放入intent
                 startActivity(it1);
-
+                finish();
                 break;
             case 2:
                 // cagetory.setText("前一步驟\n完工");
                 Intent it = new Intent(StepActionControl.this,Stepdescription.class);
                 it.putExtras(bundle);//將參數放入intent
                 startActivity(it);
-
+                finish();
                 break;
             case 3:
                 //cagetory.setText("Beacon");
                 Intent it3 = new Intent(StepActionControl.this,StepActionControlIbeacon.class);
                 it3.putExtras(bundle);//將參數放入intent
                 startActivity(it3);
+                finish();
                 break;
             case 4:
                 //cagetory.setText("QR code");

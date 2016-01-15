@@ -1,7 +1,6 @@
 package com.example.kelly.mysop;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.ProgressDialog;
@@ -9,7 +8,6 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
@@ -20,12 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -146,6 +139,7 @@ public class StepActionControlArtificial extends Activity {
         bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
         intent.putExtras(bundle);//將參數放入intent
         startActivity(intent);
+        finish();
     }
 
     //讀取第幾步驟

@@ -143,6 +143,7 @@ public class StepActionControlTime extends Activity {
             intent1.putExtras(bundle1);//將參數放入intent
             startActivity(intent1);
             timebtn.setText("啟動");
+            finish();
 
         }else {
             SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
@@ -203,6 +204,7 @@ public class StepActionControlTime extends Activity {
                 intent2.putExtras(bundle2);//將參數放入intent
                 startActivity(intent2);
                 timebtn.setText("啟動");
+                finish();
             }
         }
 

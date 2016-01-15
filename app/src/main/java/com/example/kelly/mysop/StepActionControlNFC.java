@@ -16,9 +16,7 @@ import android.nfc.NdefMessage;
 import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
-import android.nfc.tech.Ndef;
 import android.nfc.tech.NfcF;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -27,16 +25,9 @@ import android.provider.Settings;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.TextView;
 
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -237,6 +228,7 @@ public class StepActionControlNFC extends Activity {
             startActivity(Intent);
             //切換畫面，右近左出
             overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+            finish();
         }else{
             AlertDialog.Builder dialog = new AlertDialog.Builder(StepActionControlNFC.this);
             dialog.setTitle("");

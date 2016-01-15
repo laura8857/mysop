@@ -189,6 +189,7 @@ public class StepActionControlQRcode extends Activity {
                    bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
                    intent1.putExtras(bundle);//將參數放入intent
                    startActivity(intent1);
+                    finish();
                 }else {
                    AlertDialog.Builder dialog = new AlertDialog.Builder(StepActionControlQRcode.this);
                    dialog.setTitle("");
