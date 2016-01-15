@@ -3,32 +3,31 @@ package com.example.kelly.mysop;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
-import android.content.Context;
 import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.RemoteException;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.altbeacon.beacon.*;
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.altbeacon.beacon.Beacon;
+import org.altbeacon.beacon.BeaconConsumer;
+import org.altbeacon.beacon.BeaconManager;
+import org.altbeacon.beacon.BeaconParser;
+import org.altbeacon.beacon.Identifier;
+import org.altbeacon.beacon.MonitorNotifier;
+import org.altbeacon.beacon.RangeNotifier;
+import org.altbeacon.beacon.Region;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.member_accountDao;
+import Ormlite.member_accountVo;
 import Ormlite.sop_detailDao;
 import Ormlite.sop_detailVo;
 
@@ -45,6 +44,7 @@ public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_UUID = "UUID";
     String UUID = "00000000-0000-0000-0000-000000000000";
+    String TAG_ACCOUNT;
 
     int connectfinish = 0;
 
@@ -275,6 +275,26 @@ public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
         }
     }*/
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {//捕捉返回鍵
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            //orm account
+            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(StepCutControlIbeacon.this);
+            member_accountDao mmember_accountDao = new  member_accountDao();
+            List<member_accountVo> memberlist = null;
+            memberlist = mmember_accountDao.selectColumns(mDatabaseHelper4, "FIELD_Account");
+            TAG_ACCOUNT = memberlist.get(0).getAccount();
 
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
+            Intent it = new Intent(this,Mysop.class);
+            it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            it.putExtras(bundle);//將參數放入intent
+            startActivity(it);
+            finish();
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 }

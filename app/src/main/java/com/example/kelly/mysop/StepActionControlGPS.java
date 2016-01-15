@@ -17,6 +17,7 @@ import android.os.Vibrator;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +33,8 @@ import java.util.List;
 import java.util.Random;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.member_accountDao;
+import Ormlite.member_accountVo;
 import Ormlite.sop_detailDao;
 import Ormlite.sop_detailVo;
 
@@ -57,6 +60,7 @@ public class StepActionControlGPS extends Activity {
     String TAG_CASE_NUMBER = "";
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
+    String TAG_ACCOUNT;
 
     private RuntimeExceptionDao<sop_detailVo, Integer> sop_detailRuntimeDao;
     private sop_detailDao msop_detailDao;
@@ -412,6 +416,27 @@ public class StepActionControlGPS extends Activity {
             mp.start();
         }
         super.onResume();
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {//捕捉返回鍵
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            //orm account
+            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(StepActionControlGPS.this);
+            member_accountDao mmember_accountDao = new  member_accountDao();
+            List<member_accountVo> memberlist = null;
+            memberlist = mmember_accountDao.selectColumns(mDatabaseHelper4, "FIELD_Account");
+            TAG_ACCOUNT = memberlist.get(0).getAccount();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
+            Intent it = new Intent(this,Mysop.class);
+            it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            it.putExtras(bundle);//將參數放入intent
+            startActivity(it);
+            finish();
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

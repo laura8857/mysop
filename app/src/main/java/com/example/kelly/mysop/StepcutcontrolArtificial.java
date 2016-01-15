@@ -4,11 +4,18 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
+
+import java.util.List;
+
+import Ormlite.DatabaseHelper;
+import Ormlite.member_accountDao;
+import Ormlite.member_accountVo;
 
 //p304
 public class StepcutcontrolArtificial extends Activity implements GestureDetector.OnGestureListener {
@@ -18,6 +25,7 @@ public class StepcutcontrolArtificial extends Activity implements GestureDetecto
     String TAG_CASE_NUMBER = "";
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
+    String TAG_ACCOUNT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,5 +117,27 @@ public class StepcutcontrolArtificial extends Activity implements GestureDetecto
         intent.putExtras(bundle);//將參數放入intent
         startActivity(intent);
         finish();
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {//捕捉返回鍵
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            //orm account
+            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(StepcutcontrolArtificial.this);
+            member_accountDao mmember_accountDao = new  member_accountDao();
+            List<member_accountVo> memberlist = null;
+            memberlist = mmember_accountDao.selectColumns(mDatabaseHelper4, "FIELD_Account");
+            TAG_ACCOUNT = memberlist.get(0).getAccount();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
+            Intent it = new Intent(this,Mysop.class);
+            it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            it.putExtras(bundle);//將參數放入intent
+            startActivity(it);
+            finish();
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
