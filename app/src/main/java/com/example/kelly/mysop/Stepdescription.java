@@ -5,29 +5,21 @@ import android.app.Notification;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
-import android.text.Layout;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -36,6 +28,8 @@ import java.util.List;
 import java.util.Random;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.member_accountDao;
+import Ormlite.member_accountVo;
 import Ormlite.sop_detailDao;
 import Ormlite.sop_detailVo;
 import Ormlite.step_recordDao;
@@ -50,6 +44,7 @@ public class Stepdescription extends Activity {
     String TAG_CASE_NUMBER = "";
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
+    String TAG_ACCOUNT;
 
 
     private static String url_des = "http://140.115.80.237/front/mysop_stepdescription1.jsp";
@@ -377,6 +372,28 @@ public class Stepdescription extends Activity {
             mp.start();
         }
         super.onResume();
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {//捕捉返回鍵
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            //orm account
+            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(Stepdescription.this);
+            member_accountDao mmember_accountDao = new  member_accountDao();
+            List<member_accountVo> memberlist = null;
+            memberlist = mmember_accountDao.selectColumns(mDatabaseHelper4, "FIELD_Account");
+            TAG_ACCOUNT = memberlist.get(0).getAccount();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
+            Intent it = new Intent(this,Mysop.class);
+            it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            it.putExtras(bundle);//將參數放入intent
+            startActivity(it);
+            finish();
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

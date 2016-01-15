@@ -3,7 +3,6 @@ package com.example.kelly.mysop;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Notification;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
@@ -17,6 +16,7 @@ import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.app.RemoteInput;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -26,14 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.wearable.PutDataMapRequest;
-import com.google.android.gms.wearable.PutDataRequest;
-import com.google.android.gms.wearable.Wearable;
-import java.text.DateFormat;
 
 import org.json.JSONArray;
 
@@ -45,6 +37,8 @@ import java.util.Random;
 import Ormlite.DatabaseHelper;
 import Ormlite.case_recordDao;
 import Ormlite.case_recordVo;
+import Ormlite.member_accountDao;
+import Ormlite.member_accountVo;
 import Ormlite.step_recordDao;
 import Ormlite.step_recordVo;
 
@@ -61,6 +55,7 @@ public class Steprecording extends Activity {
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_RECODE = "recode";
+    String TAG_ACCOUNT;
 
 
     private static String url_record = "http://140.115.80.237/front/mysop_steprecording3.jsp";
@@ -606,7 +601,27 @@ public class Steprecording extends Activity {
         }
     }*/
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {//捕捉返回鍵
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            //orm account
+            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(Steprecording.this);
+            member_accountDao mmember_accountDao = new  member_accountDao();
+            List<member_accountVo> memberlist = null;
+            memberlist = mmember_accountDao.selectColumns(mDatabaseHelper4, "FIELD_Account");
+            TAG_ACCOUNT = memberlist.get(0).getAccount();
 
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
+            Intent it = new Intent(this,Mysop.class);
+            it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            it.putExtras(bundle);//將參數放入intent
+            startActivity(it);
+            finish();
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
 
 }
