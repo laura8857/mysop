@@ -145,7 +145,7 @@ public class StepNextControlData extends Activity {
                 }else{
                     bundle1.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
                     bundle1.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
-                    bundle1.putBoolean("TAG_BACK_TO_RECORDING",true);
+                    //bundle1.putBoolean("TAG_BACK_TO_RECORDING",true);
                     Intent it1 = new Intent(StepNextControlData.this, Steprecording.class);
                     it1.putExtras(bundle1);
                     startActivity(it1);

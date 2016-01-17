@@ -129,7 +129,7 @@ public class Start extends Activity {
             Intent it = new Intent(Start.this,StepActionControl.class);
             it.putExtras(bundle);
             startActivity(it);
-
+            finish();
     }
 }
 

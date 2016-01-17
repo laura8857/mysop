@@ -30,7 +30,7 @@ public class StepCutControlFinishandpass extends Activity {
     String TAG_CASE_NUMBER = "";
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
-    boolean Pass = false;
+    boolean Pass =true;
     String TAG_ACCOUNT;
 
     private GestureDetector detector;
@@ -45,7 +45,7 @@ public class StepCutControlFinishandpass extends Activity {
 
 
         TextView ss = (TextView)findViewById(R.id.finishandpass_textView1);
-        ss.setText("此步驟輸入的資料不符合完工之條件");
+        ss.setText("此步驟輸入的資料符合完工之條件");
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
@@ -80,14 +80,15 @@ public class StepCutControlFinishandpass extends Activity {
             list1 = mstep_recordDao1.selectRaw(mDatabaseHelper1, "Step_number ="+TAG_STEP_NUMBER+" AND Record_order ="+list.get(i).getRecord_order());
 
             Log.d("cutcontrolfinish2",String.valueOf(list1.size()));
+            Log.d("抓4-1",list.get(i).getRecord_value());
 
             //Record_type: 1數字 2
             if (list1.get(0).getRecord_type().equals("1")) {
 
-                if (Integer.valueOf(list1.get(0).getRecord_min()) < Integer.valueOf(list.get(i).getRecord_value()) && Integer.valueOf(list.get(i).getRecord_value()) < Integer.valueOf(list1.get(0).getRecord_max())) {
+                if (Integer.valueOf(list1.get(0).getRecord_min()) <= Integer.valueOf(list.get(i).getRecord_value()) && Integer.valueOf(list.get(i).getRecord_value()) <= Integer.valueOf(list1.get(0).getRecord_max())) {
 
-                    ss.setText("此步驟輸入的資料符合完工之條件");
-                    Pass = true;
+                    //ss.setText("此步驟輸入的資料符合完工之條件");
+                    //Pass = true;
                     //dialog.setMessage("此步驟輸入的資料符合完工之條件");
 
                 }else{
@@ -140,7 +141,7 @@ public class StepCutControlFinishandpass extends Activity {
                     //overridePendingTransition(R.anim.in_from_right, R.anim.out_to_right);
                     finish();
                 }else{
-                    bundle1.putBoolean("TAG_BACK_TO_RECORDING",true);
+                    //bundle1.putBoolean("TAG_BACK_TO_RECORDING",true);
                     Intent it1 = new Intent(StepCutControlFinishandpass.this, Steprecording.class);
                     it1.putExtras(bundle1);
                     startActivity(it1);

@@ -110,10 +110,12 @@ public class Steprecording extends Activity {
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
 
+        /*//是否來過
         if(intent.hasExtra("TAG_BACK_TO_RECORDING")){
             TAG_BACK_TO_RECORDING = true;
             Log.d("抓3","backtorecording");
-        }
+        }*/
+
 
         TAG_CASE_NUMBER = bundle.getString("TAG_CASE_NUMBER");
         TAG_STEP_NUMBER = bundle.getString("TAG_STEP_NUMBER");
@@ -124,6 +126,15 @@ public class Steprecording extends Activity {
 //        TAG_STEP_NUMBER = "10";
 //        TAG_STEP_ORDER = 1;
         ss.setText(Integer.toString(TAG_STEP_ORDER));
+
+
+        //是否來過
+        DatabaseHelper mDBACK = DatabaseHelper.getHelper(this);
+        case_recordDao mcase_recordDao = new case_recordDao();
+        List<case_recordVo> listBACK = null;
+        listBACK = mcase_recordDao.selectRaw(mDBACK, "Case_number="+TAG_CASE_NUMBER+" and Step_order="+TAG_STEP_ORDER);
+        if(listBACK.size()!=0){TAG_BACK_TO_RECORDING = true;}
+
 
         // Hashmap for ListView
         productsList = new ArrayList<HashMap<String, String>>();
@@ -171,33 +182,35 @@ public class Steprecording extends Activity {
         messageList = new ArrayList<>();
 
         //手錶
-        String replyLabel = getResources().getString(R.string.reply_label);
-        RemoteInput remoteInput = new RemoteInput.Builder(EXTRA_VOICE_REPLY)
-                .setLabel(replyLabel)
-                .build();
-        // Create an intent for the reply action
-        Intent replyIntent = new Intent(this, Steprecording.class);
-        Bundle wb = new Bundle();
-        wb.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
-        wb.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
-        wb.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
-        replyIntent.putExtras(wb);
-        PendingIntent replyPendingIntent =
-                PendingIntent.getActivity(this, 0, replyIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT);
+        if(!TAG_BACK_TO_RECORDING) {
+            String replyLabel = getResources().getString(R.string.reply_label);
+            RemoteInput remoteInput = new RemoteInput.Builder(EXTRA_VOICE_REPLY)
+                    .setLabel(replyLabel)
+                    .build();
+            // Create an intent for the reply action
+            Intent replyIntent = new Intent(this, Steprecording.class);
+            Bundle wb = new Bundle();
+            wb.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
+            wb.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+            wb.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+            replyIntent.putExtras(wb);
+            //replyIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            PendingIntent replyPendingIntent =
+                    PendingIntent.getActivity(this, 0, replyIntent,
+                            PendingIntent.FLAG_UPDATE_CURRENT);
 
-        NotificationCompat.Action action =
-                new NotificationCompat.Action.Builder(R.drawable.cast_ic_notification_0,
-                        getString(R.string.reply_label), replyPendingIntent)
-                        .addRemoteInput(remoteInput)
-                        .build();
+            NotificationCompat.Action action =
+                    new NotificationCompat.Action.Builder(R.drawable.cast_ic_notification_0,
+                            getString(R.string.reply_label), replyPendingIntent)
+                            .addRemoteInput(remoteInput)
+                            .build();
 
-        // Create builder for the main notification
-        NotificationCompat.Builder notificationBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.mipmap.ic_launcher)
-                        .setContentTitle("Step"+Integer.toString(TAG_STEP_ORDER))
-                        .setContentText("紀錄項(請往左滑)：");
+            // Create builder for the main notification
+            NotificationCompat.Builder notificationBuilder =
+                    new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.mipmap.ic_launcher)
+                            .setContentTitle("Step" + Integer.toString(TAG_STEP_ORDER))
+                            .setContentText("紀錄項(請往左滑)：");
 
 /*        // Create a big text style for the second page
         NotificationCompat.BigTextStyle secondPageStyle = new NotificationCompat.BigTextStyle();
@@ -210,37 +223,37 @@ public class Steprecording extends Activity {
                         .setStyle(secondPageStyle)
                         .build();
 */
-        List extras = new ArrayList();
-        for (int i = 0; i < count; i++) {
+            List extras = new ArrayList();
+            for (int i = 0; i < count; i++) {
 
-            NotificationCompat.BigTextStyle extraPageStyle = new NotificationCompat.BigTextStyle();
-            extraPageStyle.setBigContentTitle("第"+String.valueOf(i)+"項")
-                    .bigText(list.get(i).getRecord_text());
-            Notification extraPageNotification = new NotificationCompat.Builder(this)
-                    .setStyle(extraPageStyle)
-                    .build();
-            extras.add(extraPageNotification);
+                NotificationCompat.BigTextStyle extraPageStyle = new NotificationCompat.BigTextStyle();
+                extraPageStyle.setBigContentTitle("第" + String.valueOf(i) + "項")
+                        .bigText(list.get(i).getRecord_text());
+                Notification extraPageNotification = new NotificationCompat.Builder(this)
+                        .setStyle(extraPageStyle)
+                        .build();
+                extras.add(extraPageNotification);
 
-        }
+            }
 /*      //如果要跳頁
         Intent mainIntent = new Intent(this, MyDisplayActivity.class);
         PendingIntent mainPendingIntent = PendingIntent.getActivity(this, 0,
                 mainIntent, PendingIntent.FLAG_CANCEL_CURRENT);
 */
 
-        // Extend the notification builder with the second page
-        Notification notification = notificationBuilder
-                .extend(new NotificationCompat.WearableExtender()
-                        .addPages(extras).addAction(action))
-                        //.addPage(secondPageNotification))
-                //.addAction(android.R.drawable.ic_media_play, "Speak", mainPendingIntent)
-                .build();
+            // Extend the notification builder with the second page
+            Notification notification = notificationBuilder
+                    .extend(new NotificationCompat.WearableExtender()
+                            .addPages(extras).addAction(action))
+                            //.addPage(secondPageNotification))
+                            //.addAction(android.R.drawable.ic_media_play, "Speak", mainPendingIntent)
+                    .build();
 
-        // Issue the notification
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplication());
-        Random random = new Random();
-        int notificationId = random.nextInt(9999 - 1000) + 1000;
-        notificationManager.notify(notificationId, notification);
+            // Issue the notification
+            NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplication());
+            Random random = new Random();
+            int notificationId = random.nextInt(9999 - 1000) + 1000;
+            notificationManager.notify(notificationId, notification);
 
 /*        mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(new GoogleApiClient.ConnectionCallbacks() {
@@ -263,6 +276,7 @@ public class Steprecording extends Activity {
                 .build();
         mGoogleApiClient.connect();
         sendNotification();*/
+        }
     }
 
 
@@ -500,7 +514,7 @@ public class Steprecording extends Activity {
                                 RecordText[postcount] = Steprecording.this.edit1[postcount].getText().toString();
                                 mDatabaseHelper2[postcount] = new DatabaseHelper(getApplicationContext());
                                 mcase_recordDao = new case_recordDao();
-                                mcase_recordDao.update_record(mDatabaseHelper2[postcount], "Case_number", TAG_CASE_NUMBER, "Step_order", TAG_STEP_NUMBER, "Record_order", String.valueOf(postcount + 1),"Record_value",RecordText[postcount]);
+                                mcase_recordDao.update_record(mDatabaseHelper2[postcount], "Case_number", TAG_CASE_NUMBER, "Step_order", String.valueOf(TAG_STEP_ORDER), "Record_order", String.valueOf(postcount + 1),"Record_value",RecordText[postcount]);
                             }
                     }
 
@@ -514,7 +528,7 @@ public class Steprecording extends Activity {
                     startActivity(intent);
                     //切換畫面，右近左出
                     overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
-
+                    finish();
                 }else{
                     AlertDialog.Builder dialog = new AlertDialog.Builder(Steprecording.this);
                     dialog.setTitle("");
