@@ -110,7 +110,7 @@ public class StepActionControlIbeacon extends Activity implements BeaconConsumer
             mp.start();
         }else if(TAG_START_REMIND == 2){
             Notification notification = new NotificationCompat.Builder(getApplication())
-                    .setSmallIcon(R.drawable.ftc3x)
+                    .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentTitle("Step"+Integer.toString(TAG_STEP_ORDER))
                     .setContentText("啟動方式：Ibeacon啟動")
                     .extend(

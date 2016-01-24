@@ -134,7 +134,7 @@ public class Stepdescription extends Activity {
         }else if(TAG_STEP_REMIND == 2){
             Log.d("DELETEHTMLTAG",sHtml.replaceAll("\\<.*?>",""));
             Notification notification = new NotificationCompat.Builder(getApplication())
-                    .setSmallIcon(R.drawable.ftc3x)
+                    .setSmallIcon(R.mipmap.ic_launcher)
                     .setContentTitle("Step"+Integer.toString(TAG_STEP_ORDER))
                     .setContentText(sHtml.replaceAll("\\<.*?>",""))
                     .extend(
