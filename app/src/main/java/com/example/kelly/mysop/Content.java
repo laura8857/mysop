@@ -55,21 +55,21 @@ public class Content extends Activity {
 
     JSONParser jsonParser = new JSONParser();
     //讀取 sop內容 圖片
-    private static String url_create_product = "http://140.115.80.237/front/mysop_content.jsp";
+    private static String url_create_product = "http://140.115.82.211/front/mysop_content.jsp";
     //讀取 評論
-    private static String url_create_product1 = "http://140.115.80.237/front/mysop_content1.jsp";
+    private static String url_create_product1 = "http://140.115.82.211/front/mysop_content1.jsp";
     //寫入評論
-    private static String url_create_product2 = "http://140.115.80.237/front/mysop_content3.jsp";
+    private static String url_create_product2 = "http://140.115.82.211/front/mysop_content3.jsp";
     //collection數
-    private static String url_create_product3 = "http://140.115.80.237/front/mysop_content4.jsp";
+    private static String url_create_product3 = "http://140.115.82.211/front/mysop_content4.jsp";
     //數like數
-    private static String url_create_product4 = "http://140.115.80.237/front/mysop_content5.jsp";
+    private static String url_create_product4 = "http://140.115.82.211/front/mysop_content5.jsp";
     //加入清單
-    private static String url_create_product5 = "http://140.115.80.237/front/mysop_content6.jsp";
+    private static String url_create_product5 = "http://140.115.82.211/front/mysop_content6.jsp";
     //讀取 sop的 步驟一的stepnumber for 加入清單用
-    private static String url_create_product6 = "http://140.115.80.237/front/mysop_content2.jsp";
+    private static String url_create_product6 = "http://140.115.82.211/front/mysop_content2.jsp";
     //按讚
-    private static String url_create_product7 = "http://140.115.80.237/front/mysop_content7.jsp";
+    private static String url_create_product7 = "http://140.115.82.211/front/mysop_content7.jsp";
 
 
     TextView sopnumber;

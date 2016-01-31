@@ -22,10 +22,10 @@ import Ormlite.sop_detailVo;
 
 
 public class StepCutControl extends Activity {
-    private ProgressDialog pDialog;
-    JSONParser jsonParser = new JSONParser();
-    private static String url_create_product1 = "http://140.115.80.237/front/mysop_CC.jsp";
-    private static final String TAG_SUCCESS = "success";
+    //private ProgressDialog pDialog;
+    //JSONParser jsonParser = new JSONParser();
+    //private static String url_create_product1 = "http://140.115.80.237/front/mysop_CC.jsp";
+    //private static final String TAG_SUCCESS = "success";
 
     String TAG_CASE_NUMBER = "";
     String TAG_STEP_NUMBER = "";

@@ -27,8 +27,8 @@ public class Emailverify extends Activity {
 
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
-    private static String url = "http://140.115.80.237/front/mysop_captcha.jsp";
-    private static String url1 = "http://140.115.80.237/mysop/mysop_register1.jsp";
+    private static String url = "http://140.115.82.211/front/mysop_captcha.jsp";
+    private static String url1 = "http://140.115.82.211/mysop/mysop_register1.jsp";
     private static final String TAG_SUCCESS = "success";
     private EditText InputEmailVerify;
     String TAG_ACCOUNT = "";

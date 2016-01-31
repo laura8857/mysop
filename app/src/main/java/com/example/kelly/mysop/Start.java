@@ -33,7 +33,7 @@ public class Start extends Activity {
     private sop_masterDao msop_masterDao;
     private sop_detailDao msop_detailDao;
 
-    private static String url_all_products = "http://140.115.80.237/front/mysop_start.jsp";
+    private static String url_all_products = "http://140.115.82.211/front/mysop_start.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_SOPNAME = "sop_name";
     private static String SOPNAME = "";

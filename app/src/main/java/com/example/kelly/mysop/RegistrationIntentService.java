@@ -32,7 +32,7 @@ public class RegistrationIntentService extends IntentService {
 
 
     JSONParser jsonParser = new JSONParser();
-    private static String url_token = "http://140.115.80.237/front/mysop_gcm.jsp";
+    private static String url_token = "http://140.115.82.211/front/mysop_gcm.jsp";
     private static final String TAG_SUCCESS = "success";
     String TAG_ACCOUNT="";
 

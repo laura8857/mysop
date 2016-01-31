@@ -28,7 +28,7 @@ public class Login extends Activity {
 
     private ProgressDialog pDialog;
 
-    private static String url_login = "http://140.115.80.237/front/mysop_login.jsp";
+    private static String url_login = "http://140.115.82.211/front/mysop_login.jsp";
     private EditText et1;
     private EditText et2;
     String strHint1;

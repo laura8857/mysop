@@ -31,10 +31,10 @@ import Ormlite.sop_detailVo;
 
 
 public class StepActionControlArtificial extends Activity {
-    private ProgressDialog pDialog;
-    JSONParser jsonParser = new JSONParser();
-    private static String url_create_product = "http://140.115.80.237/front/mysop_ACArtificial.jsp";
-    private static final String TAG_SUCCESS = "success";
+    //private ProgressDialog pDialog;
+    //JSONParser jsonParser = new JSONParser();
+    //private static String url_create_product = "http://140.115.80.237/front/mysop_ACArtificial.jsp";
+    //private static final String TAG_SUCCESS = "success";
 
     //private static String Step="";
 

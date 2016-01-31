@@ -17,15 +17,15 @@ import Ormlite.sop_detailVo;
 
 
 public class StepActionControl extends Activity {
-    private ProgressDialog pDialog;
-    JSONParser jsonParser = new JSONParser();
-    private static String url_update = "http://140.115.80.237/front/mysop_AC1.jsp";
-    private static String url_checkStartrule = "http://140.115.80.237/front/mysop_AC.jsp";
-    private static final String TAG_SUCCESS = "success";
+    //private ProgressDialog pDialog;
+    //JSONParser jsonParser = new JSONParser();
+    //private static String url_update = "http://140.115.80.237/front/mysop_AC1.jsp";
+    //private static String url_checkStartrule = "http://140.115.80.237/front/mysop_AC.jsp";
+    //private static final String TAG_SUCCESS = "success";
     String TAG_STEP_NUMBER = "";
     int TAG_STEP_ORDER = 0;
 
-    private static String url_checkall = "http://140.115.80.237/front/mysop_AC2.jsp";
+    //private static String url_checkall = "http://140.115.80.237/front/mysop_AC2.jsp";
     String TAG_CASE_NUMBER = "";
     int StartRule;
 

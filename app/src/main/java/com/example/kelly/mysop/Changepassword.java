@@ -48,7 +48,7 @@ public class Changepassword extends Activity {
     String strHint3;
 
     JSONParser jsonParser = new JSONParser();
-    private static String url_changepassword = "http://140.115.80.237/front/mysop_changePassword.jsp";
+    private static String url_changepassword = "http://140.115.82.211/front/mysop_changePassword.jsp";
     private static final String TAG_SUCCESS = "success";
     String TAG_ACCOUNT = "";
     String NewPassword = "";

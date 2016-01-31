@@ -60,8 +60,8 @@ public class Mysop extends Activity {
     ArrayList<HashMap<String, String>> productsList1;
     //private static String url_all_products = "http://localhost:8080/kelly/test_getall.jsp";
     // private static String url_all_products = "http://140.115.80.237/front/test_getall.jsp";
-    private static String url_all_products = "http://140.115.80.237/front/mysop_mysop.jsp";
-    private static String url_all_products1 = "http://140.115.80.237/front/mysop_mysop1.jsp";
+    private static String url_all_products = "http://140.115.82.211/front/mysop_mysop.jsp";
+    private static String url_all_products1 = "http://140.115.82.211/front/mysop_mysop1.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_CASENUMBER = "casenumber";

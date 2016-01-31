@@ -34,7 +34,7 @@ public class Register extends Activity {
     String strHint4;
 
     JSONParser jsonParser = new JSONParser();
-    private static String url_create_product = "http://140.115.80.237/mysop/mysop_register.jsp";
+    private static String url_create_product = "http://140.115.82.211/mysop/mysop_register.jsp";
     private static final String TAG_SUCCESS = "success";
     String TAG_ACCOUNT = "";
 

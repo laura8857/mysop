@@ -25,8 +25,8 @@ public class StepNextControl extends Activity {
 
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
-    private static String url_next_control = "http://140.115.80.237/front/mysop_StepNextControl.jsp";
-    private static final String TAG_SUCCESS = "success";
+    //private static String url_next_control = "http://140.115.80.237/front/mysop_StepNextControl.jsp";
+    //private static final String TAG_SUCCESS = "success";
 
     String TAG_NEXT_STEP_NUMBER = "";
 

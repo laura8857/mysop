@@ -47,7 +47,7 @@ public class Stepdescription extends Activity {
     String TAG_ACCOUNT;
 
 
-    private static String url_des = "http://140.115.80.237/front/mysop_stepdescription1.jsp";
+    private static String url_des = "http://140.115.82.211/front/mysop_stepdescription1.jsp";
     private ProgressDialog pDialog1;
     JSONParser jParser1 = new JSONParser();
     ArrayList<HashMap<String, String>> productsList1;
@@ -58,7 +58,7 @@ public class Stepdescription extends Activity {
     ArrayList<HashMap<String, String>> productsList;
     JSONArray products = null;
 
-    private static String url_next = "http://140.115.80.237/front/mysop_stepdescription.jsp";
+    private static String url_next = "http://140.115.82.211/front/mysop_stepdescription.jsp";
     private static final String TAG_SUCCESS = "success";
     private int TAG_Next=0;
     String sHtml = "";

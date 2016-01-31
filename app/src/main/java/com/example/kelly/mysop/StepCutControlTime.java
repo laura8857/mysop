@@ -30,8 +30,8 @@ public class StepCutControlTime extends Activity {
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
     //讀取 時間是否一樣
-    private static String url_create_product = "http://140.115.80.237/front/mysop_CCtime.jsp";
-    private static final String TAG_SUCCESS = "success";
+    //private static String url_create_product = "http://140.115.80.237/front/mysop_CCtime.jsp";
+    //private static final String TAG_SUCCESS = "success";
     private static String str;
     private static Button timebtn;
     private static String Starttime="";

@@ -40,8 +40,8 @@ public class StepCutControlGPS extends Activity {
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
     //讀取 gps
-    private static String url_create_product = "http://140.115.80.237/front/mysop_CCgps.jsp";
-    private static final String TAG_SUCCESS = "success";
+    //private static String url_create_product = "http://140.115.80.237/front/mysop_CCgps.jsp";
+    //private static final String TAG_SUCCESS = "success";
 
     private static final String TAG_Latitude = "Latitude";
     private static final String TAG_Longitude = "Longitude";

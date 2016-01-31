@@ -42,8 +42,8 @@ public class StepCutControlNFC extends Activity {
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
     //讀取 NFC
-    private static String url_NFC = "http://140.115.80.237/front/mysop_CCnfc.jsp";
-    private static final String TAG_SUCCESS = "success";
+    //private static String url_NFC = "http://140.115.80.237/front/mysop_CCnfc.jsp";
+    //private static final String TAG_SUCCESS = "success";
 
     String TAG_ACCOUNT;
     String TAG_CASE_NUMBER = "";

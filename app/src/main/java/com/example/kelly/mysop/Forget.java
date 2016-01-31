@@ -24,7 +24,7 @@ public class Forget extends Activity {
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
     private static final String TAG_SUCCESS = "success";
-    private static String url = "http://140.115.80.237/mysop/mysop_forgetpwd.jsp";
+    private static String url = "http://140.115.82.211/mysop/mysop_forgetpwd.jsp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

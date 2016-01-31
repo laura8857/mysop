@@ -51,9 +51,9 @@ public class StepActionControlIbeacon extends Activity implements BeaconConsumer
     private ProgressDialog pDialog;
     JSONParser jsonParser = new JSONParser();
     //讀取 qrcode 圖片
-    private static String url_uuid = "http://140.115.80.237/front/mysop_ACibeacon.jsp";
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_UUID = "UUID";
+    //private static String url_uuid = "http://140.115.80.237/front/mysop_ACibeacon.jsp";
+    //private static final String TAG_SUCCESS = "success";
+    //private static final String TAG_UUID = "UUID";
     String UUID = "00000000-0000-0000-0000-000000000000";
 
     int connectfinish = 0;

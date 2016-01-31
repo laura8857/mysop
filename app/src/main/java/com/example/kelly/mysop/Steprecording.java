@@ -51,14 +51,14 @@ public class Steprecording extends Activity {
     ArrayList<HashMap<String, String>> productsList;
     JSONArray products = null;
 
-    private static String url_all_products = "http://140.115.80.237/front/mysop_steprecording2.jsp";
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_PRODUCTS = "products";
-    private static final String TAG_RECODE = "recode";
+    //private static String url_all_products = "http://140.115.80.237/front/mysop_steprecording2.jsp";
+    //private static final String TAG_SUCCESS = "success";
+    //private static final String TAG_PRODUCTS = "products";
+    //private static final String TAG_RECODE = "recode";
     String TAG_ACCOUNT;
 
 
-    private static String url_record = "http://140.115.80.237/front/mysop_steprecording3.jsp";
+    //private static String url_record = "http://140.115.80.237/front/mysop_steprecording3.jsp";
 
     private GestureDetector detector;
     EditText[] edit1 = new EditText[20];

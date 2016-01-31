@@ -54,12 +54,12 @@ public class SplashActivity extends Activity {
     ArrayList<HashMap<String, String>> productsList1;
     ArrayList<HashMap<String, String>> productsList2;
     ArrayList<HashMap<String, String>> productsList3;
-    private static String url_all_products = "http://140.115.80.237/front/mysop_step_detail.jsp";
-    private static String url_all_products1 = "http://140.115.80.237/front/mysop_sop_master.jsp";
-    private static String url_all_products2 = "http://140.115.80.237/front/mysop_case_master.jsp";
-    private static String url_all_products3 = "http://140.115.80.237/front/mysop_step_record.jsp";
-    private static String url_upload1 = "http://140.115.80.237/front/mysop_steprecording3.jsp";
-    private static String url_upload2 = "http://140.115.80.237/front/mysop_stepCaseclose2.jsp";
+    private static String url_all_products = "http://140.115.82.211/front/mysop_step_detail.jsp";
+    private static String url_all_products1 = "http://140.115.82.211/front/mysop_sop_master.jsp";
+    private static String url_all_products2 = "http://140.115.82.211/front/mysop_case_master.jsp";
+    private static String url_all_products3 = "http://140.115.82.211/front/mysop_step_record.jsp";
+    private static String url_upload1 = "http://140.115.82.211/front/mysop_steprecording3.jsp";
+    private static String url_upload2 = "http://140.115.82.211/front/mysop_stepCaseclose2.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_CASENUMBER = "casenumber";
@@ -129,7 +129,7 @@ public class SplashActivity extends Activity {
                 continue;
             }
             DetectDownload=DetectDownload+1;
-            down[i]=new DownloadManager.Request (Uri.parse("http://140.115.80.237/front/download/start"+sop_detailDL.get(i).getStep_number()+".mp3"));
+            down[i]=new DownloadManager.Request (Uri.parse("http://140.115.82.211/front/download/start"+sop_detailDL.get(i).getStep_number()+".mp3"));
             //允許網路類型
             down[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
             //禁止發通知
@@ -158,7 +158,7 @@ public class SplashActivity extends Activity {
                 continue;
             }
             DetectDownload=DetectDownload+1;
-            down1[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/front/download/step" + sop_detailDL1.get(i).getStep_number() + ".mp3"));
+            down1[i] = new DownloadManager.Request(Uri.parse("http://140.115.82.211/front/download/step" + sop_detailDL1.get(i).getStep_number() + ".mp3"));
             //允許網路類型
             down1[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
             //禁止發通知
@@ -189,8 +189,8 @@ public class SplashActivity extends Activity {
                 continue;
             }
             DetectDownload=DetectDownload+1;
-            //down2[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/front/picture/" + graph[graph.length-1]));
-            down2[i] = new DownloadManager.Request(Uri.parse("http://140.115.80.237/mysop/img/" + graph[graph.length-1]));
+            //down2[i] = new DownloadManager.Request(Uri.parse("http://140.115.82.211/front/picture/" + graph[graph.length-1]));
+            down2[i] = new DownloadManager.Request(Uri.parse("http://140.115.82.211/mysop/img/" + graph[graph.length-1]));
             //允許網路類型
             down2[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
             //禁止發通知
@@ -207,7 +207,7 @@ public class SplashActivity extends Activity {
         }
 
 
-/*        DownloadManager.Request down=new DownloadManager.Request (Uri.parse("http://140.115.80.237/front/download/testhtml.html"));
+/*        DownloadManager.Request down=new DownloadManager.Request (Uri.parse("http://140.115.82.211/front/download/testhtml.html"));
         //允許網路類型
         down.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE|DownloadManager.Request.NETWORK_WIFI);
         //禁止發通知
