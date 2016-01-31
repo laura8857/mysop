@@ -213,7 +213,7 @@ public class Home extends Activity {
         startActivity(it);
     }
 
-    class LoadAll extends AsyncTask<String, String, String> {
+    class LoadAll extends AsyncTask<Integer, Integer, Integer> {
 
         /**
          * Before starting background thread Show Progress Dialog
@@ -231,7 +231,7 @@ public class Home extends Activity {
         /**
          * getting All products from url
          * */
-        protected String doInBackground(String... args) {
+        protected Integer doInBackground(Integer... args) {
             // Building Parameters
             List<NameValuePair> params = new ArrayList<NameValuePair>();
             params.add(new BasicNameValuePair("Key", TAG_Key) );
@@ -272,10 +272,10 @@ public class Home extends Activity {
                         // adding HashList to ArrayList
                         productsList.add(map);
                     }
-
+                    return 1;
 
                 } else {
-
+                    return 2;
                 }
 
 
@@ -290,49 +290,62 @@ public class Home extends Activity {
         /**
          * After completing background task Dismiss the progress dialog
          * **/
-        protected void onPostExecute(String file_url) {
+        protected void onPostExecute(Integer ans) {
             // dismiss the dialog after getting all products
             pDialog.dismiss();
 
-            int k=0;
-            if(products.length()%2==0){
-                x=products.length()/2;
+            if(ans==1) {
+                int k = 0;
+                if (products.length() % 2 == 0) {
+                    x = products.length() / 2;
+                } else {
+                    x = (products.length() + 1) / 2;
+                }
+
+                name = new String[x];
+                master = new String[x];
+                photo = new String[x];
+                likeu = new String[x];
+                name1 = new String[products.length() / 2];
+                master1 = new String[products.length() / 2];
+                photo1 = new String[products.length() / 2];
+                likeu1 = new String[products.length() / 2];
+                for (int i = 0; i < x; i++) {
+                    name[i] = productsList.get(i).get(TAG_SOPNAME);
+                    master[i] = productsList.get(i).get(TAG_USERNAME);
+                    String[] graph = productsList.get(i).get(TAG_PICTURE).split("/");
+                    photo[i] = "http://140.115.82.211/mysop/img/" + graph[graph.length - 1];
+                    likeu[i] = productsList.get(i).get(TAG_LIKE);
+                }
+                for (int i = products.length() - 1; i >= x; i--) {
+                    name1[k] = productsList.get(i).get(TAG_SOPNAME);
+                    master1[k] = productsList.get(i).get(TAG_USERNAME);
+                    String[] graph1 = productsList.get(i).get(TAG_PICTURE).split("/");
+                    photo1[k] = "http://140.115.82.211/mysop/img/" + graph1[graph1.length - 1];
+                    likeu1[k] = productsList.get(i).get(TAG_LIKE);
+                    k++;
+                }
+
+                adapter = new MyAdapter(Home.this);
+                adapter1 = new MyAdapter1(Home.this);
+                listInput.setAdapter(adapter);
+                listInput1.setAdapter(adapter1);
+
+                listInput.setOnItemClickListener(listener);
+                listInput1.setOnItemClickListener(listener1);
             }else{
-                x=(products.length()+1)/2;
+                AlertDialog.Builder ad=new AlertDialog.Builder(Home.this);
+                ad.setTitle("系統異常!");
+                ad.setMessage("系統異常，請聯繫系統管理員。");
+                ad.setPositiveButton("是", new DialogInterface.OnClickListener() {//退出按鈕
+                    public void onClick(DialogInterface dialog, int i) {
+                        // TODO Auto-generated method stub
+                        Home.this.finish();//關閉activity
+
+                    }
+                });
+                ad.show();//示對話框
             }
-
-            name = new String[x];
-            master = new String[x];
-            photo = new String[x];
-            likeu = new String[x];
-            name1 = new String[products.length()/2];
-            master1 = new String[products.length()/2];
-            photo1 = new String[products.length()/2];
-            likeu1 = new String[products.length()/2];
-            for (int i = 0; i < x; i++) {
-                name[i]=productsList.get(i).get(TAG_SOPNAME);
-                master[i]=productsList.get(i).get(TAG_USERNAME);
-                String[] graph = productsList.get(i).get(TAG_PICTURE).split("/");
-                photo[i]="http://140.115.82.211/mysop/img/"+graph[graph.length-1];
-                likeu[i]=productsList.get(i).get(TAG_LIKE);
-            }
-            for (int i = products.length()-1; i >=x; i--) {
-                name1[k]=productsList.get(i).get(TAG_SOPNAME);
-                master1[k]=productsList.get(i).get(TAG_USERNAME);
-                String[] graph1 = productsList.get(i).get(TAG_PICTURE).split("/");
-                photo1[k]="http://140.115.82.211/mysop/img/"+graph1[graph1.length-1];
-                likeu1[k]=productsList.get(i).get(TAG_LIKE);
-                k++;
-            }
-
-            adapter = new MyAdapter(Home.this);
-            adapter1= new MyAdapter1(Home.this);
-            listInput.setAdapter(adapter);
-            listInput1.setAdapter(adapter1);
-
-            listInput.setOnItemClickListener(listener);
-            listInput1.setOnItemClickListener(listener1);
-
         }
 
     }

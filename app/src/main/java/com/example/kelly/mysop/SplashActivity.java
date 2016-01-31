@@ -1,10 +1,12 @@
 package com.example.kelly.mysop;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.ConnectivityManager;
@@ -421,7 +423,7 @@ public class SplashActivity extends Activity {
     /**
      * Background Async Task to Load all product by making HTTP Request
      * */
-    class LoadAllProducts extends AsyncTask<String, String, String> {
+    class LoadAllProducts extends AsyncTask<Integer, Integer, Integer> {
 
         /**
          * Before starting background thread Show Progress Dialog
@@ -439,7 +441,7 @@ public class SplashActivity extends Activity {
         /**
          * getting All products from url
          * */
-        protected String doInBackground(String... args) {
+        protected Integer doInBackground(Integer... args) {
             // Building Parameters
             DetectDownload=0;
             DetectDownloadReceive=0;
@@ -536,6 +538,8 @@ public class SplashActivity extends Activity {
                     }
                     Log.d("test11",String.valueOf(productsList.size()));
                     Log.d("productlist","success");
+                }else{
+                    return 2;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -580,8 +584,7 @@ public class SplashActivity extends Activity {
                     }
                     Log.d("productlist1","success");
                 } else {
-
-
+                    return 2;
                 }
 
 
@@ -621,8 +624,7 @@ public class SplashActivity extends Activity {
                     }
                     Log.d("productlist2","success");
                 } else {
-
-
+                    return 2;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -679,26 +681,42 @@ public class SplashActivity extends Activity {
                     }
                     Log.d("record",String.valueOf(productsList3.size()));
                     Log.d("productlist3","success");
+                }else{
+                    return 2;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            return null;
+            return 1;
         }
 
         /**
          * After completing background task Dismiss the progress dialog
          * **/
-        protected void onPostExecute(String file_url) {
+        protected void onPostExecute(Integer ans) {
 
 
             pDialog.dismiss();
             //Log.d("test1",productsList.get(10).get("finish_value1"));
             //Log.d("test1",String.valueOf(productsList.size()));
 
-            DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(SplashActivity.this);
-            sop_detailDao msop_detailDao2 = new sop_detailDao();
-            sop_detailVo msop_detailVo2 = new sop_detailVo();
+            if(ans==2){
+                AlertDialog.Builder ad=new AlertDialog.Builder(SplashActivity.this);
+                ad.setTitle("系統異常!");
+                ad.setMessage("系統異常，請聯繫系統管理員。");
+                ad.setPositiveButton("是", new DialogInterface.OnClickListener() {//退出按鈕
+                    public void onClick(DialogInterface dialog, int i) {
+                        // TODO Auto-generated method stub
+                        SplashActivity.this.finish();//關閉activity
+
+                    }
+                });
+                ad.show();//示對話框
+            }else {
+
+                DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(SplashActivity.this);
+                sop_detailDao msop_detailDao2 = new sop_detailDao();
+                sop_detailVo msop_detailVo2 = new sop_detailVo();
 
 /*            DatabaseHelper[] mDatabaseHelper2 = new DatabaseHelper[20];
             sop_detailDao[] msop_detailDao2 = new sop_detailDao[20];
@@ -710,96 +728,96 @@ public class SplashActivity extends Activity {
                 msop_detailDao2[i].insert(mDatabaseHelper2[i], msop_detailVo2[i]);
                 Log.d("products",String.valueOf(i));
             }*/
-            //msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
-            Log.d("length",String.valueOf(products.length()));
-            Log.d("size",String.valueOf(productsList.size()));
+                //msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
+                Log.d("length", String.valueOf(products.length()));
+                Log.d("size", String.valueOf(productsList.size()));
 
-            // dismiss the dialog after getting all products
-            for (int i = 0; i <  productsList.size(); i++){
-
-
-                msop_detailVo2.setSop_number(productsList.get(i).get("sop_number"));
-                msop_detailVo2.setStep_order(productsList.get(i).get("step_order"));
-                msop_detailVo2.setStep_number(productsList.get(i).get("step_number"));
-                Log.d("countproducts"+String.valueOf(i),productsList.get(i).get("step_number"));
-                msop_detailVo2.setStep_name(productsList.get(i).get("step_name"));
-                msop_detailVo2.setStep_purpose(productsList.get(i).get("step_purpose"));
-                msop_detailVo2.setStep_intro(productsList.get(i).get("step_intro"));
-                Log.d("countproducts"+String.valueOf(i),productsList.get(i).get("step_intro"));
-                msop_detailVo2.setStart_rule(productsList.get(i).get("start_rule"));
-                msop_detailVo2.setStart_value1(productsList.get(i).get("start_value1"));
-                msop_detailVo2.setStart_value2(productsList.get(i).get("start_value2"));
-                msop_detailVo2.setFinish_rule(productsList.get(i).get("finish_rule"));
-                msop_detailVo2.setFinish_value1(productsList.get(i).get("finish_value1"));
-                msop_detailVo2.setFinish_value2(productsList.get(i).get("finish_value2"));
-                msop_detailVo2.setNext_step_number(productsList.get(i).get("next_step_number"));
-                msop_detailVo2.setNext_step_rule(productsList.get(i).get("next_step_rule"));
-                msop_detailVo2.setStep_remind(productsList.get(i).get("step_remind"));
-                msop_detailVo2.setStart_remind(productsList.get(i).get("start_remind"));
-                msop_detailVo2.setStart_message(productsList.get(i).get("start_message"));
+                // dismiss the dialog after getting all products
+                for (int i = 0; i < productsList.size(); i++) {
 
 
-                msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
-            }
+                    msop_detailVo2.setSop_number(productsList.get(i).get("sop_number"));
+                    msop_detailVo2.setStep_order(productsList.get(i).get("step_order"));
+                    msop_detailVo2.setStep_number(productsList.get(i).get("step_number"));
+                    Log.d("countproducts" + String.valueOf(i), productsList.get(i).get("step_number"));
+                    msop_detailVo2.setStep_name(productsList.get(i).get("step_name"));
+                    msop_detailVo2.setStep_purpose(productsList.get(i).get("step_purpose"));
+                    msop_detailVo2.setStep_intro(productsList.get(i).get("step_intro"));
+                    Log.d("countproducts" + String.valueOf(i), productsList.get(i).get("step_intro"));
+                    msop_detailVo2.setStart_rule(productsList.get(i).get("start_rule"));
+                    msop_detailVo2.setStart_value1(productsList.get(i).get("start_value1"));
+                    msop_detailVo2.setStart_value2(productsList.get(i).get("start_value2"));
+                    msop_detailVo2.setFinish_rule(productsList.get(i).get("finish_rule"));
+                    msop_detailVo2.setFinish_value1(productsList.get(i).get("finish_value1"));
+                    msop_detailVo2.setFinish_value2(productsList.get(i).get("finish_value2"));
+                    msop_detailVo2.setNext_step_number(productsList.get(i).get("next_step_number"));
+                    msop_detailVo2.setNext_step_rule(productsList.get(i).get("next_step_rule"));
+                    msop_detailVo2.setStep_remind(productsList.get(i).get("step_remind"));
+                    msop_detailVo2.setStart_remind(productsList.get(i).get("start_remind"));
+                    msop_detailVo2.setStart_message(productsList.get(i).get("start_message"));
 
 
-            DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(SplashActivity.this);
-            case_masterDao mcase_masterDao4 = new case_masterDao();
-            case_masterVo mcase_masterVo4 = new case_masterVo();
+                    msop_detailDao2.insert(mDatabaseHelper2, msop_detailVo2);
+                }
 
-            Log.d("eee",String.valueOf(products2.length()));
-            // dismiss the dialog after getting all products
-            for (int i = 0; i <  productsList2.size(); i++){
 
-                mcase_masterVo4.setSop_number(productsList2.get(i).get("sop_number"));
-                mcase_masterVo4.setStep_number(productsList2.get(i).get("step_number"));
-                mcase_masterVo4.setAccount(productsList2.get(i).get("account"));
-                mcase_masterVo4.setCase_number(productsList2.get(i).get("case_number"));
-                mcase_masterVo4.setCase_mark("0");
-                mcase_masterDao4.insert(mDatabaseHelper4, mcase_masterVo4);
+                DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(SplashActivity.this);
+                case_masterDao mcase_masterDao4 = new case_masterDao();
+                case_masterVo mcase_masterVo4 = new case_masterVo();
 
-            }
+                Log.d("eee", String.valueOf(products2.length()));
+                // dismiss the dialog after getting all products
+                for (int i = 0; i < productsList2.size(); i++) {
 
-            DatabaseHelper mDatabaseHelper5 = DatabaseHelper.getHelper(SplashActivity.this);
-            sop_masterDao msop_masterDao5 = new sop_masterDao();
-            sop_masterVo msop_masterVo5 = new sop_masterVo();
+                    mcase_masterVo4.setSop_number(productsList2.get(i).get("sop_number"));
+                    mcase_masterVo4.setStep_number(productsList2.get(i).get("step_number"));
+                    mcase_masterVo4.setAccount(productsList2.get(i).get("account"));
+                    mcase_masterVo4.setCase_number(productsList2.get(i).get("case_number"));
+                    mcase_masterVo4.setCase_mark("0");
+                    mcase_masterDao4.insert(mDatabaseHelper4, mcase_masterVo4);
 
-            // dismiss the dialog after getting all products
-            for (int i = 0; i <  products1.length(); i++){
+                }
 
-                msop_masterVo5.setSop_number(productsList1.get(i).get("sop_number"));
-                msop_masterVo5.setSop_name(productsList1.get(i).get("sop_name"));
-                msop_masterVo5.setSop_graph_src(productsList1.get(i).get("sop_graph_src"));
-                msop_masterVo5.setSop_intro(productsList1.get(i).get("sop_intro"));
-                msop_masterVo5.setSop_detail(productsList1.get(i).get("sop_detail"));
-                msop_masterVo5.setAccount(productsList1.get(i).get("account"));
-                msop_masterVo5.setStart_rule(productsList1.get(i).get("start_rule"));
-                msop_masterDao5.insert(mDatabaseHelper5, msop_masterVo5);
+                DatabaseHelper mDatabaseHelper5 = DatabaseHelper.getHelper(SplashActivity.this);
+                sop_masterDao msop_masterDao5 = new sop_masterDao();
+                sop_masterVo msop_masterVo5 = new sop_masterVo();
 
-            }
-            DatabaseHelper mDatabaseHelper6 = DatabaseHelper.getHelper(SplashActivity.this);
-            step_recordDao mstep_recordDao6 = new step_recordDao();
-            step_recordVo mstep_recordVo6 = new step_recordVo();
-            Log.d("length3",String.valueOf(products3.length()));
-            Log.d("size3",String.valueOf(productsList3.size()));
-            // dismiss the dialog after getting all products
-            for (int i = 0; i <  products3.length(); i++){
+                // dismiss the dialog after getting all products
+                for (int i = 0; i < products1.length(); i++) {
 
-                mstep_recordVo6.setId(Integer.valueOf(productsList3.get(i).get("id")));
-                mstep_recordVo6.setStep_number(productsList3.get(i).get("step_number"));
-                mstep_recordVo6.setRecord_order(productsList3.get(i).get("record_order"));
-                mstep_recordVo6.setRecord_text(productsList3.get(i).get("record_text"));
-                Log.d("countproducts3"+i,productsList3.get(i).get("record_text"));
-                mstep_recordVo6.setRecord_type(productsList3.get(i).get("record_type"));
-                mstep_recordVo6.setRecord_unit(productsList3.get(i).get("record_unit"));
-                mstep_recordVo6.setRecord_max(productsList3.get(i).get("record_max"));
-                mstep_recordVo6.setRecord_min(productsList3.get(i).get("record_min"));
-                mstep_recordVo6.setRecord_standard(productsList3.get(i).get("record_standard"));
-                mstep_recordDao6.insert(mDatabaseHelper6, mstep_recordVo6);
+                    msop_masterVo5.setSop_number(productsList1.get(i).get("sop_number"));
+                    msop_masterVo5.setSop_name(productsList1.get(i).get("sop_name"));
+                    msop_masterVo5.setSop_graph_src(productsList1.get(i).get("sop_graph_src"));
+                    msop_masterVo5.setSop_intro(productsList1.get(i).get("sop_intro"));
+                    msop_masterVo5.setSop_detail(productsList1.get(i).get("sop_detail"));
+                    msop_masterVo5.setAccount(productsList1.get(i).get("account"));
+                    msop_masterVo5.setStart_rule(productsList1.get(i).get("start_rule"));
+                    msop_masterDao5.insert(mDatabaseHelper5, msop_masterVo5);
 
-            }
+                }
+                DatabaseHelper mDatabaseHelper6 = DatabaseHelper.getHelper(SplashActivity.this);
+                step_recordDao mstep_recordDao6 = new step_recordDao();
+                step_recordVo mstep_recordVo6 = new step_recordVo();
+                Log.d("length3", String.valueOf(products3.length()));
+                Log.d("size3", String.valueOf(productsList3.size()));
+                // dismiss the dialog after getting all products
+                for (int i = 0; i < products3.length(); i++) {
 
-            download();
+                    mstep_recordVo6.setId(Integer.valueOf(productsList3.get(i).get("id")));
+                    mstep_recordVo6.setStep_number(productsList3.get(i).get("step_number"));
+                    mstep_recordVo6.setRecord_order(productsList3.get(i).get("record_order"));
+                    mstep_recordVo6.setRecord_text(productsList3.get(i).get("record_text"));
+                    Log.d("countproducts3" + i, productsList3.get(i).get("record_text"));
+                    mstep_recordVo6.setRecord_type(productsList3.get(i).get("record_type"));
+                    mstep_recordVo6.setRecord_unit(productsList3.get(i).get("record_unit"));
+                    mstep_recordVo6.setRecord_max(productsList3.get(i).get("record_max"));
+                    mstep_recordVo6.setRecord_min(productsList3.get(i).get("record_min"));
+                    mstep_recordVo6.setRecord_standard(productsList3.get(i).get("record_standard"));
+                    mstep_recordDao6.insert(mDatabaseHelper6, mstep_recordVo6);
+
+                }
+
+                download();
 /*
             //測試
             DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);
@@ -848,13 +866,13 @@ public class SplashActivity extends Activity {
             Log.d("onpost_test2",sopdetaillist10.get(0).getStep_intro());
             //測試
 */
-
-            //startActivity(new Intent().setClass(SplashActivity.this, Login.class));
-            if(DetectDownload==0) {
-                Bundle bundle = new Bundle();
-                bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
-                startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
-                finish();
+                //startActivity(new Intent().setClass(SplashActivity.this, Login.class));
+                if(DetectDownload==0) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+                    startActivity(new Intent().setClass(SplashActivity.this, Mysop.class).putExtras(bundle));
+                    finish();
+                }
             }
         }
     }
