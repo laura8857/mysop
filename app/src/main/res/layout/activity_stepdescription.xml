@@ -7,7 +7,7 @@
     android:clickable="true"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    tools:context="com.example.kelly.mysop.Stepdescription"
+    tools:context="com.ncu.efpg.mysop.Stepdescription"
     android:background="#ffffff" android:id="@+id/des_relative">
 
     <TextView

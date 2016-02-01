@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kelly.mysop" >
+    package="com.ncu.efpg.mysop" >
 
     <uses-sdk android:minSdkVersion="18" />
 
@@ -75,7 +75,7 @@
         </receiver>
 
         <service
-            android:name=".MyGcmListenerService"
+            android:name="com.ncu.efpg.mysop.MyGcmListenerService"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
@@ -83,7 +83,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".MyInstanceIDListenerService"
+            android:name="com.ncu.efpg.mysop.MyInstanceIDListenerService"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
@@ -91,7 +91,7 @@
             </intent-filter>
         </service>
         <service
-            android:name=".RegistrationIntentService"
+            android:name="com.ncu.efpg.mysop.RegistrationIntentService"
             android:exported="false" >
         </service>
         <!--
@@ -112,52 +112,52 @@
         -->
 
         <activity
-            android:name=".Register"
+            android:name="com.ncu.efpg.mysop.Register"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".Emailverify"
+            android:name="com.ncu.efpg.mysop.Emailverify"
             android:label="@string/title_activity_emailverify"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".Error"
+            android:name="com.ncu.efpg.mysop.Error"
             android:label="@string/title_activity_error"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".Forget"
+            android:name="com.ncu.efpg.mysop.Forget"
             android:label="@string/title_activity_forget"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".Forgetpwd"
+            android:name="com.ncu.efpg.mysop.Forgetpwd"
             android:label="@string/title_activity_forgetpwd"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".Login"
+            android:name="com.ncu.efpg.mysop.Login"
             android:label="@string/title_activity_main"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".Changepassword"
+            android:name="com.ncu.efpg.mysop.Changepassword"
             android:label="@string/title_activity_changepassword"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".ChangePasswordError"
+            android:name="com.ncu.efpg.mysop.ChangePasswordError"
             android:label="@string/title_activity_change_password_error"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".EmailVertifyError"
+            android:name="com.ncu.efpg.mysop.EmailVertifyError"
             android:label="@string/title_activity_email_vertify_error"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".SplashActivity"
+            android:name="com.ncu.efpg.mysop.SplashActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
             <intent-filter>
@@ -167,88 +167,88 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RegisterError"
+            android:name="com.ncu.efpg.mysop.RegisterError"
             android:label="@string/title_activity_register_error"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".Mysop"
+            android:name="com.ncu.efpg.mysop.Mysop"
             android:label="@string/title_activity_mysop"
             android:theme="@style/MyTheme" >
         </activity>
         <activity
-            android:name=".Content"
+            android:name="com.ncu.efpg.mysop.Content"
             android:label="@string/title_activity_content"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".Start"
+            android:name="com.ncu.efpg.mysop.Start"
             android:label="@string/title_activity_start"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
 >
         </activity>
         <activity
-            android:name=".Stepdescription"
+            android:name="com.ncu.efpg.mysop.Stepdescription"
             android:label="@string/title_activity_stepdescription"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".Steprecording"
+            android:name="com.ncu.efpg.mysop.Steprecording"
             android:label="@string/title_activity_steprecording"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepcutcontrolArtificial"
+            android:name="com.ncu.efpg.mysop.StepcutcontrolArtificial"
             android:label="@string/title_activity_stepcutcontrol_artificial"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepCaseEnding"
+            android:name="com.ncu.efpg.mysop.StepCaseEnding"
             android:label="@string/title_activity_step_case_ending"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepActionControlQRcode"
+            android:name="com.ncu.efpg.mysop.StepActionControlQRcode"
             android:label="@string/title_activity_step_action_control_qrcode"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepActionControlIbeacon"
+            android:name="com.ncu.efpg.mysop.StepActionControlIbeacon"
             android:label="@string/title_activity_step_action_control_ibeacon"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepCutControlQRcode"
+            android:name="com.ncu.efpg.mysop.StepCutControlQRcode"
             android:label="@string/title_activity_step_cut_control_qrcode"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepActionControl"
+            android:name="com.ncu.efpg.mysop.StepActionControl"
             android:label="@string/title_activity_step_action_control"
             android:theme="@android:style/Theme.NoDisplay" >
         </activity>
         <activity
-            android:name=".StepCutControl"
+            android:name="com.ncu.efpg.mysop.StepCutControl"
             android:label="@string/title_activity_step_cut_control"
             android:theme="@android:style/Theme.NoDisplay" >
         </activity>
         <activity
-            android:name=".StepActionControlGPS"
+            android:name="com.ncu.efpg.mysop.StepActionControlGPS"
             android:label="StepActionControlGPS"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepCutControlIbeacon"
+            android:name="com.ncu.efpg.mysop.StepCutControlIbeacon"
             android:label="@string/title_activity_step_cut_control_ibeacon"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepCutControlGPS"
+            android:name="com.ncu.efpg.mysop.StepCutControlGPS"
             android:label="@string/title_activity_step_cut_control_gps"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepActionControlNFC"
+            android:name="com.ncu.efpg.mysop.StepActionControlNFC"
             android:label="@string/title_activity_step_action_control_nfc"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
             <intent-filter>
@@ -260,17 +260,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".StepActionControlArtificial"
+            android:name="com.ncu.efpg.mysop.StepActionControlArtificial"
             android:label="@string/title_activity_step_action_control_artificial"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepActionControlTime"
+            android:name="com.ncu.efpg.mysop.StepActionControlTime"
             android:label="@string/title_activity_step_action_control_time"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepCutControlNFC"
+            android:name="com.ncu.efpg.mysop.StepCutControlNFC"
             android:label="@string/title_activity_step_cut_control_nfc"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
             <intent-filter>
@@ -282,73 +282,73 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".StepCutControlTime"
+            android:name="com.ncu.efpg.mysop.StepCutControlTime"
             android:label="@string/title_activity_step_cut_control_time"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepNextControlUser"
+            android:name="com.ncu.efpg.mysop.StepNextControlUser"
             android:label="@string/title_activity_step_next_control_user"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".StepNextControl"
+            android:name="com.ncu.efpg.mysop.StepNextControl"
             android:label="@string/title_activity_step_next_control"
             android:theme="@android:style/Theme.NoDisplay" >
         </activity>
         <activity
-            android:name=".Home"
+            android:name="com.ncu.efpg.mysop.Home"
             android:label="home" >
         </activity>
         <activity
-            android:name=".TestSendGCM"
+            android:name="com.ncu.efpg.mysop.TestSendGCM"
             android:label="@string/title_activity_test_send_gcm"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".Search"
+            android:name="com.ncu.efpg.mysop.Search"
             android:label="@string/title_activity_search" >
         </activity>
         <activity
-            android:name=".DynamicAction"
+            android:name="com.ncu.efpg.mysop.DynamicAction"
             android:label="@string/title_activity_dynamic_action"
             android:theme="@style/MyTheme" >
         </activity>
         <activity
-            android:name=".Logout"
+            android:name="com.ncu.efpg.mysop.Logout"
             android:label="@string/title_activity_logout" >
         </activity>
         <activity
-            android:name=".StepNextControlData"
+            android:name="com.ncu.efpg.mysop.StepNextControlData"
             android:label="@string/title_activity_step_next_control_data"
             android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
-            android:name=".StepCutControlFinishandpass"
+            android:name="com.ncu.efpg.mysop.StepCutControlFinishandpass"
             android:label="@string/title_activity_step_cut_control_finishandpass"
             android:theme="@android:style/Theme.Holo.Light.Dialog" >
         </activity>
         <activity
-            android:name=".SystemMessage"
+            android:name="com.ncu.efpg.mysop.SystemMessage"
             android:label="@string/title_activity_system_message"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".SystemMessageGet"
+            android:name="com.ncu.efpg.mysop.SystemMessageGet"
             android:label="@string/title_activity_system_message"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".SystemMessageMemo"
+            android:name="com.ncu.efpg.mysop.SystemMessageMemo"
             android:label="@string/title_activity_system_message"
             android:theme="@android:style/Theme.Light.NoTitleBar" >
         </activity>
         <activity
-            android:name=".MyStubBroadcastActivity"
+            android:name="com.ncu.efpg.mysop.MyStubBroadcastActivity"
             android:label="MyStubBroadcastActivity" >
         </activity>
         <activity
-            android:name=".MyDisplayActivity"
+            android:name="com.ncu.efpg.mysop.MyDisplayActivity"
             android:allowEmbedded="true"
             android:exported="true"
             android:taskAffinity=""
@@ -356,7 +356,7 @@
         </activity>
 
         <receiver
-            android:name=".MyPostNotificationReceiver"
+            android:name="com.ncu.efpg.mysop.MyPostNotificationReceiver"
             android:exported="true" >
             <intent-filter>
                 <action android:name="com.example.kelly.mysop.SHOW_NOTIFICATION" />
