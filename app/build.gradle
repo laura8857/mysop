@@ -6,7 +6,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.ncu.efpg.kelly.mysop"
+        applicationId "com.ncu.efpg.mysop"
         minSdkVersion 21
         targetSdkVersion 22
         versionCode 1
