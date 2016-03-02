@@ -177,10 +177,8 @@ public class Register extends Activity {
                 int e = json.getInt(TAG_SUCCESS);
                 if(e == 1) {
                     return 1;
-                }else if(e == 2){
-                    return 2;
                 }else{
-                    return 3;
+                    return 2;
                 }
             } catch (JSONException var9) {
                 var9.printStackTrace();
