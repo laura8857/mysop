@@ -21,7 +21,7 @@ public class Logout extends Activity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logout);
-        Intent i = new Intent(this, Home.class);
+        Intent i = new Intent(this, SplashActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         Bundle bundle = new Bundle();
         bundle.putString("TAG_Key", "");

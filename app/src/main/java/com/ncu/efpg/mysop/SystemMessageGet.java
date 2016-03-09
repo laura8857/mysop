@@ -228,6 +228,8 @@ public class SystemMessageGet extends  Activity {
         return super.onKeyDown(keyCode, event);
     }
     public void ConfirmExit(){//退出確認
+        SystemMessageGet.this.finish();//關閉activity
+        /*
         AlertDialog.Builder ad=new AlertDialog.Builder(SystemMessageGet.this);
         ad.setTitle("離開");
         ad.setMessage("確定要離開?");
@@ -244,9 +246,10 @@ public class SystemMessageGet extends  Activity {
             }
         });
         ad.show();//示對話框
+        */
     }
 
-    }
+}
 
 
 

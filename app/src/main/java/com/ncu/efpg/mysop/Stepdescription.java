@@ -17,6 +17,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -66,6 +67,9 @@ public class Stepdescription extends Activity {
     WebView ww;
     int TAG_STEP_REMIND = 0;
     MediaPlayer mp;
+
+    ImageButton goright;
+    ImageButton goleft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -151,8 +155,8 @@ public class Stepdescription extends Activity {
         ww = (WebView)findViewById(R.id.webView);
         WebSettings settings = ww.getSettings();
         settings.setDefaultTextEncodingName("utf-8");
-        //settings.setSupportZoom(true);
-        //settings.setBuiltInZoomControls(true);
+        settings.setSupportZoom(true);//放大縮小
+        settings.setBuiltInZoomControls(true);//放大縮小的控制鍵
         ww.getSettings().setUseWideViewPort(true);
         ww.getSettings().setLoadWithOverviewMode(true);
         //ww.setInitialScale(100);
@@ -160,9 +164,32 @@ public class Stepdescription extends Activity {
 
         ww.loadDataWithBaseURL(null, sHtml, "text/html", "utf-8", null);//1225(html用資料庫之資料)
 
+        /*
+        ww.setOnTouchListener(new View.OnTouchListener(){
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int action = event.getAction();
+                if(action == MotionEvent.ACTION_DOWN){
+                    Log.d("Page_DES","PressOnWebview");
+                    //不可見
+                    if(goright.getVisibility()==8 && goleft.getVisibility()==8){
+                        goright.setVisibility(0);
+                        goleft.setVisibility(0);
+                    }else{
+                        goright.setVisibility(8);
+                        goleft.setVisibility(8);
+                    }
+                }
+                return false;
+            }
+        });
+        */
         //ww.loadUrl("file:///android_asset/webview/MySOP.html");//1224(直接檔案下載)
         // ww.loadUrl("file:///sdcard/MYSOPTEST/testhtml.html");
         //ww.loadData("中文", "text/html; charset=utf-8", "UTF-8");
+
+        goright = (ImageButton)findViewById(R.id.imageButton);
+        goleft = (ImageButton)findViewById(R.id.imageButton2);
 
     }
 
@@ -307,6 +334,21 @@ public class Stepdescription extends Activity {
     }
     class MySimpleOnGestureListener extends GestureDetector.SimpleOnGestureListener {
 
+        /*
+        @Override
+        public boolean onDown(MotionEvent e){
+            Log.d("Page_DES","Press");
+            //不可見
+            if(goright.getVisibility()==8 && goleft.getVisibility()==8){
+                goright.setVisibility(0);
+                goleft.setVisibility(0);
+            }else{
+                goright.setVisibility(8);
+                goleft.setVisibility(8);
+            }
+            return super.onDown(e);
+        }
+        */
         @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             // TODO Auto-generated method stub
@@ -345,6 +387,39 @@ public class Stepdescription extends Activity {
         }
 
     }
+
+    //等於左滑
+    public void GoNext(View v){
+        Intent intent = new Intent();
+        if(TAG_Next==1){
+            intent.setClass(Stepdescription.this, Steprecording.class);
+        }else{
+            intent.setClass(Stepdescription.this, StepCutControl.class);
+        }
+        Bundle bundle = new Bundle();
+        bundle.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+        bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+        bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+        intent.putExtras(bundle);//將參數放入intent
+        startActivity(intent);
+        // 设置切换动画，从右边进入，左边退出
+        overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+    }
+    //等於右滑
+    public void GoPrev(View v){
+        Intent intent2 = new Intent();
+        intent2.setClass(Stepdescription.this, StepActionControl.class);
+        Bundle bundle2 = new Bundle();
+        bundle2.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
+        bundle2.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+        bundle2.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+        intent2.putExtras(bundle2);//將參數放入intent
+        startActivity(intent2);
+        //切換畫面，右近左出
+        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+        finish();
+    }
+
     @Override
     public void onPause(){
         if(mp != null){

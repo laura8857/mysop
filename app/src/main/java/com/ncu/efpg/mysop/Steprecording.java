@@ -22,6 +22,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -87,6 +88,9 @@ public class Steprecording extends Activity {
     private static final String EXTRA_VOICE_REPLY = "extra_voice_reply";
     private String wearcontent[];
     boolean TAG_FROM_WEAR = false;
+
+    ImageButton goright;
+    ImageButton goleft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,7 +164,7 @@ public class Steprecording extends Activity {
             edit1[i].setTextColor(Color.rgb(0, 0, 0));
             edit1[i].setOnFocusChangeListener(new MyOnFocusChangeListener());
             edit1[i].setSingleLine(true);
-            edit1[i].setBackgroundColor(Color.parseColor("#FEFBE6"));
+            edit1[i].setBackgroundColor(Color.parseColor("#FDDCB9"));//#FEFBE6黃
             if(TAG_FROM_WEAR){
                if(i<wearcontent.length) {
                    edit1[i].setText(wearcontent[i]);
@@ -171,6 +175,8 @@ public class Steprecording extends Activity {
             ly.addView(edit1[i]);
         }
 
+        goright = (ImageButton)findViewById(R.id.imageButton);
+        goleft = (ImageButton)findViewById(R.id.imageButton2);
 
         detector = new GestureDetector(new MySimpleOnGestureListener());
 
@@ -471,6 +477,20 @@ public class Steprecording extends Activity {
     class MySimpleOnGestureListener extends GestureDetector.SimpleOnGestureListener {
 
         @Override
+        public boolean onDown(MotionEvent e){
+            Log.d("Page_DES","Press");
+            //不可見
+            if(goright.getVisibility()==8 && goleft.getVisibility()==8){
+                goright.setVisibility(0);
+                goleft.setVisibility(0);
+            }else{
+                goright.setVisibility(8);
+                goleft.setVisibility(8);
+            }
+            return super.onDown(e);
+        }
+
+        @Override
         public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
             // TODO Auto-generated method stub
             if ((e1.getX() - e2.getX()) > 50) {//说明是左滑
@@ -558,6 +578,84 @@ public class Steprecording extends Activity {
         }
 
     }
+
+    //等於左滑
+    public void GoNext(View v){
+        boolean didinput = true;
+
+        for(int j=0;j<count;j++){
+            if(edit1[j].getText().toString().equals("")){
+                didinput = false;
+            }
+        }
+
+        if(didinput) {
+
+            if(!TAG_BACK_TO_RECORDING) {
+                //new Recording().execute();
+                DatabaseHelper[] mDatabaseHelper2 = new DatabaseHelper[20];
+                for (int postcount = 0; postcount < count; postcount++) {
+                    //RC[postcount] = new Recording();
+                    //RC[postcount].execute(postcount);
+
+                    //"INSERT INTO case_record(case_number,step_order,record_order,record_value) VALUES('"+CaseNumber+"',"+StepOrder+","+RecordOrder+",'"+RecordText+"')";
+                    RecordText[postcount] = Steprecording.this.edit1[postcount].getText().toString();
+
+                    mDatabaseHelper2[postcount] = new DatabaseHelper(getApplicationContext());
+                    mcase_recordDao = new case_recordDao();
+                    mcase_recordVo = new case_recordVo();
+                    mcase_recordVo.setCase_number(TAG_CASE_NUMBER);
+                    mcase_recordVo.setStep_order(String.valueOf(TAG_STEP_ORDER));
+                    mcase_recordVo.setRecord_order(String.valueOf(postcount + 1));
+                    Log.d("RecordOrder", String.valueOf(postcount + 1));
+                    mcase_recordVo.setRecord_value(RecordText[postcount]);
+                    mcase_recordDao.insert(mDatabaseHelper2[postcount], mcase_recordVo);
+                }
+                //TAG_BACK_TO_RECORDING=true
+            }else{
+                Log.d("抓4","進入update");
+                DatabaseHelper[] mDatabaseHelper2 = new DatabaseHelper[20];
+                for (int postcount = 0; postcount < count; postcount++) {
+                    RecordText[postcount] = Steprecording.this.edit1[postcount].getText().toString();
+                    mDatabaseHelper2[postcount] = new DatabaseHelper(getApplicationContext());
+                    mcase_recordDao = new case_recordDao();
+                    mcase_recordDao.update_record(mDatabaseHelper2[postcount], "Case_number", TAG_CASE_NUMBER, "Step_order", String.valueOf(TAG_STEP_ORDER), "Record_order", String.valueOf(postcount + 1),"Record_value",RecordText[postcount]);
+                }
+            }
+
+            Intent intent = new Intent();
+            intent.setClass(Steprecording.this, StepCutControl.class);
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_CASE_NUMBER", TAG_CASE_NUMBER);
+            bundle.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+            bundle.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+            intent.putExtras(bundle);//將參數放入intent
+            startActivity(intent);
+            //切換畫面，右近左出
+            overridePendingTransition(R.anim.in_from_right, R.anim.out_to_left);
+            finish();
+        }else{
+            AlertDialog.Builder dialog = new AlertDialog.Builder(Steprecording.this);
+            dialog.setTitle("");
+            dialog.setMessage("請紀錄完成再前往下一頁!");
+            dialog.show();
+        }
+    }
+    //等於右滑
+    public void GoPrev(View v){
+        Intent intent2 = new Intent();
+        intent2.setClass(Steprecording.this, Stepdescription.class);
+        Bundle bundle2 = new Bundle();
+        bundle2.putString("TAG_CASE_NUMBER",TAG_CASE_NUMBER);
+        bundle2.putString("TAG_STEP_NUMBER", TAG_STEP_NUMBER);
+        bundle2.putInt("TAG_STEP_ORDER", TAG_STEP_ORDER);
+        intent2.putExtras(bundle2);//將參數放入intent
+        startActivity(intent2);
+        //切換畫面，右近左出
+        overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right);
+        finish();
+    }
+
 
     //回傳
 /*    class Recording extends AsyncTask<Integer, String, Integer> {

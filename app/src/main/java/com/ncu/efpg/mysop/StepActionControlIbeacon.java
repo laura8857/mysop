@@ -154,7 +154,7 @@ public class StepActionControlIbeacon extends Activity implements BeaconConsumer
             mp.release();
         }
         super.onDestroy();
-        beaconManager.unbind(this);
+        //beaconManager.unbind(this);
     }
 
     @Override

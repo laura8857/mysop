@@ -70,6 +70,8 @@ public class Content extends Activity {
     private static String url_create_product6 = "http://140.115.82.211/front/mysop_content2.jsp";
     //按讚
     private static String url_create_product7 = "http://140.115.82.211/front/mysop_content7.jsp";
+    //圖片的前綴網址
+    private static String url_graph_address = "http://140.115.82.211/mysop/img/";
 
 
     TextView sopnumber;
@@ -381,12 +383,18 @@ public class Content extends Activity {
             master.setText(ACCOUNT);
 
             //放入sop圖片們
+            String[] MATRIXGRAPH = SOPGRAPH.split("/");
+            SOPGRAPH = url_graph_address+MATRIXGRAPH[MATRIXGRAPH.length-1];
             new DownloadImageTask((ImageView)findViewById(R.id.content_picture))
                     .execute(SOPGRAPH);
-            if(GRAPH1.equals("")){
+            //如果沒有圖片讓他為0
+            if(GRAPH1.equals("0")){
                 graph1.setVisibility(8);
             }else{
-            new DownloadImageTask((ImageView)findViewById(R.id.graph1))
+                String[] MATRIXGRAPH1 = GRAPH1.split("/");
+                GRAPH1 = url_graph_address+MATRIXGRAPH1[MATRIXGRAPH1.length-1];
+                Log.d("GRAPH1",GRAPH1);
+                new DownloadImageTask((ImageView)findViewById(R.id.graph1))
                     .execute(GRAPH1);
                 horizontalScrollView.setVisibility(0);
                 horizontalScrollView.getLayoutParams().height=300;
@@ -394,9 +402,11 @@ public class Content extends Activity {
                 graph1.getLayoutParams().width=300;
                 graph1.getLayoutParams().height=300;
             }
-            if(GRAPH2.equals("")){
+            if(GRAPH2.equals("0")){
                 graph2.setVisibility(8);
             }else{
+                String[] MATRIXGRAPH2 = GRAPH2.split("/");
+                GRAPH2 = url_graph_address+MATRIXGRAPH2[MATRIXGRAPH2.length-1];
                 new DownloadImageTask((ImageView)findViewById(R.id.graph2))
                         .execute(GRAPH2);
                 horizontalScrollView.setVisibility(0);
@@ -405,9 +415,11 @@ public class Content extends Activity {
                 graph2.getLayoutParams().width=300;
                 graph2.getLayoutParams().height=300;
             }
-            if(GRAPH3.equals("")){
+            if(GRAPH3.equals("0")){
                 graph3.setVisibility(8);
             }else{
+                String[] MATRIXGRAPH3 = GRAPH3.split("/");
+                GRAPH3 = url_graph_address+MATRIXGRAPH3[MATRIXGRAPH3.length-1];
                 new DownloadImageTask((ImageView)findViewById(R.id.graph3))
                         .execute(GRAPH3);
                 horizontalScrollView.setVisibility(0);

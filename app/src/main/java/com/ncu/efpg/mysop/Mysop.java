@@ -201,7 +201,7 @@ public class Mysop extends Activity {
         sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper,"Account",TAG_ACCOUNT,"Step_number");
 
       //  Log.d("抓2",sopdetaillist.get(0).getStep_order());
-
+        Log.d("Page_MySOP",Integer.toString(sopmasterlist.size()));
         //判斷mysop是否是空的
         if(sopmasterlist.size()!=0) {
             int k = 0;

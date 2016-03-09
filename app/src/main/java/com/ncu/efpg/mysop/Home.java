@@ -86,8 +86,8 @@ public class Home extends Activity {
         listInput = (ListView)findViewById(R.id.list_sop);
         listInput1 = (ListView)findViewById(R.id.list_sop2);
         homescroll=(ScrollView)findViewById(R.id.homescroll);
-        homescroll.fullScroll(ScrollView.FOCUS_UP);
-        homescroll.smoothScrollTo(0, 0);
+        //homescroll.fullScroll(ScrollView.FOCUS_UP);
+        //homescroll.smoothScrollTo(0, 0);
 
         productsList = new ArrayList<HashMap<String, String>>();
 
@@ -333,6 +333,10 @@ public class Home extends Activity {
 
                 listInput.setOnItemClickListener(listener);
                 listInput1.setOnItemClickListener(listener1);
+
+                homescroll.fullScroll(ScrollView.FOCUS_UP);
+                homescroll.smoothScrollTo(0, 0);
+
             }else{
                 AlertDialog.Builder ad=new AlertDialog.Builder(Home.this);
                 ad.setTitle("系統異常!");

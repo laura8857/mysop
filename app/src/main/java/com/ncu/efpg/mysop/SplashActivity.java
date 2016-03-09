@@ -866,6 +866,16 @@ public class SplashActivity extends Activity {
             Log.d("onpost_test2",sopdetaillist10.get(0).getStep_intro());
             //測試
 */
+
+                //測試
+                DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);
+                sop_masterDao msop_masterDao11 = new sop_masterDao();
+                List<sop_masterVo>sop_masterlist11 = null;
+                //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
+                sop_masterlist11 = msop_masterDao11.selectRaw(mDatabaseHelper,"Sop_number=20150803");
+                Log.d("onpost_test",sop_masterlist11.get(0).getSop_name());
+
+
                 //startActivity(new Intent().setClass(SplashActivity.this, Login.class));
                 if(DetectDownload==0) {
                     Bundle bundle = new Bundle();

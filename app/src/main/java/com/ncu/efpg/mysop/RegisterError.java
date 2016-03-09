@@ -42,5 +42,6 @@ public class RegisterError extends Activity {
     public void backToRegister (View v){
         Intent it = new Intent(this,Register.class);
         startActivity(it);
+        finish();
     }
 }
