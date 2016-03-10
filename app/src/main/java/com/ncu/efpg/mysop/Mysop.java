@@ -196,9 +196,11 @@ public class Mysop extends Activity {
                 //getcase_masterVo().getCase_number());
 
         msop_detailDao = new sop_detailDao();
-        List<sop_detailVo>sopdetaillist = null;
-        //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
-        sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper,"Account",TAG_ACCOUNT,"Step_number");
+        /*0310
+            List<sop_detailVo>sopdetaillist = null;
+            ////sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
+            sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper,"Account",TAG_ACCOUNT,"Step_number");
+        */
 
       //  Log.d("抓2",sopdetaillist.get(0).getStep_order());
         Log.d("Page_MySOP",Integer.toString(sopmasterlist.size()));
@@ -231,6 +233,7 @@ public class Mysop extends Activity {
             steporder1 = new String[sopmasterlist.size() / 2];
             steptotal1 = new String[sopmasterlist.size() / 2];
 
+            //左邊//SOP_NUMBER丟進去SOP_DETAILDAO一起找
             for (int i = 0; i < x; i++) {
                 List<case_masterVo>casemasterlist=null;
                 casemasterlist = mcase_masterDao.selectRaw2(mDatabaseHelper,"Account ="+"'"+TAG_ACCOUNT+"'","Sop_number ="+"'"+sopmasterlist.get(i).getSop_number()+"'","Case_mark ="+"'"+"0"+"'");
@@ -246,14 +249,18 @@ public class Mysop extends Activity {
 //            bmplist[i] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 //            Drawable drawable = new BitmapDrawable(bmplist[i]);
 //            photo[i]=drawable;
-                //
-                steporder[i] = sopdetaillist.get(i).getStep_order();
+
+                //0310，且下面sop_detaillist get(i)=>get(0)
+                List<sop_detailVo>sopdetaillist=null;
+                sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number ="+"'"+casemasterlist.get(0).getStep_number()+"'");
+
+                steporder[i] = sopdetaillist.get(0).getStep_order();
                 List<sop_detailVo> listforcount = null;
                 //listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='" + TAG_ACCOUNT + "')");
                 listforcount = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Sop_number");
                 steptotal[i] = String.valueOf(listforcount.size());
                 //steptotal[i]=productsList1.get(i).get(TAG_TATOL);
-                switch (sopdetaillist.get(i).getStart_rule()) {
+                switch (sopdetaillist.get(0).getStart_rule()) {
                     case "1":
                         // cagetory.setText("人工啟動");
                         key[i] = 4;
@@ -283,11 +290,11 @@ public class Mysop extends Activity {
                         key[i] = 4;
                         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
                         Date now = null;
-                        System.out.println("TIME is " + sopdetaillist.get(i).getStart_value1());
+                        System.out.println("TIME is " + sopdetaillist.get(0).getStart_value1());
                         System.out.println("NOW is " + str);
 
                         try {
-                            now = df.parse(sopdetaillist.get(i).getStart_value1());
+                            now = df.parse(sopdetaillist.get(0).getStart_value1());
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -349,7 +356,7 @@ public class Mysop extends Activity {
                 }
             }
 
-            //另一邊
+            //另一邊(右邊)
             for (int i = sopmasterlist.size() - 1; i >= x; i--) {
                 List<case_masterVo>casemasterlist=null;
                 casemasterlist = mcase_masterDao.selectRaw2(mDatabaseHelper, "Account =" + "'" + TAG_ACCOUNT + "'", "Sop_number =" + "'" + sopmasterlist.get(i).getSop_number() + "'", "Case_mark =" + "'" + "0" + "'");
@@ -360,14 +367,18 @@ public class Mysop extends Activity {
                 String[] graph = sopmasterlist.get(i).getSop_graph_src().split("/");
                 photo1[k] ="MYSOPTEST/"+graph[graph.length-1];
                 Log.d(name1[k],photo[k]);
-                //
-                steporder1[k] = sopdetaillist.get(i).getStep_order();
+
+                //0310同上
+                List<sop_detailVo>sopdetaillist=null;
+                sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number ="+"'"+casemasterlist.get(0).getStep_number()+"'");
+
+                steporder1[k] = sopdetaillist.get(0).getStep_order();
                 //steptotal1[k]=productsList1.get(i).get(TAG_TATOL);
                 List<sop_detailVo> listforcount1 = null;
                 //listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='" + TAG_ACCOUNT + "')");
                 listforcount1 = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Sop_number");
                 steptotal1[k] = String.valueOf(listforcount1.size());
-                switch (sopdetaillist.get(i).getStart_rule()) {
+                switch (sopdetaillist.get(0).getStart_rule()) {
                     case "1":
                         // cagetory.setText("人工啟動");
                         key1[k] = 4;
@@ -399,7 +410,7 @@ public class Mysop extends Activity {
                         Date now = null;
 
                         try {
-                            now = df.parse(sopdetaillist.get(i).getStart_value1());
+                            now = df.parse(sopdetaillist.get(0).getStart_value1());
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }

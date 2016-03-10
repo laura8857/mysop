@@ -177,4 +177,21 @@ public class sop_detailDao
         return null;
     }
 
+    /* selectRaw2 */
+    public static List<sop_detailVo> selectRaw2(DatabaseHelper databaseHelper,
+                                                 String rawWhere ,String rawWhere2,String rawWhere3) {
+        RuntimeExceptionDao<sop_detailVo, Integer> sop_detailDao = databaseHelper
+                .getSop_detailDao();
+        QueryBuilder<sop_detailVo, Integer> queryBuilder = sop_detailDao
+                .queryBuilder();
+        try {
+            queryBuilder.where().raw(rawWhere).and().raw(rawWhere2).and().raw(rawWhere3);
+            return queryBuilder.query();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
