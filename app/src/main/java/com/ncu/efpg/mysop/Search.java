@@ -538,7 +538,7 @@ public class Search extends Activity {
     public void ConfirmExit(){//退出確認
         AlertDialog.Builder ad=new AlertDialog.Builder(Search.this);
         ad.setTitle("離開");
-        ad.setMessage("確定要離開?");
+        ad.setMessage("確定要離開Search?");
         ad.setPositiveButton("是", new DialogInterface.OnClickListener() {//退出按鈕
             public void onClick(DialogInterface dialog, int i) {
                 // TODO Auto-generated method stub

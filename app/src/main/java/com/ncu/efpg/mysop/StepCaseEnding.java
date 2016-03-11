@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
@@ -11,6 +12,7 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -81,7 +83,7 @@ public class StepCaseEnding extends Activity {
     //紀錄step_order record_order
     String steporder[];
     String recordorder[];
-    int ok=0;
+    int ok=1;//上傳紀錄值正確
 
     //orm
     private RuntimeExceptionDao<case_masterVo, Integer> case_masterRuntimeDao;
@@ -301,42 +303,17 @@ public class StepCaseEnding extends Activity {
                 SO[Step]=new SOPContent1();
                 SO[Step].execute(Step);
             }
-            //結案
-            new SOPContent2().execute();
-
-            //Delete orm
-            DatabaseHelper mDatabaseHelper3 = DatabaseHelper.getHelper(StepCaseEnding.this);
-            case_recordDao mcase_recordDao3 = new case_recordDao();
-            mcase_recordDao3.delete(mDatabaseHelper3, "Case_number", TAG_CASE_NUMBER);
-            case_masterDao mcase_master3 = new case_masterDao();
-            mcase_master3.delete(mDatabaseHelper3, "Case_number", TAG_CASE_NUMBER);
-//             List<case_masterVo> caselist1 = null ;
-//             caselist1 = mcase_masterDao.selectRaw(mDatabaseHelper3,"Account="+"'"+"test@gmail.com"+"'");
-//             Log.d("Here clear",caselist1.get(0).getCase_number());
-            finish();
         }
-
-
-
     }
 
     //更改紀錄
-    class SOPContent1 extends AsyncTask<Integer, String, String> {
+    class SOPContent1 extends AsyncTask<Integer, Integer, Integer> {
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(StepCaseEnding.this);
-            pDialog.setMessage("Changing..Please wait...");
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-          //  pDialog.show();
 
         }
 
-
-        protected String doInBackground(Integer... args) {
-
-            //先寫死stepnumber
-            //String Casenumber ="" ;
+        protected Integer doInBackground(Integer... args) {
 
             int a=args[0];
             String RecordOrder=Integer.toString(a+1);
@@ -366,21 +343,38 @@ public class StepCaseEnding extends Activity {
                 var9.printStackTrace();
             }
 
-            return null;
+            return a;
         }
 
+        protected void onPostExecute(Integer args) {
+            int a=args;
+            if(ok==0){
+                AlertDialog.Builder ad=new AlertDialog.Builder(StepCaseEnding.this);
+                ad.setTitle("系統異常!");
+                ad.setMessage("系統異常，請聯繫系統管理員。");
+                ad.setPositiveButton("是", new DialogInterface.OnClickListener() {//退出按鈕
+                    public void onClick(DialogInterface dialog, int i) {
+                        // TODO Auto-generated method stub
+                        Bundle bundle = new Bundle();
+                        bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
+                        Intent it = new Intent(StepCaseEnding.this,Mysop.class);
+                        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        it.putExtras(bundle);
+                        startActivity(it);
+                        StepCaseEnding.this.finish();
 
-        /**
-         * After completing background task Dismiss the progress dialog
-         * **/
-        protected void onPostExecute(String file_url) {
-            // dismiss the dialog after getting all products
-          //  pDialog.dismiss();
-
+                    }
+                });
+                ad.show();//示對話框
+            }
+            if(a==Count-1){
+                //結束上傳紀錄值，開始結案
+                new SOPContent2().execute();
+            }
         }
     }
     //結案 刪除sop
-    class SOPContent2 extends AsyncTask<String, String, String> {
+    class SOPContent2 extends AsyncTask<Integer, Integer, Integer> {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(StepCaseEnding.this);
@@ -390,7 +384,7 @@ public class StepCaseEnding extends Activity {
             pDialog.show();
         }
 
-        protected String doInBackground(String... args) {
+        protected Integer doInBackground(Integer... ans) {
 
             ArrayList params2 = new ArrayList();
 
@@ -402,23 +396,68 @@ public class StepCaseEnding extends Activity {
 
                 int e3 = json2.getInt(TAG_SUCCESS);
                 if(e3 == 1) {
-                    Intent i = new Intent(StepCaseEnding.this, Mysop.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
-                    i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    i.putExtras(bundle);	//將參數放入intent
-                    startActivity(i);
+                    return 1;
                 }else {
-
+                    return 2;
                 }
 
             } catch (JSONException var9) {
                 var9.printStackTrace();
             }
-            pDialog.dismiss();
             return null;
         }
+        protected void onPostExecute(Integer ans) {
+            pDialog.dismiss();
+            if(ans==1) {
+                //Delete orm
+                DatabaseHelper mDatabaseHelper3 = DatabaseHelper.getHelper(StepCaseEnding.this);
+                case_recordDao mcase_recordDao3 = new case_recordDao();
+                mcase_recordDao3.delete(mDatabaseHelper3, "Case_number", TAG_CASE_NUMBER);
+                case_masterDao mcase_master3 = new case_masterDao();
+                mcase_master3.delete(mDatabaseHelper3, "Case_number", TAG_CASE_NUMBER);
 
+                Intent i = new Intent(StepCaseEnding.this, Mysop.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);
+                i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                i.putExtras(bundle);    //將參數放入intent
+                startActivity(i);
+                finish();
+            }else{
+                AlertDialog.Builder ad=new AlertDialog.Builder(StepCaseEnding.this);
+                ad.setTitle("系統異常!");
+                ad.setMessage("系統異常，請聯繫系統管理員。");
+                ad.setPositiveButton("是", new DialogInterface.OnClickListener() {//退出按鈕
+                    public void onClick(DialogInterface dialog, int i) {
+                        // TODO Auto-generated method stub
+                        Bundle bundle = new Bundle();
+                        bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
+                        Intent it = new Intent(StepCaseEnding.this,Mysop.class);
+                        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        it.putExtras(bundle);
+                        startActivity(it);
+                        StepCaseEnding.this.finish();
+
+                    }
+                });
+                ad.show();//示對話框
+            }
+        }
+    }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {//捕捉返回鍵
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+
+            Bundle bundle = new Bundle();
+            bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
+            Intent it = new Intent(this,Mysop.class);
+            it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            it.putExtras(bundle);
+            startActivity(it);
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 
@@ -558,5 +597,5 @@ public class StepCaseEnding extends Activity {
 //        }
 //
 //    }
-    }
+}
 

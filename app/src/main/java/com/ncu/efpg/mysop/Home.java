@@ -97,6 +97,9 @@ public class Home extends Activity {
         TAG_Key = bundle.getString("TAG_Key");
 
         new LoadAll().execute();
+
+        homescroll.fullScroll(ScrollView.FOCUS_UP);
+        homescroll.smoothScrollTo(0, 0);
     }
 
 
@@ -193,6 +196,7 @@ public class Home extends Activity {
             Intent intent = new Intent(this, Home.class); //前進至xxxx頁面
             intent.putExtra("TAG_Key", TAG_Key); //傳值
             startActivity(intent); //啟動出發
+            finish();
 
         }
     }
@@ -333,9 +337,6 @@ public class Home extends Activity {
 
                 listInput.setOnItemClickListener(listener);
                 listInput1.setOnItemClickListener(listener1);
-
-                homescroll.fullScroll(ScrollView.FOCUS_UP);
-                homescroll.smoothScrollTo(0, 0);
 
             }else{
                 AlertDialog.Builder ad=new AlertDialog.Builder(Home.this);
