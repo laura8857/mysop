@@ -22,6 +22,7 @@ import org.altbeacon.beacon.MonitorNotifier;
 import org.altbeacon.beacon.RangeNotifier;
 import org.altbeacon.beacon.Region;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 
@@ -57,6 +58,8 @@ public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
     private sop_detailDao msop_detailDao;
     private DatabaseHelper mDatabaseHelper;
 
+    Button ibeacon_button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,6 +76,7 @@ public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
         TAG_STEP_ORDER = bundle.getInt("TAG_STEP_ORDER");
         ss.setText(Integer.toString(TAG_STEP_ORDER));
 
+        ibeacon_button = (Button) findViewById(R.id.CC_ibeacon_button);
 /*        if (adapter == null){
             Toast.makeText(this, "藍芽藍芽?", Toast.LENGTH_LONG).show();
         }else if(adapter.isEnabled()!=true){//如果藍芽未開啟
@@ -112,19 +116,17 @@ public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
 
     @Override
     protected void onDestroy() {
+        if(connectfinish==1){
+            beaconManager.unbind(this);
+        }
         super.onDestroy();
-        beaconManager.unbind(this);
+
     }
 
     @Override
     public void onBeaconServiceConnect() {
 
-        if(connectfinish==0) {
-
-        }
         Log.d("connectfinish?",Integer.toString(connectfinish));
-
-        if(connectfinish == 0){}
 
         Region region = new Region("myBeaons", Identifier.parse(UUID), null, null);
 
@@ -203,7 +205,8 @@ public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
             beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
             beaconManager.bind(StepCutControlIbeacon.this);
 
-            Button ibeacon_button = (Button) findViewById(R.id.CC_ibeacon_button);
+
+            ibeacon_button.setText("搜尋中");
             ibeacon_button.setEnabled(false);
 
             Log.d("isithere", Integer.toString(connectfinish));
@@ -274,6 +277,22 @@ public class StepCutControlIbeacon extends Activity implements BeaconConsumer{
 
         }
     }*/
+
+    @Override
+    public void onPause(){
+        if(connectfinish==1){
+            beaconManager.unbind(this);
+        }
+        super.onPause();
+    }
+
+    @Override
+    public void onResume(){
+        connectfinish=0;
+        ibeacon_button.setEnabled(true);
+        ibeacon_button.setText("開始");
+        super.onResume();
+    }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {//捕捉返回鍵
         if ((keyCode == KeyEvent.KEYCODE_BACK)) {

@@ -226,6 +226,10 @@ public class StepCaseEnding extends Activity {
     //結案 和上傳
     public void close (View v){
 
+        Button caseclose = (Button)findViewById(R.id.caseclose);
+        caseclose.setText("結案中");
+        caseclose.setClickable(false);
+
         //無論連線或離線都要刪掉的orm
         DatabaseHelper mDatabaseHelper4 = DatabaseHelper.getHelper(StepCaseEnding.this);
         case_masterDao mcase_masterDao4 = new case_masterDao();

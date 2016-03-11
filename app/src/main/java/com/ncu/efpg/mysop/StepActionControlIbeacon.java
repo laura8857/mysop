@@ -69,6 +69,7 @@ public class StepActionControlIbeacon extends Activity implements BeaconConsumer
 
     int TAG_START_REMIND = 0;
     MediaPlayer mp;
+    Button ibeacon_button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,8 @@ public class StepActionControlIbeacon extends Activity implements BeaconConsumer
         TAG_START_REMIND = Integer.valueOf(list0.get(0).getStart_remind());
         StartMessage.setText(list0.get(0).getStart_message());
         //Log.d("TAG_START_REMIND",list0.get(0).getStart_remind());
+        ibeacon_button = (Button) findViewById(R.id.AC_ibeacon_button);
+
 
         //1語音2手錶3響鈴
         if(TAG_START_REMIND == 1){
@@ -153,19 +156,17 @@ public class StepActionControlIbeacon extends Activity implements BeaconConsumer
         if(mp != null) {
             mp.release();
         }
+        if(connectfinish==1){
+            beaconManager.unbind(this);
+        }
         super.onDestroy();
-        //beaconManager.unbind(this);
+
     }
 
     @Override
     public void onBeaconServiceConnect() {
 
-        if(connectfinish==0) {
-
-        }
         Log.d("connectfinish?",Integer.toString(connectfinish));
-
-        if(connectfinish == 0){}
 
         Region region = new Region("myBeaons", Identifier.parse(UUID), null, null);
 
@@ -244,7 +245,7 @@ public class StepActionControlIbeacon extends Activity implements BeaconConsumer
             beaconManager.getBeaconParsers().add(new BeaconParser().setBeaconLayout("m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25"));
             beaconManager.bind(StepActionControlIbeacon.this);
 
-            Button ibeacon_button = (Button) findViewById(R.id.AC_ibeacon_button);
+            ibeacon_button.setText("搜尋中");
             ibeacon_button.setEnabled(false);
 
 
@@ -326,6 +327,9 @@ public class StepActionControlIbeacon extends Activity implements BeaconConsumer
             mp.pause();
             //mp.release();
         }
+        if(connectfinish==1){
+            beaconManager.unbind(this);
+        }
         super.onPause();
     }
 
@@ -340,6 +344,9 @@ public class StepActionControlIbeacon extends Activity implements BeaconConsumer
             }
             mp.start();
         }
+        connectfinish=0;
+        ibeacon_button.setEnabled(true);
+        ibeacon_button.setText("開始");
         super.onResume();
     }
 
