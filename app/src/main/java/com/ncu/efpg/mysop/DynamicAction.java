@@ -160,15 +160,14 @@ public class DynamicAction extends Activity {
 
         List<mysopVo> mysoplist = null;
 
-        List<sop_detailVo> sopdetaillist = null;
+        //List<sop_detailVo> sopdetaillist = null;
         msop_detailDao = new sop_detailDao();
         if(TAG_RULE == "") {
-        //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
             sopmasterlist = msop_masterDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Sop_number");
-            sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Step_number");
+            //sopdetaillist = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Step_number");
         }else{
             sopmasterlist = msop_masterDao.selectRawByNest1(mDatabaseHelper, "Account", TAG_ACCOUNT, "Sop_number","Start_rule",TAG_RULE, "Step_number");
-            sopdetaillist = msop_detailDao.selectRawByNest3(mDatabaseHelper, "Account", TAG_ACCOUNT,"Step_number","Start_rule",TAG_RULE);
+            //sopdetaillist = msop_detailDao.selectRawByNest3(mDatabaseHelper, "Account", TAG_ACCOUNT,"Step_number","Start_rule",TAG_RULE);
         }
         //  Log.d("抓2",sopdetaillist.get(0).getStep_order());
 
@@ -213,13 +212,18 @@ public class DynamicAction extends Activity {
 //            Drawable drawable = new BitmapDrawable(bmplist[i]);
 //            photo[i]=drawable;
                 //
-                steporder[i] = sopdetaillist.get(i).getStep_order();
+
+                //0310，且下面sop_detaillist get(i)=>get(0)
+                List<sop_detailVo>sopdetaillist=null;
+                sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number ="+"'"+casemasterlist.get(0).getStep_number()+"'");
+
+                steporder[i] = sopdetaillist.get(0).getStep_order();
                 List<sop_detailVo> listforcount = null;
                 //listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='" + TAG_ACCOUNT + "')");
                 listforcount = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Sop_number");
                 steptotal[i] = String.valueOf(listforcount.size());
                 //steptotal[i]=productsList1.get(i).get(TAG_TATOL);
-                switch (sopdetaillist.get(i).getStart_rule()) {
+                switch (sopdetaillist.get(0).getStart_rule()) {
                     case "1":
                         // cagetory.setText("人工啟動");
                         key[i] = 4;
@@ -249,11 +253,11 @@ public class DynamicAction extends Activity {
                         key[i] = 4;
                         SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmm");
                         Date now = null;
-                        System.out.println("TIME is " + sopdetaillist.get(i).getStart_value1());
+                        System.out.println("TIME is " + sopdetaillist.get(0).getStart_value1());
                         System.out.println("NOW is " + str);
 
                         try {
-                            now = df.parse(sopdetaillist.get(i).getStart_value1());
+                            now = df.parse(sopdetaillist.get(0).getStart_value1());
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -329,14 +333,18 @@ public class DynamicAction extends Activity {
 //            bmplist1[k] = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
 //            Drawable drawable = new BitmapDrawable(bmplist1[k]);
 //            photo1[k]=drawable;
-                //
-                steporder1[k] = sopdetaillist.get(i).getStep_order();
+
+                //0310同上
+                List<sop_detailVo>sopdetaillist=null;
+                sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number ="+"'"+casemasterlist.get(0).getStep_number()+"'");
+
+                steporder1[k] = sopdetaillist.get(0).getStep_order();
                 //steptotal1[k]=productsList1.get(i).get(TAG_TATOL);
                 List<sop_detailVo> listforcount1 = null;
                 //listforcount = msop_detailDao.selectRaw(mDatabaseHelper, "Sop_number IN(SELECT Sop_number FROM case_masterVo WHERE Account='" + TAG_ACCOUNT + "')");
                 listforcount1 = msop_detailDao.selectRawByNest(mDatabaseHelper, "Account", TAG_ACCOUNT, "Sop_number");
                 steptotal1[k] = String.valueOf(listforcount1.size());
-                switch (sopdetaillist.get(i).getStart_rule()) {
+                switch (sopdetaillist.get(0).getStart_rule()) {
                     case "1":
                         // cagetory.setText("人工啟動");
                         key1[k] = 4;
@@ -368,7 +376,7 @@ public class DynamicAction extends Activity {
                         Date now = null;
 
                         try {
-                            now = df.parse(sopdetaillist.get(i).getStart_value1());
+                            now = df.parse(sopdetaillist.get(0).getStart_value1());
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
