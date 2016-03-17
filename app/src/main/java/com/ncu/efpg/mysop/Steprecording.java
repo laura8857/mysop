@@ -158,7 +158,11 @@ public class Steprecording extends Activity {
         LinearLayout ly = (LinearLayout)findViewById(R.id.linearlayoutinput);
         for(int i=0; i<count;i++) {
             TextView text1 = new TextView(Steprecording.this);
-            text1.setText(list.get(i).getRecord_text());
+            text1.setText(list.get(i).getRecord_text()+"("+list.get(i).getRecord_unit()+")");
+            //1數字2文字
+            if(Integer.valueOf(list.get(i).getRecord_type())==1){
+                text1.setText(text1.getText()+"("+list.get(i).getRecord_min()+"~"+list.get(i).getRecord_max()+")");
+            }
 
             edit1[i] = new EditText(Steprecording.this.getApplicationContext());
             edit1[i].setTextColor(Color.rgb(0, 0, 0));
