@@ -24,6 +24,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -119,6 +120,7 @@ public class Mysop extends Activity {
     private String[] steptotal1;
     private String []photo1;
 
+    private ScrollView mysopscroll;
 
     //orm
     private RuntimeExceptionDao<case_masterVo, Integer> case_masterRuntimeDao;
@@ -137,7 +139,7 @@ public class Mysop extends Activity {
         listInput = (ListView)findViewById(R.id.list_sop);
         listInput1 = (ListView)findViewById(R.id.list_sop2);
        // adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,items);
-
+        mysopscroll=(ScrollView)findViewById(R.id.mysopscroll);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -482,6 +484,10 @@ public class Mysop extends Activity {
         }else{
 
         }
+
+        mysopscroll.fullScroll(ScrollView.FOCUS_UP);
+        mysopscroll.smoothScrollTo(0, 0);
+
     }
 
 

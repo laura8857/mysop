@@ -2,7 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="com.ncu.efpg.mysop.DynamicAction">
+    tools:context="com.ncu.efpg.mysop.DynamicAction"
+    android:id="@+id/dynamicscroll"
+    android:background="#ffffffff">
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,18 +12,19 @@
         android:layout_height="fill_parent"
         android:background="#ffffffff">
 
-        <ListView
+        <com.ncu.efpg.mysop.MyListView
             android:layout_width="189dp"
             android:layout_height="749dp"
             android:id="@+id/list_dynamic"
             android:layout_gravity="right"
             >
-        </ListView>
+        </com.ncu.efpg.mysop.MyListView>
 
-        <ListView
+        <com.ncu.efpg.mysop.MyListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/list_dynamic2" />
+            android:id="@+id/list_dynamic2" >
+        </com.ncu.efpg.mysop.MyListView>
 
     </LinearLayout>
 </ScrollView>

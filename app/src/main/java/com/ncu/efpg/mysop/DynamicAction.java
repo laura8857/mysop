@@ -20,6 +20,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -109,6 +110,8 @@ public class DynamicAction extends Activity {
     private String[] steporder1;
     private String[] steptotal1;
 
+    private ScrollView dynamicscroll;
+
     //orm
     private RuntimeExceptionDao<case_masterVo, Integer> case_masterRuntimeDao;
     private case_masterDao mcase_masterDao;
@@ -126,6 +129,8 @@ public class DynamicAction extends Activity {
         listInput = (ListView) findViewById(R.id.list_dynamic);
         listInput1 = (ListView) findViewById(R.id.list_dynamic2);
         // adapter = new ArrayAdapter(this,android.R.layout.simple_list_item_1,items);
+
+        dynamicscroll=(ScrollView)findViewById(R.id.dynamicscroll);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();
@@ -448,6 +453,9 @@ public class DynamicAction extends Activity {
         }else{
 
         }
+
+        dynamicscroll.fullScroll(ScrollView.FOCUS_UP);
+        dynamicscroll.smoothScrollTo(0, 0);
     }
 
     private boolean checkPlayServices() {

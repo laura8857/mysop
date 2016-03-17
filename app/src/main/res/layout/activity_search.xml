@@ -2,7 +2,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    tools:context="com.ncu.efpg.mysop.Search">
+    tools:context="com.ncu.efpg.mysop.Search"
+    android:fillViewport="true"
+    android:id="@+id/scr"
+    android:background="#ffffffff">
 
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -10,18 +13,18 @@
         android:layout_height="fill_parent"
         android:background="#ffffff">
 
-        <ListView
+        <com.ncu.efpg.mysop.MyListView
             android:layout_width="189dp"
             android:layout_height="1205dp"
             android:id="@+id/list_sop"
-            android:layout_gravity="right"
-            >
-        </ListView>
+            android:layout_gravity="right">
+        </com.ncu.efpg.mysop.MyListView>
 
-        <ListView
+        <com.ncu.efpg.mysop.MyListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/list_sop2" />
+            android:id="@+id/list_sop2" >
+        </com.ncu.efpg.mysop.MyListView>
 
     </LinearLayout>
 </ScrollView>

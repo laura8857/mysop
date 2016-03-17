@@ -28,6 +28,7 @@ import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -92,6 +93,7 @@ public class Search extends Activity {
     private String[] likeu1;
 
     int x;
+    private ScrollView homescroll;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,6 +101,7 @@ public class Search extends Activity {
         setContentView(R.layout.activity_search);
         listInput = (ListView)findViewById(R.id.list_sop);
         listInput1 = (ListView)findViewById(R.id.list_sop2);
+        homescroll=(ScrollView)findViewById(R.id.scr);
 
         Intent intent = this.getIntent();
         Bundle bundle = intent.getExtras();	//取得Bundle
@@ -137,6 +140,10 @@ public class Search extends Activity {
 //                startActivity(it1);
 //            }
 //        });
+
+        homescroll.fullScroll(ScrollView.FOCUS_UP);
+        homescroll.smoothScrollTo(0, 0);
+
 
     }
 
