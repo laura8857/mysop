@@ -79,7 +79,7 @@ public class StepActionControlQRcode extends Activity {
         msop_detailDao = new sop_detailDao();
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         List<sop_detailVo> list = null;
-        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number =" + TAG_STEP_NUMBER);
+        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number =\""+TAG_STEP_NUMBER+"\"");
         Log.d("抓", list.get(0).getStart_value1());
         QRcode = list.get(0).getStart_value1();
         TAG_START_REMIND = Integer.valueOf(list.get(0).getStart_remind());

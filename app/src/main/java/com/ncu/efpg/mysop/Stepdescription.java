@@ -107,7 +107,7 @@ public class Stepdescription extends Activity {
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         step_recordDao mstep_recordDao = new step_recordDao();
         List<step_recordVo> list = null;
-        list = mstep_recordDao.selectRaw(mDatabaseHelper, "Step_number="+TAG_STEP_NUMBER);
+        list = mstep_recordDao.selectRaw(mDatabaseHelper, "Step_number =\""+TAG_STEP_NUMBER+"\"");
         if(list.size()!=0){
             TAG_Next = 1;
         }else{
@@ -118,7 +118,7 @@ public class Stepdescription extends Activity {
         DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
         sop_detailDao msop_detailDao1 = new sop_detailDao();
         List<sop_detailVo> list1 = null;
-        list1 = msop_detailDao1.selectRaw(mDatabaseHelper1, "Step_number="+TAG_STEP_NUMBER);
+        list1 = msop_detailDao1.selectRaw(mDatabaseHelper1, "Step_number =\""+TAG_STEP_NUMBER+"\"");
         sHtml = list1.get(0).getStep_intro();
         TAG_STEP_REMIND = Integer.valueOf(list1.get(0).getStep_remind());
 

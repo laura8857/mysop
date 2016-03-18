@@ -41,7 +41,7 @@ public class StepCutControl extends Activity {
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         msop_detailDao = new sop_detailDao();
         List<sop_detailVo> list = null;
-        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number ="+TAG_STEP_NUMBER);
+        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number =\""+TAG_STEP_NUMBER+"\"");
         FinishRule = Integer.valueOf(list.get(0).getFinish_rule());
         UseFinishRule(FinishRule);
 

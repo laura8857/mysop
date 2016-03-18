@@ -75,13 +75,13 @@ public class StepNextControlUser extends Activity {
         mDatabaseHelper = DatabaseHelper.getHelper(this);
         msop_detailDao = new sop_detailDao();
         List<sop_detailVo> list = null;
-        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number ="+TAG_STEP_NUMBER);
+        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number =\""+TAG_STEP_NUMBER+"\"");
         Log.d("User1", list.get(0).getSop_number());
 
         DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
         sop_detailDao msop_detailDao1 = new sop_detailDao();
         List<sop_detailVo> list1 = null;
-        list1 = msop_detailDao1.selectRaw(mDatabaseHelper1, "Sop_number ="+list.get(0).getSop_number());
+        list1 = msop_detailDao1.selectRaw(mDatabaseHelper1, "Sop_number =\""+list.get(0).getSop_number()+"\"");
         Log.d("User2", list1.get(0).getStep_number());
 
 

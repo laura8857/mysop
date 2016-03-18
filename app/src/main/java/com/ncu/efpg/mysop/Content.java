@@ -71,7 +71,7 @@ public class Content extends Activity {
     //按讚
     private static String url_create_product7 = "http://140.115.82.211/front/mysop_content7.jsp";
     //圖片的前綴網址
-    private static String url_graph_address = "http://140.115.82.211/mysop/img/";
+    private static String url_graph_address = "http://140.115.82.211/img/";
 
 
     TextView sopnumber;

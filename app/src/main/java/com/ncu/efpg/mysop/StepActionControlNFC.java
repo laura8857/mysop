@@ -88,7 +88,7 @@ public class StepActionControlNFC extends Activity {
         sop_detailDao msop_detailDao0 = new sop_detailDao();
         DatabaseHelper mDatabaseHelper0 = DatabaseHelper.getHelper(this);
         List<sop_detailVo> list0 = null;
-        list0 = msop_detailDao0.selectRaw(mDatabaseHelper0, "Step_number =" + TAG_STEP_NUMBER);
+        list0 = msop_detailDao0.selectRaw(mDatabaseHelper0, "Step_number =\""+TAG_STEP_NUMBER+"\"");
         TAG_START_REMIND = Integer.valueOf(list0.get(0).getStart_remind());
         StartMessage.setText(list0.get(0).getStart_message());
         //Log.d("TAG_START_REMIND",list0.get(0).getStart_remind());
@@ -218,7 +218,7 @@ public class StepActionControlNFC extends Activity {
         //new Check_NFC().execute(NFC_UUID[0]);
         msop_detailDao = new sop_detailDao();
         List<sop_detailVo> list = null;
-        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number ="+TAG_STEP_NUMBER);
+        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number =\""+TAG_STEP_NUMBER+"\"");
         Log.d("抓", list.get(0).getStart_value1());
         if(list.get(0).getStart_value1().equals(NFC_UUID[0])){
 

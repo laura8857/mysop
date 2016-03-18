@@ -77,7 +77,7 @@ public class StepCutControlFinishandpass extends Activity {
             DatabaseHelper mDatabaseHelper1 = DatabaseHelper.getHelper(this);
             step_recordDao mstep_recordDao1 = new step_recordDao();
             List<step_recordVo> list1 = null;
-            list1 = mstep_recordDao1.selectRaw(mDatabaseHelper1, "Step_number ="+TAG_STEP_NUMBER+" AND Record_order ="+list.get(i).getRecord_order());
+            list1 = mstep_recordDao1.selectRaw(mDatabaseHelper1, "Step_number ="+"'"+TAG_STEP_NUMBER+"'"+" AND Record_order ="+list.get(i).getRecord_order());
 
             Log.d("cutcontrolfinish2",String.valueOf(list1.size()));
             Log.d("抓4-1",list.get(i).getRecord_value());

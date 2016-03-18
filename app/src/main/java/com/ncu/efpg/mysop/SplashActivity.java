@@ -192,7 +192,7 @@ public class SplashActivity extends Activity {
             }
             DetectDownload=DetectDownload+1;
             //down2[i] = new DownloadManager.Request(Uri.parse("http://140.115.82.211/front/picture/" + graph[graph.length-1]));
-            down2[i] = new DownloadManager.Request(Uri.parse("http://140.115.82.211/mysop/img/" + graph[graph.length-1]));
+            down2[i] = new DownloadManager.Request(Uri.parse("http://140.115.82.211/img/" + graph[graph.length-1]));
             //允許網路類型
             down2[i].setAllowedNetworkTypes(DownloadManager.Request.NETWORK_MOBILE | DownloadManager.Request.NETWORK_WIFI);
             //禁止發通知
@@ -856,25 +856,23 @@ public class SplashActivity extends Activity {
             Log.d("5",sopdetaillist9.get(4).getStep_number());
             //Log.d("6",sopdetaillist9.get(5).getStep_number());
             //測試
-
-            //測試
-            DatabaseHelper mDatabaseHelper10 = DatabaseHelper.getHelper(SplashActivity.this);
-            sop_detailDao msop_detailDao10 = new sop_detailDao();
-            List<sop_detailVo>sopdetaillist10 = null;
-            sopdetaillist10 = msop_detailDao10.selectRaw(mDatabaseHelper10,"Step_number=6");
-            Log.d("onpost_test2",sopdetaillist10.get(0).getStep_number());
-            Log.d("onpost_test2",sopdetaillist10.get(0).getStep_intro());
-            //測試
-
                 DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(SplashActivity.this);
                 sop_masterDao msop_masterDao11 = new sop_masterDao();
                 List<sop_masterVo>sop_masterlist11 = null;
                 //sopdetaillist = msop_detailDao.selectRaw(mDatabaseHelper,"Step_number IN(SELECT Last_do_order FROM case_masterVo WHERE Account='"+TAG_ACCOUNT+"')");
-                sop_masterlist11 = msop_masterDao11.selectRaw(mDatabaseHelper,"Sop_number=20150803");
+                sop_masterlist11 = msop_masterDao11.selectRaw(mDatabaseHelper,"Sop_number=Z79Fm2af");
                 Log.d("onpost_test",sop_masterlist11.get(0).getSop_name());
+                //測試
+                DatabaseHelper mDatabaseHelper10 = DatabaseHelper.getHelper(SplashActivity.this);
+                sop_detailDao msop_detailDao10 = new sop_detailDao();
+                List<sop_detailVo>sopdetaillist10 = null;
+                sopdetaillist10 = msop_detailDao10.selectRaw(mDatabaseHelper10,"Step_number=1");
+                Log.d("onpost_test2",sopdetaillist10.get(0).getStep_number());
+                Log.d("onpost_test2",sopdetaillist10.get(0).getStep_intro());
+                //測試
 */
-
                 //startActivity(new Intent().setClass(SplashActivity.this, Login.class));
+
                 if(DetectDownload==0) {
                     Bundle bundle = new Bundle();
                     bundle.putString("TAG_ACCOUNT", TAG_ACCOUNT);

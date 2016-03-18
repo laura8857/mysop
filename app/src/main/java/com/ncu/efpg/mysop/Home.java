@@ -318,14 +318,14 @@ public class Home extends Activity {
                     name[i] = productsList.get(i).get(TAG_SOPNAME);
                     master[i] = productsList.get(i).get(TAG_USERNAME);
                     String[] graph = productsList.get(i).get(TAG_PICTURE).split("/");
-                    photo[i] = "http://140.115.82.211/mysop/img/" + graph[graph.length - 1];
+                    photo[i] = "http://140.115.82.211/img/" + graph[graph.length - 1];
                     likeu[i] = productsList.get(i).get(TAG_LIKE);
                 }
                 for (int i = products.length() - 1; i >= x; i--) {
                     name1[k] = productsList.get(i).get(TAG_SOPNAME);
                     master1[k] = productsList.get(i).get(TAG_USERNAME);
                     String[] graph1 = productsList.get(i).get(TAG_PICTURE).split("/");
-                    photo1[k] = "http://140.115.82.211/mysop/img/" + graph1[graph1.length - 1];
+                    photo1[k] = "http://140.115.82.211/img/" + graph1[graph1.length - 1];
                     likeu1[k] = productsList.get(i).get(TAG_LIKE);
                     k++;
                 }

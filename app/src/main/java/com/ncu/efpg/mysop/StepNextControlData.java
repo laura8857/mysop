@@ -53,7 +53,7 @@ public class StepNextControlData extends Activity {
         mDatabaseHelper = DatabaseHelper.getHelper(this);
         msop_detailDao = new sop_detailDao();
         List<sop_detailVo> list = null;
-        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number ="+TAG_STEP_NUMBER);
+        list = msop_detailDao.selectRaw(mDatabaseHelper, "Step_number =\""+TAG_STEP_NUMBER+"\"");
         Log.d("Data1", list.get(0).getNext_step_number());
         String Next = list.get(0).getNext_step_number();
         String[] NextStep = Next.split("。");

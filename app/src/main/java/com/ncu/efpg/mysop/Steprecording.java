@@ -149,7 +149,7 @@ public class Steprecording extends Activity {
         DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
         mstep_recordDao = new step_recordDao();
         List<step_recordVo> list = null;
-        list = mstep_recordDao.selectRaw(mDatabaseHelper, "Step_number="+TAG_STEP_NUMBER);
+        list = mstep_recordDao.selectRaw(mDatabaseHelper, "Step_number =\""+TAG_STEP_NUMBER+"\"");
 
       //  Log.d("抓", list.get(0).getRecord_order());
       //  Log.d("抓2", list.get(0).getRecord_text());
