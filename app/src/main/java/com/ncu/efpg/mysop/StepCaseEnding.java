@@ -302,10 +302,14 @@ public class StepCaseEnding extends Activity {
         }else {
             Log.d("network","Qui");
             //上傳
-            SOPContent1[] SO= new SOPContent1[Count];
-            for(Step=0;Step<Count;Step++){
-                SO[Step]=new SOPContent1();
-                SO[Step].execute(Step);
+            if(Count==0){
+                new SOPContent2().execute();
+            }else {
+                SOPContent1[] SO = new SOPContent1[Count];
+                for (Step = 0; Step < Count; Step++) {
+                    SO[Step] = new SOPContent1();
+                    SO[Step].execute(Step);
+                }
             }
         }
     }
