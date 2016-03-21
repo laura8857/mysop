@@ -432,7 +432,7 @@ public class Content extends Activity {
 
             //放入 like collection數
              download.setText(String.valueOf(likecount));
-            collectionnumber.setText(collection);
+             collectionnumber.setText(collection);
 
             //放入啟動規則
             switch (STARTRULE){

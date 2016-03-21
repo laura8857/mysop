@@ -65,7 +65,7 @@ public class StepCaseEnding extends Activity {
 
     //連線 case ending
     JSONParser jsonParser = new JSONParser();
-    //第一個是傳入紀錄說明和記錄值  第二個是更改紀錄值  第三個是 結案（刪掉代辦）
+    //第一個是傳入紀錄說明和記錄值  第二個是更改紀錄值  第三個是 結案（代辦sop_do_result=1<結束> + case_type=1<from手機>）
     private static String url_all_products = "http://140.115.82.211/front/mysop_stepCaseclose.jsp";
     private static String url_record = "http://140.115.82.211/front/mysop_steprecording3.jsp";
     private static String url_all_products2 = "http://140.115.82.211/front/mysop_stepCaseclose2.jsp";
