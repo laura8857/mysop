@@ -30,7 +30,9 @@ import com.j256.ormlite.dao.RuntimeExceptionDao;
 
 import org.json.JSONArray;
 
+import java.io.File;
 import java.io.InputStream;
+import java.net.URI;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -624,8 +626,7 @@ public class DynamicAction extends Activity {
     {
         try
         {
-            String sd = Environment.getExternalStorageDirectory().toString();
-            Bitmap bitmap = BitmapFactory.decodeFile(sd + "/" + file);
+            Bitmap bitmap = BitmapFactory.decodeFile(file);
             return bitmap;
         }
         catch (Exception e)
@@ -683,7 +684,11 @@ public class DynamicAction extends Activity {
                 time.setVisibility(8);
             }
             Logo.setImageResource(logos[key[position]]);
-            MysopLogo.setImageBitmap(getBitmapFromSDCard(photo[position]));
+            String sd = Environment.getExternalStorageDirectory().toString();
+            File file = new File(URI.create(sd + "/" + photo[position]).getPath());
+            if (file.exists()) {
+                MysopLogo.setImageBitmap(getBitmapFromSDCard(sd+"/"+photo[position]));
+            }
             Name.setText(" "+name[position]);
             number.setText(list[position]);
             time.setText(timesee[position]);
@@ -743,7 +748,11 @@ public class DynamicAction extends Activity {
                 time1.setVisibility(8);
             }
             Logo1.setImageResource(logos[key1[position]]);
-            MysopLogo1.setImageBitmap(getBitmapFromSDCard(photo1[position]));
+            String sd = Environment.getExternalStorageDirectory().toString();
+            File file = new File(URI.create(sd+"/"+photo1[position]).getPath());
+            if (file.exists()) {
+                MysopLogo1.setImageBitmap(getBitmapFromSDCard(sd+"/"+photo1[position]));
+            }
             Name1.setText(" " + name1[position]);
             number1.setText(list1[position]);
             time1.setText(timesee1[position]);

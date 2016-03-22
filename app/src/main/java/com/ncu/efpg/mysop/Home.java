@@ -392,8 +392,10 @@ public class Home extends Activity {
             ImageView MysopLogo = (ImageView) convertView.findViewById(R.id.mysoplogo);
             TextView Like = (TextView) convertView.findViewById(R.id.likeu);
 
-            new DownloadImageTask(MysopLogo)
-                    .execute(photo[position]);
+            if(!photo[position].equals("http://140.115.82.211/img/0")) {
+                new DownloadImageTask(MysopLogo)
+                        .execute(photo[position]);
+            }
 
             Name.setText(name[position]);
             number.setText(master[position]);
@@ -440,8 +442,10 @@ public class Home extends Activity {
             ImageView MysopLogo1 = (ImageView) convertView.findViewById(R.id.mysoplogo);
             TextView Like1 = (TextView) convertView.findViewById(R.id.likeu);
 
-            new DownloadImageTask(MysopLogo1)
-                    .execute(photo1[position]);
+            if(!photo1[position].equals("http://140.115.82.211/img/0")) {
+                new DownloadImageTask(MysopLogo1)
+                        .execute(photo1[position]);
+            }
 
             Name1.setText(name1[position]);
             number1.setText(master1[position]);
