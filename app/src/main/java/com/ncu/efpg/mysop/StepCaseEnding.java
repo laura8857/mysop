@@ -33,6 +33,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.case_detailDao;
+import Ormlite.case_detailVo;
 import Ormlite.case_masterDao;
 import Ormlite.case_masterVo;
 import Ormlite.case_recordDao;
@@ -69,6 +71,7 @@ public class StepCaseEnding extends Activity {
     private static String url_all_products = "http://140.115.82.211/front/mysop_stepCaseclose.jsp";
     private static String url_record = "http://140.115.82.211/front/mysop_steprecording3.jsp";
     private static String url_all_products2 = "http://140.115.82.211/front/mysop_stepCaseclose2.jsp";
+    private static String url_case_detail = "http://140.115.82.211/front/mysop_case_detail.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_TEXT = "text";
@@ -84,6 +87,12 @@ public class StepCaseEnding extends Activity {
     String steporder[];
     String recordorder[];
     int ok=1;//上傳紀錄值正確
+
+    String steporder_casedetail[];
+    String step_start_time[];
+    String step_finish_time[];
+    public int Count1;
+    public int Step1=1;
 
     //orm
     private RuntimeExceptionDao<case_masterVo, Integer> case_masterRuntimeDao;
@@ -165,6 +174,19 @@ public class StepCaseEnding extends Activity {
 
             // new LoadInput().execute();
 
+        DatabaseHelper mDatabaseHelper6 = DatabaseHelper.getHelper(StepCaseEnding.this);
+        case_detailDao mcase_detailDao = new case_detailDao();
+        List<case_detailVo> case_detaillist = null;
+        case_detaillist = mcase_detailDao.selectRaw(mDatabaseHelper6, "Case_number =\""+TAG_CASE_NUMBER+"\"");
+        steporder_casedetail = new String[case_detaillist.size()];
+        step_start_time = new String[case_detaillist.size()];
+        step_finish_time = new String[case_detaillist.size()];
+        for(int i=0;i<case_detaillist.size();i++){
+            steporder_casedetail[i] = case_detaillist.get(i).getStep_order();
+            step_start_time[i] = case_detaillist.get(i).getStep_start_time();
+            step_finish_time[i] = case_detaillist.get(i).getStep_finish_time();
+        }
+        Count1=case_detaillist.size();
 
     }
 
@@ -303,7 +325,12 @@ public class StepCaseEnding extends Activity {
             Log.d("network","Qui");
             //上傳
             if(Count==0){
-                new SOPContent2().execute();
+                SOPContent3[] SO = new SOPContent3[Count1];
+                for (Step1 = 0; Step1 < Count1; Step1++) {
+                    SO[Step1] = new SOPContent3();
+                    SO[Step1].execute(Step1);
+                }
+                //new SOPContent2().execute();
             }else {
                 SOPContent1[] SO = new SOPContent1[Count];
                 for (Step = 0; Step < Count; Step++) {
@@ -376,11 +403,79 @@ public class StepCaseEnding extends Activity {
                 ad.show();//示對話框
             }
             if(a==Count-1){
+                SOPContent3[] SO = new SOPContent3[Count1];
+                for (Step1 = 0; Step1 < Count1; Step1++) {
+                    SO[Step1] = new SOPContent3();
+                    SO[Step1].execute(Step1);
+                }
+
                 //結束上傳紀錄值，開始結案
+                //new SOPContent2().execute();
+            }
+        }
+    }
+
+    //case_detail
+    class SOPContent3 extends AsyncTask<Integer, Integer, Integer> {
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        protected Integer doInBackground(Integer... args) {
+
+            int a = args[0];
+            ArrayList params = new ArrayList();
+            params.add(new BasicNameValuePair("CaseNumber", TAG_CASE_NUMBER));
+            params.add(new BasicNameValuePair("StepOrder", steporder_casedetail[a]));
+            params.add(new BasicNameValuePair("StepStartTime", step_start_time[a]));
+            params.add(new BasicNameValuePair("StepFinishTime", step_finish_time[a]));
+
+
+            JSONObject json3 = StepCaseEnding.this.jsonParser.makeHttpRequest(StepCaseEnding.url_case_detail, "POST", params);
+
+            try {
+                int e = json3.getInt(TAG_SUCCESS);
+                if (e == 1) {
+                    ok = 1;
+                    Log.d("sopcontent3","成功");
+                } else {
+                    ok = 0;
+                    Log.d("sopcontent3","失敗");
+                }
+            } catch (JSONException var9) {
+                var9.printStackTrace();
+            }
+            return a;
+        }
+
+        protected void onPostExecute(Integer args) {
+            int a=args;
+            if(ok==0){
+                AlertDialog.Builder ad=new AlertDialog.Builder(StepCaseEnding.this);
+                ad.setTitle("系統異常!");
+                ad.setMessage("系統異常，請聯繫系統管理員。");
+                ad.setPositiveButton("是", new DialogInterface.OnClickListener() {//退出按鈕
+                    public void onClick(DialogInterface dialog, int i) {
+                        // TODO Auto-generated method stub
+                        Bundle bundle = new Bundle();
+                        bundle.putString("TAG_ACCOUNT",TAG_ACCOUNT);
+                        Intent it = new Intent(StepCaseEnding.this,Mysop.class);
+                        it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        it.putExtras(bundle);
+                        startActivity(it);
+                        StepCaseEnding.this.finish();
+
+                    }
+                });
+                ad.show();//示對話框
+            }
+            if(a==Count1-1) {
+                //結束上傳
                 new SOPContent2().execute();
             }
         }
     }
+
     //結案 刪除sop
     class SOPContent2 extends AsyncTask<Integer, Integer, Integer> {
         protected void onPreExecute() {
@@ -423,6 +518,8 @@ public class StepCaseEnding extends Activity {
                 mcase_recordDao3.delete(mDatabaseHelper3, "Case_number", TAG_CASE_NUMBER);
                 case_masterDao mcase_master3 = new case_masterDao();
                 mcase_master3.delete(mDatabaseHelper3, "Case_number", TAG_CASE_NUMBER);
+                case_masterDao mcase_detail3 = new case_masterDao();
+                mcase_detail3.delete(mDatabaseHelper3, "Case_number", TAG_CASE_NUMBER);
 
                 Intent i = new Intent(StepCaseEnding.this, Mysop.class);
                 Bundle bundle = new Bundle();

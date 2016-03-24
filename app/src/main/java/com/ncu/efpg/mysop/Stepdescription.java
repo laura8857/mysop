@@ -23,12 +23,16 @@ import android.widget.TextView;
 import org.json.JSONArray;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.case_detailDao;
+import Ormlite.case_detailVo;
 import Ormlite.member_accountDao;
 import Ormlite.member_accountVo;
 import Ormlite.sop_detailDao;
@@ -191,6 +195,17 @@ public class Stepdescription extends Activity {
         goright = (ImageButton)findViewById(R.id.imageButton);
         goleft = (ImageButton)findViewById(R.id.imageButton2);
 
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        Date curDate = new Date(System.currentTimeMillis()) ; // 獲取當前時間
+        String str = formatter.format(curDate);
+
+        DatabaseHelper mDatabaseHelper2 = DatabaseHelper.getHelper(this);
+        case_detailDao mcase_detailDao = new case_detailDao();
+        case_detailVo mcase_detailVo = new case_detailVo();
+        mcase_detailVo.setCase_number(TAG_CASE_NUMBER);
+        mcase_detailVo.setStep_order(String.valueOf(TAG_STEP_ORDER));
+        mcase_detailVo.setStep_start_time(str);
+        mcase_detailDao.insert(mDatabaseHelper2, mcase_detailVo);
     }
 
 /*

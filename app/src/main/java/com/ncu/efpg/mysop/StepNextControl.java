@@ -8,9 +8,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.case_detailDao;
+import Ormlite.case_detailVo;
 import Ormlite.sop_detailDao;
 import Ormlite.sop_detailVo;
 
@@ -51,6 +55,14 @@ public class StepNextControl extends Activity {
         Log.d("抓", list.get(0).getNext_step_rule()+list.get(0).getNext_step_number());
         NextStepRule = Integer.valueOf(list.get(0).getNext_step_rule());
         TAG_NEXT_STEP_NUMBER = list.get(0).getNext_step_number();
+
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd");
+        Date curDate = new Date(System.currentTimeMillis()) ; // 獲取當前時間
+        String str = formatter.format(curDate);
+        DatabaseHelper mDatabaseHelper = DatabaseHelper.getHelper(this);
+        case_detailDao mcase_detailDao = new case_detailDao();
+        mcase_detailDao.update(mDatabaseHelper, "Case_number",TAG_CASE_NUMBER,"Step_order",String.valueOf(TAG_STEP_ORDER), "Step_finish_time", str);
+
 
         UseNextStepRule(NextStepRule);
     }

@@ -32,6 +32,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import Ormlite.DatabaseHelper;
+import Ormlite.case_detailDao;
+import Ormlite.case_detailVo;
 import Ormlite.case_masterDao;
 import Ormlite.case_masterVo;
 import Ormlite.case_recordDao;
@@ -62,6 +64,7 @@ public class SplashActivity extends Activity {
     private static String url_all_products3 = "http://140.115.82.211/front/mysop_step_record.jsp";
     private static String url_upload1 = "http://140.115.82.211/front/mysop_steprecording3.jsp";
     private static String url_upload2 = "http://140.115.82.211/front/mysop_stepCaseclose2.jsp";
+    private static String url_upload3 = "http://140.115.82.211/front/mysop_case_detail.jsp";
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_PRODUCTS = "products";
     private static final String TAG_CASENUMBER = "casenumber";
@@ -296,10 +299,22 @@ public class SplashActivity extends Activity {
                 for(int i=0;i<uploadlist.size();i++) {
                     uploadlist1 = case_recorduploadDao1.selectRaw(DatabaseHelperupload1,"Case_number="+uploadlist.get(i).getCase_number());
                     //上傳記錄值case_record
+                    UpLoad1[] upload1 = new UpLoad1[uploadlist1.size()];
                     for(int j=0;j<uploadlist1.size();j++) {
-                        UpLoad1[] upload1 = new UpLoad1[uploadlist1.size()];
                         upload1[j] = new UpLoad1();
                         upload1[j].execute(uploadlist1.get(j).getCase_number(), uploadlist1.get(j).getStep_order(), uploadlist1.get(j).getRecord_order(), uploadlist1.get(j).getRecord_value());
+                    }
+                    DatabaseHelper mDatabaseHelperupload2 = DatabaseHelper.getHelper(SplashActivity.this);
+                    case_detailDao mcase_detailDao = new case_detailDao();
+                    List<case_detailVo> case_detaillist = null;
+                    case_detaillist = mcase_detailDao.selectRaw(mDatabaseHelperupload2,"Case_number="+uploadlist.get(i).getCase_number());
+                    //上傳case_detail
+                    UpLoad3[] upload3 = new UpLoad3[case_detaillist.size()];
+                    Log.d("case_detaillist.size()",String.valueOf(case_detaillist.size()));
+                    for(int k=0;k<case_detaillist.size();k++) {
+                        Log.d("k",String.valueOf(k));
+                        upload3[k] = new UpLoad3();
+                        upload3[k].execute(case_detaillist.get(k).getCase_number(), case_detaillist.get(k).getStep_order(), case_detaillist.get(k).getStep_start_time(),case_detaillist.get(k).getStep_finish_time());
                     }
                     //上傳刪除case_master
                     UpLoad2[] upload2 = new UpLoad2[uploadlist.size()];
@@ -312,6 +327,9 @@ public class SplashActivity extends Activity {
                     DatabaseHelper DatabaseHelperupload3 = DatabaseHelper.getHelper(SplashActivity.this);
                     case_masterDao case_masteruploadDao3 = new case_masterDao();
                     case_masteruploadDao3.delete(DatabaseHelperupload3,"Case_number",uploadlist.get(i).getCase_number());
+                    DatabaseHelper DatabaseHelperupload4 = DatabaseHelper.getHelper(SplashActivity.this);
+                    case_detailDao case_detailuploadDao4 = new case_detailDao();
+                    case_detailuploadDao4.delete(DatabaseHelperupload4,"Case_number",uploadlist.get(i).getCase_number());
                 }
             }
             TAG_ACCOUNT = account.get(0).getAccount();
@@ -341,15 +359,15 @@ public class SplashActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    //更改紀錄
+    //上傳紀錄
     class UpLoad1 extends AsyncTask<String, String, String> {
         protected void onPreExecute() {
             super.onPreExecute();
             pDialog = new ProgressDialog(SplashActivity.this);
-            pDialog.setMessage("Changing..Please wait...");
+            pDialog.setMessage("Upload..Please wait...");
             pDialog.setIndeterminate(false);
             pDialog.setCancelable(false);
-            pDialog.show();
+            //pDialog.show();
 
         }
         protected String doInBackground(String... args) {
@@ -376,7 +394,48 @@ public class SplashActivity extends Activity {
             return null;
         }
         protected void onPostExecute(String file_url) {
-            pDialog.dismiss();
+            //pDialog.dismiss();
+        }
+    }
+
+    //case_detail
+    class UpLoad3 extends AsyncTask<String, String, String> {
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(SplashActivity.this);
+            pDialog.setMessage("Upload..Please wait...");
+            pDialog.setIndeterminate(false);
+            pDialog.setCancelable(false);
+            //pDialog.show();
+
+        }
+        protected String doInBackground(String... args) {
+
+            ArrayList params = new ArrayList();
+
+            params.add(new BasicNameValuePair("CaseNumber", args[0]));
+            params.add(new BasicNameValuePair("StepOrder", args[1]));
+            params.add(new BasicNameValuePair("StepStartTime", args[2]));
+            params.add(new BasicNameValuePair("StepFinishTime", args[3]));
+
+
+            // 上傳紀錄的紀錄
+            JSONObject jsonupload1 = SplashActivity.this.jsonParser.makeHttpRequest(SplashActivity.url_upload3, "POST", params);
+            try {
+                int e = jsonupload1.getInt(TAG_SUCCESS);
+                if(e == 1) {
+                    Log.d("upload3","成功");
+                }else{
+                    Log.d("upload3","失敗");
+                }
+
+            } catch (JSONException var9) {
+                var9.printStackTrace();
+            }
+            return null;
+        }
+        protected void onPostExecute(String file_url) {
+            //pDialog.dismiss();
         }
     }
 
