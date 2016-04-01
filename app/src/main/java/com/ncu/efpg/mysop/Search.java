@@ -547,7 +547,8 @@ public class Search extends Activity {
         return super.onKeyDown(keyCode, event);
     }
     public void ConfirmExit(){//退出確認
-        AlertDialog.Builder ad=new AlertDialog.Builder(Search.this);
+        Search.this.finish();
+        /*        AlertDialog.Builder ad=new AlertDialog.Builder(Search.this);
         ad.setTitle("離開");
         ad.setMessage("確定要離開Search?");
         ad.setPositiveButton("是", new DialogInterface.OnClickListener() {//退出按鈕
@@ -563,6 +564,7 @@ public class Search extends Activity {
             }
         });
         ad.show();//示對話框
+        */
     }
 
 }
